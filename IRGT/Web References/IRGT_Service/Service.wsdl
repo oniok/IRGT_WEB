@@ -1,0 +1,2744 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="loginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="loginResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getUserResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUser_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getUser_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getUser_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="User_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkUserResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="User_ID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="USER_UPDATE" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setUserResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="User_ID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteUserResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMasterData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMasterDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getMasterDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_GroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getReport_GroupResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getReport_Group_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkReport_Group">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkReport_GroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkReport_GroupResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setReport_Group">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setReport_GroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setReport_GroupResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteReport_Group">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteReport_GroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteReport_GroupResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getReport_Group_TypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_Type_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getReport_Group_Type_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getReport_Group_Type_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkReport_Group_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkReport_Group_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkReport_Group_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setReport_Group_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Type_Grp_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setReport_Group_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setReport_Group_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteReport_Group_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteReport_Group_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteReport_Group_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovement_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovement_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getMovement_TypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovement_Type_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMovement_Type_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getMovement_Type_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkMovement_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkMovement_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkMovement_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setMovement_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_Value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setMovement_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setMovement_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteMovement_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteMovement_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteMovement_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFund_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFund_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getFund_TypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFund_Type_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getFund_Type_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getFund_Type_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkFund_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkFund_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkFund_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setFund_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setFund_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setFund_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteFund_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteFund_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteFund_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getWork_Center">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getWork_CenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getWork_CenterResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getWork_Center_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getWork_Center_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getWork_Center_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkWork_Center">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkWork_CenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkWork_CenterResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setWork_Center">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Address_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Address_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Tel" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_Level" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setWork_CenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setWork_CenterResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteWork_Center">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteWork_CenterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteWork_CenterResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Detail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_DetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAsset_DetailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Detail_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Item_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Detail_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAsset_Detail_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_Detail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_DetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkAsset_DetailResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_Detail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Item_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serial_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Loc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Quality" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Tranfer_Loc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Budget_Year" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Document_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Document_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Fund_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Standard_Price" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Price_per_unit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Purchase_Doc_no" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Purchase_Doc_date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Brand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Serie" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Receive_from" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mvt_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Term_Use" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Depriciate_accru" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Depriciate_in_year" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Net_Price" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_DetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setAsset_DetailResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_Detail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_DetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAsset_DetailResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Quota">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_QuotaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAsset_QuotaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Quota_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Quota_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAsset_Quota_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_Quota">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_QuotaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkAsset_QuotaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_Quota">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Quota_Qty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Stock_Qty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_QuotaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setAsset_QuotaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_Quota">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_QuotaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAsset_QuotaResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Depreciate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_DepreciateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAsset_DepreciateResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Depreciate_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Depreciate_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAsset_Depreciate_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_Depreciate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_DepreciateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkAsset_DepreciateResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_Depreciate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Depreciate_Rate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Standard_Price" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Term_Use" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_DepreciateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setAsset_DepreciateResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_Depreciate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_DepreciateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAsset_DepreciateResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAsset_TypeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Type_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Type_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAsset_Type_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkAsset_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setAsset_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_Type">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset_TypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAsset_TypeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getAssetResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getAsset_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getAsset_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="checkAssetResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name1_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name1_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name2_T" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name2_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Asset_Ref_No" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Unit_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setAssetResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAsset">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteAssetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteAssetResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="loginSoapIn">
+    <wsdl:part name="parameters" element="tns:login" />
+  </wsdl:message>
+  <wsdl:message name="loginSoapOut">
+    <wsdl:part name="parameters" element="tns:loginResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserSoapIn">
+    <wsdl:part name="parameters" element="tns:getUser" />
+  </wsdl:message>
+  <wsdl:message name="getUserSoapOut">
+    <wsdl:part name="parameters" element="tns:getUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUser_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getUser_Count" />
+  </wsdl:message>
+  <wsdl:message name="getUser_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getUser_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkUserSoapIn">
+    <wsdl:part name="parameters" element="tns:checkUser" />
+  </wsdl:message>
+  <wsdl:message name="checkUserSoapOut">
+    <wsdl:part name="parameters" element="tns:checkUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="setUserSoapIn">
+    <wsdl:part name="parameters" element="tns:setUser" />
+  </wsdl:message>
+  <wsdl:message name="setUserSoapOut">
+    <wsdl:part name="parameters" element="tns:setUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteUser" />
+  </wsdl:message>
+  <wsdl:message name="deleteUserSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMasterDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getMasterData" />
+  </wsdl:message>
+  <wsdl:message name="getMasterDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getReport_GroupSoapIn">
+    <wsdl:part name="parameters" element="tns:getReport_Group" />
+  </wsdl:message>
+  <wsdl:message name="getReport_GroupSoapOut">
+    <wsdl:part name="parameters" element="tns:getReport_GroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getReport_Group_Count" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getReport_Group_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkReport_GroupSoapIn">
+    <wsdl:part name="parameters" element="tns:checkReport_Group" />
+  </wsdl:message>
+  <wsdl:message name="checkReport_GroupSoapOut">
+    <wsdl:part name="parameters" element="tns:checkReport_GroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="setReport_GroupSoapIn">
+    <wsdl:part name="parameters" element="tns:setReport_Group" />
+  </wsdl:message>
+  <wsdl:message name="setReport_GroupSoapOut">
+    <wsdl:part name="parameters" element="tns:setReport_GroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteReport_GroupSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteReport_Group" />
+  </wsdl:message>
+  <wsdl:message name="deleteReport_GroupSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteReport_GroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:getReport_Group_Type" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:getReport_Group_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_Type_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getReport_Group_Type_Count" />
+  </wsdl:message>
+  <wsdl:message name="getReport_Group_Type_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getReport_Group_Type_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkReport_Group_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:checkReport_Group_Type" />
+  </wsdl:message>
+  <wsdl:message name="checkReport_Group_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:checkReport_Group_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="setReport_Group_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:setReport_Group_Type" />
+  </wsdl:message>
+  <wsdl:message name="setReport_Group_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:setReport_Group_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteReport_Group_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteReport_Group_Type" />
+  </wsdl:message>
+  <wsdl:message name="deleteReport_Group_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteReport_Group_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMovement_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:getMovement_Type" />
+  </wsdl:message>
+  <wsdl:message name="getMovement_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:getMovement_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMovement_Type_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getMovement_Type_Count" />
+  </wsdl:message>
+  <wsdl:message name="getMovement_Type_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getMovement_Type_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkMovement_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:checkMovement_Type" />
+  </wsdl:message>
+  <wsdl:message name="checkMovement_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:checkMovement_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="setMovement_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:setMovement_Type" />
+  </wsdl:message>
+  <wsdl:message name="setMovement_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:setMovement_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteMovement_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteMovement_Type" />
+  </wsdl:message>
+  <wsdl:message name="deleteMovement_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteMovement_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFund_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:getFund_Type" />
+  </wsdl:message>
+  <wsdl:message name="getFund_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:getFund_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getFund_Type_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getFund_Type_Count" />
+  </wsdl:message>
+  <wsdl:message name="getFund_Type_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getFund_Type_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkFund_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:checkFund_Type" />
+  </wsdl:message>
+  <wsdl:message name="checkFund_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:checkFund_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="setFund_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:setFund_Type" />
+  </wsdl:message>
+  <wsdl:message name="setFund_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:setFund_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteFund_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteFund_Type" />
+  </wsdl:message>
+  <wsdl:message name="deleteFund_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteFund_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getWork_CenterSoapIn">
+    <wsdl:part name="parameters" element="tns:getWork_Center" />
+  </wsdl:message>
+  <wsdl:message name="getWork_CenterSoapOut">
+    <wsdl:part name="parameters" element="tns:getWork_CenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="getWork_Center_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getWork_Center_Count" />
+  </wsdl:message>
+  <wsdl:message name="getWork_Center_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getWork_Center_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkWork_CenterSoapIn">
+    <wsdl:part name="parameters" element="tns:checkWork_Center" />
+  </wsdl:message>
+  <wsdl:message name="checkWork_CenterSoapOut">
+    <wsdl:part name="parameters" element="tns:checkWork_CenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="setWork_CenterSoapIn">
+    <wsdl:part name="parameters" element="tns:setWork_Center" />
+  </wsdl:message>
+  <wsdl:message name="setWork_CenterSoapOut">
+    <wsdl:part name="parameters" element="tns:setWork_CenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteWork_CenterSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteWork_Center" />
+  </wsdl:message>
+  <wsdl:message name="deleteWork_CenterSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteWork_CenterResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_DetailSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Detail" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_DetailSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_DetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Detail_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Detail_Count" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Detail_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_Detail_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_DetailSoapIn">
+    <wsdl:part name="parameters" element="tns:checkAsset_Detail" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_DetailSoapOut">
+    <wsdl:part name="parameters" element="tns:checkAsset_DetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_DetailSoapIn">
+    <wsdl:part name="parameters" element="tns:setAsset_Detail" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_DetailSoapOut">
+    <wsdl:part name="parameters" element="tns:setAsset_DetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_DetailSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAsset_Detail" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_DetailSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAsset_DetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_QuotaSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Quota" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_QuotaSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_QuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Quota_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Quota_Count" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Quota_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_Quota_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_QuotaSoapIn">
+    <wsdl:part name="parameters" element="tns:checkAsset_Quota" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_QuotaSoapOut">
+    <wsdl:part name="parameters" element="tns:checkAsset_QuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_QuotaSoapIn">
+    <wsdl:part name="parameters" element="tns:setAsset_Quota" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_QuotaSoapOut">
+    <wsdl:part name="parameters" element="tns:setAsset_QuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_QuotaSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAsset_Quota" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_QuotaSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAsset_QuotaResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_DepreciateSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Depreciate" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_DepreciateSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_DepreciateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Depreciate_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Depreciate_Count" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Depreciate_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_Depreciate_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_DepreciateSoapIn">
+    <wsdl:part name="parameters" element="tns:checkAsset_Depreciate" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_DepreciateSoapOut">
+    <wsdl:part name="parameters" element="tns:checkAsset_DepreciateResponse" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_DepreciateSoapIn">
+    <wsdl:part name="parameters" element="tns:setAsset_Depreciate" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_DepreciateSoapOut">
+    <wsdl:part name="parameters" element="tns:setAsset_DepreciateResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_DepreciateSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAsset_Depreciate" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_DepreciateSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAsset_DepreciateResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Type" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Type_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Type_Count" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_Type_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_Type_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:checkAsset_Type" />
+  </wsdl:message>
+  <wsdl:message name="checkAsset_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:checkAsset_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:setAsset_Type" />
+  </wsdl:message>
+  <wsdl:message name="setAsset_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:setAsset_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_TypeSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAsset_Type" />
+  </wsdl:message>
+  <wsdl:message name="deleteAsset_TypeSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAsset_TypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset" />
+  </wsdl:message>
+  <wsdl:message name="getAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:getAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getAsset_Count" />
+  </wsdl:message>
+  <wsdl:message name="getAsset_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getAsset_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:checkAsset" />
+  </wsdl:message>
+  <wsdl:message name="checkAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:checkAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="setAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:setAsset" />
+  </wsdl:message>
+  <wsdl:message name="setAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:setAssetResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteAssetSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteAsset" />
+  </wsdl:message>
+  <wsdl:message name="deleteAssetSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteAssetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ServiceSoap">
+    <wsdl:operation name="login">
+      <wsdl:input message="tns:loginSoapIn" />
+      <wsdl:output message="tns:loginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUserSoapIn" />
+      <wsdl:output message="tns:getUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getUser_Count">
+      <wsdl:input message="tns:getUser_CountSoapIn" />
+      <wsdl:output message="tns:getUser_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkUser">
+      <wsdl:input message="tns:checkUserSoapIn" />
+      <wsdl:output message="tns:checkUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setUser">
+      <wsdl:input message="tns:setUserSoapIn" />
+      <wsdl:output message="tns:setUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <wsdl:input message="tns:deleteUserSoapIn" />
+      <wsdl:output message="tns:deleteUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getMasterData">
+      <wsdl:input message="tns:getMasterDataSoapIn" />
+      <wsdl:output message="tns:getMasterDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group">
+      <wsdl:input message="tns:getReport_GroupSoapIn" />
+      <wsdl:output message="tns:getReport_GroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Count">
+      <wsdl:input message="tns:getReport_Group_CountSoapIn" />
+      <wsdl:output message="tns:getReport_Group_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group">
+      <wsdl:input message="tns:checkReport_GroupSoapIn" />
+      <wsdl:output message="tns:checkReport_GroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group">
+      <wsdl:input message="tns:setReport_GroupSoapIn" />
+      <wsdl:output message="tns:setReport_GroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group">
+      <wsdl:input message="tns:deleteReport_GroupSoapIn" />
+      <wsdl:output message="tns:deleteReport_GroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type">
+      <wsdl:input message="tns:getReport_Group_TypeSoapIn" />
+      <wsdl:output message="tns:getReport_Group_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type_Count">
+      <wsdl:input message="tns:getReport_Group_Type_CountSoapIn" />
+      <wsdl:output message="tns:getReport_Group_Type_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group_Type">
+      <wsdl:input message="tns:checkReport_Group_TypeSoapIn" />
+      <wsdl:output message="tns:checkReport_Group_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group_Type">
+      <wsdl:input message="tns:setReport_Group_TypeSoapIn" />
+      <wsdl:output message="tns:setReport_Group_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group_Type">
+      <wsdl:input message="tns:deleteReport_Group_TypeSoapIn" />
+      <wsdl:output message="tns:deleteReport_Group_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type">
+      <wsdl:input message="tns:getMovement_TypeSoapIn" />
+      <wsdl:output message="tns:getMovement_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type_Count">
+      <wsdl:input message="tns:getMovement_Type_CountSoapIn" />
+      <wsdl:output message="tns:getMovement_Type_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkMovement_Type">
+      <wsdl:input message="tns:checkMovement_TypeSoapIn" />
+      <wsdl:output message="tns:checkMovement_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setMovement_Type">
+      <wsdl:input message="tns:setMovement_TypeSoapIn" />
+      <wsdl:output message="tns:setMovement_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteMovement_Type">
+      <wsdl:input message="tns:deleteMovement_TypeSoapIn" />
+      <wsdl:output message="tns:deleteMovement_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type">
+      <wsdl:input message="tns:getFund_TypeSoapIn" />
+      <wsdl:output message="tns:getFund_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type_Count">
+      <wsdl:input message="tns:getFund_Type_CountSoapIn" />
+      <wsdl:output message="tns:getFund_Type_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkFund_Type">
+      <wsdl:input message="tns:checkFund_TypeSoapIn" />
+      <wsdl:output message="tns:checkFund_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setFund_Type">
+      <wsdl:input message="tns:setFund_TypeSoapIn" />
+      <wsdl:output message="tns:setFund_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteFund_Type">
+      <wsdl:input message="tns:deleteFund_TypeSoapIn" />
+      <wsdl:output message="tns:deleteFund_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center">
+      <wsdl:input message="tns:getWork_CenterSoapIn" />
+      <wsdl:output message="tns:getWork_CenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center_Count">
+      <wsdl:input message="tns:getWork_Center_CountSoapIn" />
+      <wsdl:output message="tns:getWork_Center_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkWork_Center">
+      <wsdl:input message="tns:checkWork_CenterSoapIn" />
+      <wsdl:output message="tns:checkWork_CenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setWork_Center">
+      <wsdl:input message="tns:setWork_CenterSoapIn" />
+      <wsdl:output message="tns:setWork_CenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteWork_Center">
+      <wsdl:input message="tns:deleteWork_CenterSoapIn" />
+      <wsdl:output message="tns:deleteWork_CenterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail">
+      <wsdl:input message="tns:getAsset_DetailSoapIn" />
+      <wsdl:output message="tns:getAsset_DetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail_Count">
+      <wsdl:input message="tns:getAsset_Detail_CountSoapIn" />
+      <wsdl:output message="tns:getAsset_Detail_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Detail">
+      <wsdl:input message="tns:checkAsset_DetailSoapIn" />
+      <wsdl:output message="tns:checkAsset_DetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Detail">
+      <wsdl:input message="tns:setAsset_DetailSoapIn" />
+      <wsdl:output message="tns:setAsset_DetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Detail">
+      <wsdl:input message="tns:deleteAsset_DetailSoapIn" />
+      <wsdl:output message="tns:deleteAsset_DetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota">
+      <wsdl:input message="tns:getAsset_QuotaSoapIn" />
+      <wsdl:output message="tns:getAsset_QuotaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota_Count">
+      <wsdl:input message="tns:getAsset_Quota_CountSoapIn" />
+      <wsdl:output message="tns:getAsset_Quota_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Quota">
+      <wsdl:input message="tns:checkAsset_QuotaSoapIn" />
+      <wsdl:output message="tns:checkAsset_QuotaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Quota">
+      <wsdl:input message="tns:setAsset_QuotaSoapIn" />
+      <wsdl:output message="tns:setAsset_QuotaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Quota">
+      <wsdl:input message="tns:deleteAsset_QuotaSoapIn" />
+      <wsdl:output message="tns:deleteAsset_QuotaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate">
+      <wsdl:input message="tns:getAsset_DepreciateSoapIn" />
+      <wsdl:output message="tns:getAsset_DepreciateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate_Count">
+      <wsdl:input message="tns:getAsset_Depreciate_CountSoapIn" />
+      <wsdl:output message="tns:getAsset_Depreciate_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Depreciate">
+      <wsdl:input message="tns:checkAsset_DepreciateSoapIn" />
+      <wsdl:output message="tns:checkAsset_DepreciateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Depreciate">
+      <wsdl:input message="tns:setAsset_DepreciateSoapIn" />
+      <wsdl:output message="tns:setAsset_DepreciateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Depreciate">
+      <wsdl:input message="tns:deleteAsset_DepreciateSoapIn" />
+      <wsdl:output message="tns:deleteAsset_DepreciateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type">
+      <wsdl:input message="tns:getAsset_TypeSoapIn" />
+      <wsdl:output message="tns:getAsset_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type_Count">
+      <wsdl:input message="tns:getAsset_Type_CountSoapIn" />
+      <wsdl:output message="tns:getAsset_Type_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Type">
+      <wsdl:input message="tns:checkAsset_TypeSoapIn" />
+      <wsdl:output message="tns:checkAsset_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Type">
+      <wsdl:input message="tns:setAsset_TypeSoapIn" />
+      <wsdl:output message="tns:setAsset_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Type">
+      <wsdl:input message="tns:deleteAsset_TypeSoapIn" />
+      <wsdl:output message="tns:deleteAsset_TypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset">
+      <wsdl:input message="tns:getAssetSoapIn" />
+      <wsdl:output message="tns:getAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Count">
+      <wsdl:input message="tns:getAsset_CountSoapIn" />
+      <wsdl:output message="tns:getAsset_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset">
+      <wsdl:input message="tns:checkAssetSoapIn" />
+      <wsdl:output message="tns:checkAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setAsset">
+      <wsdl:input message="tns:setAssetSoapIn" />
+      <wsdl:output message="tns:setAssetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset">
+      <wsdl:input message="tns:deleteAssetSoapIn" />
+      <wsdl:output message="tns:deleteAssetSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServiceSoap" type="tns:ServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="login">
+      <soap:operation soapAction="http://tempuri.org/login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="http://tempuri.org/getUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser_Count">
+      <soap:operation soapAction="http://tempuri.org/getUser_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkUser">
+      <soap:operation soapAction="http://tempuri.org/checkUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setUser">
+      <soap:operation soapAction="http://tempuri.org/setUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <soap:operation soapAction="http://tempuri.org/deleteUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMasterData">
+      <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group">
+      <soap:operation soapAction="http://tempuri.org/getReport_Group" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Count">
+      <soap:operation soapAction="http://tempuri.org/getReport_Group_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group">
+      <soap:operation soapAction="http://tempuri.org/checkReport_Group" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group">
+      <soap:operation soapAction="http://tempuri.org/setReport_Group" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group">
+      <soap:operation soapAction="http://tempuri.org/deleteReport_Group" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type">
+      <soap:operation soapAction="http://tempuri.org/getReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type_Count">
+      <soap:operation soapAction="http://tempuri.org/getReport_Group_Type_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group_Type">
+      <soap:operation soapAction="http://tempuri.org/checkReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group_Type">
+      <soap:operation soapAction="http://tempuri.org/setReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group_Type">
+      <soap:operation soapAction="http://tempuri.org/deleteReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type">
+      <soap:operation soapAction="http://tempuri.org/getMovement_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type_Count">
+      <soap:operation soapAction="http://tempuri.org/getMovement_Type_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkMovement_Type">
+      <soap:operation soapAction="http://tempuri.org/checkMovement_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setMovement_Type">
+      <soap:operation soapAction="http://tempuri.org/setMovement_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteMovement_Type">
+      <soap:operation soapAction="http://tempuri.org/deleteMovement_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type">
+      <soap:operation soapAction="http://tempuri.org/getFund_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type_Count">
+      <soap:operation soapAction="http://tempuri.org/getFund_Type_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkFund_Type">
+      <soap:operation soapAction="http://tempuri.org/checkFund_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setFund_Type">
+      <soap:operation soapAction="http://tempuri.org/setFund_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteFund_Type">
+      <soap:operation soapAction="http://tempuri.org/deleteFund_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center">
+      <soap:operation soapAction="http://tempuri.org/getWork_Center" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center_Count">
+      <soap:operation soapAction="http://tempuri.org/getWork_Center_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkWork_Center">
+      <soap:operation soapAction="http://tempuri.org/checkWork_Center" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setWork_Center">
+      <soap:operation soapAction="http://tempuri.org/setWork_Center" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteWork_Center">
+      <soap:operation soapAction="http://tempuri.org/deleteWork_Center" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail_Count">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Detail_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Detail">
+      <soap:operation soapAction="http://tempuri.org/checkAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Detail">
+      <soap:operation soapAction="http://tempuri.org/setAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Detail">
+      <soap:operation soapAction="http://tempuri.org/deleteAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota_Count">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Quota_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Quota">
+      <soap:operation soapAction="http://tempuri.org/checkAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Quota">
+      <soap:operation soapAction="http://tempuri.org/setAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Quota">
+      <soap:operation soapAction="http://tempuri.org/deleteAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate_Count">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Depreciate_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Depreciate">
+      <soap:operation soapAction="http://tempuri.org/checkAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Depreciate">
+      <soap:operation soapAction="http://tempuri.org/setAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Depreciate">
+      <soap:operation soapAction="http://tempuri.org/deleteAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type_Count">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Type_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Type">
+      <soap:operation soapAction="http://tempuri.org/checkAsset_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Type">
+      <soap:operation soapAction="http://tempuri.org/setAsset_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Type">
+      <soap:operation soapAction="http://tempuri.org/deleteAsset_Type" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset">
+      <soap:operation soapAction="http://tempuri.org/getAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Count">
+      <soap:operation soapAction="http://tempuri.org/getAsset_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset">
+      <soap:operation soapAction="http://tempuri.org/checkAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset">
+      <soap:operation soapAction="http://tempuri.org/setAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset">
+      <soap:operation soapAction="http://tempuri.org/deleteAsset" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="ServiceSoap12" type="tns:ServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="login">
+      <soap12:operation soapAction="http://tempuri.org/login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap12:operation soapAction="http://tempuri.org/getUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser_Count">
+      <soap12:operation soapAction="http://tempuri.org/getUser_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkUser">
+      <soap12:operation soapAction="http://tempuri.org/checkUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setUser">
+      <soap12:operation soapAction="http://tempuri.org/setUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUser">
+      <soap12:operation soapAction="http://tempuri.org/deleteUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMasterData">
+      <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group">
+      <soap12:operation soapAction="http://tempuri.org/getReport_Group" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Count">
+      <soap12:operation soapAction="http://tempuri.org/getReport_Group_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group">
+      <soap12:operation soapAction="http://tempuri.org/checkReport_Group" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group">
+      <soap12:operation soapAction="http://tempuri.org/setReport_Group" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group">
+      <soap12:operation soapAction="http://tempuri.org/deleteReport_Group" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type">
+      <soap12:operation soapAction="http://tempuri.org/getReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReport_Group_Type_Count">
+      <soap12:operation soapAction="http://tempuri.org/getReport_Group_Type_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkReport_Group_Type">
+      <soap12:operation soapAction="http://tempuri.org/checkReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setReport_Group_Type">
+      <soap12:operation soapAction="http://tempuri.org/setReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteReport_Group_Type">
+      <soap12:operation soapAction="http://tempuri.org/deleteReport_Group_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type">
+      <soap12:operation soapAction="http://tempuri.org/getMovement_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMovement_Type_Count">
+      <soap12:operation soapAction="http://tempuri.org/getMovement_Type_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkMovement_Type">
+      <soap12:operation soapAction="http://tempuri.org/checkMovement_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setMovement_Type">
+      <soap12:operation soapAction="http://tempuri.org/setMovement_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteMovement_Type">
+      <soap12:operation soapAction="http://tempuri.org/deleteMovement_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type">
+      <soap12:operation soapAction="http://tempuri.org/getFund_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getFund_Type_Count">
+      <soap12:operation soapAction="http://tempuri.org/getFund_Type_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkFund_Type">
+      <soap12:operation soapAction="http://tempuri.org/checkFund_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setFund_Type">
+      <soap12:operation soapAction="http://tempuri.org/setFund_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteFund_Type">
+      <soap12:operation soapAction="http://tempuri.org/deleteFund_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center">
+      <soap12:operation soapAction="http://tempuri.org/getWork_Center" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getWork_Center_Count">
+      <soap12:operation soapAction="http://tempuri.org/getWork_Center_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkWork_Center">
+      <soap12:operation soapAction="http://tempuri.org/checkWork_Center" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setWork_Center">
+      <soap12:operation soapAction="http://tempuri.org/setWork_Center" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteWork_Center">
+      <soap12:operation soapAction="http://tempuri.org/deleteWork_Center" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Detail_Count">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Detail_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Detail">
+      <soap12:operation soapAction="http://tempuri.org/checkAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Detail">
+      <soap12:operation soapAction="http://tempuri.org/setAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Detail">
+      <soap12:operation soapAction="http://tempuri.org/deleteAsset_Detail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Quota_Count">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Quota_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Quota">
+      <soap12:operation soapAction="http://tempuri.org/checkAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Quota">
+      <soap12:operation soapAction="http://tempuri.org/setAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Quota">
+      <soap12:operation soapAction="http://tempuri.org/deleteAsset_Quota" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Depreciate_Count">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Depreciate_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Depreciate">
+      <soap12:operation soapAction="http://tempuri.org/checkAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Depreciate">
+      <soap12:operation soapAction="http://tempuri.org/setAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Depreciate">
+      <soap12:operation soapAction="http://tempuri.org/deleteAsset_Depreciate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Type_Count">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Type_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset_Type">
+      <soap12:operation soapAction="http://tempuri.org/checkAsset_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset_Type">
+      <soap12:operation soapAction="http://tempuri.org/setAsset_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset_Type">
+      <soap12:operation soapAction="http://tempuri.org/deleteAsset_Type" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset">
+      <soap12:operation soapAction="http://tempuri.org/getAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAsset_Count">
+      <soap12:operation soapAction="http://tempuri.org/getAsset_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkAsset">
+      <soap12:operation soapAction="http://tempuri.org/checkAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setAsset">
+      <soap12:operation soapAction="http://tempuri.org/setAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteAsset">
+      <soap12:operation soapAction="http://tempuri.org/deleteAsset" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port name="ServiceSoap" binding="tns:ServiceSoap">
+      <soap:address location="http://localhost:60830/Service.asmx" />
+    </wsdl:port>
+    <wsdl:port name="ServiceSoap12" binding="tns:ServiceSoap12">
+      <soap12:address location="http://localhost:60830/Service.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

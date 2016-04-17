@@ -1,0 +1,23 @@
+﻿<Menus>
+  <Menu ID="1" Name="Admin" TextTH="ผู้ดูแลระบบ" TextEN="Administrator">
+    <Menu ID="1" Name="UserMaser" TextTH="User Master" TextEN="User Master">
+      <Menu ID="1" Name="Users" TextTH="ผู้ใช้ระบบ" TextEN="Users" Url="../admin/User.aspx"/>
+      <Menu ID="2" Name="User Type" TextTH="ประเภทผู้ใช้งาน" TextEN="User Type" Url=""/>
+      <Menu ID="3" Name="Activate" TextTH="เปิดการใช้งานผู้ใช้ระบบ" TextEN="Activate User" Url=""/>
+    </Menu>
+    <Menu ID="2" Name="AssetMaster" TextTH="ข้อมูลครุภัณฑ์" TextEN="Asset Master">
+      <Menu ID="1" Name="AssetDetail" TextTH="ข้อมูลครุภัณฑ์" TextEN="Asset Detail" Url="../admin/AssetDetail.aspx"/>
+      <Menu ID="2" Name="AssetMaster" TextTH="ครุภัณฑ์" TextEN="Asset Master" Url="../admin/Asset.aspx"/>
+      <Menu ID="3" Name="AssetType" TextTH="ประเภทครุภัณฑ์" TextEN="Asset Type" Url="../admin/AssetType.aspx"/>
+      <Menu ID="4" Name="AssetQuota" TextTH="ปริมาณครุภัณฑ์" TextEN="Asset Quota" Url="../admin/AssetQuota.aspx"/>
+      <Menu ID="5" Name="AssetType" TextTH="ค่าเสื่อมครุภัณฑ์" TextEN="Asset Depreciate" Url="../admin/AssetDepreciate.aspx"/>
+    </Menu>
+    <Menu ID="3" Name="Other" TextTH="อื่น ๆ" TextEN="Other">
+      <Menu ID="1" Name="WorkCenter" TextTH="หน่วยงาน" TextEN="Work Center" Url="../admin/WorkCenter.aspx"/>
+      <Menu ID="2" Name="FundType" TextTH="ประเภทเงิน" TextEN="Fund Type" Url="../admin/FundType.aspx"/>
+      <Menu ID="3" Name="MovementType" TextTH="ประเภทการเคลื่อนย้าย" TextEN="Movement Type" Url="../admin/MovementType.aspx"/>
+      <Menu ID="4" Name="ReportGroup" TextTH="กลุ่มรายงาน" TextEN="Report Group" Url="../admin/ReportGroup.aspx"/>
+      <Menu ID="5" Name="ReportGroupType" TextTH="ประเภทกลุ่มรายงาน" TextEN="Report Group Type" Url="../admin/ReportGroupType.aspx"/>
+    </Menu>
+  </Menu>
+</Menus>
