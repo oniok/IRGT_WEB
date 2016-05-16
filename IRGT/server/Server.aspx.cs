@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class server_Server : System.Web.UI.Page
 {
-    IRGT.IRGT_Service.Service IRGTService = new IRGT.IRGT_Service.Service();
+    IRGT_Service.Service IRGTService = new IRGT_Service.Service();
 
     public static string DataTableToJSON(DataTable table)
     {
@@ -229,8 +229,9 @@ public partial class server_Server : System.Web.UI.Page
         string FN = Request.Params["Function"];
         string PageName = Request.Params["PageName"].ToString();
         string LANG = "" + Session["language_" + PageName];
+        string Param = "" + Request.Params["Param"];
         if (LANG == "") LANG = "TH";
-        DataTable DT = IRGTService.getMasterData(FN, LANG);      
+        DataTable DT = IRGTService.getMasterData(FN, LANG, Param);      
         string DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
         Response.Write(DT_JSON);

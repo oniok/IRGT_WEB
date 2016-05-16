@@ -90,11 +90,13 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["report_group_type_ERROR_03"]%>");
                 return;
             }
-            if (StartDate == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["report_group_type_ERROR_04"]%>");
-                return;
-            }
+            
             if (EndDate != "") {
+                if (StartDate == "") {
+                    fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["report_group_type_ERROR_04"]%>");
+                    return;
+                }
+
                 var SP = StartDate.split("/");
                 var SP_Start = parseInt(SP[2]) * 365 + parseInt(SP[1]) * 30 + parseInt(SP[0]);
                 var SP2 = EndDate.split("/");

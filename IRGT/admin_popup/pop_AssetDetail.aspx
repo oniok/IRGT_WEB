@@ -19,7 +19,7 @@
         <tr>
             <td><h4><%=Session["asset_detail_Column03"] %></h4></td>
             <td colspan="3">
-                <select class="chosen-select form-control" id="Asset_Type_ID" data-placeholder="<%=Session["text_placeholder"] %>">
+                <select class="chosen-select form-control" id="Asset_Type_ID" data-placeholder="<%=Session["text_placeholder"] %>" onchange="fnAssetTypeChange()">
 					<option value=""></option>	
                     <option ng-repeat="x in AssetType" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				</select>                               
@@ -29,10 +29,12 @@
         <tr>
             <td><h4><%=Session["asset_detail_Column04"] %></h4></td>
             <td colspan="3">
-                <select class="chosen-select form-control" id="Asset_ID" data-placeholder="<%=Session["text_placeholder"] %>">
-					<option value=""></option>	
-                    <option ng-repeat="x in Asset" value="{{ x.Code }}" >{{ x.Name }}</option>				
-				</select>              
+                <div id="divAsset">
+                    <select  id="Asset_ID" data-placeholder="<%=Session["text_placeholder"] %>" class="chosen-select form-control">
+					    <option value=""></option>	
+                        <option ng-repeat="x in Asset" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				    </select>  
+                </div>            
             </td>
         </tr>  
         <tr><td colspan="4" style="height:5px"></td></tr>
@@ -222,18 +224,6 @@
                         document.getElementById('Price_per_unit').value = data[0].Price_per_unit.trim();
                         document.getElementById('Standard_Price').value = data[0].Standard_Price.trim();
                         document.getElementById('Net_Price').value = data[0].Net_Price.trim();
-
-
-
-
-
-
-
-
-
-
-
-
                         $('body').pleaseWait('stop');
                         fnLoadCtrl();
                     }
@@ -379,6 +369,38 @@
             $tmp_http = $http;
             fnGetAssetType($scope, $http);
         }
+        function fnAssetTypeChange() {
+            $('body').pleaseWait();
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+            var Asset_Type_ID = document.getElementById('Asset_Type_ID').value;
+            var data = $.param({
+                Command: 'GetMasterData',
+                Function: 'Asset',
+                PageName: 'asset_detail',
+                Param:Asset_Type_ID
+            });
+
+            $http.post("../server/Server.aspx", data, config)
+            .success(function (data, status, headers, config) {             
+
+
+                document.getElementById('divAsset').innerHTML = "";                
+                var STemp = '<option value=""></option>'
+                for (var i = 0; i < data.records.length; i++) {
+                    STemp += '<option value="' + data.records[i].Code + '">' + data.records[i].Name + '</option>';
+                }
+                document.getElementById('divAsset').innerHTML = '<select  id="Asset_ID" data-placeholder="<%=Session["text_placeholder"] %>" class="chosen-select form-control">' + STemp + '</select>  ';
+
+                    
+                $scope.Asset = data.records;
+                fnChoSen($JQ);
+                $('body').pleaseWait('stop');
+            })
+            .error(function (data, status, header, config) {
+                $('body').pleaseWait('stop');
+            });
+        }
         function fnGetAssetType($scope, $http) {
             var data = $.param({
                 Command: 'GetMasterData',
@@ -396,6 +418,8 @@
             });
         }
         function fnGetAsset() {
+
+           
 
             $scope = $tmp_scope;
             $http = $tmp_http;

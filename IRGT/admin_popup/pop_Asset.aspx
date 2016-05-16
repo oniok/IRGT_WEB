@@ -120,10 +120,10 @@
             var StartDate = document.getElementById('StartDate').value;
             var EndDate = document.getElementById('EndDate').value;
            
-            if (Asset_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_ERROR_01"]%>");
-                return;
-            }
+            //if (Asset_ID == "") {
+            //    fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_ERROR_01"]%>");
+            //    return;
+            //}
             if (Asset_Name1_T == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_ERROR_02"]%>");
                 return;
@@ -138,12 +138,14 @@
                  return;
              }
 
-            if (StartDate == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_ERROR_04"]%>");
-                return;
-            }
+            
 
             if (EndDate != "") {
+                if (StartDate == "") {
+                    fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_ERROR_04"]%>");
+                    return;
+                }
+
                 var SP = StartDate.split("/");
                 var SP_Start = parseInt(SP[2]) * 365 + parseInt(SP[1]) * 30 + parseInt(SP[0]);
                 var SP2 = EndDate.split("/");

@@ -48,7 +48,7 @@ public partial class admin_AssetQuota : System.Web.UI.Page
             Session[PageFunction + "_ColumnEdit"] = "";
             Session[PageFunction + "_Column01"] = "ชื่อครุภัณฑ์";
             Session[PageFunction + "_Column02"] = "หน่วยงาน";
-            Session[PageFunction + "_Column03"] = "จำนวนกรอบครุภัณฑ์";
+            Session[PageFunction + "_Column03"] = "จำนวนกรอบครุภัณฑ์"; 
             Session[PageFunction + "_Column04"] = "วันที่เริ่มใช้งาน";
             Session[PageFunction + "_Column05"] = "วันที่สิ้นสุด";
             Session[PageFunction + "_Column06"] = "จำนวนที่มีอยู่";
@@ -58,10 +58,12 @@ public partial class admin_AssetQuota : System.Web.UI.Page
         {
             //================ POPUP ==================================================
             string PageName = "Asset Quota";
-            Session["pop_add_asset_type"] = "window management - New " + PageName;
-            Session["pop_edit_asset_type"] = "window management - Edit " + PageName;
-            Session["pop_delete_asset_type"] = "Are you sure you want to delete this " + PageName + "?";
-            Session["pop_confirm_asset_type"] = "Confirm Delete Data";
+           
+
+            Session["pop_add_" + PageFunction] = "window management - New " + PageName;
+            Session["pop_edit_" + PageFunction] = "window management - Edit " + PageName;
+            Session["pop_delete_" + PageFunction] = "Are you sure you want to delete this " + PageName + "?";
+            Session["pop_confirm_" + PageFunction] = "Confirm Delete Data";
 
             Session["save_button_text"] = "Save";
             Session["close_button_text"] = "Close";
@@ -88,10 +90,10 @@ public partial class admin_AssetQuota : System.Web.UI.Page
             Session[PageFunction + "_ColumnEdit"] = "";
             Session[PageFunction + "_Column01"] = "Asset";
             Session[PageFunction + "_Column02"] = "Work Center";
-            Session[PageFunction + "_Column03"] = "Quota Qty";
+            Session[PageFunction + "_Column03"] = "Quota Qty"; 
             Session[PageFunction + "_Column04"] = "Start Date";
             Session[PageFunction + "_Column05"] = "End Date";
-            Session[PageFunction + "_Column06"] = "Stock Qty";
+            Session[PageFunction + "_Column06"] = "Stock Qty"; 
         }
     }
 }

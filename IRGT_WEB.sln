@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IRGT(1)", "IRGT\", "{5E2BB427-86D6-436B-8F78-55F452AC594D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56859"
+		Debug.AspNetCompiler.PhysicalPath = "IRGT\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56859\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56859"
+		Release.AspNetCompiler.PhysicalPath = "IRGT\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56859\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56859"
+		SlnRelativePath = "IRGT\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "IRGT_Service", "IRGT_Service\", "{0238B855-9D8A-4E2C-8C5F-6730B2E2192D}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_56867"
+		Debug.AspNetCompiler.PhysicalPath = "IRGT_Service\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56867\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_56867"
+		Release.AspNetCompiler.PhysicalPath = "IRGT_Service\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_56867\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "56867"
+		SlnRelativePath = "IRGT_Service\"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5E2BB427-86D6-436B-8F78-55F452AC594D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E2BB427-86D6-436B-8F78-55F452AC594D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0238B855-9D8A-4E2C-8C5F-6730B2E2192D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0238B855-9D8A-4E2C-8C5F-6730B2E2192D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

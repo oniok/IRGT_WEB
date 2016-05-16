@@ -102,12 +102,13 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_depreciate_ERROR_01"]%>");
                 return;
             }            
-            if (StartDate == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_depreciate_ERROR_04"]%>");
-                return;
-            }
+            
 
             if (EndDate != "") {
+                if (StartDate == "") {
+                    fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["asset_depreciate_ERROR_04"]%>");
+                    return;
+                }
                 var SP = StartDate.split("/");
                 var SP_Start = parseInt(SP[2]) * 365 + parseInt(SP[1]) * 30 + parseInt(SP[0]);
                 var SP2 = EndDate.split("/");
