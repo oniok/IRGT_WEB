@@ -859,9 +859,6 @@
     <Content Include="mustache\js\classes\Sidenav.js" />
     <Content Include="mustache\js\index.js" />
     <Content Include="packages.config" />
-    <Content Include="ApplicationInsights.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="assets\css\less\ace-extra.less" />
     <Content Include="assets\css\less\ace-features.less" />
     <Content Include="assets\css\less\ace-frontend.less" />
@@ -1325,7 +1322,9 @@
     <Content Include="scripts\errors.json" />
     <Content Include="scripts\jquery-2.1.3.min.map" />
     <Content Include="scripts\version.json" />
-    <None Include="Web References\IRGT_Service\Service.wsdl" />
+    <None Include="Web References\IRGT_Service\Service.wsdl">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
