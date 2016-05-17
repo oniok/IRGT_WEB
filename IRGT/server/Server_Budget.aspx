@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Server_Budget.aspx.cs" Inherits="server_Budget" %>

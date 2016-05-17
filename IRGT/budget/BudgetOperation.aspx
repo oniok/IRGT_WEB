@@ -36,9 +36,9 @@
                                                     <td><%=Session["budget_operation_Column02"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
-                                                        <select class="chosen-select form-control" id="Asset_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px">
+                                                        <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px">
 					                                        <option value=""></option>	
-                                                            <option ng-repeat="x in Asset" value="{{ x.Code }}" >{{ x.Name }}</option>				
+                                                            <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				                                        </select>   
                                                     </td>   
                                                     <td style="width:5px"></td>                                              
@@ -84,24 +84,22 @@
 												        <thead>
 													        <tr>
 														        <th class="center" style="width:50px"><%=Session["budget_operation_ColumnSEQ"]%></th>
-														        <th class="center" style="width:100px"><%=Session["budget_operation_Column01"]%></th>
+														        <th class="center"><%=Session["budget_operation_Column01"]%></th>
 														        <th class="center"><%=Session["budget_operation_Column02"]%></th>
-                                                                <th class="center"><%=Session["budget_operation_Column03"]%></th>          
-                                                                <th class="center"><%=Session["budget_operation_Column04"]%></th>    
-                                                                <th class="center"><%=Session["budget_operation_Column05"]%></th>                                                                
-                                                                
-														       <td class="center" style="width:80px"><%=Session["budget_operation_ColumnEdit"]%></td>
+                                                                <th class="center" style="width:50px"><%=Session["budget_operation_Column03"]%></th>          
+                                                                <th class="center" style="width:100px"><%=Session["budget_operation_Column04"]%></th>    
+                                                                <th class="center"><%=Session["budget_operation_Column05"]%></th>
+														        <td class="center" style="width:80px"><%=Session["budget_operation_ColumnEdit"]%></td>
 													        </tr>
 												        </thead>
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td>{{ x.Budget_ID }}</td>
-                                                                <td>{{ x.Budget_Name }}</td>
-                                                                <td>{{ x.Budget_Type }}</td>          
-                                                                <td>{{ x.Budget_Qty }}</td>														                                                            
-                                                                <td>{{ x.Budget_Price }}</td>
-                                                                <td style="text-align:center">{{ x.Budget_Reason }}</td>
+                                                                <td>{{ x.BO_Name }}</td>
+                                                                <td>{{ x.BO_Type_Name }}</td>
+                                                                <td class="center">{{ x.BO_Qty }}</td>          
+                                                                <td style="text-align:right">{{ x.BO_Price }}</td>														                                                            
+                                                                <td>{{ x.BO_Reason }}</td>
 														        <td style="text-align:center">   
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
 												                        <i class="ace-icon fa fa-pencil  bigger-110 icon-only"></i>
@@ -114,7 +112,7 @@
 												        </tbody>  
                                                         <tfoot >
                                                             <tr style="background-color:whitesmoke">                                                                
-                                                                <td colspan="8" style="padding:0px;text-align:right">                                                                  
+                                                                <td colspan="7" style="padding:0px;text-align:right">                                                                  
                                                                     <table style="margin:3px;width:100%">
                                                                         <tr>
                                                                             <td style="width:5px"></td>
@@ -185,12 +183,12 @@
         $scope = $tmp_scope;
         $('body').pleaseWait();
         var data = $.param({
-            Command: 'AssetDepreciate',
+            Command: 'BudgetOperation',
             Function: 'Delete',
             KeyID: tmpKeyID
         });
 
-        $http.post("../server/Server.aspx", data, config)
+        $http.post("../server/Server_Budget.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             GetPaging($scope, $http);
@@ -220,7 +218,7 @@
             fnOpenPopup('<%=Session["pop_add_budget_operation"]%>', "../budget_popup/pop_BudgetOperation.aspx", null, "450");
         }
         $scope.fnEdit = function (KeyID) {           
-            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../admin_popup/pop_AssetDepreciate.aspx?KeyID=" + KeyID, null, "450");
+            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../admin_popup/pop_BudgetOperation.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnDelete = function (KeyID) {
             tmpKeyID = KeyID;
@@ -248,18 +246,20 @@
         }
         GetPaging($scope, $http);
     }
+   
     function GetPaging($scope, $http) {
 
-        var Asset_ID = document.getElementById('Asset_ID').value;
-
+        var BO_Type_ID = document.getElementById('BO_Type_ID').value;
+        var User_Code = '<%=Session["user_code"]%>';
         var data = $.param({
-            Command: 'AssetDepreciate',
+            Command: 'BudgetOperation',
             Function: 'Paging',
             PageSize: PageSize,
-            Asset_ID: Asset_ID
+            BO_Type_ID: BO_Type_ID,
+            User_Code: User_Code
         });
 
-        $http.post("../server/Server.aspx", data, config)
+        $http.post("../server/Server_Budget.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Paging = data.records;
             $scope.PageMax = data.pagemax;
@@ -272,22 +272,24 @@
     }
     function GetData($scope, $http, PageIndex) {
         CurrentPageIndex = PageIndex;
-        var Asset_ID = document.getElementById('Asset_ID').value;
+        var BO_Type_ID = document.getElementById('BO_Type_ID').value;
+        var User_Code = '<%=Session["user_code"]%>';
         var lang = getParamValue("lang");
         var data = $.param({
-            Command: 'AssetDepreciate',
+            Command: 'BudgetOperation',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,
-            Asset_ID: Asset_ID,
+            BO_Type_ID: BO_Type_ID,
+            User_Code: User_Code,            
             lang: lang
         });
 
-        $http.post("../server/Server.aspx", data, config)
+        $http.post("../server/Server_Budget.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
             if (isLoad)
-                setTimeout(fnGetAsset, 100);
+                setTimeout(fnGetBudgetOperationType, 100);
             else
                 $('body').pleaseWait('stop');
         })
@@ -295,20 +297,20 @@
             $('body').pleaseWait('stop');
         });
     }
-    function fnGetAsset() {
+    function fnGetBudgetOperationType() {
 
         $scope = $tmp_scope;
         $http = $tmp_http;
 
         var data = $.param({
             Command: 'GetMasterData',
-            Function: 'Asset',
+            Function: 'BudgetOperationType',
             PageName: 'budget_operation'
         });
 
-        $http.post("../server/Server.aspx", data, config)
+        $http.post("../server/Server_Budget.aspx", data, config)
         .success(function (data, status, headers, config) {
-            $scope.Asset = data.records;
+            $scope.BudgetOperationType = data.records;
             setTimeout(fnLoad, 100);
         })
         .error(function (data, status, header, config) {

@@ -11,6 +11,9 @@ public partial class budget_BudgetOperation : System.Web.UI.Page
     {
         string PageFunction = "budget_operation";
         string LANG = cCommon.getLanguage(Request);
+        string USER = cCommon.getUserName(Session);
+
+        Session["user_code"] = USER;
         Session["language_" + PageFunction] = LANG;
 
         if (LANG == cCommon.Language_Thai)
