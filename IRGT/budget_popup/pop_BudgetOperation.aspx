@@ -107,13 +107,12 @@
 			    {
 			        Command: 'BudgetOperation',
 			        Function: 'Check',
-			        BO_Type_ID: BO_Type_ID,
 			        User_Code: User_Code
 			    },
 			    function (data, status) {
 			        var data = eval(data);
-			        if (data[0].output == 'OK') {
-			            fnSubmit();
+			        if (data[0].BO_ID != '') {
+			            fnSubmit(data[0].BO_ID);
 			        } else {
 			            fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
 			        }
@@ -121,9 +120,8 @@
             );
         }
 
-        function fnSubmit() {
+        function fnSubmit(BO_ID) {
             var KeyID = getParamValue("KeyID");
-            var BO_ID = document.getElementById('BO_ID').value.trim();
             var BO_Name = document.getElementById('BO_Name').value.trim();
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
             var BO_Qty = document.getElementById('BO_Qty').value.trim();

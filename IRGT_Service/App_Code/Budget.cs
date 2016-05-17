@@ -2452,11 +2452,10 @@ public class Budget : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool checkBudget_Operation(string User_Code, string BO_Type_ID, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public string checkBudget_Operation(string User_Code)
     {
         bool ReturnOutput = false;
-        ReturnMSG_TH = "";
-        ReturnMSG_EN = "";
+        string ReturnCode = "";
 
         string StoreProcedureName = "sp_checkBudget_Operation";
         SetLog("========================START==============================");
@@ -2468,27 +2467,20 @@ public class Budget : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
-        DBCommand.Parameters.Add(newParam("@BO_Type_ID", BO_Type_ID));
 
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
         DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
-        DBCommand.Parameters.Add(newParam("@ReturnMSG_TH", SqlDbType.VarChar, 200));
-        DBCommand.Parameters["@ReturnMSG_TH"].Direction = ParameterDirection.Output;
-        DBCommand.Parameters.Add(newParam("@ReturnMSG_EN", SqlDbType.VarChar, 200));
-        DBCommand.Parameters["@ReturnMSG_EN"].Direction = ParameterDirection.Output;
 
         try
         {
             DBConnect.Open();
             SetLog("[Open Connection]");
             DBCommand.ExecuteNonQuery();
-            string ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
-            if (ReturnCode == "100") ReturnOutput = false;
+            ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
+            if (ReturnCode == "") ReturnOutput = false;
             else ReturnOutput = true;
 
-            ReturnMSG_TH = DBCommand.Parameters["@ReturnMSG_TH"].Value.ToString();
-            ReturnMSG_EN = DBCommand.Parameters["@ReturnMSG_EN"].Value.ToString();
             DBConnect.Close();
 
             SetLog("[Close Connection]");
@@ -2503,10 +2495,8 @@ public class Budget : System.Web.Services.WebService
             DBConnect.Close();
 
             ReturnOutput = false;
-            ReturnMSG_TH = "เกิดข้อผิดพลาดจากระบบ:" + ex.Message;
-            ReturnMSG_EN = "System Error:" + ex.Message;
         }
-        return ReturnOutput;
+        return ReturnCode;
     }
 
     [WebMethod]

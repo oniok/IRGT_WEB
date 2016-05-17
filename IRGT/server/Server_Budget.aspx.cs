@@ -98,6 +98,7 @@ public partial class server_Budget : System.Web.UI.Page
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
+        string BO_ID = "";
 
         switch (FN)
         {
@@ -123,8 +124,9 @@ public partial class server_Budget : System.Web.UI.Page
             case "Check":
                 lang = "" + Session["language_budget_operation"];
                 if (lang == "") lang = "TH";
-                if (IRGTService.checkBudget_Operation(User_Code, BO_Type_ID, out ReturnMSG_TH, out ReturnMSG_EN))
-                    Response.Write("[{\"output\":\"OK\",\"message\":\"\"}]");
+                BO_ID = IRGTService.checkBudget_Operation(User_Code);
+                if (BO_ID != "")
+                    Response.Write("[{\"output\":\"OK\",\"BO_ID\":\"" + BO_ID + "\"}]");
                 else
                 {
                     if (lang == "TH")
