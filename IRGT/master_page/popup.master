@@ -227,6 +227,12 @@
                 $('#Depreciate_Rate').ace_spinner({ value: 0, min: 0, max: 100, step: 1, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
 		        $('#Term_Use').ace_spinner({ value: 0, min: 0, max: 100, step: 1, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
 		        $('#Mvt_Value').ace_spinner({ value: 0, min: -100, max: 100, step: 10, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+
+		        //Budget
+		        $('#BO_Qty').ace_spinner({ value: 0, min: 0, max: 1000, step: 1, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+		        $('#BO_Price').ace_spinner({ value: 0, min: 0, max: 100000, step: 1000, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
+
+
 		    });
 
 		    function getParamValue(name) {

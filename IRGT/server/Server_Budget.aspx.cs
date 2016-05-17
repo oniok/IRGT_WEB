@@ -120,24 +120,20 @@ public partial class server_Budget : System.Web.UI.Page
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
                 return;
-            //case "Check":
-            //    lang = "" + Session["language_budget_operation"];
-            //    if (lang == "") lang = "TH";
-            //    BO_ID = Request.Params["BO_ID"];
-            //    int KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-            //    string ReturnMSG_TH = "";
-            //    string ReturnMSG_EN = "";
-            //    if (IRGTService.checkBudget_Operation(KeyID, BO_ID, out ReturnMSG_TH, out ReturnMSG_EN))
-            //        Response.Write("[{\"output\":\"OK\",\"message\":\"\"}]");
-            //    else
-            //    {
-            //        if (lang == "TH")
-            //            Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
-            //        else
-            //            Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
-            //    }
+            case "Check":
+                lang = "" + Session["language_budget_operation"];
+                if (lang == "") lang = "TH";
+                if (IRGTService.checkBudget_Operation(User_Code, BO_Type_ID, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{\"output\":\"OK\",\"message\":\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
 
-            //    return;
+                return;
             //case "Save":
             //    lang = Request.Params["lang"];
             //    if (lang == "") lang = "TH";

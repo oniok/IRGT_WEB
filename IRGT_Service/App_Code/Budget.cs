@@ -2452,7 +2452,7 @@ public class Budget : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool checkBudget_Operation(int KeyID, string Asset_ID, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool checkBudget_Operation(string User_Code, string BO_Type_ID, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -2467,8 +2467,8 @@ public class Budget : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
-        DBCommand.Parameters.Add(newParam("@Asset_ID", Asset_ID));
+        DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
+        DBCommand.Parameters.Add(newParam("@BO_Type_ID", BO_Type_ID));
 
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));

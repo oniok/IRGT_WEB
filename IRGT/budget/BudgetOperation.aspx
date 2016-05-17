@@ -36,7 +36,7 @@
                                                     <td><%=Session["budget_operation_Column02"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
-                                                        <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px">
+                                                        <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
 					                                        <option value=""></option>	
                                                             <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				                                        </select>   

@@ -11,38 +11,38 @@
             <tr>
                 <td><%=Session["budget_operation_Column01"] %></td>
                 <td colspan="3">
-                    <input type="text" id="Budget_Name" />%
+                    <input type="text" id="BO_Name" style="width:100%"/>
                 </td>
             </tr>
             <tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
-                <td><%=Session["budget_operation_Column02"] %></td>
+                <td style="width:100px"><%=Session["budget_operation_Column02"] %></td>
                 <td colspan="3">
-                    <select class="chosen-select form-control" id="Budget_Type" data-placeholder="<%=Session["text_placeholder"] %>">
+                    <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
 					    <option value=""></option>	
-                        <option ng-repeat="x in Budget" value="{{ x.Code }}" >{{ x.Name }}</option>				
-				    </select>    
+                        <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				    </select>   
                 </td>
              </tr>    
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
             <td><%=Session["budget_operation_Column03"] %></td>
             <td colspan="3">
-                <input type="text" id="Budget_Qty" />
+                <input type="text" id="BO_Qty" />
             </td>
         </tr>
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
             <td><%=Session["budget_operation_Column04"] %></td>
             <td colspan="3">
-                <input type="text" id="Budget_Price" />    
+                <input type="text" id="BO_Price" />    
             </td>
         </tr>        
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
             <td><%=Session["budget_operation_Column05"] %></td>
             <td colspan="3">
-                <input type="text" id="Budget_Reason" />    
+                <input type="text" id="BO_Reason" style="width:100%"/>    
             </td>
         </tr>
     </table>   
@@ -59,12 +59,12 @@
                     },
                     function (data, status) {
                         var data = eval(data);
-                        document.getElementById('Budget_ID').value = data[0].Budget_ID.trim();
-                        document.getElementById('Budget_Name').value = data[0].Budget_Name.trim();
-                        document.getElementById('Budget_Type').value = data[0].Budget_Type.trim();
-                        document.getElementById('Budget_Qty').value = data[0].Budget_Qty.trim();
-                        document.getElementById('Budget_Price').value = data[0].Budget_Price.trim();
-                        document.getElementById('Budget_Reason').value = data[0].Budget_Reason.trim();
+                        document.getElementById('BO_ID').value = data[0].BO_ID.trim();
+                        document.getElementById('BO_Name').value = data[0].BO_Name.trim();
+                        document.getElementById('BO_Type_ID').value = data[0].BO_Type_ID.trim();
+                        document.getElementById('BO_Qty').value = data[0].BO_Qty.trim();
+                        document.getElementById('BO_Price').value = data[0].BO_Price.trim();
+                        document.getElementById('BO_Reason').value = data[0].BO_Reason.trim();
 
                         $('body').pleaseWait('stop');
                         fnLoadCtrl();
@@ -78,44 +78,37 @@
         }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
-            var Budget_ID = document.getElementById('Budget_ID').value.trim();
-            var Budget_Name = document.getElementById('Budget_Name').value.trim();
-            var Budget_Type = document.getElementById('Budget_Type').value.trim();
-            var Budget_Qty = document.getElementById('Budget_Qty').value.trim();
-            var Budget_Price = document.getElementById('Budget_Price').value;
-            var Budget_Reason = document.getElementById('Budget_Reason').value;
-
-            if (Budget_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_01"]%>");
-                return;
-            }            
-            if (Budget_Name == "") {
+            var BO_Name = document.getElementById('BO_Name').value.trim();
+            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
+            var BO_Qty = document.getElementById('BO_Qty').value.trim();
+            var BO_Price = document.getElementById('BO_Price').value;
+        
+            if (BO_Name == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_02"]%>");
                 return;
             }
-            if (Budget_Type == "") {
+            if (BO_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_03"]%>");
                 return;
             }
-            if (Budget_Qty == "") {
+            if (BO_Qty == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_04"]%>");
                 return;
             }
-            if (Budget_Price == "") {
+            if (BO_Price == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
                 return;
             }
+
+            var BO_Type_ID = document.getElementById('BO_Type_ID').value;
+            var User_Code = '<%=Session["user_code"]%>';
 
             $.post("../server/Server.aspx",
 			    {
 			        Command: 'BudgetOperation',
 			        Function: 'Check',
-			        KeyID: KeyID,
-			        Budget_ID: Budget_ID,
-			        Budget_Name: Budget_Name,
-			        Budget_Type: Budget_Type,
-			        Budget_Qty: Budget_Qty,
-			        Budget_Price: Budget_Price
+			        BO_Type_ID: BO_Type_ID,
+			        User_Code: User_Code
 			    },
 			    function (data, status) {
 			        var data = eval(data);
@@ -130,11 +123,12 @@
 
         function fnSubmit() {
             var KeyID = getParamValue("KeyID");
-            var Budget_ID = document.getElementById('Budget_ID').value.trim();
-            var Budget_Name = document.getElementById('Budget_Name').value.trim();
-            var Budget_Type = document.getElementById('Budget_Type').value.trim();
-            var Budget_Qty = document.getElementById('Budget_Qty').value.trim();
-            var Budget_Price = document.getElementById('Budget_Price').value;
+            var BO_ID = document.getElementById('BO_ID').value.trim();
+            var BO_Name = document.getElementById('BO_Name').value.trim();
+            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
+            var BO_Qty = document.getElementById('BO_Qty').value.trim();
+            var BO_Price = document.getElementById('BO_Price').value;
+            var BO_Reason = document.getElementById('BO_Reason').value;
             var lang = getParamValue("lang");
 
             $.post("../server/Server.aspx",
@@ -142,11 +136,12 @@
                    Command: 'BudgetOperation',
                    Function: 'Save',
                    KeyID: KeyID,
-                   Budget_ID: Budget_ID,
-                   Budget_Name: Budget_Name,
-                   Budget_Type: Budget_Type,
-                   Budget_Qty: Budget_Qty,
-                   Budget_Price: Budget_Price,
+                   BO_ID: BO_ID,
+                   BO_Name: BO_Name,
+                   BO_Type_ID: BO_Type_ID,
+                   BO_Qty: BO_Qty,
+                   BO_Price: BO_Price,
+                   BO_Reason: BO_Reason,
                    lang: lang
                },
                function (data, status) {
@@ -171,28 +166,30 @@
             $('body').pleaseWait();
             $tmp_scope = $scope;
             $tmp_http = $http;
-            fnGetBudgetType($scope, $http);
+            fnGetBudgetOperationType($scope, $http);
         }
-        function fnGetBudgetType($scope, $http) {
+        function fnGetBudgetOperationType($scope, $http) {
 
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
                 Command: 'GetMasterData',
-                Function: 'Budget',
+                Function: 'BudgetOperationType',
                 PageName: 'budget_operation'
             });
 
-            $http.post("../server/Server.aspx", data, config)
+            $http.post("../server/Server_Budget.aspx", data, config)
             .success(function (data, status, headers, config) {
-                $scope.Budget = data.records;
+                $scope.BudgetOperationType = data.records;
                 setTimeout(fnLoad, 100);
             })
             .error(function (data, status, header, config) {
                 $('body').pleaseWait('stop');
             });
         }
+       
     </script>
+    
 </asp:Content>
 
