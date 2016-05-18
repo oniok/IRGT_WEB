@@ -142,7 +142,7 @@ public partial class server_Budget : System.Web.UI.Page
 
                 return;
             case "Save":
-                lang = Request.Params["lang"];
+                lang = "" + Session["language_budget_operation"];
                 if (lang == "") lang = "TH";
                 BO_ID = Request.Params["BO_ID"];
                 BO_Name = Request.Params["BO_Name"];

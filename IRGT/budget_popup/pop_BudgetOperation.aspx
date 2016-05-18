@@ -128,7 +128,6 @@
             var BO_Qty = document.getElementById('BO_Qty').value.trim();
             var BO_Price = document.getElementById('BO_Price').value;
             var BO_Reason = document.getElementById('BO_Reason').value;
-            var lang = getParamValue("lang");
 
             $.post("../server/Server_Budget.aspx",
                {
@@ -140,8 +139,7 @@
                    BO_Type_ID: BO_Type_ID,
                    BO_Qty: BO_Qty,
                    BO_Price: BO_Price,
-                   BO_Reason: BO_Reason,
-                   lang: lang
+                   BO_Reason: BO_Reason
                },
                function (data, status) {
                    var data = eval(data);

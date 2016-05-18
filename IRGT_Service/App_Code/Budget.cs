@@ -2500,8 +2500,8 @@ public class Budget : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool setBudget_Operation(int KeyID, string BO_ID, string Depreciate_Rate, string Standard_Price, string Term_Use
-        , string Start_Date, string End_Date, string UserCode
+    public bool setBudget_Operation(int KeyID, string BO_ID, string BO_Name, string BO_Type_ID, string BO_Qty
+        , string BO_Price, string BO_Reason, string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -2518,13 +2518,13 @@ public class Budget : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
-        DBCommand.Parameters.Add(newParam("@Asset_ID", BO_ID));
-        DBCommand.Parameters.Add(newParam("@Depreciate_Rate", Depreciate_Rate));
-        DBCommand.Parameters.Add(newParam("@Standard_Price", Standard_Price));
-        DBCommand.Parameters.Add(newParam("@Term_Use", Term_Use));
-        DBCommand.Parameters.Add(newParam("@Start_Date", Start_Date));
-        DBCommand.Parameters.Add(newParam("@End_Date", End_Date));
-        DBCommand.Parameters.Add(newParam("@USER_CODE", UserCode));
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BO_Name", BO_Name));
+        DBCommand.Parameters.Add(newParam("@BO_Type_ID", BO_Type_ID));
+        DBCommand.Parameters.Add(newParam("@BO_Qty", BO_Qty));
+        DBCommand.Parameters.Add(newParam("@BO_Price", BO_Price));
+        DBCommand.Parameters.Add(newParam("@BO_Reason", BO_Reason));
+        DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
