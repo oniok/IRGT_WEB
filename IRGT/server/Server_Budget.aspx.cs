@@ -99,6 +99,11 @@ public partial class server_Budget : System.Web.UI.Page
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         string BO_ID = "";
+        int KeyID = 0;
+        string BO_Name = "";
+        string BO_Qty = "";
+        string BO_Price = "";
+        string BO_Reason = "";
 
         switch (FN)
         {
@@ -136,38 +141,39 @@ public partial class server_Budget : System.Web.UI.Page
                 }
 
                 return;
-            //case "Save":
-            //    lang = Request.Params["lang"];
-            //    if (lang == "") lang = "TH";
-            //    BO_ID = Request.Params["BO_ID"];
-            //    string Depreciate_Rate = Request.Params["Depreciate_Rate"];
-            //    string Standard_Price = Request.Params["Standard_Price"];
-            //    string Term_Use = Request.Params["Term_Use"];
-            //    string StartDate = Request.Params["StartDate"];
-            //    string EndDate = Request.Params["EndDate"];
-            //    KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-            //    if (IRGTService.setBudget_Operation(KeyID, BO_ID, Depreciate_Rate, Standard_Price, Term_Use
-            //        , StartDate, EndDate, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
-            //        Response.Write("[{output:\"OK\",message:\"\"}]");
-            //    else
-            //    {
-            //        if (lang == "TH")
-            //            Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
-            //        else
-            //            Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
-            //    }
-            //    return;
+            case "Save":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                BO_ID = Request.Params["BO_ID"];
+                BO_Name = Request.Params["BO_Name"];
+                BO_Type_ID = Request.Params["BO_Type_ID"];
+                BO_Qty = Request.Params["BO_Qty"];
+                BO_Price = Request.Params["BO_Price"];
+                BO_Reason = Request.Params["BO_Reason"];
+
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (IRGTService.setBudget_Operation(KeyID, BO_ID, BO_Name, BO_Type_ID, BO_Qty
+                    , BO_Price, BO_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
             case "Load":
-                int KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
                 DT = (DataTable)Session["Data_budget_operation"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
-                OP += ",Depreciate_Rate:\"" + dr_list[0]["Depreciate_Rate"] + "\"";
-                OP += ",Standard_Price:\"" + dr_list[0]["Standard_Price"] + "\"";
-                OP += ",Term_Use:\"" + dr_list[0]["Term_Use"] + "\"";    
-                OP += ",Start_Date:\"" + dr_list[0]["Start_Date"] + "\"";
-                OP += ",End_Date:\"" + dr_list[0]["End_Date"] + "\"";
+                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
+                OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
+                OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";    
+                OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
+                OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;

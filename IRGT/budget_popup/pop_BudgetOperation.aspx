@@ -11,6 +11,7 @@
             <tr>
                 <td><%=Session["budget_operation_Column01"] %></td>
                 <td colspan="3">
+                    <input type="hidden" id="BO_ID"/>
                     <input type="text" id="BO_Name" style="width:100%"/>
                 </td>
             </tr>
@@ -51,7 +52,7 @@
         function fnLoad() {
             var KeyID = getParamValue("KeyID");
             if (KeyID != null) {
-                $.post("../server/Server.aspx",
+                $.post("../server/Server_Budget.aspx",
                     {
                         Command: 'BudgetOperation',
                         Function: 'Load',
@@ -103,7 +104,7 @@
             var BO_Type_ID = document.getElementById('BO_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
 
-            $.post("../server/Server.aspx",
+            $.post("../server/Server_Budget.aspx",
 			    {
 			        Command: 'BudgetOperation',
 			        Function: 'Check',
@@ -129,7 +130,7 @@
             var BO_Reason = document.getElementById('BO_Reason').value;
             var lang = getParamValue("lang");
 
-            $.post("../server/Server.aspx",
+            $.post("../server/Server_Budget.aspx",
                {
                    Command: 'BudgetOperation',
                    Function: 'Save',

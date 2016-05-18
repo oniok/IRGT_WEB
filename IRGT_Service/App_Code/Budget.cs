@@ -2469,7 +2469,7 @@ public class Budget : System.Web.Services.WebService
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
 
         //================================= RETURN OUTPUT ===========================
-        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
+        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.VarChar, 50));
         DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
 
         try
