@@ -2572,7 +2572,7 @@ public class Budget : System.Web.Services.WebService
         ReturnMSG_TH = "";
         ReturnMSG_EN = "";
 
-        string StoreProcedureName = "sp_deleteAsset_Depreciate";
+        string StoreProcedureName = "sp_deleteBudget_Operation";
         SetLog("========================START==============================");
         SetLog("[@Time][Store:" + StoreProcedureName + "]");
         SqlConnection DBConnect = GetDBConnection();
