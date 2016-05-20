@@ -23,8 +23,10 @@ public partial class budget_BudgetOperation : System.Web.UI.Page
 
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
+            Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
             Session["pop_delete_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะลบข้อมูล" + PageName + "นี้ ?";
-            Session["pop_confirm_" + PageFunction] = "ยืนยันการลบข้อมูล";
+            Session["pop_send_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะส่งข้อมูล" + PageName + "นี้ ?";
+            Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
 
             Session["save_button_text"] = "บันทึก";
             Session["close_button_text"] = "ปิดหน้านี้";
@@ -38,7 +40,7 @@ public partial class budget_BudgetOperation : System.Web.UI.Page
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
             Session["add_button"] = "เพิ่มข้อมูล";
             Session["save_button"] = "บันทึกข้อมูล";
-            Session["conclude_button"] = "สรุปคำขอ";
+            Session["sum_button"] = "สรุปคำขอ";
             Session["confirm_button"] = "ส่งคำขอ";
             Session["PageText"] = "หน้าที่";
             Session["PageLast"] = "หน้า";

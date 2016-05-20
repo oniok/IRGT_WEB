@@ -927,119 +927,35 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getAsset_Type">
+      <s:element name="sendBudget_Operation">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getAsset_TypeResponse">
+      <s:element name="sendBudget_OperationResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="getAsset_TypeResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getAsset_Type_Count">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getAsset_Type_CountResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="getAsset_Type_CountResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="checkAsset_Type">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="checkAsset_TypeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="checkAsset_TypeResult" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="sendBudget_OperationResult" type="s:boolean" />
             <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="setAsset_Type">
+      <s:element name="getBudget_OperationSummary">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_Name_E" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="setAsset_TypeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="setAsset_TypeResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="deleteAsset_Type">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="deleteAsset_TypeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="deleteAsset_TypeResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getAsset">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_E" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="getAssetResponse">
+      <s:element name="getBudget_OperationSummaryResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="getAssetResult">
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_OperationSummaryResult">
               <s:complexType>
                 <s:sequence>
                   <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
@@ -1047,83 +963,6 @@
                 </s:sequence>
               </s:complexType>
             </s:element>
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getAsset_Count">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name_E" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getAsset_CountResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="getAsset_CountResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="checkAsset">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="checkAssetResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="checkAssetResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="setAsset">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name1_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name1_E" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name2_T" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Name2_E" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Type_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Asset_Ref_No" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Unit_Name" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Start_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="End_Date" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="setAssetResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="setAssetResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="deleteAsset">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="deleteAssetResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="deleteAssetResult" type="s:boolean" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1411,65 +1250,17 @@
   <wsdl:message name="deleteBudget_OperationSoapOut">
     <wsdl:part name="parameters" element="tns:deleteBudget_OperationResponse" />
   </wsdl:message>
-  <wsdl:message name="getAsset_TypeSoapIn">
-    <wsdl:part name="parameters" element="tns:getAsset_Type" />
+  <wsdl:message name="sendBudget_OperationSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBudget_Operation" />
   </wsdl:message>
-  <wsdl:message name="getAsset_TypeSoapOut">
-    <wsdl:part name="parameters" element="tns:getAsset_TypeResponse" />
+  <wsdl:message name="sendBudget_OperationSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBudget_OperationResponse" />
   </wsdl:message>
-  <wsdl:message name="getAsset_Type_CountSoapIn">
-    <wsdl:part name="parameters" element="tns:getAsset_Type_Count" />
+  <wsdl:message name="getBudget_OperationSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationSummary" />
   </wsdl:message>
-  <wsdl:message name="getAsset_Type_CountSoapOut">
-    <wsdl:part name="parameters" element="tns:getAsset_Type_CountResponse" />
-  </wsdl:message>
-  <wsdl:message name="checkAsset_TypeSoapIn">
-    <wsdl:part name="parameters" element="tns:checkAsset_Type" />
-  </wsdl:message>
-  <wsdl:message name="checkAsset_TypeSoapOut">
-    <wsdl:part name="parameters" element="tns:checkAsset_TypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="setAsset_TypeSoapIn">
-    <wsdl:part name="parameters" element="tns:setAsset_Type" />
-  </wsdl:message>
-  <wsdl:message name="setAsset_TypeSoapOut">
-    <wsdl:part name="parameters" element="tns:setAsset_TypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="deleteAsset_TypeSoapIn">
-    <wsdl:part name="parameters" element="tns:deleteAsset_Type" />
-  </wsdl:message>
-  <wsdl:message name="deleteAsset_TypeSoapOut">
-    <wsdl:part name="parameters" element="tns:deleteAsset_TypeResponse" />
-  </wsdl:message>
-  <wsdl:message name="getAssetSoapIn">
-    <wsdl:part name="parameters" element="tns:getAsset" />
-  </wsdl:message>
-  <wsdl:message name="getAssetSoapOut">
-    <wsdl:part name="parameters" element="tns:getAssetResponse" />
-  </wsdl:message>
-  <wsdl:message name="getAsset_CountSoapIn">
-    <wsdl:part name="parameters" element="tns:getAsset_Count" />
-  </wsdl:message>
-  <wsdl:message name="getAsset_CountSoapOut">
-    <wsdl:part name="parameters" element="tns:getAsset_CountResponse" />
-  </wsdl:message>
-  <wsdl:message name="checkAssetSoapIn">
-    <wsdl:part name="parameters" element="tns:checkAsset" />
-  </wsdl:message>
-  <wsdl:message name="checkAssetSoapOut">
-    <wsdl:part name="parameters" element="tns:checkAssetResponse" />
-  </wsdl:message>
-  <wsdl:message name="setAssetSoapIn">
-    <wsdl:part name="parameters" element="tns:setAsset" />
-  </wsdl:message>
-  <wsdl:message name="setAssetSoapOut">
-    <wsdl:part name="parameters" element="tns:setAssetResponse" />
-  </wsdl:message>
-  <wsdl:message name="deleteAssetSoapIn">
-    <wsdl:part name="parameters" element="tns:deleteAsset" />
-  </wsdl:message>
-  <wsdl:message name="deleteAssetSoapOut">
-    <wsdl:part name="parameters" element="tns:deleteAssetResponse" />
+  <wsdl:message name="getBudget_OperationSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationSummaryResponse" />
   </wsdl:message>
   <wsdl:portType name="BudgetSoap">
     <wsdl:operation name="login">
@@ -1660,45 +1451,13 @@
       <wsdl:input message="tns:deleteBudget_OperationSoapIn" />
       <wsdl:output message="tns:deleteBudget_OperationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type">
-      <wsdl:input message="tns:getAsset_TypeSoapIn" />
-      <wsdl:output message="tns:getAsset_TypeSoapOut" />
+    <wsdl:operation name="sendBudget_Operation">
+      <wsdl:input message="tns:sendBudget_OperationSoapIn" />
+      <wsdl:output message="tns:sendBudget_OperationSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type_Count">
-      <wsdl:input message="tns:getAsset_Type_CountSoapIn" />
-      <wsdl:output message="tns:getAsset_Type_CountSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset_Type">
-      <wsdl:input message="tns:checkAsset_TypeSoapIn" />
-      <wsdl:output message="tns:checkAsset_TypeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="setAsset_Type">
-      <wsdl:input message="tns:setAsset_TypeSoapIn" />
-      <wsdl:output message="tns:setAsset_TypeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset_Type">
-      <wsdl:input message="tns:deleteAsset_TypeSoapIn" />
-      <wsdl:output message="tns:deleteAsset_TypeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="getAsset">
-      <wsdl:input message="tns:getAssetSoapIn" />
-      <wsdl:output message="tns:getAssetSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="getAsset_Count">
-      <wsdl:input message="tns:getAsset_CountSoapIn" />
-      <wsdl:output message="tns:getAsset_CountSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset">
-      <wsdl:input message="tns:checkAssetSoapIn" />
-      <wsdl:output message="tns:checkAssetSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="setAsset">
-      <wsdl:input message="tns:setAssetSoapIn" />
-      <wsdl:output message="tns:setAssetSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset">
-      <wsdl:input message="tns:deleteAssetSoapIn" />
-      <wsdl:output message="tns:deleteAssetSoapOut" />
+    <wsdl:operation name="getBudget_OperationSummary">
+      <wsdl:input message="tns:getBudget_OperationSummarySoapIn" />
+      <wsdl:output message="tns:getBudget_OperationSummarySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BudgetSoap" type="tns:BudgetSoap">
@@ -2126,8 +1885,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type">
-      <soap:operation soapAction="http://tempuri.org/getAsset_Type" style="document" />
+    <wsdl:operation name="sendBudget_Operation">
+      <soap:operation soapAction="http://tempuri.org/sendBudget_Operation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2135,80 +1894,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type_Count">
-      <soap:operation soapAction="http://tempuri.org/getAsset_Type_Count" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset_Type">
-      <soap:operation soapAction="http://tempuri.org/checkAsset_Type" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="setAsset_Type">
-      <soap:operation soapAction="http://tempuri.org/setAsset_Type" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset_Type">
-      <soap:operation soapAction="http://tempuri.org/deleteAsset_Type" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAsset">
-      <soap:operation soapAction="http://tempuri.org/getAsset" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAsset_Count">
-      <soap:operation soapAction="http://tempuri.org/getAsset_Count" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset">
-      <soap:operation soapAction="http://tempuri.org/checkAsset" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="setAsset">
-      <soap:operation soapAction="http://tempuri.org/setAsset" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset">
-      <soap:operation soapAction="http://tempuri.org/deleteAsset" style="document" />
+    <wsdl:operation name="getBudget_OperationSummary">
+      <soap:operation soapAction="http://tempuri.org/getBudget_OperationSummary" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2642,8 +2329,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type">
-      <soap12:operation soapAction="http://tempuri.org/getAsset_Type" style="document" />
+    <wsdl:operation name="sendBudget_Operation">
+      <soap12:operation soapAction="http://tempuri.org/sendBudget_Operation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2651,80 +2338,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getAsset_Type_Count">
-      <soap12:operation soapAction="http://tempuri.org/getAsset_Type_Count" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset_Type">
-      <soap12:operation soapAction="http://tempuri.org/checkAsset_Type" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="setAsset_Type">
-      <soap12:operation soapAction="http://tempuri.org/setAsset_Type" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset_Type">
-      <soap12:operation soapAction="http://tempuri.org/deleteAsset_Type" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAsset">
-      <soap12:operation soapAction="http://tempuri.org/getAsset" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getAsset_Count">
-      <soap12:operation soapAction="http://tempuri.org/getAsset_Count" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="checkAsset">
-      <soap12:operation soapAction="http://tempuri.org/checkAsset" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="setAsset">
-      <soap12:operation soapAction="http://tempuri.org/setAsset" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="deleteAsset">
-      <soap12:operation soapAction="http://tempuri.org/deleteAsset" style="document" />
+    <wsdl:operation name="getBudget_OperationSummary">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_OperationSummary" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

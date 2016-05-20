@@ -63,16 +63,12 @@
 												        <i class="ace-icon fa fa-plus bigger-120"></i>
 												        <%=Session["add_button"]%>
 											        </button>
-                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnNew()">
-												        <i class="ace-icon fa fa-plus bigger-120"></i>
-												        <%=Session["save_button"]%>
+                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSum()">
+												        <i class="ace-icon glyphicon glyphicon-file bigger-120"></i>
+												        <%=Session["sum_button"]%>
 											        </button>
-                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnNew()">
-												        <i class="ace-icon fa fa-plus bigger-120"></i>
-												        <%=Session["conclude_button"]%>
-											        </button>
-                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnNew()">
-												        <i class="ace-icon fa fa-plus bigger-120"></i>
+                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSend()">
+												        <i class="ace-icon glyphicon glyphicon-check bigger-120"></i>
 												        <%=Session["confirm_button"]%>
 											        </button>
                                                 </div>									
@@ -95,7 +91,7 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td>{{ x.BO_Name }}</td>
+                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Name }}</td>
                                                                 <td>{{ x.BO_Type_Name }}</td>
                                                                 <td class="center">{{ x.BO_Qty }}</td>          
                                                                 <td style="text-align:right">{{ x.BO_Price }}</td>														                                                            
@@ -197,6 +193,29 @@
             $('body').pleaseWait('stop');
         });
     }
+    function fnSendYes() {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BO_ID = document.getElementById('BO_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetOperation',
+            Function: 'Send',
+            BO_ID: BO_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnConfirm').click();
+            GetPaging($scope, $http);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    
 
     var app = angular.module('myApp', []);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
@@ -218,7 +237,14 @@
             fnOpenPopup('<%=Session["pop_add_budget_operation"]%>', "../budget_popup/pop_BudgetOperation.aspx", null, "450");
         }
         $scope.fnEdit = function (KeyID) {           
-            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../admin_popup/pop_BudgetOperation.aspx?KeyID=" + KeyID, null, "450");
+            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../budget_popup/pop_BudgetOperation.aspx?KeyID=" + KeyID, null, "450");
+        }
+        $scope.fnSum = function (KeyID) {           
+            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_popup/pop_BudgetOperationSummary.aspx?KeyID=" + KeyID, null, "450");
+        }
+        $scope.fnSend = function (BO_ID) {
+            tmpBO_ID = BO_ID;
+            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_send_budget_operation"]%>', fnSendYes);
         }
         $scope.fnDelete = function (KeyID) {
             tmpKeyID = KeyID;
