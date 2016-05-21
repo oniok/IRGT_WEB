@@ -160,7 +160,7 @@
 
             var data = $.param({
                 Command: 'BudgetOperationSummary',
-                Function: 'fnBudgetOperationSummary',
+                Function: Function,
                 User_Code: User_Code,
                 Lang: Lang
             });

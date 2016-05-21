@@ -29,27 +29,21 @@
       <Menu ID="4" Name="menu_b014" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
     <Menu ID="2" Name="menu_b020" TextTH="ประวัติคำขอประมาณการ" TextEN="ประวัติคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b021" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url=""/>
+      <Menu ID="1" Name="menu_b021" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationList.aspx"/>
       <Menu ID="2" Name="menu_b022" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b023" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b024" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
-    <Menu ID="3" Name="menu_b030" TextTH="ตรวจสอบคำขอประมาณการ" TextEN="ตรวจสอบคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url=""/>
+    <Menu ID="3" Name="menu_b030" TextTH="พิจารณาคำขอประมาณการ" TextEN="พิจารณาคำขอประมาณการ">
+      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationAction.aspx"/>
       <Menu ID="2" Name="menu_b032" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b033" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b034" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
-    <Menu ID="4" Name="menu_b040" TextTH="พิจารณาคำขอประมาณการ" TextEN="พิจารณาคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b041" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url=""/>
-      <Menu ID="2" Name="menu_b042" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
-      <Menu ID="3" Name="menu_b043" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
-      <Menu ID="4" Name="menu_b044" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
-    </Menu>
-    <Menu ID="5" Name="menu_b050" TextTH="รายงานประมาณการ" TextEN="รายงานประมาณการ">
-      <Menu ID="1" Name="menu_b051" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
-      <Menu ID="2" Name="menu_b052" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
-      <Menu ID="3" Name="menu_b053" TextTH="สรุปแผนการใช้จ่าย" TextEN="สรุปแผนการใช้จ่าย" Url=""/>
+    <Menu ID="4" Name="menu_b040" TextTH="รายงานประมาณการ" TextEN="รายงานประมาณการ">
+      <Menu ID="1" Name="menu_b041" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
+      <Menu ID="2" Name="menu_b042" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
+      <Menu ID="3" Name="menu_b043" TextTH="สรุปแผนการใช้จ่าย" TextEN="สรุปแผนการใช้จ่าย" Url=""/>
     </Menu>
   </Menu>
 </Menus>

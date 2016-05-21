@@ -11,7 +11,7 @@ public partial class budget_popup_pop_BudgetOperationSummary : System.Web.UI.Pag
     {
         string PageFunction = "budget_operation_summary";
 
-        //================ Column ==================================================   
+        //================ Column Pop up Summary ==================================================   
         Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
         Session[PageFunction + "_ColumnEdit"] = "";
         Session[PageFunction + "_Column01"] = "รายการ";
