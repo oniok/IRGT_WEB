@@ -25,6 +25,68 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getBudget_OperationByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_OperationByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_OperationByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_OperationByID_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_OperationByID_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_OperationByID_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_OperationSummaryByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_OperationSummaryByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_OperationSummaryByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getBudget_Operation_List">
         <s:complexType>
           <s:sequence>
@@ -62,28 +124,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="getBudget_Operation_List_CountResult" type="s:int" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getBudget_OperationSummary_List">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="getBudget_OperationSummary_ListResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="getBudget_OperationSummary_ListResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
-                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -219,6 +259,40 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="confirmBudget_Operation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmBudget_OperationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="confirmBudget_OperationResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_Operation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_OperationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="approveBudget_OperationResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getBudget_OperationSummary">
         <s:complexType>
           <s:sequence>
@@ -249,6 +323,24 @@
   <wsdl:message name="getMasterDataSoapOut">
     <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
   </wsdl:message>
+  <wsdl:message name="getBudget_OperationByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_OperationByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_OperationByID_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationByID_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_OperationByID_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationByID_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_OperationSummaryByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationSummaryByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_OperationSummaryByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_OperationSummaryByIDResponse" />
+  </wsdl:message>
   <wsdl:message name="getBudget_Operation_ListSoapIn">
     <wsdl:part name="parameters" element="tns:getBudget_Operation_List" />
   </wsdl:message>
@@ -260,12 +352,6 @@
   </wsdl:message>
   <wsdl:message name="getBudget_Operation_List_CountSoapOut">
     <wsdl:part name="parameters" element="tns:getBudget_Operation_List_CountResponse" />
-  </wsdl:message>
-  <wsdl:message name="getBudget_OperationSummary_ListSoapIn">
-    <wsdl:part name="parameters" element="tns:getBudget_OperationSummary_List" />
-  </wsdl:message>
-  <wsdl:message name="getBudget_OperationSummary_ListSoapOut">
-    <wsdl:part name="parameters" element="tns:getBudget_OperationSummary_ListResponse" />
   </wsdl:message>
   <wsdl:message name="getBudget_OperationDetailSoapIn">
     <wsdl:part name="parameters" element="tns:getBudget_OperationDetail" />
@@ -309,6 +395,18 @@
   <wsdl:message name="sendBudget_OperationSoapOut">
     <wsdl:part name="parameters" element="tns:sendBudget_OperationResponse" />
   </wsdl:message>
+  <wsdl:message name="confirmBudget_OperationSoapIn">
+    <wsdl:part name="parameters" element="tns:confirmBudget_Operation" />
+  </wsdl:message>
+  <wsdl:message name="confirmBudget_OperationSoapOut">
+    <wsdl:part name="parameters" element="tns:confirmBudget_OperationResponse" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_OperationSoapIn">
+    <wsdl:part name="parameters" element="tns:approveBudget_Operation" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_OperationSoapOut">
+    <wsdl:part name="parameters" element="tns:approveBudget_OperationResponse" />
+  </wsdl:message>
   <wsdl:message name="getBudget_OperationSummarySoapIn">
     <wsdl:part name="parameters" element="tns:getBudget_OperationSummary" />
   </wsdl:message>
@@ -320,6 +418,18 @@
       <wsdl:input message="tns:getMasterDataSoapIn" />
       <wsdl:output message="tns:getMasterDataSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID">
+      <wsdl:input message="tns:getBudget_OperationByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_OperationByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID_Count">
+      <wsdl:input message="tns:getBudget_OperationByID_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_OperationByID_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationSummaryByID">
+      <wsdl:input message="tns:getBudget_OperationSummaryByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_OperationSummaryByIDSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getBudget_Operation_List">
       <wsdl:input message="tns:getBudget_Operation_ListSoapIn" />
       <wsdl:output message="tns:getBudget_Operation_ListSoapOut" />
@@ -327,10 +437,6 @@
     <wsdl:operation name="getBudget_Operation_List_Count">
       <wsdl:input message="tns:getBudget_Operation_List_CountSoapIn" />
       <wsdl:output message="tns:getBudget_Operation_List_CountSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="getBudget_OperationSummary_List">
-      <wsdl:input message="tns:getBudget_OperationSummary_ListSoapIn" />
-      <wsdl:output message="tns:getBudget_OperationSummary_ListSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="getBudget_OperationDetail">
       <wsdl:input message="tns:getBudget_OperationDetailSoapIn" />
@@ -360,6 +466,14 @@
       <wsdl:input message="tns:sendBudget_OperationSoapIn" />
       <wsdl:output message="tns:sendBudget_OperationSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Operation">
+      <wsdl:input message="tns:confirmBudget_OperationSoapIn" />
+      <wsdl:output message="tns:confirmBudget_OperationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Operation">
+      <wsdl:input message="tns:approveBudget_OperationSoapIn" />
+      <wsdl:output message="tns:approveBudget_OperationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getBudget_OperationSummary">
       <wsdl:input message="tns:getBudget_OperationSummarySoapIn" />
       <wsdl:output message="tns:getBudget_OperationSummarySoapOut" />
@@ -369,6 +483,33 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getMasterData">
       <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_OperationByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_OperationByID_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationSummaryByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_OperationSummaryByID" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -387,15 +528,6 @@
     </wsdl:operation>
     <wsdl:operation name="getBudget_Operation_List_Count">
       <soap:operation soapAction="http://tempuri.org/getBudget_Operation_List_Count" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getBudget_OperationSummary_List">
-      <soap:operation soapAction="http://tempuri.org/getBudget_OperationSummary_List" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -466,6 +598,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Operation">
+      <soap:operation soapAction="http://tempuri.org/confirmBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Operation">
+      <soap:operation soapAction="http://tempuri.org/approveBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getBudget_OperationSummary">
       <soap:operation soapAction="http://tempuri.org/getBudget_OperationSummary" style="document" />
       <wsdl:input>
@@ -487,6 +637,33 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_OperationByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationByID_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_OperationByID_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_OperationSummaryByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_OperationSummaryByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="getBudget_Operation_List">
       <soap12:operation soapAction="http://tempuri.org/getBudget_Operation_List" style="document" />
       <wsdl:input>
@@ -498,15 +675,6 @@
     </wsdl:operation>
     <wsdl:operation name="getBudget_Operation_List_Count">
       <soap12:operation soapAction="http://tempuri.org/getBudget_Operation_List_Count" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="getBudget_OperationSummary_List">
-      <soap12:operation soapAction="http://tempuri.org/getBudget_OperationSummary_List" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -570,6 +738,24 @@
     </wsdl:operation>
     <wsdl:operation name="sendBudget_Operation">
       <soap12:operation soapAction="http://tempuri.org/sendBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Operation">
+      <soap12:operation soapAction="http://tempuri.org/confirmBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Operation">
+      <soap12:operation soapAction="http://tempuri.org/approveBudget_Operation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

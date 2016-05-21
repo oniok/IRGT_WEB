@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class budget_BudgetOperationByIDEdit : System.Web.UI.Page
+public partial class budget_BudgetOperationByIDAction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,16 +16,19 @@ public partial class budget_BudgetOperationByIDEdit : System.Web.UI.Page
         Session["user_code"] = USER;
         Session["language_" + PageFunction] = LANG;
 
+        string BO_ID = Request.QueryString["BO_ID"];
+        Session["BO_ID"] = BO_ID;
+
         if (LANG == cCommon.Language_Thai)
         {
             //================ POPUP ==================================================
-            string PageName = "งบดำเนินการ";
+            string PageName = "รายละเอียดงบดำเนินการ";
 
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
-            Session["pop_delete_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะลบข้อมูล" + PageName + "นี้ ?";
-            Session["pop_send_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะส่งข้อมูล" + PageName + "นี้ ?";
+            Session["pop_confirms_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะยืนยันการตรวจสอบข้อมูล " + PageName + " : " + BO_ID + " นี้ ?";
+            Session["pop_approve_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะอนุมัติข้อมูล " + PageName + " : " + BO_ID + " นี้ ?";
             Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
 
             Session["save_button_text"] = "บันทึก";
@@ -36,19 +39,20 @@ public partial class budget_BudgetOperationByIDEdit : System.Web.UI.Page
             Session[PageFunction + "_ERROR_03"] = "โปรดระบุ จำนวน";
             Session[PageFunction + "_ERROR_04"] = "โปรดระบุ จำนวนเงิน";
             //================ TABLE ==================================================
-            Session["HeaderText"] = PageName;
+            Session["HeaderText"] = PageName + " : " + BO_ID;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
             Session["add_button"] = "เพิ่มข้อมูล";
             Session["save_button"] = "บันทึกข้อมูล";
             Session["sum_button"] = "สรุปคำขอ";
-            Session["confirm_button"] = "ส่งคำขอ";
+            Session["confirm_button"] = "ยืนยันคำขอ";
+            Session["approve_button"] = "อนุมัติคำขอ";
             Session["PageText"] = "หน้าที่";
             Session["PageLast"] = "หน้า";
             Session["PageStart"] = "จำนวนทั้งหมด";
             Session["PageRecord"] = "รายการ";
             //================ Navigate ================================================
             Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
-            Session["HeaderSubGroup"] = "จัดทำคำขอประมาณการ";
+            Session["HeaderSubGroup"] = "ประวัติคำขอประมาณการ";
             Session["HeaderCurrent"] = PageName;
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";

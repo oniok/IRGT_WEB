@@ -35,7 +35,7 @@
       <Menu ID="4" Name="menu_b024" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
     <Menu ID="3" Name="menu_b030" TextTH="พิจารณาคำขอประมาณการ" TextEN="พิจารณาคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationAction.aspx"/>
+      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationListAction.aspx"/>
       <Menu ID="2" Name="menu_b032" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b033" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b034" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>

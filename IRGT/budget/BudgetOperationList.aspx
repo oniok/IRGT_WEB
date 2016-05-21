@@ -181,15 +181,11 @@
             GetPaging($scope, $http);
         }
         $scope.fnDetail = function (BO_ID) {           
-            //fnOpenPopup('<%=Session["pop_detail_budget_operation"]%>', "../budget_popup/pop_BudgetOperationDetail.aspx?BO_ID=" + BO_ID, null, "450");
             var lang = '<%=Session["language_budget_operation_list"]%>';
             window.open(
               "../budget/BudgetOperationByID.aspx?BO_ID=" + BO_ID+"&lang="+lang,
-              "_blank" // <- This is what makes it open in a new window.
+              "_blank"
             );
-        }
-        $scope.fnSum = function (KeyID) {           
-            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_popup/pop_BudgetOperationSummary.aspx?KeyID=" + KeyID, null, "450");
         }
         
         $scope.fnPageBack = function () {
@@ -213,6 +209,7 @@
             GetData($scope, $http, PageIndex);
         }
         GetPaging($scope, $http);
+        
     }
    
     function GetPaging($scope, $http) {

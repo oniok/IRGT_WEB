@@ -102,6 +102,143 @@ public class Budget : System.Web.Services.WebService
     }
     #endregion
 
+    #region Budget_OperationByID
+    [WebMethod]
+    public DataTable getBudget_OperationByID(int PageSize, int PageIndex, string BO_ID, string BO_Type_ID, string Lang)
+    {
+        string StoreProcedureName = "sp_getBudget_OperationByID";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@PageSize", PageSize));
+        DBCommand.Parameters.Add(newParam("@PageIndex", PageIndex));
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BO_Type_ID", BO_Type_ID));
+        DBCommand.Parameters.Add(newParam("@Language", Lang));
+
+        SqlDataReader DBReader;
+        DataTable TableResult = null;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBReader = DBCommand.ExecuteReader();
+
+            TableResult = new DataTable("Data");
+            TableResult.Load(DBReader);
+
+            DBConnect.Close();
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+            return TableResult;
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+            return null;
+        }
+    }
+
+    [WebMethod]
+    public int getBudget_OperationByID_Count(string BO_ID, string BO_Type_ID)
+    {
+        string StoreProcedureName = "sp_getBudget_OperationByID_Count";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BO_Type_ID", BO_Type_ID));
+
+        SqlDataReader DBReader;
+        DataTable TableResult = null;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+
+            DBReader = DBCommand.ExecuteReader();
+            TableResult = new DataTable("Data");
+            TableResult.Load(DBReader);
+            DBConnect.Close();
+
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+            return int.Parse(TableResult.Rows[0][0].ToString());
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+            return 0;
+        }
+    }
+
+    [WebMethod]
+    public DataTable getBudget_OperationSummaryByID(string BO_ID, string Lang)
+    {
+        string StoreProcedureName = "sp_getBudget_OperationSummaryByID";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@Language", Lang));
+
+        SqlDataReader DBReader;
+        DataTable TableResult = null;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBReader = DBCommand.ExecuteReader();
+
+            TableResult = new DataTable("Data");
+            TableResult.Load(DBReader);
+
+            DBConnect.Close();
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+            return TableResult;
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+            return null;
+        }
+    }
+
+    #endregion
+
     #region Budget_Operation_List
     [WebMethod]
     public DataTable getBudget_Operation_List(int PageSize, int PageIndex, string User_Code, string Loc_ID, string Lang)
@@ -190,50 +327,6 @@ public class Budget : System.Web.Services.WebService
             SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
             DBConnect.Close();
             return 0;
-        }
-    }
-
-    [WebMethod]
-    public DataTable getBudget_OperationSummary_List(string BO_ID, string Lang)
-    {
-        string StoreProcedureName = "sp_getBudget_OperationSummary_List";
-        SetLog("========================START==============================");
-        SetLog("[@Time][Store:" + StoreProcedureName + "]");
-
-        SqlConnection DBConnect = GetDBConnection();
-        SqlCommand DBCommand = new SqlCommand();
-        DBCommand.Connection = DBConnect;
-        DBCommand.CommandType = CommandType.StoredProcedure;
-        DBCommand.CommandText = StoreProcedureName;
-
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
-        DBCommand.Parameters.Add(newParam("@Language", Lang));
-
-        SqlDataReader DBReader;
-        DataTable TableResult = null;
-
-        try
-        {
-            DBConnect.Open();
-            SetLog("[Open Connection]");
-            DBReader = DBCommand.ExecuteReader();
-
-            TableResult = new DataTable("Data");
-            TableResult.Load(DBReader);
-
-            DBConnect.Close();
-            SetLog("[Close Connection]");
-            SetLog("[@Time]");
-            SetLog("========================END==============================");
-            return TableResult;
-        }
-        catch (Exception ex)
-        {
-            SetLog("[ERROR]=>" + ex.Message);
-            SetLog("========================END==============================");
-            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
-            DBConnect.Close();
-            return null;
         }
     }
 
@@ -551,6 +644,120 @@ public class Budget : System.Web.Services.WebService
         ReturnMSG_EN = "";
 
         string StoreProcedureName = "sp_sendBudget_Operation";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
+        //================================= RETURN OUTPUT ===========================
+        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
+        DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_TH", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_TH"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_EN", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_EN"].Direction = ParameterDirection.Output;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBCommand.ExecuteNonQuery();
+            string ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
+            if (ReturnCode == "100") ReturnOutput = false;
+            else ReturnOutput = true;
+
+            ReturnMSG_TH = DBCommand.Parameters["@ReturnMSG_TH"].Value.ToString();
+            ReturnMSG_EN = DBCommand.Parameters["@ReturnMSG_EN"].Value.ToString();
+            DBConnect.Close();
+
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+
+            ReturnOutput = false;
+            ReturnMSG_TH = "เกิดข้อผิดพลาดจากระบบ:" + ex.Message;
+            ReturnMSG_EN = "System Error:" + ex.Message;
+        }
+        return ReturnOutput;
+    }
+
+    [WebMethod]
+    public bool confirmBudget_Operation(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    {
+        bool ReturnOutput = false;
+        ReturnMSG_TH = "";
+        ReturnMSG_EN = "";
+
+        string StoreProcedureName = "sp_confirmBudget_Operation";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
+        //================================= RETURN OUTPUT ===========================
+        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
+        DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_TH", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_TH"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_EN", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_EN"].Direction = ParameterDirection.Output;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBCommand.ExecuteNonQuery();
+            string ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
+            if (ReturnCode == "100") ReturnOutput = false;
+            else ReturnOutput = true;
+
+            ReturnMSG_TH = DBCommand.Parameters["@ReturnMSG_TH"].Value.ToString();
+            ReturnMSG_EN = DBCommand.Parameters["@ReturnMSG_EN"].Value.ToString();
+            DBConnect.Close();
+
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+
+            ReturnOutput = false;
+            ReturnMSG_TH = "เกิดข้อผิดพลาดจากระบบ:" + ex.Message;
+            ReturnMSG_EN = "System Error:" + ex.Message;
+        }
+        return ReturnOutput;
+    }
+
+    [WebMethod]
+    public bool approveBudget_Operation(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    {
+        bool ReturnOutput = false;
+        ReturnMSG_TH = "";
+        ReturnMSG_EN = "";
+
+        string StoreProcedureName = "sp_approveBudget_Operation";
         SetLog("========================START==============================");
         SetLog("[@Time][Store:" + StoreProcedureName + "]");
         SqlConnection DBConnect = GetDBConnection();

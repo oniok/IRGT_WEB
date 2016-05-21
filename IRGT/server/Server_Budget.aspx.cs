@@ -70,14 +70,17 @@ public partial class server_Budget : System.Web.UI.Page
             case "BudgetOperation":
                 fnBudgetOperation();
                 break;
+            case "BudgetOperationByID":
+                fnBudgetOperationByID();
+                break;
             case "BudgetOperationList":
                 fnBudgetOperationList();
                 break;
             case "BudgetOperationSummary":
                 fnBudgetOperationSummary();
                 break;
-            case "BudgetOperationSummaryList":
-                fnBudgetOperationSummaryList();
+            case "BudgetOperationSummaryByID":
+                fnBudgetOperationSummaryByID();
                 break;
         }
     }
@@ -226,6 +229,99 @@ public partial class server_Budget : System.Web.UI.Page
                 return;
         }
     }
+
+    private void fnBudgetOperationByID()
+    {
+        string FN = Request.Params["Function"];
+        DataTable DT;
+        string DT_JSON;
+        int PageSize = 0;
+
+        string BO_Type_ID = Request.Params["BO_Type_ID"];
+        string BO_ID = Request.Params["BO_ID"];
+        string User_Code = Request.Params["User_Code"];
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+        int KeyID = 0;
+        string BO_Name = "";
+        string BO_Qty = "";
+        string BO_Price = "";
+        string BO_Reason = "";
+
+        switch (FN)
+        {
+            case "Paging":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+
+                int Count = IRGTService.getBudget_OperationByID_Count(BO_ID, BO_Type_ID);
+                DT_JSON = genPaging(PageSize, Count);
+
+                Response.Write(DT_JSON);
+                return;
+            case "Select":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+
+                int PageIndex = int.Parse(Request.Params["PageIndex"]);
+                string lang = Request.Params["lang"];
+                DT = IRGTService.getBudget_OperationByID(PageSize, PageIndex, BO_ID, BO_Type_ID, lang);
+                Session["Data_Budget_Operation"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Load":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                DT = (DataTable)Session["Data_budget_operation"];
+                DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
+                string OP = "[{";
+                OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
+                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
+                OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
+                OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
+                OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
+                OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
+                OP += "}]";
+                Response.Write(OP);
+                return;
+            case "Confirm":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                ReturnMSG_TH = "";
+                ReturnMSG_EN = "";
+
+                //"{\"records\": " + DT_JSON + "}";
+                if (IRGTService.confirmBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("{\"output\":\"OK\"}");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_TH + "\"}");
+                    else
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_EN + "\"}");
+                }
+
+                return;
+            case "Approve":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                ReturnMSG_TH = "";
+                ReturnMSG_EN = "";
+
+                //"{\"records\": " + DT_JSON + "}";
+                if (IRGTService.approveBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("{\"output\":\"OK\"}");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_TH + "\"}");
+                    else
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_EN + "\"}");
+                }
+
+                return;
+        }
+    }
+
     private void fnBudgetOperationSummary()
     {
         DataTable DT;
@@ -241,13 +337,13 @@ public partial class server_Budget : System.Web.UI.Page
 
     }
 
-    private void fnBudgetOperationSummaryList()
+    private void fnBudgetOperationSummaryByID()
     {
         DataTable DT;
         string DT_JSON;
         string BO_ID = Request.Params["BO_ID"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_OperationSummary_List(BO_ID, lang);
+        DT = IRGTService.getBudget_OperationSummaryByID(BO_ID, lang);
         Session["Data_budget_operation_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
