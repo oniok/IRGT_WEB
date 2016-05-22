@@ -14,10 +14,10 @@ using System.Web.Services;
 [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
 // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
 // [System.Web.Script.Services.ScriptService]
-public class Budget : System.Web.Services.WebService
+public class Budget_Operation : System.Web.Services.WebService
 {
 
-    public Budget()
+    public Budget_Operation()
     {
 
         //Uncomment the following line if using designed components 

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetOperationListAction.aspx.cs" Inherits="budget_BudgetOperationListAction" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetPosition.aspx.cs" Inherits="budget_BudgetPosition" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../Scripts/angular.min.js"></script>
@@ -33,15 +33,33 @@
                                             <table>
                                                 <tr>                                                    
                                                     <td style="width:5px"></td>
-                                                    <td><%=Session["budget_operation_list_Column01"]%></td>
+                                                    <td><%=Session["budget_position_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
-                                                        <select class="chosen-select form-control" id="Loc_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
+                                                        <select class="chosen-select form-control" id="Position_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
 					                                        <option value=""></option>	
-                                                            <option ng-repeat="x in Data_Loc_ID" value="{{ x.Code }}" >{{ x.Name }}</option>				
+                                                            <option ng-repeat="x in Position_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				                                        </select>
+                                                    </td>
+                                                    <td style="width:10px"></td>
+                                                    <td><%=Session["budget_position_Column02"]%></td>
+                                                    <td style="width:5px"></td>                                                   
+                                                    <td>
+                                                        <select class="chosen-select form-control" id="Educate_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:150px">
+					                                        <option value=""></option>	
+                                                            <option ng-repeat="x in Educate_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				                                        </select>
+                                                    </td>
+                                                    <td style="width:10px"></td>
+                                                    <td><%=Session["budget_position_Column03"]%></td>
+                                                    <td style="width:5px"></td>                                                   
+                                                    <td>
+                                                        <select class="chosen-select form-control" id="BP_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:150px">
+					                                        <option value=""></option>	
+                                                            <option ng-repeat="x in BP_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				                                        </select>   
                                                     </td>   
-                                                    <td style="width:5px"></td>                                              
+                                                    <td style="width:15px"></td>                                              
                                                     <td>         
                                                         <button type="button" class="btn btn-success " id="btnSearch" ng-click="fnSearch()">  
 											                <i class="ace-icon fa fa-search "></i>
@@ -57,7 +75,21 @@
 												<h5 class="widget-title bigger">
 													<i class="ace-icon fa fa-table"></i>
                                                     <%=Session["HeaderTable"]%>
-												</h5>							
+												</h5>			
+                                                <div class="widget-toolbar no-border">
+                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnNew()">
+												        <i class="ace-icon fa fa-plus bigger-120"></i>
+												        <%=Session["add_button"]%>
+											        </button>
+                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSum()">
+												        <i class="ace-icon glyphicon glyphicon-file bigger-120"></i>
+												        <%=Session["sum_button"]%>
+											        </button>
+                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSend()">
+												        <i class="ace-icon glyphicon glyphicon-check bigger-120"></i>
+												        <%=Session["confirm_button"]%>
+											        </button>
+                                                </div>									
 											</div>
                                             <div class="widget-body">
                                                 <div class="widget-main no-padding">
@@ -65,32 +97,31 @@
 											        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												        <thead>
 													        <tr>
-														        <th class="center" style="width:50px"><%=Session["budget_operation_list_ColumnSEQ"]%></th>
-														        <th class="center"><%=Session["budget_operation_list_Column01"]%></th>
-														        <th class="center" style="width:100px"><%=Session["budget_operation_list_Column02"]%></th>
-                                                                <th class="center" style="width:120px">
-                                                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                                    <%=Session["budget_operation_list_Column03"]%>
-                                                                </th>
-                                                                <th class="center" style="width:120px">
-                                                                    <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                                    <%=Session["budget_operation_list_Column04"]%>
-                                                                </th>   
-                                                                <th class="center" style="width:200px"><%=Session["budget_operation_list_Column05"]%></th>
-														        <td class="center" style="width:80px"><%=Session["budget_operation_list_ColumnEdit"]%></td>
+														        <th class="center" style="width:50px"><%=Session["budget_position_ColumnSEQ"]%></th>
+														        <th class="center"><%=Session["budget_position_Column01"]%></th>
+														        <th class="center" style="width:100px"><%=Session["budget_position_Column02"]%></th>
+                                                                <th class="center" style="width:150px"><%=Session["budget_position_Column03"]%></th>          
+                                                                <th class="center" style="width:80px"><%=Session["budget_position_Column04"]%></th>    
+                                                                <th class="center" style="width:120px"><%=Session["budget_position_Column05"]%></th>
+                                                                <th class="center"><%=Session["budget_position_Column06"]%></th>
+														        <td class="center" style="width:80px"><%=Session["budget_position_ColumnEdit"]%></td>
 													        </tr>
 												        </thead>
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.Loc_Name }}</td>
-                                                                <td class="center">{{ x.BO_Year }}</td>
-                                                                <td class="center">{{ x.Create_Date }}</td>          
-                                                                <td class="center">{{ x.Update_Date }}</td>														                                                            
-                                                                <td class="center">{{ x.BO_Status }}</td>
-														        <td style="text-align:center">  
-                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BO_ID)">
-												                        <i class="ace-icon fa fa-folder-open-o bigger-110 icon-only"></i>
+                                                                <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Position_Type_Name }}</td>
+                                                                <td>{{ x.Educate_Type_Name }}</td>
+                                                                <td>{{ x.BP_Type_Name }}</td>
+                                                                <td class="center">{{ x.BP_Qty }}</td>          
+                                                                <td style="text-align:right">{{ x.BP_Price }}</td>														                                                            
+                                                                <td>{{ x.BP_Reason }}</td>
+														        <td style="text-align:center">   
+                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
+												                        <i class="ace-icon fa fa-pencil  bigger-110 icon-only"></i>
+											                        </button>
+                                                                    <button type="button" class="btn btn-danger btn-xs" ng-click="fnDelete(x.KeyID)">
+												                        <i class="ace-icon fa fa-trash-o  bigger-110 icon-only"></i>
 											                        </button>
 														        </td>											
 													        </tr>										
@@ -154,7 +185,7 @@
     var tmpKeyID;
     var $tmp_http;
     var $tmp_scope;
-    function fnPagingChange() {
+    function fnPagingChange() {Server_Budget_Position.aspx
         var PageIndex = document.getElementById('paging-select').value;
         $('body').pleaseWait();
         GetData($tmp_scope, $tmp_http, PageIndex);
@@ -163,7 +194,49 @@
         document.getElementById('btnPopClose').click();
         document.getElementById('btnSearch').click();
     }
+    function fnDeleteYes() {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetPosition',
+            Function: 'Delete',
+            KeyID: tmpKeyID
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnConfirm').click();
+            GetPaging($scope, $http);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnSendYes() {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BP_ID = document.getElementById('BP_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetPosition',
+            Function: 'Send',
+            BP_ID: BP_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnConfirm').click();
+            GetPaging($scope, $http);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
     
+
     var app = angular.module('myApp', []);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
     app.controller('fnMain', fnMain);
@@ -180,14 +253,22 @@
             document.getElementById('paging-select').value = 1;
             GetPaging($scope, $http);
         }
-        $scope.fnDetail = function (BO_ID) {           
-            var lang = '<%=Session["language_budget_operation_list"]%>';
-            window.open(
-              "../budget_operation/BudgetOperationByIDAction.aspx?BO_ID=" + BO_ID+"&lang="+lang,
-              "_blank"
-            );
+        $scope.fnNew = function () {
+            fnOpenPopup('<%=Session["pop_add_budget_position"]%>', "../budget_position_popup/pop_BudgetPosition.aspx", null, "450");
         }
-        
+        $scope.fnEdit = function (KeyID) {           
+            fnOpenPopup('<%=Session["pop_edit_budget_position"]%>', "../budget_position_popup/pop_BudgetPosition.aspx?KeyID=" + KeyID, null, "450");
+        }
+        $scope.fnSum = function () {
+            fnOpenPopup('<%=Session["pop_sum_budget_position"]%>', "../budget_position_popup/pop_BudgetPositionSummary.aspx?", null, "450");
+        }
+        $scope.fnSend = function () {
+            fnConfirmMessage('<%=Session["pop_confirm_budget_position"]%>', '<%=Session["pop_send_budget_position"]%>', fnSendYes);
+        }
+        $scope.fnDelete = function (KeyID) {
+            tmpKeyID = KeyID;
+            fnConfirmMessage('<%=Session["pop_confirm_budget_position"]%>', '<%=Session["pop_delete_budget_position"]%>', fnDeleteYes);
+        }
         $scope.fnPageBack = function () {
             var currentPageIndex = parseInt(document.getElementById('paging-select').value);
             if (currentPageIndex != 1) {
@@ -209,21 +290,25 @@
             GetData($scope, $http, PageIndex);
         }
         GetPaging($scope, $http);
-        
     }
    
     function GetPaging($scope, $http) {
+
+        var Position_Type_ID = document.getElementById('Position_Type_ID').value;
+        var Educate_Type_ID = document.getElementById('Educate_Type_ID').value;
+        var BP_Type_ID = document.getElementById('BP_Type_ID').value;
         var User_Code = '<%=Session["user_code"]%>';
-        var Loc_ID = document.getElementById('Loc_ID').value;
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetPosition',
             Function: 'Paging',
             PageSize: PageSize,
-            Loc_ID: Loc_ID,
-            User_Code: User_Code
+            Position_Type_ID: Position_Type_ID,
+            Educate_Type_ID: Educate_Type_ID,
+            BP_Type_ID: BP_Type_ID,
+            User_Code: User_Code,
         });
 
-        $http.post("../server/Server_Budget_Operation.aspx", data, config)
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Paging = data.records;
             $scope.PageMax = data.pagemax;
@@ -236,24 +321,28 @@
     }
     function GetData($scope, $http, PageIndex) {
         CurrentPageIndex = PageIndex;
-        var Loc_ID = document.getElementById('Loc_ID').value;
+        var Position_Type_ID = document.getElementById('Position_Type_ID').value;
+        var Educate_Type_ID = document.getElementById('Educate_Type_ID').value;
+        var BP_Type_ID = document.getElementById('BP_Type_ID').value;
         var User_Code = '<%=Session["user_code"]%>';
-        var lang = getParamValue("lang");
+        var lang = '<%=Session["lang_budget_position"]%>';
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetPosition',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,
-            Loc_ID: Loc_ID,
+            Position_Type_ID: Position_Type_ID,
+            Educate_Type_ID: Educate_Type_ID,
+            BP_Type_ID: BP_Type_ID,
             User_Code: User_Code,            
             lang: lang
         });
 
-        $http.post("../server/Server_Budget_Operation.aspx", data, config)
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
             if (isLoad)
-                setTimeout(fnGetLocNameList, 100);
+                setTimeout(fnGetBP_PositionType, 100);
             else
                 $('body').pleaseWait('stop');
         })
@@ -261,20 +350,60 @@
             $('body').pleaseWait('stop');
         });
     }
-    function fnGetLocNameList() {
+    function fnGetBP_PositionType() {
 
         $scope = $tmp_scope;
         $http = $tmp_http;
 
         var data = $.param({
             Command: 'GetMasterData',
-            Function: 'WorkCenter',
-            PageName: 'budget_operation_list'
+            Function: 'PositionType',
+            PageName: 'budget_position'
         });
 
-        $http.post("../server/Server_Budget_Operation.aspx", data, config)
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
         .success(function (data, status, headers, config) {
-            $scope.Data_Loc_ID = data.records;
+            $scope.Position_Type = data.records;
+            setTimeout(fnGetBP_EducateType, 100);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnGetBP_EducateType() {
+
+        $scope = $tmp_scope;
+        $http = $tmp_http;
+
+        var data = $.param({
+            Command: 'GetMasterData',
+            Function: 'EducateType',
+            PageName: 'budget_position'
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.Educate_Type = data.records;
+            setTimeout(fnGetBP_BPType, 100);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnGetBP_BPType() {
+
+        $scope = $tmp_scope;
+        $http = $tmp_http;
+
+        var data = $.param({
+            Command: 'GetMasterData',
+            Function: 'BudgetPositionType',
+            PageName: 'budget_position'
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.BP_Type = data.records;
             setTimeout(fnLoad, 100);
         })
         .error(function (data, status, header, config) {

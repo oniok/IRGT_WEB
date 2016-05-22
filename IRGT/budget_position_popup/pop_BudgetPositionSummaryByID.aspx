@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetOperationSummaryByID.aspx.cs" Inherits="budget_popup_pop_BudgetOperationSummaryByID" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetPositionSummaryByID.aspx.cs" Inherits="budget_popup_pop_BudgetPositionSummaryByID" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script src="../Scripts/angular.min.js"></script>
@@ -58,7 +58,7 @@
                 Lang: Lang
             });
 
-            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            $http.post("../server/Server_Budget_Position.aspx", data, config)
             .success(function (data, status, headers, config) {
                 $scope.DataSum = data.records;
                 $('body').pleaseWait('stop');

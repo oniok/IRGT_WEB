@@ -1,72 +1,52 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetOperation.aspx.cs" Inherits="budget_popup_pop_BudgetOperation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetPositionSummary.aspx.cs" Inherits="budget_popup_pop_BudgetPositionSummary" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script src="../Scripts/angular.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <center>
-    <table style="width:600px" ng-app="myApp" ng-controller="fnMain">
-        <tr>
-            <tr><td colspan="4" style="height:10px"></td></tr>
-            <tr>
-                <td><%=Session["budget_operation_Column01"] %></td>
-                <td colspan="3">
-                    <input type="hidden" id="BO_ID"/>
-                    <input type="text" id="BO_Name" style="width:100%"/>
-                </td>
-            </tr>
-            <tr><td colspan="4" style="height:10px"></td></tr>
-            <tr>
-                <td style="width:100px"><%=Session["budget_operation_Column02"] %></td>
-                <td colspan="3">
-                    <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
-					    <option value=""></option>	
-                        <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
-				    </select>   
-                </td>
-             </tr>    
-        <tr><td colspan="4" style="height:10px"></td></tr>
-        <tr>
-            <td><%=Session["budget_operation_Column03"] %></td>
-            <td colspan="3">
-                <input type="text" id="BO_Qty" />
-            </td>
-        </tr>
-        <tr><td colspan="4" style="height:10px"></td></tr>
-        <tr>
-            <td><%=Session["budget_operation_Column04"] %></td>
-            <td colspan="3">
-                <input type="text" id="BO_Price" />    
-            </td>
-        </tr>        
-        <tr><td colspan="4" style="height:10px"></td></tr>
-        <tr>
-            <td><%=Session["budget_operation_Column05"] %></td>
-            <td colspan="3">
-                <input type="text" id="BO_Reason" style="width:100%"/>    
-            </td>
-        </tr>
-    </table>   
+    <table id="dynamic-table" class="table table-striped table-bordered table-hover" ng-app="myApp" ng-controller="fnMain">
+		<thead>
+			<tr>
+				<th class="center" style="width:50px"><%=Session["budget_operation_summary_ColumnSEQ"]%></th>
+				<th class="center"><%=Session["budget_operation_summary_Column02"]%></th>
+                <th class="center" style="width:50px"><%=Session["budget_operation_summary_Column03"]%></th>          
+                <th class="center" style="width:100px"><%=Session["budget_operation_summary_Column04"]%></th> 
+                <th class="center"><%=Session["budget_operation_summary_Column05"]%></th> 
+			</tr>
+		</thead>
+        <tbody>
+			<tr ng-repeat="x in DataSum">
+				<td class="center">{{ x.RowID }}</td>
+                <td>{{ x.BO_Type_Name }}</td>
+                <td style="text-align:right">{{ x.BO_PRICE_MNT }}</td>          
+                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>														                                                            
+                <td><input type="text" id="BO_Reason" style="width:100%" value="{{ x.BO_Remark }}"/>   </td>
+														
+			</tr>										
+		</tbody>  
+        <tfoot >
+      
+        </tfoot>                                              
+	</table>   
     </center>
     <script>
         function fnLoad() {
             var KeyID = getParamValue("KeyID");
             if (KeyID != null) {
-                $.post("../server/Server_Budget_Operation.aspx",
+                $.post("../server/Server_Budget_Position.aspx",
                     {
-                        Command: 'BudgetOperation',
+                        Command: 'BudgetOperationSummary',
                         Function: 'Load',
                         KeyID: KeyID
                     },
                     function (data, status) {
                         var data = eval(data);
                         document.getElementById('BO_ID').value = data[0].BO_ID.trim();
-                        document.getElementById('BO_Name').value = data[0].BO_Name.trim();
                         document.getElementById('BO_Type_ID').value = data[0].BO_Type_ID.trim();
-                        document.getElementById('BO_Qty').value = data[0].BO_Qty.trim();
-                        document.getElementById('BO_Price').value = data[0].BO_Price.trim();
-                        document.getElementById('BO_Reason').value = data[0].BO_Reason.trim();
-
+                        document.getElementById('BO_PRICE_MNT').value = data[0].BO_Qty.trim();
+                        document.getElementById('BO_PRICE_YEAR').value = data[0].BO_Price.trim();
+                        document.getElementById('BO_Remark').value = data[0].BO_Remark.trim();
                         $('body').pleaseWait('stop');
                         fnLoadCtrl();
                     }
@@ -79,15 +59,11 @@
         }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
             var BO_Qty = document.getElementById('BO_Qty').value.trim();
-            var BO_Price = document.getElementById('BO_Price').value;
-        
-            if (BO_Name == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_02"]%>");
-                return;
-            }
+            var BO_Price = document.getElementById('BO_Price').value.trim();
+            var BO_Remark = document.getElementById('BO_Remark').value.trim();
+            
             if (BO_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_03"]%>");
                 return;
@@ -100,13 +76,17 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
                 return;
             }
+            if (BO_Remark == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
+                return;
+            }
 
             var BO_Type_ID = document.getElementById('BO_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
 
-            $.post("../server/Server_Budget_Operation.aspx",
+            $.post("../server/Server_Budget_Position.aspx",
 			    {
-			        Command: 'BudgetOperation',
+			        Command: 'BudgetOperationSummary',
 			        Function: 'Check',
 			        User_Code: User_Code
 			    },
@@ -127,11 +107,11 @@
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
             var BO_Qty = document.getElementById('BO_Qty').value.trim();
             var BO_Price = document.getElementById('BO_Price').value;
-            var BO_Reason = document.getElementById('BO_Reason').value;
+            var BO_Remark = document.getElementById('BO_Remark').value;
 
-            $.post("../server/Server_Budget_Operation.aspx",
+            $.post("../server/Server_Budget_Position.aspx",
                {
-                   Command: 'BudgetOperation',
+                   Command: 'BudgetOperationSummary',
                    Function: 'Save',
                    KeyID: KeyID,
                    BO_ID: BO_ID,
@@ -139,7 +119,7 @@
                    BO_Type_ID: BO_Type_ID,
                    BO_Qty: BO_Qty,
                    BO_Price: BO_Price,
-                   BO_Reason: BO_Reason
+                   BO_Remark: BO_Remark
                },
                function (data, status) {
                    var data = eval(data);
@@ -163,29 +143,38 @@
             $('body').pleaseWait();
             $tmp_scope = $scope;
             $tmp_http = $http;
-            fnGetBudgetOperationType($scope, $http);
-        }
-        function fnGetBudgetOperationType($scope, $http) {
 
+            $scope.fnEdit = function (KeyID) {           //,BO_ID,BO_Type_ID
+               // fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BO_ID="+BO_ID+"&BO_Type_ID="+BO_Type_ID, null, "450");
+               fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../pop_BudgetOperationRemark.aspx?KeyID=" + KeyID, null, "450");
+            
+            }
+
+            fnGetBudgetOperationSummary($scope, $http);
+        }
+        function fnGetBudgetOperationSummary($scope, $http) {
+            var User_Code = '<%=Session["user_code"]%>';
+            var Lang = '<%=Session["language_budget_operation"]%>';
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
-                Command: 'GetMasterData',
-                Function: 'BudgetOperationType',
-                PageName: 'budget_operation'
+                Command: 'BudgetOperationSummary',
+                Function: Function,
+                User_Code: User_Code,
+                Lang: Lang
             });
 
-            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            $http.post("../server/Server_Budget_Position.aspx", data, config)
             .success(function (data, status, headers, config) {
-                $scope.BudgetOperationType = data.records;
-                setTimeout(fnLoad, 100);
+                $scope.DataSum = data.records;
+                $('body').pleaseWait('stop');
             })
             .error(function (data, status, header, config) {
                 $('body').pleaseWait('stop');
             });
         }
-       
+        
     </script>
     
 </asp:Content>

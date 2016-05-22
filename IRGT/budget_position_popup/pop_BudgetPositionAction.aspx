@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetOperationAction.aspx.cs" Inherits="budget_popup_pop_BudgetOperationAction" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/popup.master" AutoEventWireup="true" CodeFile="pop_BudgetPositionAction.aspx.cs" Inherits="budget_popup_pop_BudgetPositionAction" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
      <script src="../Scripts/angular.min.js"></script>
@@ -66,7 +66,7 @@
         function fnLoad() {
             var KeyID = getParamValue("KeyID");
             if (KeyID != null) {
-                $.post("../server/Server_Budget_Operation.aspx",
+                $.post("../server/Server_Budget_Position.aspx",
                     {
                         Command: 'BudgetOperationByID',
                         Function: 'Load',
@@ -110,7 +110,7 @@
 
             var User_Code = '<%=Session["user_code"]%>';
 
-            $.post("../server/Server_Budget_Operation.aspx",
+            $.post("../server/Server_Budget_Position.aspx",
 			    {
 			        Command: 'BudgetOperationByID',
 			        Function: 'Adjust',
@@ -160,7 +160,7 @@
                 PageName: 'budget_operation'
             });
 
-            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            $http.post("../server/Server_Budget_Position.aspx", data, config)
             .success(function (data, status, headers, config) {
                 $scope.BudgetOperationType = data.records;
                 setTimeout(fnLoad, 100);

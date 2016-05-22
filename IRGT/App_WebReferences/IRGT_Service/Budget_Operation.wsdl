@@ -438,7 +438,7 @@
   <wsdl:message name="getBudget_OperationSummarySoapOut">
     <wsdl:part name="parameters" element="tns:getBudget_OperationSummaryResponse" />
   </wsdl:message>
-  <wsdl:portType name="BudgetSoap">
+  <wsdl:portType name="Budget_OperationSoap">
     <wsdl:operation name="getMasterData">
       <wsdl:input message="tns:getMasterDataSoapIn" />
       <wsdl:output message="tns:getMasterDataSoapOut" />
@@ -508,7 +508,7 @@
       <wsdl:output message="tns:getBudget_OperationSummarySoapOut" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BudgetSoap" type="tns:BudgetSoap">
+  <wsdl:binding name="Budget_OperationSoap" type="tns:Budget_OperationSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getMasterData">
       <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
@@ -664,7 +664,7 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:binding name="BudgetSoap12" type="tns:BudgetSoap">
+  <wsdl:binding name="Budget_OperationSoap12" type="tns:Budget_OperationSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getMasterData">
       <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
@@ -820,12 +820,12 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="Budget">
-    <wsdl:port name="BudgetSoap" binding="tns:BudgetSoap">
-      <soap:address location="http://localhost:56867/Budget.asmx" />
+  <wsdl:service name="Budget_Operation">
+    <wsdl:port name="Budget_OperationSoap" binding="tns:Budget_OperationSoap">
+      <soap:address location="http://localhost:56867/Budget_Operation.asmx" />
     </wsdl:port>
-    <wsdl:port name="BudgetSoap12" binding="tns:BudgetSoap12">
-      <soap12:address location="http://localhost:56867/Budget.asmx" />
+    <wsdl:port name="Budget_OperationSoap12" binding="tns:Budget_OperationSoap12">
+      <soap12:address location="http://localhost:56867/Budget_Operation.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

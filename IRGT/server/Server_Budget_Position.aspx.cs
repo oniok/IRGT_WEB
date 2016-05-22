@@ -7,9 +7,9 @@ using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class server_Budget : System.Web.UI.Page
+public partial class server_Budget_Position : System.Web.UI.Page
 {
-    IRGT_Service.Budget IRGTService = new IRGT_Service.Budget();
+    IRGT_Service.Budget_Position IRGTService = new IRGT_Service.Budget_Position();
 
     public static string DataTableToJSON(DataTable table)
     {
@@ -67,20 +67,20 @@ public partial class server_Budget : System.Web.UI.Page
             case "GetMasterData":
                 fnGetMasterData();
                 break;
-            case "BudgetOperation":
-                fnBudgetOperation();
+            case "BudgetPosition":
+                fnBudgetPosition();
                 break;
-            case "BudgetOperationByID":
-                fnBudgetOperationByID();
+            case "BudgetPositionByID":
+                fnBudgetPositionByID();
                 break;
-            case "BudgetOperationList":
-                fnBudgetOperationList();
+            case "BudgetPositionList":
+                fnBudgetPositionList();
                 break;
-            case "BudgetOperationSummary":
-                fnBudgetOperationSummary();
+            case "BudgetPositionSummary":
+                fnBudgetPositionSummary();
                 break;
-            case "BudgetOperationSummaryByID":
-                fnBudgetOperationSummaryByID();
+            case "BudgetPositionSummaryByID":
+                fnBudgetPositionSummaryByID();
                 break;
         }
     }
@@ -99,14 +99,16 @@ public partial class server_Budget : System.Web.UI.Page
         return;
     }
 
-    private void fnBudgetOperation()
+    private void fnBudgetPosition()
     {
         string FN = Request.Params["Function"];
         DataTable DT;
         string DT_JSON;
         int PageSize = 0;
 
-        string BO_Type_ID = Request.Params["BO_Type_ID"];
+        string Position_Type_ID = Request.Params["Position_Type_ID"];
+        string Educate_Type_ID = Request.Params["Educate_Type_ID"];
+        string BP_Type_ID = Request.Params["BP_Type_ID"];
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
@@ -122,7 +124,7 @@ public partial class server_Budget : System.Web.UI.Page
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_Operation_Count(User_Code, BO_Type_ID);
+                int Count = IRGTService.getBudget_Position_Count(User_Code, Position_Type_ID, Educate_Type_ID, BP_Type_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -132,16 +134,16 @@ public partial class server_Budget : System.Web.UI.Page
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 string lang = Request.Params["lang"];
-                DT = IRGTService.getBudget_Operation(PageSize, PageIndex, User_Code, BO_Type_ID, lang);
-                Session["Data_Budget_Operation"] = DT.Copy();
+                DT = IRGTService.getBudget_Position(PageSize, PageIndex, User_Code, Position_Type_ID, Educate_Type_ID, BP_Type_ID, lang);
+                Session["Data_Budget_Position"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
                 return;
             case "Check":
-                lang = "" + Session["language_budget_operation"];
+                lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
-                BO_ID = IRGTService.checkBudget_Operation(User_Code);
+                BO_ID = IRGTService.checkBudget_Position(User_Code);
                 if (BO_ID != "")
                     Response.Write("[{\"output\":\"OK\",\"BO_ID\":\"" + BO_ID + "\"}]");
                 else
@@ -154,17 +156,17 @@ public partial class server_Budget : System.Web.UI.Page
 
                 return;
             case "Save":
-                lang = "" + Session["language_budget_operation"];
+                lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
                 BO_ID = Request.Params["BO_ID"];
                 BO_Name = Request.Params["BO_Name"];
-                BO_Type_ID = Request.Params["BO_Type_ID"];
+                BP_Type_ID = Request.Params["BP_Type_ID"];
                 BO_Qty = Request.Params["BO_Qty"];
                 BO_Price = Request.Params["BO_Price"];
                 BO_Reason = Request.Params["BO_Reason"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.setBudget_Operation(KeyID, BO_ID, BO_Name, BO_Type_ID, BO_Qty
+                if (IRGTService.setBudget_Position(KeyID, BO_ID, BO_Name, BP_Type_ID, BO_Qty
                     , BO_Price, BO_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
@@ -177,12 +179,12 @@ public partial class server_Budget : System.Web.UI.Page
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
                 OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
-                OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
+                OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
                 OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
                 OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
                 OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
@@ -197,7 +199,7 @@ public partial class server_Budget : System.Web.UI.Page
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.deleteBudget_Operation(KeyID, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.deleteBudget_Position(KeyID, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -216,7 +218,7 @@ public partial class server_Budget : System.Web.UI.Page
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Operation(BO_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Position(BO_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -230,14 +232,14 @@ public partial class server_Budget : System.Web.UI.Page
         }
     }
 
-    private void fnBudgetOperationByID()
+    private void fnBudgetPositionByID()
     {
         string FN = Request.Params["Function"];
         DataTable DT;
         string DT_JSON;
         int PageSize = 0;
 
-        string BO_Type_ID = Request.Params["BO_Type_ID"];
+        string BP_Type_ID = Request.Params["BP_Type_ID"];
         string BO_ID = Request.Params["BO_ID"];
         string User_Code = Request.Params["User_Code"];
         string BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
@@ -251,7 +253,7 @@ public partial class server_Budget : System.Web.UI.Page
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_OperationByID_Count(BO_ID, BO_Type_ID);
+                int Count = IRGTService.getBudget_PositionByID_Count(BO_ID, BP_Type_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -261,20 +263,20 @@ public partial class server_Budget : System.Web.UI.Page
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 string lang = Request.Params["lang"];
-                DT = IRGTService.getBudget_OperationByID(PageSize, PageIndex, BO_ID, BO_Type_ID, lang);
-                Session["Data_Budget_Operation"] = DT.Copy();
+                DT = IRGTService.getBudget_PositionByID(PageSize, PageIndex, BO_ID, BP_Type_ID, lang);
+                Session["Data_Budget_Position"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
                 OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
-                OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
+                OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
                 OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
                 OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
                 OP += ",BO_Qty_Adj:\"" + dr_list[0]["BO_Qty_Adj"] + "\"";
@@ -288,7 +290,7 @@ public partial class server_Budget : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.confirmBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.confirmBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -304,7 +306,7 @@ public partial class server_Budget : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.approveBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.approveBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -316,13 +318,13 @@ public partial class server_Budget : System.Web.UI.Page
 
                 return;
             case "Adjust":
-                lang = "" + Session["language_budget_operation"];
+                lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
                 BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
                 BO_Price_Adj = Request.Params["BO_Price_Adj"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.adjustBudget_Operation(KeyID, BO_Qty_Adj
+                if (IRGTService.adjustBudget_Position(KeyID, BO_Qty_Adj
                     , BO_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
@@ -336,14 +338,14 @@ public partial class server_Budget : System.Web.UI.Page
         }
     }
 
-    private void fnBudgetOperationSummary()
+    private void fnBudgetPositionSummary()
     {
         DataTable DT;
         string DT_JSON;
         string User_Code = Request.Params["User_Code"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_OperationSummary(User_Code, lang);
-        Session["Data_budget_operation_summary"] = DT.Copy();
+        DT = IRGTService.getBudget_PositionSummary(User_Code, lang);
+        Session["Data_Budget_Position_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
         Response.Write(DT_JSON);
@@ -351,14 +353,14 @@ public partial class server_Budget : System.Web.UI.Page
 
     }
 
-    private void fnBudgetOperationSummaryByID()
+    private void fnBudgetPositionSummaryByID()
     {
         DataTable DT;
         string DT_JSON;
         string BO_ID = Request.Params["BO_ID"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_OperationSummaryByID(BO_ID, lang);
-        Session["Data_budget_operation_summary"] = DT.Copy();
+        DT = IRGTService.getBudget_PositionSummaryByID(BO_ID, lang);
+        Session["Data_Budget_Position_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
         Response.Write(DT_JSON);
@@ -366,7 +368,7 @@ public partial class server_Budget : System.Web.UI.Page
 
     }
 
-    private void fnBudgetOperationList()
+    private void fnBudgetPositionList()
     {
         string FN = Request.Params["Function"];
         DataTable DT;
@@ -386,7 +388,7 @@ public partial class server_Budget : System.Web.UI.Page
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_Operation_List_Count(User_Code,Loc_ID);
+                int Count = IRGTService.getBudget_Position_List_Count(User_Code,Loc_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -396,27 +398,27 @@ public partial class server_Budget : System.Web.UI.Page
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 
-                DT = IRGTService.getBudget_Operation_List(PageSize, PageIndex, User_Code, Loc_ID, lang);
-                Session["Data_Budget_Operation"] = DT.Copy();
+                DT = IRGTService.getBudget_Position_List(PageSize, PageIndex, User_Code, Loc_ID, lang);
+                Session["Data_Budget_Position"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
                 return;
             case "Detail":
-                DT = IRGTService.getBudget_OperationDetail(BO_ID, lang);
-                Session["Data_Budget_Operation_Detail"] = DT.Copy();
+                DT = IRGTService.getBudget_PositionDetail(BO_ID, lang);
+                Session["Data_Budget_Position_Detail"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
                 OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
-                OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
+                OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
                 OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
                 OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
                 OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
@@ -431,7 +433,7 @@ public partial class server_Budget : System.Web.UI.Page
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {

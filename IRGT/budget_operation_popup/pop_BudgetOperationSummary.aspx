@@ -34,7 +34,7 @@
         function fnLoad() {
             var KeyID = getParamValue("KeyID");
             if (KeyID != null) {
-                $.post("../server/Server_Budget.aspx",
+                $.post("../server/Server_Budget_Operation.aspx",
                     {
                         Command: 'BudgetOperationSummary',
                         Function: 'Load',
@@ -84,7 +84,7 @@
             var BO_Type_ID = document.getElementById('BO_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
 
-            $.post("../server/Server_Budget.aspx",
+            $.post("../server/Server_Budget_Operation.aspx",
 			    {
 			        Command: 'BudgetOperationSummary',
 			        Function: 'Check',
@@ -109,7 +109,7 @@
             var BO_Price = document.getElementById('BO_Price').value;
             var BO_Remark = document.getElementById('BO_Remark').value;
 
-            $.post("../server/Server_Budget.aspx",
+            $.post("../server/Server_Budget_Operation.aspx",
                {
                    Command: 'BudgetOperationSummary',
                    Function: 'Save',
@@ -165,7 +165,7 @@
                 Lang: Lang
             });
 
-            $http.post("../server/Server_Budget.aspx", data, config)
+            $http.post("../server/Server_Budget_Operation.aspx", data, config)
             .success(function (data, status, headers, config) {
                 $scope.DataSum = data.records;
                 $('body').pleaseWait('stop');

@@ -184,7 +184,7 @@
             KeyID: tmpKeyID
         });
 
-        $http.post("../server/Server_Budget.aspx", data, config)
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             GetPaging($scope, $http);
@@ -206,7 +206,7 @@
             User_Code: User_Code
         });
 
-        $http.post("../server/Server_Budget.aspx", data, config)
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             GetPaging($scope, $http);
@@ -284,7 +284,7 @@
             User_Code: User_Code
         });
 
-        $http.post("../server/Server_Budget.aspx", data, config)
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Paging = data.records;
             $scope.PageMax = data.pagemax;
@@ -310,7 +310,7 @@
             lang: lang
         });
 
-        $http.post("../server/Server_Budget.aspx", data, config)
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
             if (isLoad)
@@ -333,7 +333,7 @@
             PageName: 'budget_operation'
         });
 
-        $http.post("../server/Server_Budget.aspx", data, config)
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.BudgetOperationType = data.records;
             setTimeout(fnLoad, 100);

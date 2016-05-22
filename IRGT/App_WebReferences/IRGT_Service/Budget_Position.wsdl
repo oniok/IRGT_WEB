@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getMasterData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Param" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMasterDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getMasterDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BP_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_PositionByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionByID_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BP_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionByID_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_PositionByID_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionSummaryByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionSummaryByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_PositionSummaryByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adjustBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Qty_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Price_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adjustBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adjustBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_Position_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_List_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_List_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_Position_List_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_PositionDetailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Educate_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BP_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_PositionResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Position_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Educate_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BP_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Position_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_Position_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="checkBudget_PositionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BP_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Qty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Price" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sendBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="confirmBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_Position">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_PositionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="approveBudget_PositionResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_PositionSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_PositionSummaryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getMasterDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getMasterData" />
+  </wsdl:message>
+  <wsdl:message name="getMasterDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionByID_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionByID_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionByID_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionByID_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSummaryByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionSummaryByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSummaryByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionSummaryByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="adjustBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:adjustBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="adjustBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:adjustBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_List" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_List_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_List_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_List_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_List_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionDetail" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Position_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Position_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:checkBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="checkBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:checkBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="setBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:setBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="setBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:setBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="deleteBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="sendBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="confirmBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:confirmBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="confirmBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:confirmBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_PositionSoapIn">
+    <wsdl:part name="parameters" element="tns:approveBudget_Position" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_PositionSoapOut">
+    <wsdl:part name="parameters" element="tns:approveBudget_PositionResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionSummary" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_PositionSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_PositionSummaryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Budget_PositionSoap">
+    <wsdl:operation name="getMasterData">
+      <wsdl:input message="tns:getMasterDataSoapIn" />
+      <wsdl:output message="tns:getMasterDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID">
+      <wsdl:input message="tns:getBudget_PositionByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_PositionByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID_Count">
+      <wsdl:input message="tns:getBudget_PositionByID_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_PositionByID_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummaryByID">
+      <wsdl:input message="tns:getBudget_PositionSummaryByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_PositionSummaryByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Position">
+      <wsdl:input message="tns:adjustBudget_PositionSoapIn" />
+      <wsdl:output message="tns:adjustBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List">
+      <wsdl:input message="tns:getBudget_Position_ListSoapIn" />
+      <wsdl:output message="tns:getBudget_Position_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List_Count">
+      <wsdl:input message="tns:getBudget_Position_List_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_Position_List_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionDetail">
+      <wsdl:input message="tns:getBudget_PositionDetailSoapIn" />
+      <wsdl:output message="tns:getBudget_PositionDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position">
+      <wsdl:input message="tns:getBudget_PositionSoapIn" />
+      <wsdl:output message="tns:getBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_Count">
+      <wsdl:input message="tns:getBudget_Position_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_Position_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Position">
+      <wsdl:input message="tns:checkBudget_PositionSoapIn" />
+      <wsdl:output message="tns:checkBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Position">
+      <wsdl:input message="tns:setBudget_PositionSoapIn" />
+      <wsdl:output message="tns:setBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Position">
+      <wsdl:input message="tns:deleteBudget_PositionSoapIn" />
+      <wsdl:output message="tns:deleteBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Position">
+      <wsdl:input message="tns:sendBudget_PositionSoapIn" />
+      <wsdl:output message="tns:sendBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Position">
+      <wsdl:input message="tns:confirmBudget_PositionSoapIn" />
+      <wsdl:output message="tns:confirmBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Position">
+      <wsdl:input message="tns:approveBudget_PositionSoapIn" />
+      <wsdl:output message="tns:approveBudget_PositionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummary">
+      <wsdl:input message="tns:getBudget_PositionSummarySoapIn" />
+      <wsdl:output message="tns:getBudget_PositionSummarySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Budget_PositionSoap" type="tns:Budget_PositionSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getMasterData">
+      <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_PositionByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_PositionByID_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummaryByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_PositionSummaryByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/adjustBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Position_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Position_List_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionDetail">
+      <soap:operation soapAction="http://tempuri.org/getBudget_PositionDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Position_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/checkBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/setBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/deleteBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/sendBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/confirmBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Position">
+      <soap:operation soapAction="http://tempuri.org/approveBudget_Position" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummary">
+      <soap:operation soapAction="http://tempuri.org/getBudget_PositionSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Budget_PositionSoap12" type="tns:Budget_PositionSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getMasterData">
+      <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_PositionByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionByID_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_PositionByID_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummaryByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_PositionSummaryByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/adjustBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Position_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_List_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Position_List_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionDetail">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_PositionDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Position_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Position_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/checkBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/setBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/deleteBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/sendBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/confirmBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Position">
+      <soap12:operation soapAction="http://tempuri.org/approveBudget_Position" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_PositionSummary">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_PositionSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Budget_Position">
+    <wsdl:port name="Budget_PositionSoap" binding="tns:Budget_PositionSoap">
+      <soap:address location="http://localhost:56867/Budget_Position.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Budget_PositionSoap12" binding="tns:Budget_PositionSoap12">
+      <soap12:address location="http://localhost:56867/Budget_Position.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
