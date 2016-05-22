@@ -60,7 +60,9 @@ public partial class budget_BudgetOperationByIDAction : System.Web.UI.Page
             Session[PageFunction + "_Column01"] = "รายการ";
             Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
             Session[PageFunction + "_Column03"] = "จำนวน";
+            Session[PageFunction + "_Column031"] = "จำนวนปรับแก้";
             Session[PageFunction + "_Column04"] = "จำนวนเงิน";
+            Session[PageFunction + "_Column041"] = "จำนวนเงินปรับแก้";
             Session[PageFunction + "_Column05"] = "เหตุผล";
 
         }

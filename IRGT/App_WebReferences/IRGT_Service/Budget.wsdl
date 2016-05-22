@@ -87,6 +87,25 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="adjustBudget_Operation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Qty_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Price_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adjustBudget_OperationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adjustBudget_OperationResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getBudget_Operation_List">
         <s:complexType>
           <s:sequence>
@@ -341,6 +360,12 @@
   <wsdl:message name="getBudget_OperationSummaryByIDSoapOut">
     <wsdl:part name="parameters" element="tns:getBudget_OperationSummaryByIDResponse" />
   </wsdl:message>
+  <wsdl:message name="adjustBudget_OperationSoapIn">
+    <wsdl:part name="parameters" element="tns:adjustBudget_Operation" />
+  </wsdl:message>
+  <wsdl:message name="adjustBudget_OperationSoapOut">
+    <wsdl:part name="parameters" element="tns:adjustBudget_OperationResponse" />
+  </wsdl:message>
   <wsdl:message name="getBudget_Operation_ListSoapIn">
     <wsdl:part name="parameters" element="tns:getBudget_Operation_List" />
   </wsdl:message>
@@ -430,6 +455,10 @@
       <wsdl:input message="tns:getBudget_OperationSummaryByIDSoapIn" />
       <wsdl:output message="tns:getBudget_OperationSummaryByIDSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Operation">
+      <wsdl:input message="tns:adjustBudget_OperationSoapIn" />
+      <wsdl:output message="tns:adjustBudget_OperationSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getBudget_Operation_List">
       <wsdl:input message="tns:getBudget_Operation_ListSoapIn" />
       <wsdl:output message="tns:getBudget_Operation_ListSoapOut" />
@@ -510,6 +539,15 @@
     </wsdl:operation>
     <wsdl:operation name="getBudget_OperationSummaryByID">
       <soap:operation soapAction="http://tempuri.org/getBudget_OperationSummaryByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Operation">
+      <soap:operation soapAction="http://tempuri.org/adjustBudget_Operation" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -657,6 +695,15 @@
     </wsdl:operation>
     <wsdl:operation name="getBudget_OperationSummaryByID">
       <soap12:operation soapAction="http://tempuri.org/getBudget_OperationSummaryByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Operation">
+      <soap12:operation soapAction="http://tempuri.org/adjustBudget_Operation" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

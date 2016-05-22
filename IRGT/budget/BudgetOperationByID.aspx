@@ -84,8 +84,8 @@
 														        <td class="center">{{ x.RowID }}</td>
                                                                 <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Name }}</td>
                                                                 <td>{{ x.BO_Type_Name }}</td>
-                                                                <td class="center">{{ x.BO_Qty }}</td>          
-                                                                <td style="text-align:right">{{ x.BO_Price }}</td>														                                                            
+                                                                <td class="center">{{ x.BO_Qty_View }}</td>          
+                                                                <td style="text-align:right">{{ x.BO_Price_View }}</td>														                                                            
                                                                 <td>{{ x.BO_Reason }}</td>											
 													        </tr>										
 												        </tbody>  

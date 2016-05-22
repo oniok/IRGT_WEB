@@ -240,13 +240,11 @@ public partial class server_Budget : System.Web.UI.Page
         string BO_Type_ID = Request.Params["BO_Type_ID"];
         string BO_ID = Request.Params["BO_ID"];
         string User_Code = Request.Params["User_Code"];
+        string BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
+        string BO_Price_Adj = Request.Params["BO_Price_Adj"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         int KeyID = 0;
-        string BO_Name = "";
-        string BO_Qty = "";
-        string BO_Price = "";
-        string BO_Reason = "";
 
         switch (FN)
         {
@@ -279,6 +277,8 @@ public partial class server_Budget : System.Web.UI.Page
                 OP += ",BO_Type_ID:\"" + dr_list[0]["BO_Type_ID"] + "\"";
                 OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
                 OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
+                OP += ",BO_Qty_Adj:\"" + dr_list[0]["BO_Qty_Adj"] + "\"";
+                OP += ",BO_Price_Adj:\"" + dr_list[0]["BO_Price_Adj"] + "\"";
                 OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
@@ -286,8 +286,6 @@ public partial class server_Budget : System.Web.UI.Page
             case "Confirm":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                ReturnMSG_TH = "";
-                ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
                 if (IRGTService.confirmBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
@@ -304,8 +302,6 @@ public partial class server_Budget : System.Web.UI.Page
             case "Approve":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                ReturnMSG_TH = "";
-                ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
                 if (IRGTService.approveBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
@@ -318,6 +314,24 @@ public partial class server_Budget : System.Web.UI.Page
                         Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_EN + "\"}");
                 }
 
+                return;
+            case "Adjust":
+                lang = "" + Session["language_budget_operation"];
+                if (lang == "") lang = "TH";
+                BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
+                BO_Price_Adj = Request.Params["BO_Price_Adj"];
+
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (IRGTService.adjustBudget_Operation(KeyID, BO_Qty_Adj
+                    , BO_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
                 return;
         }
     }
@@ -366,10 +380,6 @@ public partial class server_Budget : System.Web.UI.Page
         string BO_ID = Request.Params["BO_ID"];
         string lang = Request.Params["lang"];
         int KeyID = 0;
-        string BO_Name = "";
-        string BO_Qty = "";
-        string BO_Price = "";
-        string BO_Reason = "";
 
         switch (FN)
         {

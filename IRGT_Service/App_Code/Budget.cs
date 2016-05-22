@@ -237,6 +237,68 @@ public class Budget : System.Web.Services.WebService
         }
     }
 
+    [WebMethod]
+    public bool adjustBudget_Operation(int KeyID, string BO_Qty_Adj
+        , string BO_Price_Adj, string User_Code
+        , out string ReturnMSG_TH, out string ReturnMSG_EN)
+    {
+        bool ReturnOutput = false;
+        ReturnMSG_TH = "";
+        ReturnMSG_EN = "";
+
+        string StoreProcedureName = "sp_adjustBudget_Operation";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
+        DBCommand.Parameters.Add(newParam("@BO_Qty_Adj", BO_Qty_Adj));
+        DBCommand.Parameters.Add(newParam("@BO_Price_Adj", BO_Price_Adj));
+        DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
+
+        //================================= RETURN OUTPUT ===========================
+        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
+        DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_TH", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_TH"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_EN", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_EN"].Direction = ParameterDirection.Output;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBCommand.ExecuteNonQuery();
+            string ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
+            if (ReturnCode == "100") ReturnOutput = false;
+            else ReturnOutput = true;
+
+            ReturnMSG_TH = DBCommand.Parameters["@ReturnMSG_TH"].Value.ToString();
+            ReturnMSG_EN = DBCommand.Parameters["@ReturnMSG_EN"].Value.ToString();
+            DBConnect.Close();
+
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+
+            ReturnOutput = false;
+            ReturnMSG_TH = "เกิดข้อผิดพลาดจากระบบ:" + ex.Message;
+            ReturnMSG_EN = "System Error:" + ex.Message;
+        }
+        return ReturnOutput;
+    }
+
     #endregion
 
     #region Budget_Operation_List

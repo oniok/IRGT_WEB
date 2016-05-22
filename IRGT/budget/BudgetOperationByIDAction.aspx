@@ -93,8 +93,8 @@
 														        <td class="center">{{ x.RowID }}</td>
                                                                 <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Name }}</td>
                                                                 <td>{{ x.BO_Type_Name }}</td>
-                                                                <td class="center">{{ x.BO_Qty }}</td>          
-                                                                <td style="text-align:right">{{ x.BO_Price }}</td>														                                                            
+                                                                <td class="center">{{ x.BO_Qty_View }}</td>          
+                                                                <td style="text-align:right">{{ x.BO_Price_View }}</td>														                                                            
                                                                 <td>{{ x.BO_Reason }}</td>
 														        <td style="text-align:center">   
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
@@ -241,10 +241,12 @@
             GetPaging($scope, $http);
         }
        
-        $scope.fnEdit = function (KeyID) {           
+        $scope.fnEdit = function (KeyID) {
+            $('#btnPopSave').toggle(true);
             fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../budget_popup/pop_BudgetOperationAction.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnSum = function () {
+            $('#btnPopSave').toggle(false);
             var BO_ID = '<%=Session["BO_ID"]%>';
             fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_popup/pop_BudgetOperationSummaryByID.aspx?BO_ID=" + BO_ID, null, "450");
         }
@@ -276,7 +278,7 @@
             GetData($scope, $http, PageIndex);
         }
         GetPaging($scope, $http);
-        $('#btnPopSave').toggle(false);
+        
     }
    
     function GetPaging($scope, $http) {
