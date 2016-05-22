@@ -33,7 +33,7 @@
                                             <table>
                                                 <tr>                                                    
                                                     <td style="width:5px"></td>
-                                                    <td><%=Session["budget_operation_list_Column01"]%></td>
+                                                    <td><%=Session["budget_position_list_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
                                                         <select class="chosen-select form-control" id="Loc_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
@@ -65,16 +65,16 @@
 											        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												        <thead>
 													        <tr>
-														        <th class="center" style="width:50px"><%=Session["budget_operation_list_ColumnSEQ"]%></th>
-														        <th class="center"><%=Session["budget_operation_list_Column01"]%></th>
-														        <th class="center" style="width:100px"><%=Session["budget_operation_list_Column02"]%></th>
+														        <th class="center" style="width:50px"><%=Session["budget_position_list_ColumnSEQ"]%></th>
+														        <th class="center"><%=Session["budget_position_list_Column01"]%></th>
+														        <th class="center" style="width:100px"><%=Session["budget_position_list_Column02"]%></th>
                                                                 <th class="center" style="width:120px">
                                                                     <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                                    <%=Session["budget_operation_list_Column03"]%>
+                                                                    <%=Session["budget_position_list_Column03"]%>
                                                                 </th>
                                                                 <th class="center" style="width:120px">
                                                                     <i class="ace-icon fa fa-clock-o bigger-110 hidden-480"></i>
-                                                                    <%=Session["budget_operation_list_Column04"]%>
+                                                                    <%=Session["budget_position_list_Column04"]%>
                                                                 </th>   
                                                                 <th class="center" style="width:200px"><%=Session["budget_operation_list_Column05"]%></th>
 														        <td class="center" style="width:80px"><%=Session["budget_operation_list_ColumnEdit"]%></td>
@@ -83,13 +83,13 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.Loc_Name }}</td>
-                                                                <td class="center">{{ x.BO_Year }}</td>
+                                                                <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Loc_Name }}</td>
+                                                                <td class="center">{{ x.BP_Year }}</td>
                                                                 <td class="center">{{ x.Create_Date }}</td>          
                                                                 <td class="center">{{ x.Update_Date }}</td>														                                                            
-                                                                <td class="center">{{ x.BO_Status }}</td>
+                                                                <td class="center">{{ x.BP_Status }}</td>
 														        <td style="text-align:center">  
-                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BO_ID)">
+                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BP_ID)">
 												                        <i class="ace-icon fa fa-folder-open-o bigger-110 icon-only"></i>
 											                        </button>
 														        </td>											
@@ -180,10 +180,10 @@
             document.getElementById('paging-select').value = 1;
             GetPaging($scope, $http);
         }
-        $scope.fnDetail = function (BO_ID) {           
-            var lang = '<%=Session["language_budget_operation_list"]%>';
+        $scope.fnDetail = function (BP_ID) {           
+            var lang = '<%=Session["language_budget_position_list"]%>';
             window.open(
-              "../budget_operation/BudgetOperationByID.aspx?BO_ID=" + BO_ID + "&lang=" + lang,
+              "../budget_position/BudgetPositionByID.aspx?BP_ID=" + BP_ID + "&lang=" + lang,
               "_blank"
             );
         }
@@ -216,7 +216,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var Loc_ID = document.getElementById('Loc_ID').value;
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetPositionList',
             Function: 'Paging',
             PageSize: PageSize,
             Loc_ID: Loc_ID,
@@ -240,7 +240,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var lang = getParamValue("lang");
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetPositionList',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,
@@ -269,7 +269,7 @@
         var data = $.param({
             Command: 'GetMasterData',
             Function: 'WorkCenter',
-            PageName: 'budget_operation_list'
+            PageName: 'budget_position_list'
         });
 
         $http.post("../server/Server_Budget_Position.aspx", data, config)

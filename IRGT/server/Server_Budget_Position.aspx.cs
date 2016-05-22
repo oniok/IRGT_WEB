@@ -112,12 +112,11 @@ public partial class server_Budget_Position : System.Web.UI.Page
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
-        string BO_ID = "";
+        string BP_ID = "";
         int KeyID = 0;
-        string BO_Name = "";
-        string BO_Qty = "";
-        string BO_Price = "";
-        string BO_Reason = "";
+        string BP_Qty = "";
+        string BP_Price = "";
+        string BP_Reason = "";
 
         switch (FN)
         {
@@ -143,9 +142,9 @@ public partial class server_Budget_Position : System.Web.UI.Page
             case "Check":
                 lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
-                BO_ID = IRGTService.checkBudget_Position(User_Code);
-                if (BO_ID != "")
-                    Response.Write("[{\"output\":\"OK\",\"BO_ID\":\"" + BO_ID + "\"}]");
+                BP_ID = IRGTService.checkBudget_Position(User_Code);
+                if (BP_ID != "")
+                    Response.Write("[{\"output\":\"OK\",\"BP_ID\":\"" + BP_ID + "\"}]");
                 else
                 {
                     if (lang == "TH")
@@ -158,16 +157,17 @@ public partial class server_Budget_Position : System.Web.UI.Page
             case "Save":
                 lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
-                BO_ID = Request.Params["BO_ID"];
-                BO_Name = Request.Params["BO_Name"];
+                BP_ID = Request.Params["BP_ID"];
+                Position_Type_ID = Request.Params["Position_Type_ID"];
+                Educate_Type_ID = Request.Params["Educate_Type_ID"];
                 BP_Type_ID = Request.Params["BP_Type_ID"];
-                BO_Qty = Request.Params["BO_Qty"];
-                BO_Price = Request.Params["BO_Price"];
-                BO_Reason = Request.Params["BO_Reason"];
+                BP_Qty = Request.Params["BP_Qty"];
+                BP_Price = Request.Params["BP_Price"];
+                BP_Reason = Request.Params["BP_Reason"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.setBudget_Position(KeyID, BO_ID, BO_Name, BP_Type_ID, BO_Qty
-                    , BO_Price, BO_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.setBudget_Position(KeyID, BP_ID, Position_Type_ID, Educate_Type_ID, BP_Type_ID, BP_Qty
+                    , BP_Price, BP_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
                 {
@@ -182,12 +182,13 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
-                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
+                OP += "BP_ID:\"" + dr_list[0]["BP_ID"] + "\"";
+                OP += ",Position_Type_ID:\"" + dr_list[0]["Position_Type_ID"] + "\"";
+                OP += ",Educate_Type_ID:\"" + dr_list[0]["Educate_Type_ID"] + "\"";
                 OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
-                OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
-                OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
-                OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
+                OP += ",BP_Qty:\"" + dr_list[0]["BP_Qty"] + "\"";
+                OP += ",BP_Price:\"" + dr_list[0]["BP_Price"] + "\"";
+                OP += ",BP_Reason:\"" + dr_list[0]["BP_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;
@@ -213,12 +214,12 @@ public partial class server_Budget_Position : System.Web.UI.Page
             case "Send":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                BO_ID = Request.Params["BO_ID"];
+                BP_ID = Request.Params["BP_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Position(BO_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Position(BP_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -239,11 +240,13 @@ public partial class server_Budget_Position : System.Web.UI.Page
         string DT_JSON;
         int PageSize = 0;
 
+        string Position_Type_ID = Request.Params["Position_Type_ID"];
+        string Educate_Type_ID = Request.Params["Educate_Type_ID"];
         string BP_Type_ID = Request.Params["BP_Type_ID"];
-        string BO_ID = Request.Params["BO_ID"];
+        string BP_ID = Request.Params["BP_ID"];
         string User_Code = Request.Params["User_Code"];
-        string BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
-        string BO_Price_Adj = Request.Params["BO_Price_Adj"];
+        string BP_Qty_Adj = Request.Params["BP_Qty_Adj"];
+        string BP_Price_Adj = Request.Params["BP_Price_Adj"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         int KeyID = 0;
@@ -253,7 +256,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_PositionByID_Count(BO_ID, BP_Type_ID);
+                int Count = IRGTService.getBudget_PositionByID_Count(BP_ID, Position_Type_ID, Educate_Type_ID, BP_Type_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -263,7 +266,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 string lang = Request.Params["lang"];
-                DT = IRGTService.getBudget_PositionByID(PageSize, PageIndex, BO_ID, BP_Type_ID, lang);
+                DT = IRGTService.getBudget_PositionByID(PageSize, PageIndex, BP_ID, Position_Type_ID, Educate_Type_ID, BP_Type_ID, lang);
                 Session["Data_Budget_Position"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -274,14 +277,13 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
-                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
+                OP += "BP_ID:\"" + dr_list[0]["BP_ID"] + "\"";
                 OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
-                OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
-                OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
-                OP += ",BO_Qty_Adj:\"" + dr_list[0]["BO_Qty_Adj"] + "\"";
-                OP += ",BO_Price_Adj:\"" + dr_list[0]["BO_Price_Adj"] + "\"";
-                OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
+                OP += ",BP_Qty:\"" + dr_list[0]["BP_Qty"] + "\"";
+                OP += ",BP_Price:\"" + dr_list[0]["BP_Price"] + "\"";
+                OP += ",BP_Qty_Adj:\"" + dr_list[0]["BP_Qty_Adj"] + "\"";
+                OP += ",BP_Price_Adj:\"" + dr_list[0]["BP_Price_Adj"] + "\"";
+                OP += ",BP_Reason:\"" + dr_list[0]["BP_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;
@@ -290,7 +292,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.confirmBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.confirmBudget_Position(BP_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -306,7 +308,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.approveBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.approveBudget_Position(BP_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -320,12 +322,12 @@ public partial class server_Budget_Position : System.Web.UI.Page
             case "Adjust":
                 lang = "" + Session["language_Budget_Position"];
                 if (lang == "") lang = "TH";
-                BO_Qty_Adj = Request.Params["BO_Qty_Adj"];
-                BO_Price_Adj = Request.Params["BO_Price_Adj"];
+                BP_Qty_Adj = Request.Params["BP_Qty_Adj"];
+                BP_Price_Adj = Request.Params["BP_Price_Adj"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.adjustBudget_Position(KeyID, BO_Qty_Adj
-                    , BO_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.adjustBudget_Position(KeyID, BP_Qty_Adj
+                    , BP_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
                 {
@@ -357,9 +359,9 @@ public partial class server_Budget_Position : System.Web.UI.Page
     {
         DataTable DT;
         string DT_JSON;
-        string BO_ID = Request.Params["BO_ID"];
+        string BP_ID = Request.Params["BP_ID"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_PositionSummaryByID(BO_ID, lang);
+        DT = IRGTService.getBudget_PositionSummaryByID(BP_ID, lang);
         Session["Data_Budget_Position_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -379,7 +381,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
-        string BO_ID = Request.Params["BO_ID"];
+        string BP_ID = Request.Params["BP_ID"];
         string lang = Request.Params["lang"];
         int KeyID = 0;
 
@@ -405,7 +407,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 Response.Write(DT_JSON);
                 return;
             case "Detail":
-                DT = IRGTService.getBudget_PositionDetail(BO_ID, lang);
+                DT = IRGTService.getBudget_PositionDetail(BP_ID, lang);
                 Session["Data_Budget_Position_Detail"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -416,24 +418,24 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 DT = (DataTable)Session["Data_Budget_Position"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BO_ID:\"" + dr_list[0]["BO_ID"] + "\"";
+                OP += "BP_ID:\"" + dr_list[0]["BP_ID"] + "\"";
                 OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
                 OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
-                OP += ",BO_Qty:\"" + dr_list[0]["BO_Qty"] + "\"";
-                OP += ",BO_Price:\"" + dr_list[0]["BO_Price"] + "\"";
-                OP += ",BO_Reason:\"" + dr_list[0]["BO_Reason"] + "\"";
+                OP += ",BP_Qty:\"" + dr_list[0]["BP_Qty"] + "\"";
+                OP += ",BP_Price:\"" + dr_list[0]["BP_Price"] + "\"";
+                OP += ",BP_Reason:\"" + dr_list[0]["BP_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;
             case "Send":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                BO_ID = Request.Params["BO_ID"];
+                BP_ID = Request.Params["BP_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Position(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Position(BP_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {

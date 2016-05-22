@@ -104,7 +104,7 @@ public class Budget_Position : System.Web.Services.WebService
 
     #region Budget_PositionByID
     [WebMethod]
-    public DataTable getBudget_PositionByID(int PageSize, int PageIndex, string BO_ID, string BP_Type_ID, string Lang)
+    public DataTable getBudget_PositionByID(int PageSize, int PageIndex, string BP_ID, string Position_Type_ID, string Educate_Type_ID, string BP_Type_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_PositionByID";
         SetLog("========================START==============================");
@@ -118,7 +118,9 @@ public class Budget_Position : System.Web.Services.WebService
 
         DBCommand.Parameters.Add(newParam("@PageSize", PageSize));
         DBCommand.Parameters.Add(newParam("@PageIndex", PageIndex));
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
+        DBCommand.Parameters.Add(newParam("@Position_Type_ID", Position_Type_ID));
+        DBCommand.Parameters.Add(newParam("@Educate_Type_ID", Educate_Type_ID));
         DBCommand.Parameters.Add(newParam("@BP_Type_ID", BP_Type_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
@@ -151,7 +153,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public int getBudget_PositionByID_Count(string BO_ID, string BP_Type_ID)
+    public int getBudget_PositionByID_Count(string BP_ID, string Position_Type_ID, string Educate_Type_ID, string BP_Type_ID)
     {
         string StoreProcedureName = "sp_getBudget_PositionByID_Count";
         SetLog("========================START==============================");
@@ -162,7 +164,9 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
+        DBCommand.Parameters.Add(newParam("@Position_Type_ID", Position_Type_ID));
+        DBCommand.Parameters.Add(newParam("@Educate_Type_ID", Educate_Type_ID));
         DBCommand.Parameters.Add(newParam("@BP_Type_ID", BP_Type_ID));
 
         SqlDataReader DBReader;
@@ -194,7 +198,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataTable getBudget_PositionSummaryByID(string BO_ID, string Lang)
+    public DataTable getBudget_PositionSummaryByID(string BP_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_PositionSummaryByID";
         SetLog("========================START==============================");
@@ -206,7 +210,7 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;
@@ -581,8 +585,8 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool setBudget_Position(int KeyID, string BO_ID, string BO_Name, string BP_Type_ID, string BO_Qty
-        , string BO_Price, string BO_Reason, string User_Code
+    public bool setBudget_Position(int KeyID, string BP_ID, string Position_Type_ID, string Educate_Type_ID, string BP_Type_ID, string BP_Qty
+        , string BP_Price, string BP_Reason, string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -599,12 +603,13 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
-        DBCommand.Parameters.Add(newParam("@BO_Name", BO_Name));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
+        DBCommand.Parameters.Add(newParam("@Position_Type_ID", Position_Type_ID));
+        DBCommand.Parameters.Add(newParam("@Educate_Type_ID", Educate_Type_ID));
         DBCommand.Parameters.Add(newParam("@BP_Type_ID", BP_Type_ID));
-        DBCommand.Parameters.Add(newParam("@BO_Qty", BO_Qty));
-        DBCommand.Parameters.Add(newParam("@BO_Price", BO_Price));
-        DBCommand.Parameters.Add(newParam("@BO_Reason", BO_Reason));
+        DBCommand.Parameters.Add(newParam("@BP_Qty", BP_Qty));
+        DBCommand.Parameters.Add(newParam("@BP_Price", BP_Price));
+        DBCommand.Parameters.Add(newParam("@BP_Reason", BP_Reason));
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================
@@ -703,7 +708,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool sendBudget_Position(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool sendBudget_Position(string BP_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -718,7 +723,7 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));

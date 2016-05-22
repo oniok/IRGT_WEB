@@ -31,32 +31,6 @@
 	</table>   
     </center>
     <script>
-        function fnLoad() {
-            var KeyID = getParamValue("KeyID");
-            if (KeyID != null) {
-                $.post("../server/Server_Budget_Operation.aspx",
-                    {
-                        Command: 'BudgetOperationSummary',
-                        Function: 'Load',
-                        KeyID: KeyID
-                    },
-                    function (data, status) {
-                        var data = eval(data);
-                        document.getElementById('BO_ID').value = data[0].BO_ID.trim();
-                        document.getElementById('BO_Type_ID').value = data[0].BO_Type_ID.trim();
-                        document.getElementById('BO_PRICE_MNT').value = data[0].BO_Qty.trim();
-                        document.getElementById('BO_PRICE_YEAR').value = data[0].BO_Price.trim();
-                        document.getElementById('BO_Remark').value = data[0].BO_Remark.trim();
-                        $('body').pleaseWait('stop');
-                        fnLoadCtrl();
-                    }
-                );
-            } else {
-                $('body').pleaseWait('stop');
-                fnLoadCtrl();
-            }
-
-        }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();

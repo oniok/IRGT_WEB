@@ -9,41 +9,54 @@
         <tr>
             <tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
-                <td><%=Session["budget_operation_Column01"] %></td>
+                <td><%=Session["budget_position_Column01"] %></td>
                 <td colspan="3">
-                    <input type="hidden" id="BO_ID"/>
-                    <input type="text" id="BO_Name" style="width:100%"/>
+                    <input type="hidden" id="BP_ID"/>
+                    <select class="chosen-select form-control" id="Position_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
+					    <option value=""></option>	
+                        <option ng-repeat="x in Position_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				    </select>
                 </td>
             </tr>
             <tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
-                <td style="width:100px"><%=Session["budget_operation_Column02"] %></td>
+                <td style="width:100px"><%=Session["budget_position_Column02"] %></td>
                 <td colspan="3">
-                    <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
+                    <select class="chosen-select form-control" id="Educate_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px">
 					    <option value=""></option>	
-                        <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
+                        <option ng-repeat="x in Educate_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				    </select>   
                 </td>
              </tr>    
+            <tr><td colspan="4" style="height:10px"></td></tr>
+            <tr>
+                <td style="width:100px"><%=Session["budget_position_Column03"] %></td>
+                <td colspan="3">
+                    <select class="chosen-select form-control" id="BP_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px">
+					    <option value=""></option>	
+                        <option ng-repeat="x in BP_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				    </select>  
+                </td>
+             </tr>  
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
-            <td><%=Session["budget_operation_Column03"] %></td>
+            <td><%=Session["budget_position_Column04"] %></td>
             <td colspan="3">
-                <input type="text" id="BO_Qty" />
+                <input type="text" id="BP_Qty" />
             </td>
         </tr>
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
-            <td><%=Session["budget_operation_Column04"] %></td>
+            <td><%=Session["budget_position_Column05"] %></td>
             <td colspan="3">
-                <input type="text" id="BO_Price" />    
+                <input type="text" id="BP_Price" />    
             </td>
         </tr>        
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
-            <td><%=Session["budget_operation_Column05"] %></td>
+            <td><%=Session["budget_position_Column06"] %></td>
             <td colspan="3">
-                <input type="text" id="BO_Reason" style="width:100%"/>    
+                <input type="text" id="BP_Reason" style="width:100%"/>    
             </td>
         </tr>
     </table>   
@@ -54,18 +67,19 @@
             if (KeyID != null) {
                 $.post("../server/Server_Budget_Position.aspx",
                     {
-                        Command: 'BudgetOperation',
+                        Command: 'BudgetPosition',
                         Function: 'Load',
                         KeyID: KeyID
                     },
                     function (data, status) {
                         var data = eval(data);
-                        document.getElementById('BO_ID').value = data[0].BO_ID.trim();
-                        document.getElementById('BO_Name').value = data[0].BO_Name.trim();
-                        document.getElementById('BO_Type_ID').value = data[0].BO_Type_ID.trim();
-                        document.getElementById('BO_Qty').value = data[0].BO_Qty.trim();
-                        document.getElementById('BO_Price').value = data[0].BO_Price.trim();
-                        document.getElementById('BO_Reason').value = data[0].BO_Reason.trim();
+                        document.getElementById('BP_ID').value = data[0].BP_ID.trim();
+                        document.getElementById('Position_Type_ID').value = data[0].Position_Type_ID.trim();
+                        document.getElementById('Educate_Type_ID').value = data[0].Educate_Type_ID.trim();
+                        document.getElementById('BP_Type_ID').value = data[0].BP_Type_ID.trim();
+                        document.getElementById('BP_Qty').value = data[0].BP_Qty.trim();
+                        document.getElementById('BP_Price').value = data[0].BP_Price.trim();
+                        document.getElementById('BP_Reason').value = data[0].BP_Reason.trim();
 
                         $('body').pleaseWait('stop');
                         fnLoadCtrl();
@@ -79,41 +93,47 @@
         }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
-            var BO_Qty = document.getElementById('BO_Qty').value.trim();
-            var BO_Price = document.getElementById('BO_Price').value;
+            var BP_ID = document.getElementById('BP_ID').value.trim();
+            var Position_Type_ID = document.getElementById('Position_Type_ID').value.trim();
+            var Educate_Type_ID = document.getElementById('Educate_Type_ID').value.trim();
+            var BP_Type_ID = document.getElementById('BP_Type_ID').value.trim();
+            var BP_Qty = document.getElementById('BP_Qty').value.trim();
+            var BP_Price = document.getElementById('BP_Price').value.trim();
+            var BP_Reason = document.getElementById('BP_Reason').value.trim();
         
-            if (BO_Name == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_02"]%>");
+            if (Position_Type_ID == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_02"]%>");
                 return;
             }
-            if (BO_Type_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_03"]%>");
+            if (Educate_Type_ID == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_03"]%>");
                 return;
             }
-            if (BO_Qty == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_04"]%>");
+            if (BP_Type_ID == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_03"]%>");
                 return;
             }
-            if (BO_Price == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
+            if (BP_Qty == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_04"]%>");
+                return;
+            }
+            if (BP_Price == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_05"]%>");
                 return;
             }
 
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
 
             $.post("../server/Server_Budget_Position.aspx",
 			    {
-			        Command: 'BudgetOperation',
+			        Command: 'BudgetPosition',
 			        Function: 'Check',
 			        User_Code: User_Code
 			    },
 			    function (data, status) {
 			        var data = eval(data);
-			        if (data[0].BO_ID != '') {
-			            fnSubmit(data[0].BO_ID);
+			        if (data[0].BP_ID != '') {
+			            fnSubmit(data[0].BP_ID);
 			        } else {
 			            fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
 			        }
@@ -121,25 +141,27 @@
             );
         }
 
-        function fnSubmit(BO_ID) {
+        function fnSubmit(BP_ID) {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
-            var BO_Qty = document.getElementById('BO_Qty').value.trim();
-            var BO_Price = document.getElementById('BO_Price').value;
-            var BO_Reason = document.getElementById('BO_Reason').value;
+            var Position_Type_ID = document.getElementById('Position_Type_ID').value.trim();
+            var Educate_Type_ID = document.getElementById('Educate_Type_ID').value.trim();
+            var BP_Type_ID = document.getElementById('BP_Type_ID').value.trim();
+            var BP_Qty = document.getElementById('BP_Qty').value.trim();
+            var BP_Price = document.getElementById('BP_Price').value.trim();
+            var BP_Reason = document.getElementById('BP_Reason').value.trim();
 
             $.post("../server/Server_Budget_Position.aspx",
                {
-                   Command: 'BudgetOperation',
+                   Command: 'BudgetPosition',
                    Function: 'Save',
                    KeyID: KeyID,
-                   BO_ID: BO_ID,
-                   BO_Name: BO_Name,
-                   BO_Type_ID: BO_Type_ID,
-                   BO_Qty: BO_Qty,
-                   BO_Price: BO_Price,
-                   BO_Reason: BO_Reason
+                   BP_ID: BP_ID,
+                   Position_Type_ID: Position_Type_ID,
+                   Educate_Type_ID: Educate_Type_ID,
+                   BP_Type_ID: BP_Type_ID,
+                   BP_Qty: BP_Qty,
+                   BP_Price: BP_Price,
+                   BP_Reason: BP_Reason
                },
                function (data, status) {
                    var data = eval(data);
@@ -163,22 +185,62 @@
             $('body').pleaseWait();
             $tmp_scope = $scope;
             $tmp_http = $http;
-            fnGetBudgetOperationType($scope, $http);
+            fnGetBP_PositionType($scope, $http);
         }
-        function fnGetBudgetOperationType($scope, $http) {
+        function fnGetBP_PositionType($scope, $http) {
 
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
                 Command: 'GetMasterData',
-                Function: 'BudgetOperationType',
-                PageName: 'budget_operation'
+                Function: 'PositionType',
+                PageName: 'budget_position'
             });
 
             $http.post("../server/Server_Budget_Position.aspx", data, config)
             .success(function (data, status, headers, config) {
-                $scope.BudgetOperationType = data.records;
+                $scope.Position_Type = data.records;
+                setTimeout(fnGetBP_EducateType, 100);
+            })
+            .error(function (data, status, header, config) {
+                $('body').pleaseWait('stop');
+            });
+        }
+        function fnGetBP_EducateType() {
+
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+
+            var data = $.param({
+                Command: 'GetMasterData',
+                Function: 'EducateType',
+                PageName: 'budget_position'
+            });
+
+            $http.post("../server/Server_Budget_Position.aspx", data, config)
+            .success(function (data, status, headers, config) {
+                $scope.Educate_Type = data.records;
+                setTimeout(fnGetBP_BPType, 100);
+            })
+            .error(function (data, status, header, config) {
+                $('body').pleaseWait('stop');
+            });
+        }
+        function fnGetBP_BPType() {
+
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+
+            var data = $.param({
+                Command: 'GetMasterData',
+                Function: 'BudgetPositionType',
+                PageName: 'budget_position'
+            });
+
+            $http.post("../server/Server_Budget_Position.aspx", data, config)
+            .success(function (data, status, headers, config) {
+                $scope.BP_Type = data.records;
                 setTimeout(fnLoad, 100);
             })
             .error(function (data, status, header, config) {

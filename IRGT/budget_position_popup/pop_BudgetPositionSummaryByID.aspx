@@ -8,20 +8,24 @@
     <table id="dynamic-table" class="table table-striped table-bordered table-hover" ng-app="myApp" ng-controller="fnMain">
 		<thead>
 			<tr>
-				<th class="center" style="width:50px"><%=Session["budget_operation_summary_ColumnSEQ"]%></th>
-				<th class="center"><%=Session["budget_operation_summary_Column02"]%></th>
-                <th class="center" style="width:50px"><%=Session["budget_operation_summary_Column03"]%></th>          
-                <th class="center" style="width:100px"><%=Session["budget_operation_summary_Column04"]%></th> 
-                <th class="center"><%=Session["budget_operation_summary_Column05"]%></th> 
+				<th class="center" style="width:50px"><%=Session["budget_position_summary_ColumnSEQ"]%></th>
+				<th class="center"><%=Session["budget_position_summary_Column01"]%></th>
+				<th class="center" style="width:100px"><%=Session["budget_position_summary_Column02"]%></th>
+                <th class="center" style="width:150px"><%=Session["budget_position_summary_Column03"]%></th>          
+                <th class="center" style="width:80px"><%=Session["budget_position_summary_Column04"]%></th>    
+                <th class="center" style="width:120px"><%=Session["budget_position_summary_Column05"]%></th>
+                <th class="center"><%=Session["budget_position_summary_Column06"]%></th>
 			</tr>
 		</thead>
         <tbody>
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
-                <td>{{ x.BO_Type_Name }}</td>
-                <td style="text-align:right">{{ x.BO_PRICE_MNT }}</td>          
-                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>		
-                <td style="text-align:left">{{ x.BO_Remark }}</td>	
+                <td>{{ x.Position_Type_Name }}</td>
+                <td>{{ x.Educate_Type_Name }}</td>
+                <td>{{ x.BP_Type_Name }}</td>
+                <td style="text-align:right">{{ x.BP_PRICE_MNT }}</td>          
+                <td style="text-align:right">{{ x.BP_PRICE_YEAR }}</td>														                                                            
+                <td style="text-align:left">{{ x.BP_Remark }}</td>	
 			</tr>										
 		</tbody>  
         <tfoot >
@@ -43,18 +47,18 @@
             $tmp_scope = $scope;
             $tmp_http = $http;
        
-            fnGetBudgetOperationSummary($scope, $http);
+            fnGetBudgetPositionSummary($scope, $http);
         }
-        function fnGetBudgetOperationSummary($scope, $http) {
-            var BO_ID = '<%=Session["BO_ID"]%>';
-            var Lang = '<%=Session["language_budget_operation"]%>';
+        function fnGetBudgetPositionSummary($scope, $http) {
+            var BP_ID = '<%=Session["BP_ID"]%>';
+            var Lang = '<%=Session["language_budget_position"]%>';
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
-                Command: 'BudgetOperationSummaryByID',
+                Command: 'BudgetPositionSummaryByID',
                 Function: Function,
-                BO_ID: BO_ID,
+                BP_ID: BP_ID,
                 Lang: Lang
             });
 
