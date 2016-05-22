@@ -145,7 +145,7 @@
             $tmp_http = $http;
 
             $scope.fnEdit = function (KeyID) {           //,BO_ID,BO_Type_ID
-               // fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BO_ID="+BO_ID+"&BO_Type_ID="+BO_Type_ID, null, "450");
+               // fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BO_ID="+BO_ID+"&BO_Type_ID="+BO_Type_ID, null, "450");
                fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../pop_BudgetOperationRemark.aspx?KeyID=" + KeyID, null, "450");
             
             }

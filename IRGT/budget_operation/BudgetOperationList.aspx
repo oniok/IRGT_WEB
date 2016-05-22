@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetOperationListAction.aspx.cs" Inherits="budget_BudgetOperationListAction" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetOperationList.aspx.cs" Inherits="budget_BudgetOperationList" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../Scripts/angular.min.js"></script>
@@ -183,7 +183,7 @@
         $scope.fnDetail = function (BO_ID) {           
             var lang = '<%=Session["language_budget_operation_list"]%>';
             window.open(
-              "../budget/BudgetOperationByIDAction.aspx?BO_ID=" + BO_ID+"&lang="+lang,
+              "../budget_operation/BudgetOperationByID.aspx?BO_ID=" + BO_ID + "&lang=" + lang,
               "_blank"
             );
         }

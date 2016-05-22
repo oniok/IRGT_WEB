@@ -23,19 +23,19 @@
   </Menu>
   <Menu ID="2" Name="Budget" TextTH="งบประมาณเงินทุนหมุนเวียน" TextEN="งบประมาณเงินทุนหมุนเวียน">
     <Menu ID="1" Name="menu_b010" TextTH="จัดทำคำขอประมาณการ" TextEN="จัดทำคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b011" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperation.aspx"/>
+      <Menu ID="1" Name="menu_b011" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget_operation/BudgetOperation.aspx"/>
       <Menu ID="2" Name="menu_b012" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b013" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b014" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
     <Menu ID="2" Name="menu_b020" TextTH="ประวัติคำขอประมาณการ" TextEN="ประวัติคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b021" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationList.aspx"/>
+      <Menu ID="1" Name="menu_b021" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget_operation/BudgetOperationList.aspx"/>
       <Menu ID="2" Name="menu_b022" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b023" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b024" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
     </Menu>
     <Menu ID="3" Name="menu_b030" TextTH="พิจารณาคำขอประมาณการ" TextEN="พิจารณาคำขอประมาณการ">
-      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget/BudgetOperationListAction.aspx"/>
+      <Menu ID="1" Name="menu_b031" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget_operation/BudgetOperationListAction.aspx"/>
       <Menu ID="2" Name="menu_b032" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url=""/>
       <Menu ID="3" Name="menu_b033" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url=""/>
       <Menu ID="4" Name="menu_b034" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url=""/>
