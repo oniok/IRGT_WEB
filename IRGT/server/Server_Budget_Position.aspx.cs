@@ -278,6 +278,8 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BP_ID:\"" + dr_list[0]["BP_ID"] + "\"";
+                OP += ",Position_Type_ID:\"" + dr_list[0]["Position_Type_ID"] + "\"";
+                OP += ",Educate_Type_ID:\"" + dr_list[0]["Educate_Type_ID"] + "\"";
                 OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
                 OP += ",BP_Qty:\"" + dr_list[0]["BP_Qty"] + "\"";
                 OP += ",BP_Price:\"" + dr_list[0]["BP_Price"] + "\"";

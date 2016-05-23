@@ -104,8 +104,8 @@
                                                                 <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Position_Type_Name }}</td>
                                                                 <td>{{ x.Educate_Type_Name }}</td>
                                                                 <td>{{ x.BP_Type_Name }}</td>
-                                                                <td class="center">{{ x.BP_Qty }}</td>          
-                                                                <td style="text-align:right">{{ x.BP_Price }}</td>														                                                            
+                                                                <td class="center">{{ x.BP_Qty_View }}</td>          
+                                                                <td style="text-align:right">{{ x.BP_Price_View }}</td>														                                                            
                                                                 <td>{{ x.BP_Reason }}</td>											
 													        </tr>										
 												        </tbody>  

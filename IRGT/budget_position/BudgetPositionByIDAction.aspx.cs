@@ -9,15 +9,15 @@ public partial class budget_BudgetPositionByIDAction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string PageFunction = "budget_operation";
+        string PageFunction = "budget_position";
         string LANG = cCommon.getLanguage(Request);
         string USER = cCommon.getUserName(Session);
 
         Session["user_code"] = USER;
         Session["language_" + PageFunction] = LANG;
 
-        string BO_ID = Request.QueryString["BO_ID"];
-        Session["BO_ID"] = BO_ID;
+        string BP_ID = Request.QueryString["BP_ID"];
+        Session["BP_ID"] = BP_ID;
 
         if (LANG == cCommon.Language_Thai)
         {
@@ -27,8 +27,8 @@ public partial class budget_BudgetPositionByIDAction : System.Web.UI.Page
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
-            Session["pop_confirms_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะยืนยันการตรวจสอบข้อมูล " + PageName + " : " + BO_ID + " นี้ ?";
-            Session["pop_approve_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะอนุมัติข้อมูล " + PageName + " : " + BO_ID + " นี้ ?";
+            Session["pop_confirms_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะยืนยันการตรวจสอบข้อมูล " + PageName + " : " + BP_ID + " นี้ ?";
+            Session["pop_approve_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะอนุมัติข้อมูล " + PageName + " : " + BP_ID + " นี้ ?";
             Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
 
             Session["save_button_text"] = "บันทึก";
@@ -39,7 +39,7 @@ public partial class budget_BudgetPositionByIDAction : System.Web.UI.Page
             Session[PageFunction + "_ERROR_03"] = "โปรดระบุ จำนวน";
             Session[PageFunction + "_ERROR_04"] = "โปรดระบุ จำนวนเงิน";
             //================ TABLE ==================================================
-            Session["HeaderText"] = PageName + " : " + BO_ID;
+            Session["HeaderText"] = PageName + " : " + BP_ID;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
             Session["add_button"] = "เพิ่มข้อมูล";
             Session["save_button"] = "บันทึกข้อมูล";
@@ -52,18 +52,19 @@ public partial class budget_BudgetPositionByIDAction : System.Web.UI.Page
             Session["PageRecord"] = "รายการ";
             //================ Navigate ================================================
             Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
-            Session["HeaderSubGroup"] = "ประวัติคำขอประมาณการ";
+            Session["HeaderSubGroup"] = "พิจารณาคำขอประมาณการ";
             Session["HeaderCurrent"] = PageName;
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
-            Session[PageFunction + "_Column01"] = "รายการ";
-            Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
-            Session[PageFunction + "_Column03"] = "จำนวน";
-            Session[PageFunction + "_Column031"] = "จำนวนปรับแก้";
-            Session[PageFunction + "_Column04"] = "จำนวนเงิน";
-            Session[PageFunction + "_Column041"] = "จำนวนเงินปรับแก้";
-            Session[PageFunction + "_Column05"] = "เหตุผล";
+            Session[PageFunction + "_Column01"] = "ตำแหน่ง";
+            Session[PageFunction + "_Column02"] = "คุณวุฒิ";
+            Session[PageFunction + "_Column03"] = "ระยะเวลาจ้าง";
+            Session[PageFunction + "_Column04"] = "จำนวน";
+            Session[PageFunction + "_Column041"] = "จำนวนปรับแก้";
+            Session[PageFunction + "_Column05"] = "จำนวนเงิน";
+            Session[PageFunction + "_Column051"] = "จำนวนเงินปรับแก้";
+            Session[PageFunction + "_Column06"] = "เหตุผล";
 
         }
         else

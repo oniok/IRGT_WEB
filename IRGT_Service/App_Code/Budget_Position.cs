@@ -242,8 +242,8 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool adjustBudget_Position(int KeyID, string BO_Qty_Adj
-        , string BO_Price_Adj, string User_Code
+    public bool adjustBudget_Position(int KeyID, string BP_Qty_Adj
+        , string BP_Price_Adj, string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -260,8 +260,8 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
-        DBCommand.Parameters.Add(newParam("@BO_Qty_Adj", BO_Qty_Adj));
-        DBCommand.Parameters.Add(newParam("@BO_Price_Adj", BO_Price_Adj));
+        DBCommand.Parameters.Add(newParam("@BP_Qty_Adj", BP_Qty_Adj));
+        DBCommand.Parameters.Add(newParam("@BP_Price_Adj", BP_Price_Adj));
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================
@@ -765,7 +765,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool confirmBudget_Position(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool confirmBudget_Position(string BP_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -780,7 +780,7 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
@@ -822,7 +822,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool approveBudget_Position(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool approveBudget_Position(string BP_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -837,7 +837,7 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));

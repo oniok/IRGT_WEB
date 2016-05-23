@@ -9,7 +9,7 @@ public partial class budget_BudgetPositionListAction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string PageFunction = "budget_operation_list";
+        string PageFunction = "budget_position_list";
         string LANG = cCommon.getLanguage(Request);
         string USER = cCommon.getUserName(Session);
 
@@ -19,7 +19,7 @@ public partial class budget_BudgetPositionListAction : System.Web.UI.Page
         if (LANG == cCommon.Language_Thai)
         {
             //================ POPUP ==================================================
-            string PageName = "งบดำเนินการ";
+            string PageName = "งบบุคลากร";
             
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
             

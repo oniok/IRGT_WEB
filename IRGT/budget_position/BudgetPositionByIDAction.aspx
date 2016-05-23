@@ -33,22 +33,40 @@
                                             <table>
                                                 <tr>                                                    
                                                     <td style="width:5px"></td>
-                                                    <td><%=Session["budget_operation_Column02"]%></td>
+                                                    <td><%=Session["budget_position_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
-                                                        <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
+                                                        <select class="chosen-select form-control" id="Position_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
 					                                        <option value=""></option>	
-                                                            <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
+                                                            <option ng-repeat="x in Position_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				                                        </select>
+                                                    </td>
+                                                    <td style="width:10px"></td>
+                                                    <td><%=Session["budget_position_Column02"]%></td>
+                                                    <td style="width:5px"></td>                                                   
+                                                    <td>
+                                                        <select class="chosen-select form-control" id="Educate_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:150px">
+					                                        <option value=""></option>	
+                                                            <option ng-repeat="x in Educate_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				                                        </select>
+                                                    </td>
+                                                    <td style="width:10px"></td>
+                                                    <td><%=Session["budget_position_Column03"]%></td>
+                                                    <td style="width:5px"></td>                                                   
+                                                    <td>
+                                                        <select class="chosen-select form-control" id="BP_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:150px">
+					                                        <option value=""></option>	
+                                                            <option ng-repeat="x in BP_Type" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				                                        </select>   
                                                     </td>   
-                                                    <td style="width:5px"></td>                                              
+                                                    <td style="width:15px"></td>                                              
                                                     <td>         
                                                         <button type="button" class="btn btn-success " id="btnSearch" ng-click="fnSearch()">  
 											                <i class="ace-icon fa fa-search "></i>
 											                <%=Session["text_search"]%>
 										                </button>
                                                     </td>                                                
-                                                </tr>                                                
+                                                </tr>                                             
                                             </table>
                                         </center>
 										<!-- div.dataTables_borderWrap -->
@@ -79,23 +97,25 @@
 											        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
 												        <thead>
 													        <tr>
-														        <th class="center" style="width:50px"><%=Session["budget_operation_ColumnSEQ"]%></th>
-														        <th class="center"><%=Session["budget_operation_Column01"]%></th>
-														        <th class="center"><%=Session["budget_operation_Column02"]%></th>
-                                                                <th class="center" style="width:50px"><%=Session["budget_operation_Column03"]%></th>          
-                                                                <th class="center" style="width:100px"><%=Session["budget_operation_Column04"]%></th>    
-                                                                <th class="center"><%=Session["budget_operation_Column05"]%></th>
-														        <td class="center" style="width:80px"><%=Session["budget_operation_ColumnEdit"]%></td>
+														        <th class="center" style="width:50px"><%=Session["budget_position_ColumnSEQ"]%></th>
+														        <th class="center"><%=Session["budget_position_Column01"]%></th>
+														        <th class="center" style="width:100px"><%=Session["budget_position_Column02"]%></th>
+                                                                <th class="center" style="width:150px"><%=Session["budget_position_Column03"]%></th>          
+                                                                <th class="center" style="width:80px"><%=Session["budget_position_Column04"]%></th>    
+                                                                <th class="center" style="width:120px"><%=Session["budget_position_Column05"]%></th>
+                                                                <th class="center"><%=Session["budget_position_Column06"]%></th>
+														        <td class="center" style="width:80px"><%=Session["budget_position_ColumnEdit"]%></td>
 													        </tr>
 												        </thead>
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Name }}</td>
-                                                                <td>{{ x.BO_Type_Name }}</td>
-                                                                <td class="center">{{ x.BO_Qty_View }}</td>          
-                                                                <td style="text-align:right">{{ x.BO_Price_View }}</td>														                                                            
-                                                                <td>{{ x.BO_Reason }}</td>
+                                                                <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Position_Type_Name }}</td>
+                                                                <td>{{ x.Educate_Type_Name }}</td>
+                                                                <td>{{ x.BP_Type_Name }}</td>
+                                                                <td class="center">{{ x.BP_Qty_View }}</td>          
+                                                                <td style="text-align:right">{{ x.BP_Price_View }}</td>														                                                            
+                                                                <td>{{ x.BP_Reason }}</td>							
 														        <td style="text-align:center">   
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
 												                        <i class="ace-icon fa fa-pencil  bigger-110 icon-only"></i>
@@ -177,12 +197,12 @@
         $http = $tmp_http;
         $scope = $tmp_scope;
         var User_Code = '<%=Session["user_code"]%>';
-        var BO_ID = '<%=Session["BO_ID"]%>';
+        var BP_ID = '<%=Session["BP_ID"]%>';
         $('body').pleaseWait();
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetPositionByID',
             Function: 'Confirm',
-            BO_ID: BO_ID,
+            BP_ID: BP_ID,
             User_Code: User_Code
         });
 
@@ -190,7 +210,7 @@
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             window.open(
-              "../budget_operation/BudgetOperationListAction.aspx",
+              "../budget_position/BudgetPositionListAction.aspx",
               "_self"
             );
         })
@@ -202,12 +222,12 @@
         $http = $tmp_http;
         $scope = $tmp_scope;
         var User_Code = '<%=Session["user_code"]%>';
-        var BO_ID = '<%=Session["BO_ID"]%>';
+        var BP_ID = '<%=Session["BP_ID"]%>';
         $('body').pleaseWait();
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetPositionByID',
             Function: 'Approve',
-            BO_ID: BO_ID,
+            BP_ID: BP_ID,
             User_Code: User_Code
         });
 
@@ -215,7 +235,7 @@
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             window.open(
-              "../budget_operation/BudgetOperationListAction.aspx",
+              "../budget_position/BudgetPositionListAction.aspx",
               "_self"
             );
         })
@@ -243,18 +263,18 @@
        
         $scope.fnEdit = function (KeyID) {
             $('#btnPopSave').toggle(true);
-            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationAction.aspx?KeyID=" + KeyID, null, "450");
+            fnOpenPopup('<%=Session["pop_edit_budget_position"]%>', "../budget_position_popup/pop_BudgetPositionAction.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnSum = function () {
             $('#btnPopSave').toggle(false);
-            var BO_ID = '<%=Session["BO_ID"]%>';
-            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationSummaryByID.aspx?BO_ID=" + BO_ID, null, "450");
+            var BP_ID = '<%=Session["BP_ID"]%>';
+            fnOpenPopup('<%=Session["pop_sum_budget_position"]%>', "../budget_position_popup/pop_BudgetPositionSummaryByID.aspx?BP_ID=" + BP_ID, null, "450");
         }
         $scope.fnConfirm = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_confirms_budget_operation"]%>', fnConfirmYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_position"]%>', '<%=Session["pop_confirms_budget_position"]%>', fnConfirmYes);
         }
         $scope.fnApprove = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_approve_budget_operation"]%>', fnApproveYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_position"]%>', '<%=Session["pop_approve_budget_position"]%>', fnApproveYes);
         }
         
         $scope.fnPageBack = function () {
@@ -282,15 +302,18 @@
     }
    
     function GetPaging($scope, $http) {
-
-        var BO_Type_ID = document.getElementById('BO_Type_ID').value;
-        var BO_ID = '<%=Session["BO_ID"]%>';
+        var Position_Type_ID = document.getElementById('Position_Type_ID').value;
+        var Educate_Type_ID = document.getElementById('Educate_Type_ID').value;
+        var BP_Type_ID = document.getElementById('BP_Type_ID').value;
+        var BP_ID = '<%=Session["BP_ID"]%>';
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetPositionByID',
             Function: 'Paging',
             PageSize: PageSize,
-            BO_Type_ID: BO_Type_ID,
-            BO_ID: BO_ID
+            Position_Type_ID: Position_Type_ID,
+            Educate_Type_ID: Educate_Type_ID,
+            BP_Type_ID: BP_Type_ID,
+            BP_ID: BP_ID
         });
 
         $http.post("../server/Server_Budget_Position.aspx", data, config)
@@ -306,16 +329,21 @@
     }
     function GetData($scope, $http, PageIndex) {
         CurrentPageIndex = PageIndex;
-        var BO_Type_ID = document.getElementById('BO_Type_ID').value;
-        var BO_ID = '<%=Session["BO_ID"]%>';
-        var lang = '<%=Session["language_budget_operation"]%>';
+        var Position_Type_ID = document.getElementById('Position_Type_ID').value;
+        var Educate_Type_ID = document.getElementById('Educate_Type_ID').value;
+        var BP_Type_ID = document.getElementById('BP_Type_ID').value;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BP_ID = '<%=Session["BP_ID"]%>';
+        var lang = '<%=Session["language_budget_position"]%>';
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetPositionByID',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,
-            BO_Type_ID: BO_Type_ID,
-            BO_ID: BO_ID,
+            Position_Type_ID: Position_Type_ID,
+            Educate_Type_ID: Educate_Type_ID,
+            BP_Type_ID: BP_Type_ID,
+            BP_ID: BP_ID,
             lang: lang
         });
 
@@ -323,7 +351,7 @@
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
             if (isLoad)
-                setTimeout(fnGetBudgetOperationType, 100);
+                setTimeout(fnGetBP_PositionType, 100);
             else
                 $('body').pleaseWait('stop');
         })
@@ -331,20 +359,60 @@
             $('body').pleaseWait('stop');
         });
     }
-    function fnGetBudgetOperationType() {
+    function fnGetBP_PositionType() {
 
         $scope = $tmp_scope;
         $http = $tmp_http;
 
         var data = $.param({
             Command: 'GetMasterData',
-            Function: 'BudgetOperationType',
-            PageName: 'budget_operation'
+            Function: 'PositionType',
+            PageName: 'budget_position'
         });
 
         $http.post("../server/Server_Budget_Position.aspx", data, config)
         .success(function (data, status, headers, config) {
-            $scope.BudgetOperationType = data.records;
+            $scope.Position_Type = data.records;
+            setTimeout(fnGetBP_EducateType, 100);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnGetBP_EducateType() {
+
+        $scope = $tmp_scope;
+        $http = $tmp_http;
+
+        var data = $.param({
+            Command: 'GetMasterData',
+            Function: 'EducateType',
+            PageName: 'budget_position'
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.Educate_Type = data.records;
+            setTimeout(fnGetBP_BPType, 100);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnGetBP_BPType() {
+
+        $scope = $tmp_scope;
+        $http = $tmp_http;
+
+        var data = $.param({
+            Command: 'GetMasterData',
+            Function: 'BudgetPositionType',
+            PageName: 'budget_position'
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.BP_Type = data.records;
             setTimeout(fnLoad, 100);
         })
         .error(function (data, status, header, config) {
