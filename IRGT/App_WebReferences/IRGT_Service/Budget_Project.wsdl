@@ -1,0 +1,831 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="getMasterData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Param" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMasterDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getMasterDataResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_ProjectByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectByID_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectByID_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_ProjectByID_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectSummaryByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectSummaryByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_ProjectSummaryByIDResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adjustBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Qty_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Price_Adj" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="adjustBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="adjustBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_List">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_ListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_Project_ListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_List_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Loc_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_List_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_Project_List_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_ProjectDetailResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_ProjectResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_Count">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_Project_CountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="getBudget_Project_CountResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="checkBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="checkBudget_ProjectResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BR_Name" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Qty" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Price" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="deleteBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="deleteBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="sendBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sendBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="confirmBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="confirmBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_Project">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BR_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="approveBudget_ProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="approveBudget_ProjectResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectSummary">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getBudget_ProjectSummaryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getBudget_ProjectSummaryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="getMasterDataSoapIn">
+    <wsdl:part name="parameters" element="tns:getMasterData" />
+  </wsdl:message>
+  <wsdl:message name="getMasterDataSoapOut">
+    <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectByID_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectByID_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectByID_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectByID_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSummaryByIDSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectSummaryByID" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSummaryByIDSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectSummaryByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="adjustBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:adjustBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="adjustBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:adjustBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_ListSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_List" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_ListSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_ListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_List_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_List_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_List_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_List_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectDetail" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_CountSoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_Count" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_Project_CountSoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_Project_CountResponse" />
+  </wsdl:message>
+  <wsdl:message name="checkBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:checkBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="checkBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:checkBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="setBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:setBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="setBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:setBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="deleteBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:deleteBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="deleteBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:deleteBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:sendBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="sendBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:sendBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="confirmBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:confirmBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="confirmBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:confirmBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_ProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:approveBudget_Project" />
+  </wsdl:message>
+  <wsdl:message name="approveBudget_ProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:approveBudget_ProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSummarySoapIn">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectSummary" />
+  </wsdl:message>
+  <wsdl:message name="getBudget_ProjectSummarySoapOut">
+    <wsdl:part name="parameters" element="tns:getBudget_ProjectSummaryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Budget_ProjectSoap">
+    <wsdl:operation name="getMasterData">
+      <wsdl:input message="tns:getMasterDataSoapIn" />
+      <wsdl:output message="tns:getMasterDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID">
+      <wsdl:input message="tns:getBudget_ProjectByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID_Count">
+      <wsdl:input message="tns:getBudget_ProjectByID_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectByID_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummaryByID">
+      <wsdl:input message="tns:getBudget_ProjectSummaryByIDSoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectSummaryByIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Project">
+      <wsdl:input message="tns:adjustBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:adjustBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List">
+      <wsdl:input message="tns:getBudget_Project_ListSoapIn" />
+      <wsdl:output message="tns:getBudget_Project_ListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List_Count">
+      <wsdl:input message="tns:getBudget_Project_List_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_Project_List_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectDetail">
+      <wsdl:input message="tns:getBudget_ProjectDetailSoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project">
+      <wsdl:input message="tns:getBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_Count">
+      <wsdl:input message="tns:getBudget_Project_CountSoapIn" />
+      <wsdl:output message="tns:getBudget_Project_CountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Project">
+      <wsdl:input message="tns:checkBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:checkBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Project">
+      <wsdl:input message="tns:setBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:setBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Project">
+      <wsdl:input message="tns:deleteBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:deleteBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Project">
+      <wsdl:input message="tns:sendBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:sendBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Project">
+      <wsdl:input message="tns:confirmBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:confirmBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Project">
+      <wsdl:input message="tns:approveBudget_ProjectSoapIn" />
+      <wsdl:output message="tns:approveBudget_ProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummary">
+      <wsdl:input message="tns:getBudget_ProjectSummarySoapIn" />
+      <wsdl:output message="tns:getBudget_ProjectSummarySoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Budget_ProjectSoap" type="tns:Budget_ProjectSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getMasterData">
+      <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_ProjectByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_ProjectByID_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummaryByID">
+      <soap:operation soapAction="http://tempuri.org/getBudget_ProjectSummaryByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/adjustBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Project_List" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Project_List_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectDetail">
+      <soap:operation soapAction="http://tempuri.org/getBudget_ProjectDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_Count">
+      <soap:operation soapAction="http://tempuri.org/getBudget_Project_Count" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/checkBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/setBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/deleteBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/sendBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/confirmBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Project">
+      <soap:operation soapAction="http://tempuri.org/approveBudget_Project" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummary">
+      <soap:operation soapAction="http://tempuri.org/getBudget_ProjectSummary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Budget_ProjectSoap12" type="tns:Budget_ProjectSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getMasterData">
+      <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_ProjectByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectByID_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_ProjectByID_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummaryByID">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_ProjectSummaryByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="adjustBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/adjustBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Project_List" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_List_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Project_List_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectDetail">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_ProjectDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_Project_Count">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_Project_Count" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="checkBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/checkBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/setBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/deleteBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/sendBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="confirmBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/confirmBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="approveBudget_Project">
+      <soap12:operation soapAction="http://tempuri.org/approveBudget_Project" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getBudget_ProjectSummary">
+      <soap12:operation soapAction="http://tempuri.org/getBudget_ProjectSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Budget_Project">
+    <wsdl:port name="Budget_ProjectSoap" binding="tns:Budget_ProjectSoap">
+      <soap:address location="http://localhost:56867/Budget_Project.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Budget_ProjectSoap12" binding="tns:Budget_ProjectSoap12">
+      <soap12:address location="http://localhost:56867/Budget_Project.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
