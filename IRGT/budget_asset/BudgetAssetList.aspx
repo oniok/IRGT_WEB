@@ -84,10 +84,10 @@
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
                                                                 <td><input type="hidden" id="BA_ID" value="{{ x.BA_ID }}"/>{{ x.Loc_Name }}</td>
-                                                                <td class="center">{{ x.BO_Year }}</td>
+                                                                <td class="center">{{ x.BA_Year }}</td>
                                                                 <td class="center">{{ x.Create_Date }}</td>          
                                                                 <td class="center">{{ x.Update_Date }}</td>														                                                            
-                                                                <td class="center">{{ x.BO_Status }}</td>
+                                                                <td class="center">{{ x.BA_Status }}</td>
 														        <td style="text-align:center">  
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BA_ID)">
 												                        <i class="ace-icon fa fa-folder-open-o bigger-110 icon-only"></i>
@@ -183,7 +183,7 @@
         $scope.fnDetail = function (BA_ID) {           
             var lang = '<%=Session["language_budget_asset_list"]%>';
             window.open(
-              "../budget_asset/BudgetOperationByID.aspx?BA_ID=" + BA_ID + "&lang=" + lang,
+              "../budget_asset/BudgetAssetByID.aspx?BA_ID=" + BA_ID + "&lang=" + lang,
               "_blank"
             );
         }
@@ -216,7 +216,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var Loc_ID = document.getElementById('Loc_ID').value;
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetAssetList',
             Function: 'Paging',
             PageSize: PageSize,
             Loc_ID: Loc_ID,
@@ -240,7 +240,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var lang = getParamValue("lang");
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetAssetList',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,

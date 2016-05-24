@@ -577,8 +577,8 @@ public class Budget_Asset : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool setBudget_Asset(int KeyID, string BA_ID, string BO_Name, string BA_Type_ID, string BO_Qty
-        , string BO_Price, string BO_Reason, string User_Code
+    public bool setBudget_Asset(int KeyID, string BA_ID, string BA_Type_ID, string BA_Qty
+        , string BA_Price, string BA_Reason, string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -596,11 +596,10 @@ public class Budget_Asset : System.Web.Services.WebService
 
         DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
         DBCommand.Parameters.Add(newParam("@BA_ID", BA_ID));
-        DBCommand.Parameters.Add(newParam("@BO_Name", BO_Name));
         DBCommand.Parameters.Add(newParam("@BA_Type_ID", BA_Type_ID));
-        DBCommand.Parameters.Add(newParam("@BO_Qty", BO_Qty));
-        DBCommand.Parameters.Add(newParam("@BO_Price", BO_Price));
-        DBCommand.Parameters.Add(newParam("@BO_Reason", BO_Reason));
+        DBCommand.Parameters.Add(newParam("@BA_Qty", BA_Qty));
+        DBCommand.Parameters.Add(newParam("@BA_Price", BA_Price));
+        DBCommand.Parameters.Add(newParam("@BA_Reason", BA_Reason));
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================

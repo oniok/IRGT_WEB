@@ -33,7 +33,7 @@
                                             <table>
                                                 <tr>                                                    
                                                     <td style="width:5px"></td>
-                                                    <td><%=Session["budget_asset_Column02"]%></td>
+                                                    <td><%=Session["budget_asset_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
                                                         <select class="chosen-select form-control" id="BA_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
@@ -81,9 +81,9 @@
 													        <tr>
 														        <th class="center" style="width:50px"><%=Session["budget_asset_ColumnSEQ"]%></th>
 														        <th class="center"><%=Session["budget_asset_Column01"]%></th>
-														        <th class="center"><%=Session["budget_asset_Column02"]%></th>
-                                                                <th class="center" style="width:50px"><%=Session["budget_asset_Column03"]%></th>          
-                                                                <th class="center" style="width:100px"><%=Session["budget_asset_Column04"]%></th>    
+														        <th class="center" style="width:80px"><%=Session["budget_asset_Column02"]%></th>
+                                                                <th class="center" style="width:120px"><%=Session["budget_asset_Column03"]%></th>          
+                                                                <th class="center" style="width:120px"><%=Session["budget_asset_Column04"]%></th>    
                                                                 <th class="center"><%=Session["budget_asset_Column05"]%></th>
 														        <td class="center" style="width:80px"><%=Session["budget_asset_ColumnEdit"]%></td>
 													        </tr>
@@ -91,10 +91,10 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BA_ID" value="{{ x.BA_ID }}"/>{{ x.BO_Name }}</td>
-                                                                <td>{{ x.BO_Type_Name }}</td>
+                                                                <td><input type="hidden" id="BA_ID" value="{{ x.BA_ID }}"/>{{ x.BA_Type_Name }}</td>
                                                                 <td class="center">{{ x.BA_Qty }}</td>          
-                                                                <td style="text-align:right">{{ x.BA_Price }}</td>														                                                            
+                                                                <td style="text-align:right">{{ x.BA_Price }}</td>
+                                                                <td style="text-align:right">{{ x.Total_Amount }}</td>  														                                                            
                                                                 <td>{{ x.BA_Reason }}</td>
 														        <td style="text-align:center">   
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
@@ -234,20 +234,20 @@
             GetPaging($scope, $http);
         }
         $scope.fnNew = function () {
-            fnOpenPopup('<%=Session["pop_add_budget_operation"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx", null, "450");
+            fnOpenPopup('<%=Session["pop_add_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx", null, "450");
         }
         $scope.fnEdit = function (KeyID) {           
-            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx?KeyID=" + KeyID, null, "450");
+            fnOpenPopup('<%=Session["pop_edit_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnSum = function () {
-            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_asset_popup/pop_BudgetAssetSummary.aspx?", null, "450");
+            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummary.aspx?", null, "450");
         }
         $scope.fnSend = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_send_budget_operation"]%>', fnSendYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_send_budget_asset"]%>', fnSendYes);
         }
         $scope.fnDelete = function (KeyID) {
             tmpKeyID = KeyID;
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_delete_budget_operation"]%>', fnDeleteYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_delete_budget_asset"]%>', fnDeleteYes);
         }
         $scope.fnPageBack = function () {
             var currentPageIndex = parseInt(document.getElementById('paging-select').value);

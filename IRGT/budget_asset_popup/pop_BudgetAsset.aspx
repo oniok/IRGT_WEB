@@ -9,16 +9,9 @@
         <tr>
             <tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
-                <td><%=Session["budget_asset_Column01"] %></td>
+                <td style="width:100px"><%=Session["budget_asset_Column01"] %></td>
                 <td colspan="3">
                     <input type="hidden" id="BA_ID"/>
-                    <input type="text" id="BO_Name" style="width:100%"/>
-                </td>
-            </tr>
-            <tr><td colspan="4" style="height:10px"></td></tr>
-            <tr>
-                <td style="width:100px"><%=Session["budget_asset_Column02"] %></td>
-                <td colspan="3">
                     <select class="chosen-select form-control" id="BA_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
 					    <option value=""></option>	
                         <option ng-repeat="x in BudgetAssetType" value="{{ x.Code }}" >{{ x.Name }}</option>				
@@ -27,18 +20,18 @@
              </tr>    
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
-            <td><%=Session["budget_asset_Column03"] %></td>
+            <td><%=Session["budget_asset_Column02"] %></td>
             <td colspan="3">
                 <input type="text" id="BA_Qty" />
             </td>
         </tr>
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
-            <td><%=Session["budget_asset_Column04"] %></td>
+            <td><%=Session["budget_asset_Column03"] %></td>
             <td colspan="3">
                 <input type="text" id="BA_Price" />    
             </td>
-        </tr>        
+        </tr>  
         <tr><td colspan="4" style="height:10px"></td></tr>
         <tr>
             <td><%=Session["budget_asset_Column05"] %></td>
@@ -61,7 +54,6 @@
                     function (data, status) {
                         var data = eval(data);
                         document.getElementById('BA_ID').value = data[0].BA_ID.trim();
-                        document.getElementById('BO_Name').value = data[0].BO_Name.trim();
                         document.getElementById('BA_Type_ID').value = data[0].BA_Type_ID.trim();
                         document.getElementById('BA_Qty').value = data[0].BA_Qty.trim();
                         document.getElementById('BA_Price').value = data[0].BA_Price.trim();
@@ -79,15 +71,11 @@
         }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
             var BA_Type_ID = document.getElementById('BA_Type_ID').value.trim();
             var BA_Qty = document.getElementById('BA_Qty').value.trim();
             var BA_Price = document.getElementById('BA_Price').value;
+            var BA_Reason = document.getElementById('BA_Reason').value;
         
-            if (BO_Name == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_02"]%>");
-                return;
-            }
             if (BA_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_03"]%>");
                 return;
@@ -100,6 +88,7 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_05"]%>");
                 return;
             }
+            
 
             var BA_Type_ID = document.getElementById('BA_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
@@ -123,7 +112,6 @@
 
         function fnSubmit(BA_ID) {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
             var BA_Type_ID = document.getElementById('BA_Type_ID').value.trim();
             var BA_Qty = document.getElementById('BA_Qty').value.trim();
             var BA_Price = document.getElementById('BA_Price').value;
@@ -135,7 +123,6 @@
                    Function: 'Save',
                    KeyID: KeyID,
                    BA_ID: BA_ID,
-                   BO_Name: BO_Name,
                    BA_Type_ID: BA_Type_ID,
                    BA_Qty: BA_Qty,
                    BA_Price: BA_Price,

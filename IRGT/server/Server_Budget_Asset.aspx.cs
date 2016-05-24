@@ -157,14 +157,13 @@ public partial class server_Budget_Asset : System.Web.UI.Page
                 lang = "" + Session["language_budget_asset"];
                 if (lang == "") lang = "TH";
                 BA_ID = Request.Params["BA_ID"];
-                BO_Name = Request.Params["BO_Name"];
                 BA_Type_ID = Request.Params["BA_Type_ID"];
                 BA_Qty = Request.Params["BA_Qty"];
                 BA_Price = Request.Params["BA_Price"];
                 BA_Reason = Request.Params["BA_Reason"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.setBudget_Asset(KeyID, BA_ID, BO_Name, BA_Type_ID, BA_Qty
+                if (IRGTService.setBudget_Asset(KeyID, BA_ID, BA_Type_ID, BA_Qty
                     , BA_Price, BA_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
@@ -177,14 +176,14 @@ public partial class server_Budget_Asset : System.Web.UI.Page
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Asset"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BA_ID:\"" + dr_list[0]["BA_ID"] + "\"";
-                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
                 OP += ",BA_Type_ID:\"" + dr_list[0]["BA_Type_ID"] + "\"";
                 OP += ",BA_Qty:\"" + dr_list[0]["BA_Qty"] + "\"";
                 OP += ",BA_Price:\"" + dr_list[0]["BA_Price"] + "\"";
+                OP += ",Total_Amount:\"" + dr_list[0]["Total_Amount"] + "\"";
                 OP += ",BA_Reason:\"" + dr_list[0]["BA_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
@@ -269,7 +268,7 @@ public partial class server_Budget_Asset : System.Web.UI.Page
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Asset"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BA_ID:\"" + dr_list[0]["BA_ID"] + "\"";
@@ -343,7 +342,7 @@ public partial class server_Budget_Asset : System.Web.UI.Page
         string User_Code = Request.Params["User_Code"];
         string lang = Request.Params["lang"];
         DT = IRGTService.getBudget_AssetSummary(User_Code, lang);
-        Session["Data_budget_operation_summary"] = DT.Copy();
+        Session["Data_Budget_Asset_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
         Response.Write(DT_JSON);
@@ -358,7 +357,7 @@ public partial class server_Budget_Asset : System.Web.UI.Page
         string BA_ID = Request.Params["BA_ID"];
         string lang = Request.Params["lang"];
         DT = IRGTService.getBudget_AssetSummaryByID(BA_ID, lang);
-        Session["Data_budget_operation_summary"] = DT.Copy();
+        Session["Data_Budget_Asset_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
         Response.Write(DT_JSON);
@@ -411,7 +410,7 @@ public partial class server_Budget_Asset : System.Web.UI.Page
                 return;
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_operation"];
+                DT = (DataTable)Session["Data_Budget_Asset"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BA_ID:\"" + dr_list[0]["BA_ID"] + "\"";

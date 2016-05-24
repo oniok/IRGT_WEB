@@ -9,19 +9,21 @@
 		<thead>
 			<tr>
 				<th class="center" style="width:50px"><%=Session["budget_asset_summary_ColumnSEQ"]%></th>
-				<th class="center"><%=Session["budget_asset_summary_Column02"]%></th>
-                <th class="center" style="width:50px"><%=Session["budget_asset_summary_Column03"]%></th>          
-                <th class="center" style="width:100px"><%=Session["budget_asset_summary_Column04"]%></th> 
-                <th class="center"><%=Session["budget_asset_summary_Column05"]%></th> 
+				<th class="center"><%=Session["budget_asset_summary_Column01"]%></th>
+				<th class="center" style="width:80px"><%=Session["budget_asset_summary_Column02"]%></th>
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column03"]%></th>          
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column04"]%></th>    
+                <th class="center"><%=Session["budget_asset_summary_Column05"]%></th>
 			</tr>
 		</thead>
         <tbody>
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
-                <td>{{ x.BO_Type_Name }}</td>
-                <td style="text-align:right">{{ x.BO_PRICE_MNT }}</td>          
-                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>		
-                <td style="text-align:left">{{ x.BO_Remark }}</td>	
+                <td>{{ x.BA_Type_Name }}</td>
+                <td style="text-align:right">{{ x.BA_Qty }}</td>          
+                <td style="text-align:right">{{ x.BA_Price }}</td>	
+                <td style="text-align:right">{{ x.Total_Amount }}</td>	
+                <td>{{ x.BA_Remark }}</td>													             
 			</tr>										
 		</tbody>  
         <tfoot >
@@ -43,16 +45,16 @@
             $tmp_scope = $scope;
             $tmp_http = $http;
        
-            fnGetBudgetOperationSummary($scope, $http);
+            fnGetBudgetAssetSummary($scope, $http);
         }
-        function fnGetBudgetOperationSummary($scope, $http) {
+        function fnGetBudgetAssetSummary($scope, $http) {
             var BA_ID = '<%=Session["BA_ID"]%>';
             var Lang = '<%=Session["language_budget_operation"]%>';
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
-                Command: 'BudgetOperationSummaryByID',
+                Command: 'BudgetAssetSummaryByID',
                 Function: Function,
                 BA_ID: BA_ID,
                 Lang: Lang

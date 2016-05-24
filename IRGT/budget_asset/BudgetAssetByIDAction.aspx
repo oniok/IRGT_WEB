@@ -33,7 +33,7 @@
                                             <table>
                                                 <tr>                                                    
                                                     <td style="width:5px"></td>
-                                                    <td><%=Session["budget_asset_Column02"]%></td>
+                                                    <td><%=Session["budget_asset_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
                                                     <td>
                                                         <select class="chosen-select form-control" id="BA_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
@@ -81,9 +81,9 @@
 													        <tr>
 														        <th class="center" style="width:50px"><%=Session["budget_asset_ColumnSEQ"]%></th>
 														        <th class="center"><%=Session["budget_asset_Column01"]%></th>
-														        <th class="center"><%=Session["budget_asset_Column02"]%></th>
-                                                                <th class="center" style="width:50px"><%=Session["budget_asset_Column03"]%></th>          
-                                                                <th class="center" style="width:100px"><%=Session["budget_asset_Column04"]%></th>    
+														        <th class="center" style="width:80px"><%=Session["budget_asset_Column02"]%></th>
+                                                                <th class="center" style="width:120px"><%=Session["budget_asset_Column03"]%></th>          
+                                                                <th class="center" style="width:120px"><%=Session["budget_asset_Column04"]%></th>    
                                                                 <th class="center"><%=Session["budget_asset_Column05"]%></th>
 														        <td class="center" style="width:80px"><%=Session["budget_asset_ColumnEdit"]%></td>
 													        </tr>
@@ -91,10 +91,10 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BA_ID" value="{{ x.BA_ID }}"/>{{ x.BO_Name }}</td>
-                                                                <td>{{ x.BO_Type_Name }}</td>
+                                                                <td><input type="hidden" id="BA_ID" value="{{ x.BA_ID }}"/>{{ x.BA_Type_Name }}</td>
                                                                 <td class="center">{{ x.BA_Qty_View }}</td>          
-                                                                <td style="text-align:right">{{ x.BA_Price_View }}</td>														                                                            
+                                                                <td style="text-align:right">{{ x.BA_Price_View }}</td>	
+                                                                <td style="text-align:right">{{ x.Total_Amount }}</td> 													                                                            
                                                                 <td>{{ x.BA_Reason }}</td>
 														        <td style="text-align:center">   
                                                                     <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
@@ -180,7 +180,7 @@
         var BA_ID = '<%=Session["BA_ID"]%>';
         $('body').pleaseWait();
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetAssetByID',
             Function: 'Confirm',
             BA_ID: BA_ID,
             User_Code: User_Code
@@ -190,7 +190,7 @@
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             window.open(
-              "../budget_asset/BudgetOperationListAction.aspx",
+              "../budget_asset/BudgetAssetListAction.aspx",
               "_self"
             );
         })
@@ -205,7 +205,7 @@
         var BA_ID = '<%=Session["BA_ID"]%>';
         $('body').pleaseWait();
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetAssetByID',
             Function: 'Approve',
             BA_ID: BA_ID,
             User_Code: User_Code
@@ -215,7 +215,7 @@
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
             window.open(
-              "../budget_asset/BudgetOperationListAction.aspx",
+              "../budget_asset/BudgetAssetListAction.aspx",
               "_self"
             );
         })
@@ -243,18 +243,18 @@
        
         $scope.fnEdit = function (KeyID) {
             $('#btnPopSave').toggle(true);
-            fnOpenPopup('<%=Session["pop_edit_budget_operation"]%>', "../budget_asset_popup/pop_BudgetOperationAction.aspx?KeyID=" + KeyID, null, "450");
+            fnOpenPopup('<%=Session["pop_edit_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetAction.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnSum = function () {
             $('#btnPopSave').toggle(false);
             var BA_ID = '<%=Session["BA_ID"]%>';
-            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_asset_popup/pop_BudgetOperationSummaryByID.aspx?BA_ID=" + BA_ID, null, "450");
+            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummaryByID.aspx?BA_ID=" + BA_ID, null, "450");
         }
         $scope.fnConfirm = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_confirms_budget_operation"]%>', fnConfirmYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_confirms_budget_asset"]%>', fnConfirmYes);
         }
         $scope.fnApprove = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_approve_budget_operation"]%>', fnApproveYes);
+            fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_approve_budget_asset"]%>', fnApproveYes);
         }
         
         $scope.fnPageBack = function () {
@@ -286,7 +286,7 @@
         var BA_Type_ID = document.getElementById('BA_Type_ID').value;
         var BA_ID = '<%=Session["BA_ID"]%>';
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetAssetByID',
             Function: 'Paging',
             PageSize: PageSize,
             BA_Type_ID: BA_Type_ID,
@@ -308,9 +308,9 @@
         CurrentPageIndex = PageIndex;
         var BA_Type_ID = document.getElementById('BA_Type_ID').value;
         var BA_ID = '<%=Session["BA_ID"]%>';
-        var lang = '<%=Session["language_budget_operation"]%>';
+        var lang = '<%=Session["language_budget_asset"]%>';
         var data = $.param({
-            Command: 'BudgetOperationByID',
+            Command: 'BudgetAssetByID',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,

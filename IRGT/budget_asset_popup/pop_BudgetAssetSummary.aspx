@@ -9,19 +9,21 @@
 		<thead>
 			<tr>
 				<th class="center" style="width:50px"><%=Session["budget_asset_summary_ColumnSEQ"]%></th>
-				<th class="center"><%=Session["budget_asset_summary_Column02"]%></th>
-                <th class="center" style="width:50px"><%=Session["budget_asset_summary_Column03"]%></th>          
-                <th class="center" style="width:100px"><%=Session["budget_asset_summary_Column04"]%></th> 
-                <th class="center"><%=Session["budget_asset_summary_Column05"]%></th> 
+				<th class="center"><%=Session["budget_asset_summary_Column01"]%></th>
+				<th class="center" style="width:80px"><%=Session["budget_asset_summary_Column02"]%></th>
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column03"]%></th>          
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column04"]%></th>    
+                <th class="center"><%=Session["budget_asset_summary_Column05"]%></th>
 			</tr>
 		</thead>
         <tbody>
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
-                <td>{{ x.BO_Type_Name }}</td>
-                <td style="text-align:right">{{ x.BO_PRICE_MNT }}</td>          
-                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>														                                                            
-                <td><input type="text" id="BA_Reason" style="width:100%" value="{{ x.BO_Remark }}"/>   </td>
+                <td>{{ x.BA_Type_Name }}</td>
+                <td style="text-align:right">{{ x.BA_Qty }}</td>          
+                <td style="text-align:right">{{ x.BA_Price }}</td>	
+                <td style="text-align:right">{{ x.Total_Amount }}</td>														                                                            
+                <td><input type="text" id="BA_Reason" style="width:100%" value="{{ x.BA_Remark }}"/>   </td>
 														
 			</tr>										
 		</tbody>  
@@ -36,7 +38,7 @@
             var BA_Type_ID = document.getElementById('BA_Type_ID').value.trim();
             var BA_Qty = document.getElementById('BA_Qty').value.trim();
             var BA_Price = document.getElementById('BA_Price').value.trim();
-            var BO_Remark = document.getElementById('BO_Remark').value.trim();
+            var BA_Remark = document.getElementById('BA_Remark').value.trim();
             
             if (BA_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_03"]%>");
@@ -50,7 +52,7 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_05"]%>");
                 return;
             }
-            if (BO_Remark == "") {
+            if (BA_Remark == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_asset_ERROR_05"]%>");
                 return;
             }
@@ -60,7 +62,7 @@
 
             $.post("../server/Server_Budget_Asset.aspx",
 			    {
-			        Command: 'BudgetOperationSummary',
+			        Command: 'BudgetAssetSummary',
 			        Function: 'Check',
 			        User_Code: User_Code
 			    },
@@ -77,23 +79,21 @@
 
         function fnSubmit(BA_ID) {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
             var BA_Type_ID = document.getElementById('BA_Type_ID').value.trim();
             var BA_Qty = document.getElementById('BA_Qty').value.trim();
             var BA_Price = document.getElementById('BA_Price').value;
-            var BO_Remark = document.getElementById('BO_Remark').value;
+            var BA_Remark = document.getElementById('BA_Remark').value;
 
             $.post("../server/Server_Budget_Asset.aspx",
                {
-                   Command: 'BudgetOperationSummary',
+                   Command: 'BudgetAssetSummary',
                    Function: 'Save',
                    KeyID: KeyID,
                    BA_ID: BA_ID,
-                   BO_Name: BO_Name,
                    BA_Type_ID: BA_Type_ID,
                    BA_Qty: BA_Qty,
                    BA_Price: BA_Price,
-                   BO_Remark: BO_Remark
+                   BA_Remark: BA_Remark
                },
                function (data, status) {
                    var data = eval(data);
@@ -119,21 +119,21 @@
             $tmp_http = $http;
 
             $scope.fnEdit = function (KeyID) {           //,BA_ID,BA_Type_ID
-               // fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_asset_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BA_ID="+BA_ID+"&BA_Type_ID="+BA_Type_ID, null, "450");
-               fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../pop_BudgetOperationRemark.aspx?KeyID=" + KeyID, null, "450");
+               // fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BA_ID="+BA_ID+"&BA_Type_ID="+BA_Type_ID, null, "450");
+               fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../pop_BudgetAssetRemark.aspx?KeyID=" + KeyID, null, "450");
             
             }
 
-            fnGetBudgetOperationSummary($scope, $http);
+            fnGetBudgetAssetSummary($scope, $http);
         }
-        function fnGetBudgetOperationSummary($scope, $http) {
+        function fnGetBudgetAssetSummary($scope, $http) {
             var User_Code = '<%=Session["user_code"]%>';
-            var Lang = '<%=Session["language_budget_operation"]%>';
+            var Lang = '<%=Session["language_budget_asset"]%>';
             $scope = $tmp_scope;
             $http = $tmp_http;
 
             var data = $.param({
-                Command: 'BudgetOperationSummary',
+                Command: 'BudgetAssetSummary',
                 Function: Function,
                 User_Code: User_Code,
                 Lang: Lang
