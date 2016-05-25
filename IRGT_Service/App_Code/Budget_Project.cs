@@ -439,7 +439,7 @@ public class Budget_Project : System.Web.Services.WebService
 
     #region Budget_Project
     [WebMethod]
-    public DataTable getBudget_Project(int PageSize, int PageIndex, string User_Code, string BA_Type_ID, string Lang)
+    public DataTable getBudget_Project(string User_Code, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_Project";
         SetLog("========================START==============================");
@@ -451,10 +451,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@PageSize", PageSize));
-        DBCommand.Parameters.Add(newParam("@PageIndex", PageIndex));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
-        DBCommand.Parameters.Add(newParam("@BA_Type_ID", BA_Type_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;

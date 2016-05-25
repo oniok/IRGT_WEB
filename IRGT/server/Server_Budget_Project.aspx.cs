@@ -128,11 +128,8 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 Response.Write(DT_JSON);
                 return;
             case "Select":
-                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
-
-                int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 string lang = Request.Params["lang"];
-                DT = IRGTService.getBudget_Project(PageSize, PageIndex, User_Code, BA_Type_ID, lang);
+                DT = IRGTService.getBudget_Project(User_Code, lang);
                 Session["Data_Budget_Project"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -180,12 +177,20 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 DT = (DataTable)Session["Data_budget_project"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BR_ID:\"" + dr_list[0]["BR_ID"] + "\"";
-                OP += ",BR_Name:\"" + dr_list[0]["BR_Name"] + "\"";
-                OP += ",BA_Type_ID:\"" + dr_list[0]["BA_Type_ID"] + "\"";
-                OP += ",BA_Qty:\"" + dr_list[0]["BA_Qty"] + "\"";
-                OP += ",BA_Price:\"" + dr_list[0]["BA_Price"] + "\"";
+                OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
+                OP += ",BJ_Issue:\"" + dr_list[0]["BJ_Issue"] + "\"";
+                OP += ",BJ_Goal:\"" + dr_list[0]["BJ_Goal"] + "\"";
+                OP += ",BJ_Strategy:\"" + dr_list[0]["BJ_Strategy"] + "\"";
+                OP += ",BJ_ProjectName:\"" + dr_list[0]["BJ_ProjectName"] + "\"";
                 OP += ",BA_Reason:\"" + dr_list[0]["BA_Reason"] + "\"";
+                OP += ",BJ_Objective:\"" + dr_list[0]["BJ_Objective"] + "\"";
+                OP += ",BJ_Place:\"" + dr_list[0]["BJ_Place"] + "\"";
+                OP += ",BJ_Duration:\"" + dr_list[0]["BJ_Duration"] + "\"";
+                OP += ",BJ_Amount:\"" + dr_list[0]["BJ_Amount"] + "\"";
+                OP += ",BJ_Detail:\"" + dr_list[0]["BJ_Detail"] + "\"";
+                OP += ",BJ_Measure:\"" + dr_list[0]["BJ_Measure"] + "\"";
+                OP += ",BJ_Benefit:\"" + dr_list[0]["BJ_Benefit"] + "\"";
+                OP += ",BJ_Responsible:\"" + dr_list[0]["BJ_Responsible"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;

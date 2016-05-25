@@ -53,12 +53,19 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
-            Session[PageFunction + "_Column01"] = "รายการ";
-            Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
-            Session[PageFunction + "_Column03"] = "จำนวน";
-            Session[PageFunction + "_Column04"] = "จำนวนเงิน";
-            Session[PageFunction + "_Column05"] = "เหตุผล";
-
+            Session[PageFunction + "_Column01"] = "ประเด็นยุทธศาสตร์";
+            Session[PageFunction + "_Column02"] = "เป้าประสงค์";
+            Session[PageFunction + "_Column03"] = "กลยุทธ์";
+            Session[PageFunction + "_Column04"] = "ชื่อโครงการ";
+            Session[PageFunction + "_Column05"] = "เหตุผลความจำเป็น";
+            Session[PageFunction + "_Column06"] = "วัตถุประสงค์";
+            Session[PageFunction + "_Column07"] = "สถานที่ดำเนินงาน";
+            Session[PageFunction + "_Column08"] = "ระยะเวลาการดำเนินงาน";
+            Session[PageFunction + "_Column09"] = "วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_Column10"] = "ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
+            Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
+            Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
+            Session[PageFunction + "_Column13"] = "ผู้รับผิดชอบ";
         }
         else
         {
