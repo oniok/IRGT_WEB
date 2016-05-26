@@ -1264,6 +1264,14 @@ pre.prettyprint {
 .ace-nav > li.open.light-blue2 > a {
   background-color: #359fd9;
 }
+.ace-nav > li.light-blue3 > a {
+  background-color: #08453f;
+}
+.ace-nav > li.light-blue3 > a:hover,
+.ace-nav > li.light-blue3 > a:focus,
+.ace-nav > li.open.light-blue3 > a {
+  background-color: #359fd9;
+}
 .ace-nav > li.red > a {
   background-color: #b74635;
 }

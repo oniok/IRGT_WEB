@@ -104,7 +104,7 @@ public class Budget_Project : System.Web.Services.WebService
 
     #region Budget_ProjectByID
     [WebMethod]
-    public DataTable getBudget_ProjectByID(int PageSize, int PageIndex, string BR_ID, string BA_Type_ID, string Lang)
+    public DataTable getBudget_ProjectByID(int PageSize, int PageIndex, string BJ_ID, string BA_Type_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_ProjectByID";
         SetLog("========================START==============================");
@@ -118,7 +118,7 @@ public class Budget_Project : System.Web.Services.WebService
 
         DBCommand.Parameters.Add(newParam("@PageSize", PageSize));
         DBCommand.Parameters.Add(newParam("@PageIndex", PageIndex));
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@BA_Type_ID", BA_Type_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
@@ -151,7 +151,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public int getBudget_ProjectByID_Count(string BR_ID, string BA_Type_ID)
+    public int getBudget_ProjectByID_Count(string BJ_ID, string BA_Type_ID)
     {
         string StoreProcedureName = "sp_getBudget_ProjectByID_Count";
         SetLog("========================START==============================");
@@ -162,7 +162,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@BA_Type_ID", BA_Type_ID));
 
         SqlDataReader DBReader;
@@ -194,7 +194,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataTable getBudget_ProjectSummaryByID(string BR_ID, string Lang)
+    public DataTable getBudget_ProjectSummaryByID(string BJ_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_ProjectSummaryByID";
         SetLog("========================START==============================");
@@ -206,7 +206,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;
@@ -393,7 +393,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataTable getBudget_ProjectDetail(string BR_ID, string Lang)
+    public DataTable getBudget_ProjectDetail(string BJ_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_ProjectDetail";
         SetLog("========================START==============================");
@@ -405,7 +405,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
         
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;
@@ -574,8 +574,8 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool setBudget_Project(int KeyID, string BR_ID, string BR_Name, string BA_Type_ID, string BO_Qty
-        , string BO_Price, string BO_Reason, string User_Code
+    public bool setBudget_Project(int KeyID, string BJ_ID, string BJ_Issue, string BJ_Goal, string BJ_Strategy
+        , string BJ_ProjectName, string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -592,12 +592,11 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
-        DBCommand.Parameters.Add(newParam("@BR_Name", BR_Name));
-        DBCommand.Parameters.Add(newParam("@BA_Type_ID", BA_Type_ID));
-        DBCommand.Parameters.Add(newParam("@BO_Qty", BO_Qty));
-        DBCommand.Parameters.Add(newParam("@BO_Price", BO_Price));
-        DBCommand.Parameters.Add(newParam("@BO_Reason", BO_Reason));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_Issue", BJ_Issue));
+        DBCommand.Parameters.Add(newParam("@BJ_Goal", BJ_Goal));
+        DBCommand.Parameters.Add(newParam("@BJ_Strategy", BJ_Strategy));
+        DBCommand.Parameters.Add(newParam("@BJ_ProjectName", BJ_ProjectName));
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================
@@ -696,7 +695,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool sendBudget_Project(string BR_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool sendBudget_Project(string BJ_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -711,7 +710,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
@@ -753,7 +752,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool confirmBudget_Project(string BR_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool confirmBudget_Project(string BJ_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -768,7 +767,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
@@ -810,7 +809,7 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool approveBudget_Project(string BR_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool approveBudget_Project(string BJ_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -825,7 +824,7 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
 
-        DBCommand.Parameters.Add(newParam("@BR_ID", BR_ID));
+        DBCommand.Parameters.Add(newParam("@BJ_ID", BJ_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));

@@ -9,7 +9,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string PageFunction = "Budget_Project";
+        string PageFunction = "budget_project";
         string LANG = cCommon.getLanguage(Request);
         string USER = cCommon.getUserName(Session);
 
@@ -26,6 +26,8 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
             Session["pop_delete_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะลบข้อมูล" + PageName + "นี้ ?";
             Session["pop_send_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะส่งข้อมูล" + PageName + "นี้ ?";
+            Session["pop_save_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะบันทึกข้อมูล" + PageName + "นี้ ?";
+
             Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
 
             Session["save_button_text"] = "บันทึก";

@@ -106,23 +106,23 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string DT_JSON;
         int PageSize = 0;
 
-        string BA_Type_ID = Request.Params["BA_Type_ID"];
+        string BJ_Type_ID = Request.Params["BJ_Type_ID"];
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
-        string BR_ID = "";
+        string BJ_ID = "";
         int KeyID = 0;
-        string BR_Name = "";
-        string BA_Qty = "";
-        string BA_Price = "";
-        string BA_Reason = "";
+        string BJ_Issue = "";
+        string BJ_Goal = "";
+        string BJ_Strategy = "";
+        string BJ_ProjectName = "";
 
         switch (FN)
         {
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_Project_Count(User_Code, BA_Type_ID);
+                int Count = IRGTService.getBudget_Project_Count(User_Code, BJ_Type_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -136,11 +136,11 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 Response.Write(DT_JSON);
                 return;
             case "Check":
-                lang = "" + Session["language_budget_asset"];
+                lang = "" + Session["language_budget_project"];
                 if (lang == "") lang = "TH";
-                BR_ID = IRGTService.checkBudget_Project(User_Code);
-                if (BR_ID != "")
-                    Response.Write("[{\"output\":\"OK\",\"BR_ID\":\"" + BR_ID + "\"}]");
+                BJ_ID = IRGTService.checkBudget_Project(User_Code);
+                if (BJ_ID != "")
+                    Response.Write("[{\"output\":\"OK\",\"BJ_ID\":\"" + BJ_ID + "\"}]");
                 else
                 {
                     if (lang == "TH")
@@ -151,18 +151,17 @@ public partial class Server_Budget_Project : System.Web.UI.Page
 
                 return;
             case "Save":
-                lang = "" + Session["language_budget_asset"];
+                lang = "" + Session["language_budget_project"];
                 if (lang == "") lang = "TH";
-                BR_ID = Request.Params["BR_ID"];
-                BR_Name = Request.Params["BR_Name"];
-                BA_Type_ID = Request.Params["BA_Type_ID"];
-                BA_Qty = Request.Params["BA_Qty"];
-                BA_Price = Request.Params["BA_Price"];
-                BA_Reason = Request.Params["BA_Reason"];
+                BJ_ID = Request.Params["BJ_ID"];
+                BJ_Issue = Request.Params["BJ_Issue"];
+                BJ_Goal = Request.Params["BJ_Goal"];
+                BJ_Strategy = Request.Params["BJ_Strategy"];
+                BJ_ProjectName = Request.Params["BJ_ProjectName"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.setBudget_Project(KeyID, BR_ID, BR_Name, BA_Type_ID, BA_Qty
-                    , BA_Price, BA_Reason, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.setBudget_Project(KeyID, BJ_ID, BJ_Issue, BJ_Goal, BJ_Strategy
+                    , BJ_ProjectName, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
                 {
@@ -216,12 +215,12 @@ public partial class Server_Budget_Project : System.Web.UI.Page
             case "Send":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                BR_ID = Request.Params["BR_ID"];
+                BJ_ID = Request.Params["BJ_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Project(BR_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -242,11 +241,11 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string DT_JSON;
         int PageSize = 0;
 
-        string BA_Type_ID = Request.Params["BA_Type_ID"];
-        string BR_ID = Request.Params["BR_ID"];
+        string BJ_Type_ID = Request.Params["BJ_Type_ID"];
+        string BJ_ID = Request.Params["BJ_ID"];
         string User_Code = Request.Params["User_Code"];
-        string BA_Qty_Adj = Request.Params["BA_Qty_Adj"];
-        string BA_Price_Adj = Request.Params["BA_Price_Adj"];
+        string BJ_Qty_Adj = Request.Params["BJ_Qty_Adj"];
+        string BJ_Price_Adj = Request.Params["BJ_Price_Adj"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         int KeyID = 0;
@@ -256,7 +255,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
             case "Paging":
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
-                int Count = IRGTService.getBudget_ProjectByID_Count(BR_ID, BA_Type_ID);
+                int Count = IRGTService.getBudget_ProjectByID_Count(BJ_ID, BJ_Type_ID);
                 DT_JSON = genPaging(PageSize, Count);
 
                 Response.Write(DT_JSON);
@@ -266,7 +265,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
                 string lang = Request.Params["lang"];
-                DT = IRGTService.getBudget_ProjectByID(PageSize, PageIndex, BR_ID, BA_Type_ID, lang);
+                DT = IRGTService.getBudget_ProjectByID(PageSize, PageIndex, BJ_ID, BJ_Type_ID, lang);
                 Session["Data_Budget_Project"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -277,14 +276,14 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 DT = (DataTable)Session["Data_budget_project"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BR_ID:\"" + dr_list[0]["BR_ID"] + "\"";
-                OP += ",BR_Name:\"" + dr_list[0]["BR_Name"] + "\"";
-                OP += ",BA_Type_ID:\"" + dr_list[0]["BA_Type_ID"] + "\"";
-                OP += ",BA_Qty:\"" + dr_list[0]["BA_Qty"] + "\"";
-                OP += ",BA_Price:\"" + dr_list[0]["BA_Price"] + "\"";
-                OP += ",BA_Qty_Adj:\"" + dr_list[0]["BA_Qty_Adj"] + "\"";
-                OP += ",BA_Price_Adj:\"" + dr_list[0]["BA_Price_Adj"] + "\"";
-                OP += ",BA_Reason:\"" + dr_list[0]["BA_Reason"] + "\"";
+                OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
+                OP += ",BJ_Name:\"" + dr_list[0]["BJ_Name"] + "\"";
+                OP += ",BJ_Type_ID:\"" + dr_list[0]["BJ_Type_ID"] + "\"";
+                OP += ",BJ_Qty:\"" + dr_list[0]["BJ_Qty"] + "\"";
+                OP += ",BJ_Price:\"" + dr_list[0]["BJ_Price"] + "\"";
+                OP += ",BJ_Qty_Adj:\"" + dr_list[0]["BJ_Qty_Adj"] + "\"";
+                OP += ",BJ_Price_Adj:\"" + dr_list[0]["BJ_Price_Adj"] + "\"";
+                OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;
@@ -293,7 +292,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.confirmBudget_Project(BR_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.confirmBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -309,7 +308,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 if (lang == "") lang = "TH";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.approveBudget_Project(BR_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.approveBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -321,14 +320,14 @@ public partial class Server_Budget_Project : System.Web.UI.Page
 
                 return;
             case "Adjust":
-                lang = "" + Session["language_budget_asset"];
+                lang = "" + Session["language_budget_project"];
                 if (lang == "") lang = "TH";
-                BA_Qty_Adj = Request.Params["BA_Qty_Adj"];
-                BA_Price_Adj = Request.Params["BA_Price_Adj"];
+                BJ_Qty_Adj = Request.Params["BJ_Qty_Adj"];
+                BJ_Price_Adj = Request.Params["BJ_Price_Adj"];
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                if (IRGTService.adjustBudget_Project(KeyID, BA_Qty_Adj
-                    , BA_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.adjustBudget_Project(KeyID, BJ_Qty_Adj
+                    , BJ_Price_Adj, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
                 {
@@ -360,9 +359,9 @@ public partial class Server_Budget_Project : System.Web.UI.Page
     {
         DataTable DT;
         string DT_JSON;
-        string BR_ID = Request.Params["BR_ID"];
+        string BJ_ID = Request.Params["BJ_ID"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_ProjectSummaryByID(BR_ID, lang);
+        DT = IRGTService.getBudget_ProjectSummaryByID(BJ_ID, lang);
         Session["Data_budget_project_summary"] = DT.Copy();
         DT_JSON = DataTableToJSON(DT);
         DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -382,7 +381,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string User_Code = Request.Params["User_Code"];
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
-        string BR_ID = Request.Params["BR_ID"];
+        string BJ_ID = Request.Params["BJ_ID"];
         string lang = Request.Params["lang"];
         int KeyID = 0;
 
@@ -408,7 +407,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 Response.Write(DT_JSON);
                 return;
             case "Detail":
-                DT = IRGTService.getBudget_ProjectDetail(BR_ID, lang);
+                DT = IRGTService.getBudget_ProjectDetail(BJ_ID, lang);
                 Session["Data_Budget_Project_Detail"] = DT.Copy();
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
@@ -419,24 +418,24 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 DT = (DataTable)Session["Data_budget_project"];
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
-                OP += "BR_ID:\"" + dr_list[0]["BR_ID"] + "\"";
-                OP += ",BR_Name:\"" + dr_list[0]["BR_Name"] + "\"";
-                OP += ",BA_Type_ID:\"" + dr_list[0]["BA_Type_ID"] + "\"";
-                OP += ",BA_Qty:\"" + dr_list[0]["BA_Qty"] + "\"";
-                OP += ",BA_Price:\"" + dr_list[0]["BA_Price"] + "\"";
-                OP += ",BA_Reason:\"" + dr_list[0]["BA_Reason"] + "\"";
+                OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
+                OP += ",BJ_Name:\"" + dr_list[0]["BJ_Name"] + "\"";
+                OP += ",BJ_Type_ID:\"" + dr_list[0]["BJ_Type_ID"] + "\"";
+                OP += ",BJ_Qty:\"" + dr_list[0]["BJ_Qty"] + "\"";
+                OP += ",BJ_Price:\"" + dr_list[0]["BJ_Price"] + "\"";
+                OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
                 OP += "}]";
                 Response.Write(OP);
                 return;
             case "Send":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
-                BR_ID = Request.Params["BR_ID"];
+                BJ_ID = Request.Params["BJ_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Project(BR_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
