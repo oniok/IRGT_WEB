@@ -182,7 +182,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 OP += ",BJ_Goal:\"" + dr_list[0]["BJ_Goal"] + "\"";
                 OP += ",BJ_Strategy:\"" + dr_list[0]["BJ_Strategy"] + "\"";
                 OP += ",BJ_ProjectName:\"" + dr_list[0]["BJ_ProjectName"] + "\"";
-                OP += ",BA_Reason:\"" + dr_list[0]["BA_Reason"] + "\"";
+                OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
                 OP += ",BJ_Objective:\"" + dr_list[0]["BJ_Objective"] + "\"";
                 OP += ",BJ_Place:\"" + dr_list[0]["BJ_Place"] + "\"";
                 OP += ",BJ_Duration:\"" + dr_list[0]["BJ_Duration"] + "\"";

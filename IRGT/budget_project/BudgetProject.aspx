@@ -4,7 +4,7 @@
     <script src="../Scripts/angular.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <div class="main-content" ng-app="myApp" ng-controller="fnMain">
+    <div class="main-content" ng-app="myApp" ng-controller="fnMain">
 		<div class="main-content-inner">
 			<!-- #section:basics/content.breadcrumbs -->
 			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -25,51 +25,51 @@
 					<div class="col-xs-12" >
 						<!-- PAGE CONTENT BEGINS -->
                         <div class="row">
-									<div class="col-xs-12">
-										<h3 class="header smaller lighter blue"><%=Session["HeaderText"]%></h3>									
-										
-										<!-- div.dataTables_borderWrap -->
-										<div class="widget-box  widget-color-blue2">
-                                            <div class="widget-header">
-												<h5 class="widget-title bigger">
-													<i class="ace-icon fa fa-table"></i>
-                                                    <%=Session["HeaderTable"]%>
-												</h5>			
-                                                <div class="widget-toolbar no-border">
-                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSend()">
-												        <i class="ace-icon glyphicon glyphicon-check bigger-120"></i>
-												        <%=Session["confirm_button"]%>
-											        </button>
-                                                </div>									
-											</div>
-                                            <div class="widget-body">
-                                                <div class="widget-main no-padding">
-                                            
-											       <table style="width:100%">
-                                                    <tr ng-repeat="x in Data">                                                    
-                                                        <td style="width:50px"></td>
-                                                        <td><%=Session["budget_project_Column01"]%></td>
-                                                        <td style="width:50px"></td>                                                   
-                                                        <td colspan="3">
-                                                            <input type="text" id="BJ_Issue" style="width:100%" value="{{ x.BJ_Issue }}"/>
-                                                              
-                                                        </td>
-                                                        <td style="width:10px"></td>   
-                                                        <td> 
-                                                            <button type="button" class="btn btn-success btn-xs" ng-click="fnEdit(x.KeyID)">
-												                <i class="ace-icon fa fa-pencil  bigger-110 icon-only"></i>
-											                </button>
-                                                        </td>  
-                                                                                                  
-                                                    </tr>                                                
-                                                </table>
-                                                </div>
-                                            </div>
-										</div>
+							<div class="col-xs-12">
+								<h3 class="header smaller lighter blue"><%=Session["HeaderText"]%></h3>	
+								<!-- div.dataTables_borderWrap -->
+								<div class="widget-box  widget-color-blue2">
+                                    <div class="widget-header">
+										<h5 class="widget-title bigger">
+											<i class="ace-icon fa fa-table"></i>
+                                            <%=Session["HeaderTable"]%>
+										</h5>			
+                                        <div class="widget-toolbar no-border">
+                                            <button class="btn btn-white btn-sm" type="button" ng-click="fnSend()">
+												<i class="ace-icon glyphicon glyphicon-check bigger-120"></i>
+												<%=Session["confirm_button"]%>
+											</button>
+                                        </div>									
+									</div>               
+								</div>
+							</div>
+						</div>
+
+                        <div class="widget-box widget-color-blue">
+							<div class="widget-header widget-header-small">
+                                <h5 class="widget-title bigger"><%=Session["budget_project_Column01"]%></h5>
+							</div>
+							<div class="widget-body">
+								<div class="widget-main no-padding">
+									<textarea id="BJ_Issue" name="BJ_Issue" data-provide="markdown" data-iconlibrary="fa" rows="10"></textarea>
+								</div>
+								<div class="widget-toolbox padding-4 clearfix">
+									<div class="btn-group pull-left">
+										<button class="btn btn-sm btn-info">
+											<i class="ace-icon fa fa-times bigger-125"></i>
+											Cancel
+										</button>
+									</div>
+									<div class="btn-group pull-right">
+										<button class="btn btn-sm btn-purple">
+											<i class="ace-icon fa fa-floppy-o bigger-125"></i>
+											Save
+										</button>
 									</div>
 								</div>
-
-								
+							</div>
+						</div>
+                      
 						<!-- PAGE CONTENT ENDS -->
 					</div><!-- /.col -->
 				</div><!-- /.row -->
@@ -93,6 +93,7 @@
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
     app.controller('fnMain', fnMain);
 
+    
     //ข้อมูลผู้ใต้บังคับบัญชาระดับอื่น ๆ    
     function fnMain($scope, $http) {
         $('body').pleaseWait();
@@ -111,11 +112,31 @@
         $scope.fnSend = function () {
             fnConfirmMessage('<%=Session["pop_confirm_budget_project"]%>', '<%=Session["pop_send_budget_project"]%>', fnSendYes);
         }
-        
-        fnLoad($scope, $http);
+        fnGetData($scope, $http);
     }
-   
-    function fnLoad($scope, $http) {
+    function fnLoad(KeyID) {
+        var User_Code = '<%=Session["user_code"]%>';
+        var lang = '<%=Session["language_budget_project"]%>';
+       
+        $.post("../server/Server_Budget_Project.aspx",
+            {
+                Command: 'BudgetProject',
+                Function: 'Load',
+                KeyID: KeyID,
+                lang: lang
+            },
+            function (data, status) {
+                var data = eval(data);
+                document.getElementById('BJ_Issue').value = data[0].BJ_Issue.trim();
+
+                $('body').pleaseWait('stop');
+                fnLoadCtrl();
+            }
+        );
+
+    }
+    
+    function fnGetData($scope, $http) {
         var User_Code = '<%=Session["user_code"]%>';
         var lang = '<%=Session["language_budget_project"]%>';
 
@@ -129,13 +150,13 @@
         $http.post("../server/Server_Budget_Project.aspx", data, config)
        .success(function (data, status, headers, config) {
            $scope.Data = data.records;
-               $('body').pleaseWait('stop');
+           setTimeout(fnLoad(data.records[0].KeyID), 100);
        })
        .error(function (data, status, header, config) {
            $('body').pleaseWait('stop');
        });
 
-        
+    } 
         //var data = eval(data);
         //document.getElementById('BJ_ID').value = data[0].BJ_ID.trim();
         //document.getElementById('BJ_Issue').value = data[0].BJ_Issue.trim();
@@ -151,10 +172,6 @@
         //document.getElementById('BJ_Measure').value = data[0].BJ_Measure.trim();
         //document.getElementById('BJ_Benefit').value = data[0].BJ_Benefit.trim();
         //document.getElementById('BJ_Responsible').value = data[0].BJ_Responsible.trim();
-                
-        } 
-
-    
 
 </script>
 </asp:Content>

@@ -81,7 +81,8 @@
 
 		<!--[if !IE]> -->
 		<script src="../assets/js/jquery.js"></script>
-
+        <script src="../assets/js/markdown/markdown.js"></script>
+        <script src="../assets/js/markdown/bootstrap-markdown.js"></script>
 		<!-- <![endif]-->
 
 		<!--[if IE]>
@@ -171,7 +172,7 @@
 		            else $('#form-field-select-4').removeClass('tag-input-style');
 		        });
 		    }
-		    jQuery(function ($) {	
+		    
 		        //datepicker plugin
 		        //link
 		        $JQ = $;
@@ -239,6 +240,7 @@
 		        $('#BP_Price_Adj').ace_spinner({ value: 0, min: 0, max: 100000, step: 1000, on_sides: true, icon_up: 'ace-icon fa fa-plus bigger-110', icon_down: 'ace-icon fa fa-minus bigger-110', btn_up_class: 'btn-success', btn_down_class: 'btn-danger' });
 
 
+		        
 		    });
 
 		    function getParamValue(name) {
@@ -249,6 +251,8 @@
 		        var results = regex.exec(url);
 		        return results == null ? null : results[1];
 		    }
+
+		    
 		</script>
 
 		<!-- the following scripts are used in demo only for onpage help and you don't need them -->

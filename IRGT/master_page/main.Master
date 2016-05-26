@@ -49,7 +49,7 @@
 <body class="no-skin">
     <form id="form1" runat="server">
 	<!-- #section:basics/navbar.layout -->
-	<div id="navbar" class="navbar navbar-default          ace-save-state">
+	<div id="navbar" class="navbar navbar-default ace-save-state">
 		<div class="navbar-container ace-save-state" id="navbar-container">
 			<!-- #section:basics/sidebar.mobile.toggle -->
 			<button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -250,6 +250,10 @@
 		<script src="../assets/js/ace/ace.widget-on-reload.js"></script>
 		<script src="../assets/js/ace/ace.searchbox-autocomplete.js"></script>
 
+        <!-- markdown script -->
+        <script src="../assets/js/markdown/markdown.js"></script>
+        <script src="../assets/js/markdown/bootstrap-markdown.js"></script>
+
 		<!-- inline scripts related to this page -->
 		<script>         
 		    var $JQ;
@@ -289,45 +293,58 @@
 		        //datepicker plugin
 		        //link
 		        $JQ = $;
+		        //for markdown
+		        $('textarea[data-provide="markdown"]').each(function () {
+		            var $this = $(this);
+
+		            if ($this.data('markdown')) {
+		                $this.data('markdown').showEditor();
+		            }
+		            else $this.markdown();
+
+		            $this.parent().find('.btn').addClass('btn-white');
+
+		        });
 		    });
-		    function fnOpenPopup(title, url, width, height) {
-		        document.getElementById('popHeader').innerHTML = title;
-		        document.getElementById('frmPopup').src = url;
-		        if (width != null) {
-		            document.getElementById('frmPopup').style.width = width + "px";
+		        function fnOpenPopup(title, url, width, height) {
+		            document.getElementById('popHeader').innerHTML = title;
+		            document.getElementById('frmPopup').src = url;
+		            if (width != null) {
+		                document.getElementById('frmPopup').style.width = width + "px";
+		            }
+		            else {
+		                document.getElementById('frmPopup').style.width = "100%";
+		            }
+
+		            if (height != null) document.getElementById('frmPopup').style.height = height + "px";
+		            else document.getElementById('frmPopup').style.height = "500px";
+
+		            document.getElementById('btnPopSave').onclick = function () {
+		                try {
+		                    document.getElementById('frmPopup').contentWindow.fnSave();
+		                } catch (err) { }
+		            }
+
+		            document.getElementById('btnEdit').click();
 		        }
-		        else {
-		            document.getElementById('frmPopup').style.width = "100%";
+		        function getParamValue(name) {
+		            var url = location.href;
+		            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		            var regexS = "[\\?&]" + name + "=([^&#]*)";
+		            var regex = new RegExp(regexS);
+		            var results = regex.exec(url);
+		            return results == null ? null : results[1];
 		        }
+		        function fnConfirmMessage(title, message, fnYes) {
+		            document.getElementById('popError').innerHTML = "<font color='navy'>" + title + "</font>";
+		            document.getElementById('popMessage').innerHTML = message;
 
-		        if (height != null) document.getElementById('frmPopup').style.height = height + "px";
-		        else document.getElementById('frmPopup').style.height = "500px";
-		      
-		        document.getElementById('btnPopSave').onclick = function () {
-		            try {
-		                document.getElementById('frmPopup').contentWindow.fnSave();
-		            } catch (err) { }
+		            if (fnYes != null) document.getElementById('btnConfimYes').onclick = fnYes;
+		            else document.getElementById('btnConfimYes').onclick = null;
+
+		            document.getElementById('btnConfirm').click();
 		        }
-
-		        document.getElementById('btnEdit').click();
-		    }
-		    function getParamValue(name) {
-		        var url = location.href;
-		        name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-		        var regexS = "[\\?&]" + name + "=([^&#]*)";
-		        var regex = new RegExp(regexS);
-		        var results = regex.exec(url);
-		        return results == null ? null : results[1];
-		    }
-		    function fnConfirmMessage(title, message, fnYes) {		       
-		        document.getElementById('popError').innerHTML = "<font color='navy'>" + title + "</font>";
-		        document.getElementById('popMessage').innerHTML = message;
-
-		        if (fnYes != null) document.getElementById('btnConfimYes').onclick = fnYes;
-		        else document.getElementById('btnConfimYes').onclick = null;
-
-		        document.getElementById('btnConfirm').click();
-		    }
+		   
         </script>  
 
 		<!-- the following scripts are used in demo only for onpage help and you don't need them -->
