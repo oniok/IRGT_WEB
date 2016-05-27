@@ -410,7 +410,7 @@
 					<div class="modal-body">
 					    <center><label id="popMessage"></label></center>						
 					</div>	
-                    <div class="modal-footer">	
+                    <div class="modal-footer" id="div_footerYN">	
                         <button id="btnConfimYes" type="button" class="btn btn-primary btn-sm">
                             <i class="ace-icon fa fa-check fa-x"></i>
 						    Yes
@@ -418,11 +418,18 @@
                         <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">
                             <i class="ace-icon fa fa-times fa-x"></i>
 						    No
-						</button>						
+						</button>			
+					</div>	
+                    <div class="modal-footer" id="div_footerOK" style="display:none">							 
+						<button type="button" class="btn btn-info" onclick="fnClearState()">
+							OK
+						</button> 							
 					</div>				
 				</div>					
 			</div>				
 		</div>	
+
+        
     </form>
 </body>
 </html>

@@ -167,7 +167,33 @@
 							</div>
 						</div>
 
-                        
+                        <a id="btnEdit2" href="#modal-profile-edit" class="btn btn-primary" data-toggle="modal" style="display:none">แก้ไขข้อมูล(ถ้ามี)</a>
+                        <div class="modal fade" id="modal-profile-edit2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                <div class="modal-dialog modal-lg">
+				                <div class="modal-content" id="pop-content2">
+					                <div class="modal-header">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <i id="img-error2" class="ace-icon fa fa-exclamation-circle icon-only fa-lg red"></i>
+                                                    <i id="img-information2" class="ace-icon fa fa-exclamation-circle icon-only fa-lg blue"></i>
+                                                </td>
+                                                <td style="width:10px"></td>
+                                                <td><h4 class="modal-title" id="popHeader2"></h4></td>
+                                            </tr>
+                                        </table>                	
+					                </div>
+					                <div class="modal-body">
+					                    <center><label id="popMessage2"></label></center>						
+					                </div>	
+                                    <div class="modal-footer">							 
+						                <button type="button" class="btn btn-info" data-dismiss="modal">
+							                OK
+						                </button> 							
+					                </div>				
+				                </div>					
+			                </div>				
+		                </div>	
 
 						<!-- PAGE CONTENT ENDS -->
 					</div><!-- /.col -->
@@ -284,19 +310,20 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_02"]%>");
                 return;
             }
-            if (BJ_Goal == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_03"]%>");
-                return;
-            }
-            if (BJ_Strategy == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_04"]%>");
-                return;
-            }
-            if (BJ_ProjectName == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_05"]%>");
-                return;
-            }
-
+        
+           // if (BJ_Goal == "") {
+           //     fnErrorMessage2("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_03"]%>");
+           //     return;
+           // }
+           // if (BJ_Strategy == "") {
+           //     fnErrorMessage2("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_04"]%>");
+           //     return;
+           // }
+          //  if (BJ_ProjectName == "") {
+          //      fnErrorMessage2("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_05"]%>");
+          //      return;
+          //  }
+    
             var User_Code = '<%=Session["user_code"]%>';
 
             $.post("../server/Server_Budget_Project.aspx",
@@ -320,14 +347,26 @@
             );
     }
 
-    function fnErrorMessage(title, message) {
-        document.getElementById('img-error').style.display = "";
-        document.getElementById('img-information').style.display = "none";
-        document.getElementById('popHeader').innerHTML = "<font color='red'>" + title + "</font>";
-        document.getElementById('popMessage').innerHTML = message;
-        document.getElementById('btnEdit').click();
+    function fnClearState() {
+        $('#div_footerYN').show();
+        $('#div_footerOK').hide();
+        document.getElementById('btnConfirm').click();
     }
-
+    
+    function fnErrorMessage(title, message) {
+        document.getElementById('popError').innerHTML = "<font color='navy'>" + title + "</font>";
+        document.getElementById('popMessage').innerHTML = message;
+        $('#div_footerYN').hide();
+        $('#div_footerOK').show();
+        /*
+        document.getElementById('img-error2').style.display = "";
+        document.getElementById('img-information2').style.display = "none";
+        document.getElementById('popHeader2').innerHTML = "<font color='red'>" + title + "</font>";
+        document.getElementById('popMessage2').innerHTML = message;
+        document.getElementById('btnEdit2').click();
+        */
+    }
+    
     function fnSubmit(BJ_ID) {
         var KeyID = tmpKeyID;
         var BJ_Issue = document.getElementById('BJ_Issue').value.trim();
