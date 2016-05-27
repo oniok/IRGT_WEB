@@ -11,13 +11,31 @@ public partial class budget_popup_pop_BudgetOperationSummaryByID : System.Web.UI
     {
         string PageFunction = "budget_operation_summary";
 
-        //================ Column Pop up Summary ==================================================   
-        Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
-        Session[PageFunction + "_ColumnEdit"] = "";
-        Session[PageFunction + "_Column01"] = "รายการ";
-        Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
-        Session[PageFunction + "_Column03"] = "จำนวนเงิน/เดือน";
-        Session[PageFunction + "_Column04"] = "รวมทั้งสิ้น";
-        Session[PageFunction + "_Column05"] = "หมายเหตุ";
+        string LANG = cCommon.getLanguage(Request);
+        Session["language_" + PageFunction] = LANG;
+
+        if (LANG == cCommon.Language_Thai)
+        {
+            //================ Column Pop up Summary ==================================================   
+            Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
+            Session[PageFunction + "_ColumnEdit"] = "";
+            Session[PageFunction + "_Column01"] = "รายการ";
+            Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
+            Session[PageFunction + "_Column03"] = "จำนวนเงิน/เดือน";
+            Session[PageFunction + "_Column04"] = "รวมทั้งสิ้น";
+            Session[PageFunction + "_Column05"] = "หมายเหตุ";
+        }
+        else
+        {
+            //================ Column Pop up Summary ==================================================   
+            Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
+            Session[PageFunction + "_ColumnEdit"] = "";
+            Session[PageFunction + "_Column01"] = "รายการ";
+            Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
+            Session[PageFunction + "_Column03"] = "จำนวนเงิน/เดือน";
+            Session[PageFunction + "_Column04"] = "รวมทั้งสิ้น";
+            Session[PageFunction + "_Column05"] = "หมายเหตุ";
+        }
+            
     }
 }
