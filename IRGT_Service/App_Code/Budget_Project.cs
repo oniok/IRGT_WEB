@@ -575,7 +575,8 @@ public class Budget_Project : System.Web.Services.WebService
 
     [WebMethod]
     public bool setBudget_Project(int KeyID, string BJ_ID, string BJ_Issue, string BJ_Goal, string BJ_Strategy
-        , string BJ_ProjectName, string User_Code
+        , string BJ_ProjectName, string BJ_Reason, string BJ_Objective, string BJ_Place, string BJ_Duration, string BJ_Amount
+        , string BJ_Detail, string BJ_Measure, string BJ_Benefit, string BJ_Responsible,  string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -597,6 +598,17 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.Parameters.Add(newParam("@BJ_Goal", BJ_Goal));
         DBCommand.Parameters.Add(newParam("@BJ_Strategy", BJ_Strategy));
         DBCommand.Parameters.Add(newParam("@BJ_ProjectName", BJ_ProjectName));
+
+        DBCommand.Parameters.Add(newParam("@BJ_Reason", BJ_Reason));
+        DBCommand.Parameters.Add(newParam("@BJ_Objective", BJ_Objective));
+        DBCommand.Parameters.Add(newParam("@BJ_Place", BJ_Place));
+        DBCommand.Parameters.Add(newParam("@BJ_Duration", BJ_Duration));
+        DBCommand.Parameters.Add(newParam("@BJ_Amount", BJ_Amount));
+        DBCommand.Parameters.Add(newParam("@BJ_Detail", BJ_Detail));
+        DBCommand.Parameters.Add(newParam("@BJ_Measure", BJ_Measure));
+        DBCommand.Parameters.Add(newParam("@BJ_Benefit", BJ_Benefit));
+        DBCommand.Parameters.Add(newParam("@BJ_Responsible", BJ_Responsible));
+
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================

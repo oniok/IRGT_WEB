@@ -39,6 +39,10 @@
 												<i class="ace-icon fa fa-floppy-o bigger-120"></i>
 												<%=Session["save_button"]%>
 											</button>
+                                            <button class="btn btn-white btn-sm" type="button" ng-click="fnSum()">
+												<i class="ace-icon glyphicon glyphicon-file bigger-120"></i>
+												<%=Session["sum_button"]%>
+											</button>
                                             <button class="btn btn-white btn-sm" type="button" ng-click="fnSend()">
 												<i class="ace-icon glyphicon glyphicon-check bigger-120"></i>
 												<%=Session["confirm_button"]%>
@@ -226,19 +230,18 @@
         $tmp_http = $http;
         $tmp_scope = $scope;
 
-        $scope.fnSearch = function () {
-            $('body').pleaseWait();
-            document.getElementById('paging-select').value = 1;
-            GetPaging($scope, $http);
-        }
         $scope.fnEdit = function (KeyID) {           
             fnOpenPopup('<%=Session["pop_edit_budget_project"]%>', "../budget_project_popup/pop_BudgetProject.aspx?KeyID=" + KeyID, null, "450");
         }
-        $scope.fnSend = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_project"]%>', '<%=Session["pop_send_budget_project"]%>', fnSendYes);
-        }
+        
         $scope.fnSave = function () {
             fnConfirmMessage('<%=Session["pop_confirm_budget_project"]%>', '<%=Session["pop_save_budget_project"]%>', fnSave);
+        }
+        $scope.fnSum = function () {
+            fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetProjectSummary.aspx?", null, "450");
+        }
+        $scope.fnSend = function () {
+            fnConfirmMessage('<%=Session["pop_confirm_budget_project"]%>', '<%=Session["pop_send_budget_project"]%>', fnSendYes);
         }
         fnGetData($scope, $http);
     }
@@ -268,7 +271,45 @@
     function fnLoad(KeyID) {
         var User_Code = '<%=Session["user_code"]%>';
         var lang = '<%=Session["language_budget_project"]%>';
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+
+        var data = $.param({
+            Command: 'BudgetProject',
+            Function: 'Load',
+            KeyID: KeyID,
+            lang: lang
+        });
+
+        $http.post("../server/Server_Budget_Project.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.Data = data.records;
+            if (data.records.length > 0) {
+                document.getElementById('BJ_ID').value = data.records[0].BJ_ID.trim();
+                document.getElementById('BJ_Issue').value = data.records[0].BJ_Issue.trim();
+                document.getElementById('BJ_Goal').value = data.records[0].BJ_Goal.trim();
+                document.getElementById('BJ_Strategy').value = data.records[0].BJ_Strategy.trim();
+                document.getElementById('BJ_ProjectName').value = data.records[0].BJ_ProjectName.trim();
+                document.getElementById('BJ_Reason').value = data.records[0].BJ_Reason.trim();
+                document.getElementById('BJ_Objective').value = data.records[0].BJ_Objective.trim();
+                document.getElementById('BJ_Place').value = data.records[0].BJ_Place.trim();
+                document.getElementById('BJ_Duration').value = data.records[0].BJ_Duration.trim();
+                document.getElementById('BJ_Amount').value = data.records[0].BJ_Amount.trim();
+                document.getElementById('BJ_Detail').value = data.records[0].BJ_Detail.trim();
+                document.getElementById('BJ_Measure').value = data.records[0].BJ_Measure.trim();
+                document.getElementById('BJ_Benefit').value = data.records[0].BJ_Benefit.trim();
+                document.getElementById('BJ_Responsible').value = data.records[0].BJ_Responsible.trim();
+                $('body').pleaseWait('stop');
+                fnLoadCtrl();
+            } else {
+                $('body').pleaseWait('stop');
+            }
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
        
+        /*
         $.post("../server/Server_Budget_Project.aspx",
             {
                 Command: 'BudgetProject',
@@ -296,6 +337,7 @@
                 fnLoadCtrl();
             }
         );
+        */
 
     }
 
@@ -305,6 +347,16 @@
             var BJ_Goal = document.getElementById('BJ_Goal').value.trim();
             var BJ_Strategy = document.getElementById('BJ_Strategy').value.trim();
             var BJ_ProjectName = document.getElementById('BJ_ProjectName').value.trim();
+
+            var BJ_Reason = document.getElementById('BJ_Reason').value.trim();
+            var BJ_Objective = document.getElementById('BJ_Objective').value.trim();
+            var BJ_Place = document.getElementById('BJ_Place').value.trim();
+            var BJ_Duration = document.getElementById('BJ_Duration').value.trim();
+            var BJ_Amount = document.getElementById('BJ_Amount').value.trim();
+            var BJ_Detail = document.getElementById('BJ_Detail').value.trim();
+            var BJ_Measure = document.getElementById('BJ_Measure').value.trim();
+            var BJ_Benefit = document.getElementById('BJ_Benefit').value.trim();
+            var BJ_Responsible = document.getElementById('BJ_Responsible').value.trim();
         
             if (BJ_Issue == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_02"]%>");
@@ -330,11 +382,7 @@
 			    {
 			        Command: 'BudgetProject',
 			        Function: 'Check',
-			        User_Code: User_Code,
-			        BJ_Issue: BJ_Issue,
-			        BJ_Goal: BJ_Goal,
-			        BJ_Strategy: BJ_Strategy,
-			        BJ_ProjectName: BJ_ProjectName
+			        User_Code: User_Code
 			    },
 			    function (data, status) {
 			        var data = eval(data);
@@ -374,6 +422,16 @@
         var BJ_Strategy = document.getElementById('BJ_Strategy').value.trim();
         var BJ_ProjectName = document.getElementById('BJ_ProjectName').value.trim();
 
+        var BJ_Reason = document.getElementById('BJ_Reason').value.trim();
+        var BJ_Objective = document.getElementById('BJ_Objective').value.trim();
+        var BJ_Place = document.getElementById('BJ_Place').value.trim();
+        var BJ_Duration = document.getElementById('BJ_Duration').value.trim();
+        var BJ_Amount = document.getElementById('BJ_Amount').value.trim();
+        var BJ_Detail = document.getElementById('BJ_Detail').value.trim();
+        var BJ_Measure = document.getElementById('BJ_Measure').value.trim();
+        var BJ_Benefit = document.getElementById('BJ_Benefit').value.trim();
+        var BJ_Responsible = document.getElementById('BJ_Responsible').value.trim();
+
         $.post("../server/Server_Budget_Project.aspx",
            {
                Command: 'BudgetProject',
@@ -383,13 +441,22 @@
                BJ_Issue: BJ_Issue,
                BJ_Goal: BJ_Goal,
                BJ_Strategy: BJ_Strategy,
-               BJ_ProjectName: BJ_ProjectName
+               BJ_ProjectName: BJ_ProjectName,
+               BJ_Reason: BJ_Reason,
+               BJ_Objective: BJ_Objective,
+               BJ_Place: BJ_Place,
+               BJ_Duration: BJ_Duration,
+               BJ_Amount: BJ_Amount,
+               BJ_Detail: BJ_Detail,
+               BJ_Measure: BJ_Measure,
+               BJ_Benefit: BJ_Benefit,
+               BJ_Responsible: BJ_Responsible
            },
            function (data, status) {
                var data = eval(data);
                if (data[0].output == "OK") {
                    document.getElementById('btnConfirm').click();
-                   window.parent.fnRefresh();
+                   fnGetData($tmp_scope,$tmp_http);
                } else {
                    fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                }
@@ -409,19 +476,18 @@
         });
 
         $http.post("../server/Server_Budget_Project.aspx", data, config)
-       .success(function (data, status, headers, config) {
+        .success(function (data, status, headers, config) {
            $scope.Data = data.records;
            if (data.records.length > 0) {
                tmpKeyID = data.records[0].KeyID;
-               setTimeout(fnLoad(tmpKeyID), 100);
+               setTimeout(fnRefresh(), 100);
            } else {
                $('body').pleaseWait('stop');
            }
-           
-       })
-       .error(function (data, status, header, config) {
+        })
+        .error(function (data, status, header, config) {
            $('body').pleaseWait('stop');
-       });
+        });
 
     } 
 
