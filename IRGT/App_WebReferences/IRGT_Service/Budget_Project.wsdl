@@ -228,6 +228,15 @@
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Goal" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Strategy" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_ProjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Objective" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Place" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Duration" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Amount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Detail" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Measure" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Benefit" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Responsible" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
           </s:sequence>
         </s:complexType>

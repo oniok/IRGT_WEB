@@ -117,6 +117,16 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string BJ_Strategy = "";
         string BJ_ProjectName = "";
 
+        string BJ_Reason = "";
+        string BJ_Objective = "";
+        string BJ_Place = "";
+        string BJ_Duration = "";
+        string BJ_Amount = "";
+        string BJ_Detail = "";
+        string BJ_Measure = "";
+        string BJ_Benefit = "";
+        string BJ_Responsible = "";
+        
         switch (FN)
         {
             case "Paging":
@@ -159,9 +169,20 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 BJ_Strategy = Request.Params["BJ_Strategy"];
                 BJ_ProjectName = Request.Params["BJ_ProjectName"];
 
+                BJ_Reason = Request.Params["BJ_Reason"];
+                BJ_Objective = Request.Params["BJ_Objective"];
+                BJ_Place = Request.Params["BJ_Place"];
+                BJ_Duration = Request.Params["BJ_Duration"];
+                BJ_Amount = Request.Params["BJ_Amount"];
+                BJ_Detail = Request.Params["BJ_Detail"];
+                BJ_Measure = Request.Params["BJ_Measure"];
+                BJ_Benefit = Request.Params["BJ_Benefit"];
+                BJ_Responsible = Request.Params["BJ_Responsible"];
+
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
                 if (IRGTService.setBudget_Project(KeyID, BJ_ID, BJ_Issue, BJ_Goal, BJ_Strategy
-                    , BJ_ProjectName, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    , BJ_ProjectName, BJ_Reason, BJ_Objective, BJ_Place, BJ_Duration, BJ_Amount
+                    , BJ_Detail, BJ_Measure, BJ_Benefit, BJ_Responsible, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else
                 {
@@ -174,25 +195,30 @@ public partial class Server_Budget_Project : System.Web.UI.Page
             case "Load":
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
                 DT = (DataTable)Session["Data_budget_project"];
-                DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
-                string OP = "[{";
-                OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
-                OP += ",BJ_Issue:\"" + dr_list[0]["BJ_Issue"] + "\"";
-                OP += ",BJ_Goal:\"" + dr_list[0]["BJ_Goal"] + "\"";
-                OP += ",BJ_Strategy:\"" + dr_list[0]["BJ_Strategy"] + "\"";
-                OP += ",BJ_ProjectName:\"" + dr_list[0]["BJ_ProjectName"] + "\"";
-                OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
-                OP += ",BJ_Objective:\"" + dr_list[0]["BJ_Objective"] + "\"";
-                OP += ",BJ_Place:\"" + dr_list[0]["BJ_Place"] + "\"";
-                OP += ",BJ_Duration:\"" + dr_list[0]["BJ_Duration"] + "\"";
-                OP += ",BJ_Amount:\"" + dr_list[0]["BJ_Amount"] + "\"";
-                OP += ",BJ_Detail:\"" + dr_list[0]["BJ_Detail"] + "\"";
-                OP += ",BJ_Measure:\"" + dr_list[0]["BJ_Measure"] + "\"";
-                OP += ",BJ_Benefit:\"" + dr_list[0]["BJ_Benefit"] + "\"";
-                OP += ",BJ_Responsible:\"" + dr_list[0]["BJ_Responsible"] + "\"";
-                OP += "}]";
-                Response.Write(OP);
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
                 return;
+            /*
+            DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
+            string OP = "[{";
+            OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
+            OP += ",BJ_Issue:\"" + dr_list[0]["BJ_Issue"] + "\"";
+            OP += ",BJ_Goal:\"" + dr_list[0]["BJ_Goal"] + "\"";
+            OP += ",BJ_Strategy:\"" + dr_list[0]["BJ_Strategy"] + "\"";
+            OP += ",BJ_ProjectName:\"" + dr_list[0]["BJ_ProjectName"] + "\"";
+            OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
+            OP += ",BJ_Objective:\"" + dr_list[0]["BJ_Objective"] + "\"";
+            OP += ",BJ_Place:\"" + dr_list[0]["BJ_Place"] + "\"";
+            OP += ",BJ_Duration:\"" + dr_list[0]["BJ_Duration"] + "\"";
+            OP += ",BJ_Amount:\"" + dr_list[0]["BJ_Amount"] + "\"";
+            OP += ",BJ_Detail:\"" + dr_list[0]["BJ_Detail"] + "\"";
+            OP += ",BJ_Measure:\"" + dr_list[0]["BJ_Measure"] + "\"";
+            OP += ",BJ_Benefit:\"" + dr_list[0]["BJ_Benefit"] + "\"";
+            OP += ",BJ_Responsible:\"" + dr_list[0]["BJ_Responsible"] + "\"";
+            OP += "}]";
+            Response.Write(OP);
+            return;*/
             case "Delete":
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
