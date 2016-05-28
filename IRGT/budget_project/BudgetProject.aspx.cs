@@ -19,7 +19,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
         if (LANG == cCommon.Language_Thai)
         {
             //================ POPUP ==================================================
-            string PageName = "งบโปรเจค";
+            string PageName = "งบโครงการ";
 
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
@@ -81,7 +81,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
         else
         {
             //================ POPUP ==================================================
-            string PageName = "งบโปรเจค";
+            string PageName = "งบโครงการ";
 
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;

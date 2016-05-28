@@ -63,8 +63,8 @@
                        BJ_Detail: data.records[0].BJ_Detail.trim(),
                        BJ_Measure: data.records[0].BJ_Measure.trim(),
                        BJ_Benefit: data.records[0].BJ_Benefit.trim(),
-                       BJ_Responsible: data.records[0].BJ_Responsible.trim()
-
+                       BJ_Responsible: data.records[0].BJ_Responsible.trim(),
+                       BJ_Year: data.records[0].BJ_Year.trim()
                    }
                    var html = Mustache.render($tmp_data, map);
 

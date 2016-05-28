@@ -64,22 +64,22 @@
 						</div>--%>
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_Issue"></div>
+                            <input type="text" id="BJ_Issue" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_Goal"></div>
+                            <input type="text" id="BJ_Goal" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_Strategy"></div>
+                            <input type="text" id="BJ_Strategy" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_ProjectName"></div>
+                            <input type="text" id="BJ_ProjectName" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
@@ -99,12 +99,12 @@
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_Duration"></div>
+                            <input type="text" id="BJ_Duration" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
-                            <div class="wysiwyg-editor" id="BJ_Amount"></div>
+                            <input type="text" id="BJ_Amount" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
@@ -216,7 +216,8 @@
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
-            fnLoad(tmpKeyID);
+            //fnGetData($scope, $http);
+            location.reload();
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
@@ -242,15 +243,15 @@
             $scope.Data = data.records;
             if (data.records.length > 0) {
                 document.getElementById('BJ_ID').value = data.records[0].BJ_ID.trim();
-                $('#BJ_Issue').html(unescape(data.records[0].BJ_Issue.trim()));
-                $('#BJ_Goal').html(data.records[0].BJ_Goal.trim());
-                $('#BJ_Strategy').html(data.records[0].BJ_Strategy.trim());
-                $('#BJ_ProjectName').html(data.records[0].BJ_ProjectName.trim());
+                $('#BJ_Issue').val(data.records[0].BJ_Issue.trim());
+                $('#BJ_Goal').val(data.records[0].BJ_Goal.trim());
+                $('#BJ_Strategy').val(data.records[0].BJ_Strategy.trim());
+                $('#BJ_ProjectName').val(data.records[0].BJ_ProjectName.trim());
                 $('#BJ_Reason').html(data.records[0].BJ_Reason.trim());
                 $('#BJ_Objective').html(data.records[0].BJ_Objective.trim());
                 $('#BJ_Place').html(data.records[0].BJ_Place.trim());
-                $('#BJ_Duration').html(data.records[0].BJ_Duration.trim());
-                $('#BJ_Amount').html(data.records[0].BJ_Amount.trim());
+                $('#BJ_Duration').val(data.records[0].BJ_Duration.trim());
+                $('#BJ_Amount').val(data.records[0].BJ_Amount.trim());
                 $('#BJ_Detail').html(data.records[0].BJ_Detail.trim());
                 $('#BJ_Measure').html(data.records[0].BJ_Measure.trim());
                 $('#BJ_Benefit').html(data.records[0].BJ_Benefit.trim());
@@ -268,16 +269,16 @@
 
     function fnSave() {
             var BJ_ID = document.getElementById('BJ_ID').value.trim();
-            var BJ_Issue = $('#BJ_Issue').html();
-            var BJ_Goal = $('#BJ_Goal').html();
-            var BJ_Strategy = $('#BJ_Strategy').html();
-            var BJ_ProjectName = $('#BJ_ProjectName').html();
+            var BJ_Issue = $('#BJ_Issue').val();
+            var BJ_Goal = $('#BJ_Goal').val();
+            var BJ_Strategy = $('#BJ_Strategy').val();
+            var BJ_ProjectName = $('#BJ_ProjectName').val();
 
             var BJ_Reason = $('#BJ_Reason').html();
             var BJ_Objective = $('#BJ_Objective').html();
             var BJ_Place = $('#BJ_Place').html();
-            var BJ_Duration = $('#BJ_Duration').html();
-            var BJ_Amount = $('#BJ_Amount').html();
+            var BJ_Duration = $('#BJ_Duration').val();
+            var BJ_Amount = $('#BJ_Amount').val();
             var BJ_Detail = $('#BJ_Detail').html();
             var BJ_Measure = $('#BJ_Measure').html();
             var BJ_Benefit = $('#BJ_Benefit').html();
@@ -370,28 +371,68 @@
     
     function fnSubmit(BJ_ID) {
         var KeyID = tmpKeyID;
-        var BJ_Issue = $('#BJ_Issue').html();
-        var BJ_Goal = $('#BJ_Goal').html();
-        var BJ_Strategy = $('#BJ_Strategy').html();
-        var BJ_ProjectName = $('#BJ_ProjectName').html();
+        var BJ_Issue = $('#BJ_Issue').val();
+        var BJ_Goal = $('#BJ_Goal').val();
+        var BJ_Strategy = $('#BJ_Strategy').val();
+        var BJ_ProjectName = $('#BJ_ProjectName').val();
 
         var BJ_Reason = $('#BJ_Reason').html();
         var BJ_Objective = $('#BJ_Objective').html();
         var BJ_Place = $('#BJ_Place').html();
-        var BJ_Duration = $('#BJ_Duration').html();
-        var BJ_Amount = $('#BJ_Amount').html();
+        var BJ_Duration = $('#BJ_Duration').val();
+        var BJ_Amount = $('#BJ_Amount').val();
         var BJ_Detail = $('#BJ_Detail').html();
         var BJ_Measure = $('#BJ_Measure').html();
         var BJ_Benefit = $('#BJ_Benefit').html();
         var BJ_Responsible = $('#BJ_Responsible').html();
 
+        var data = $.param({
+            Command: 'BudgetProject',
+            Function: 'Save',
+            KeyID: KeyID,
+            BJ_ID: BJ_ID,
+            BJ_Issue: BJ_Issue,
+            BJ_Goal: BJ_Goal,
+            BJ_Strategy: BJ_Strategy,
+            BJ_ProjectName: BJ_ProjectName,
+            BJ_Reason: BJ_Reason,
+            BJ_Objective: BJ_Objective,
+            BJ_Place: BJ_Place,
+            BJ_Duration: BJ_Duration,
+            BJ_Amount: BJ_Amount,
+            BJ_Detail: BJ_Detail,
+            BJ_Measure: BJ_Measure,
+            BJ_Benefit: BJ_Benefit,
+            BJ_Responsible: BJ_Responsible
+        });
+        /*
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: "../server/Server_Budget_Project.aspx",
+            data: data,
+            dataType: "json",
+            success: function(data) {
+                var data = eval(data);
+                if (data[0].output == "OK") {
+                    document.getElementById('btnConfirm').click();
+                    fnGetData($tmp_scope, $tmp_http);
+                } else {
+                    fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+                }
+            },
+                error: function(result) {
+                alert("Error");
+            }
+        });
+        */
         $.post("../server/Server_Budget_Project.aspx",
            {
                Command: 'BudgetProject',
                Function: 'Save',
                KeyID: KeyID,
                BJ_ID: BJ_ID,
-               BJ_Issue: encodeURI(BJ_Issue),
+               BJ_Issue: BJ_Issue,
                BJ_Goal: BJ_Goal,
                BJ_Strategy: BJ_Strategy,
                BJ_ProjectName: BJ_ProjectName,
@@ -415,6 +456,7 @@
                }
            }
        );
+       
     }
     
     function fnGetData($scope, $http) {

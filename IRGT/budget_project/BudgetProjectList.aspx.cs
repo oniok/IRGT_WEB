@@ -19,7 +19,7 @@ public partial class budget_BudgetProjectList : System.Web.UI.Page
         if (LANG == cCommon.Language_Thai)
         {
             //================ POPUP ==================================================
-            string PageName = "งบโปรเจค";
+            string PageName = "งบโครงการ";
             
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
             

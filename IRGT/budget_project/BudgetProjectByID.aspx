@@ -4,7 +4,7 @@
     <script src="../Scripts/angular.min.js"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-        <div class="main-content" ng-app="myApp" ng-controller="fnMain">
+    <div class="main-content" ng-app="myApp" ng-controller="fnMain">
 		<div class="main-content-inner">
 			<!-- #section:basics/content.breadcrumbs -->
 			<div class="breadcrumbs ace-save-state" id="breadcrumbs">
@@ -25,122 +25,127 @@
 					<div class="col-xs-12" >
 						<!-- PAGE CONTENT BEGINS -->
                         <div class="row">
-									<div class="col-xs-12">
-										<h3 id="header_id" class="header smaller lighter blue"><%=Session["HeaderText"]%></h3>									
-										
-										<!-- div.table-responsive -->
-                                        <center>
-                                            <table>
-                                                <tr>                                                    
-                                                    <td style="width:5px"></td>
-                                                    <td><%=Session["budget_project_Column02"]%></td>
-                                                    <td style="width:5px"></td>                                                   
-                                                    <td>
-                                                        <select class="chosen-select form-control" id="BA_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
-					                                        <option value=""></option>	
-                                                            <option ng-repeat="x in BudgetProjectType" value="{{ x.Code }}" >{{ x.Name }}</option>				
-				                                        </select>   
-                                                    </td>   
-                                                    <td style="width:5px"></td>                                              
-                                                    <td>         
-                                                        <button type="button" class="btn btn-success " id="btnSearch" ng-click="fnSearch()">  
-											                <i class="ace-icon fa fa-search "></i>
-											                <%=Session["text_search"]%>
-										                </button>
-                                                    </td>                                                
-                                                </tr>                                                
-                                            </table>
-                                        </center>
-										<!-- div.dataTables_borderWrap -->
-										<div class="widget-box  widget-color-blue2">
-                                            <div class="widget-header">
-												<h5 class="widget-title bigger">
-													<i class="ace-icon fa fa-table"></i>
-                                                    <%=Session["HeaderTable"]%>
-												</h5>			
-                                                <div class="widget-toolbar no-border">
-                                                    <button class="btn btn-white btn-sm" type="button" ng-click="fnSum()">
-												        <i class="ace-icon glyphicon glyphicon-file bigger-120"></i>
-												        <%=Session["sum_button"]%>
-											        </button>
-                                                </div>									
-											</div>
-                                            <div class="widget-body">
-                                                <div class="widget-main no-padding">
-                                            
-											        <table id="dynamic-table" class="table table-striped table-bordered table-hover">
-												        <thead>
-													        <tr>
-														        <th class="center" style="width:50px"><%=Session["budget_project_ColumnSEQ"]%></th>
-														        <th class="center"><%=Session["budget_project_Column01"]%></th>
-														        <th class="center"><%=Session["budget_project_Column02"]%></th>
-                                                                <th class="center" style="width:50px"><%=Session["budget_project_Column03"]%></th>          
-                                                                <th class="center" style="width:100px"><%=Session["budget_project_Column04"]%></th>    
-                                                                <th class="center"><%=Session["budget_project_Column05"]%></th>
-													        </tr>
-												        </thead>
-                                                        <tbody>
-													        <tr ng-repeat="x in Data">
-														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BR_ID" value="{{ x.BR_ID }}"/>{{ x.BR_Name }}</td>
-                                                                <td>{{ x.BR_Type_Name }}</td>
-                                                                <td class="center">{{ x.BA_Qty_View }}</td>          
-                                                                <td style="text-align:right">{{ x.BA_Price_View }}</td>														                                                            
-                                                                <td>{{ x.BA_Reason }}</td>											
-													        </tr>										
-												        </tbody>  
-                                                        <tfoot >
-                                                            <tr style="background-color:whitesmoke">                                                                
-                                                                <td colspan="7" style="padding:0px;text-align:right">                                                                  
-                                                                    <table style="margin:3px;width:100%">
-                                                                        <tr>
-                                                                            <td style="width:5px"></td>
-                                                                            <td style="text-align:left">
-                                                                                <span class="label label-lg label-primary"><%=Session["PageStart"]%> {{ RowCount }} <%=Session["PageRecord"]%></span>            
-                                                                            </td>
-                                                                            <td style="width:30px">
-                                                                                <label class="btn btn-primary btn-sm" ng-click="fnPageBack()">
-                                                                                    <i class="ace-icon fa fa-angle-double-left"></i>
-											                                    </label>
-                                                                            </td>                                                                              
-                                                                            <td style="width:30px">
-                                                                                <label class="btn btn-primary btn-sm" ng-click="fnPageBack()" ><%=Session["PageText"]%></label>
-                                                                            </td>
-                                                                            <td style="width:2px"></td>
-                                                                            <td style="width:30px">                                                                             
-                                                                                <select id="paging-select" onchange="fnPagingChange()" style="height:32px">
-                                                                                    <option ng-repeat="x in Paging" value="{{x.Page}}">{{ x.Page }}</option>
-                                                                                </select>                                                                                  
-                                                                            </td>
-                                                                            <td style="width:2px"></td>
-                                                                            <td style="width:30px">
-                                                                                <label class="btn btn-primary btn-sm" ng-click="fnPageBack()"> / {{ PageMax }} <%=Session["PageLast"]%></label>
-                                                                            </td>
-                                                                            <td style="width:30px">
-                                                                                <label class="btn btn-primary btn-sm" ng-click="fnPageNext()">
-                                                                                    <i class="ace-icon fa fa-angle-double-right"></i>
-											                                    </label>
-                                                                            </td>
-                                                                            <td style="width:5px"></td>
-                                                                        </tr>
-                                                                    </table>                                                                                                                       
-                                                                </td>
-                                                            </tr>
-                                                        </tfoot>                                              
-											        </table>
-                                                </div>
-                                            </div>
-										</div>
-									</div>
+							<div class="col-xs-12">
+								<h3 class="header smaller lighter blue"><%=Session["HeaderText"]%></h3>	
+								<!-- div.dataTables_borderWrap -->
+								<div class="widget-box  widget-color-blue2">
+                                    <div class="widget-header">
+										<h5 class="widget-title bigger">
+											<i class="ace-icon fa fa-table"></i>
+                                            <%=Session["HeaderTable"]%>
+										</h5>	
+                                        <div class="widget-toolbar no-border">
+                                            <button class="btn btn-white btn-sm" type="button" ng-click="fnSum()">
+												<i class="ace-icon glyphicon glyphicon-file bigger-120"></i>
+												<%=Session["sum_button"]%>
+											</button>
+                                        </div>											
+									</div>               
 								</div>
+							</div>
+						</div>
 
-								
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
+                            <input type="text" id="BJ_Issue" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
+                            <input type="text" id="BJ_Goal" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
+                            <input type="text" id="BJ_Strategy" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
+                            <input type="text" id="BJ_ProjectName" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column05"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Reason"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column06"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Objective"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column07"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Place"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
+                            <input type="text" id="BJ_Duration" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
+                            <input type="text" id="BJ_Amount" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column10"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Detail"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column11"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Measure"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column12"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Benefit"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column13"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Responsible"></div>
+                        </div>
+
+
+                        <a id="btnEdit2" href="#modal-profile-edit" class="btn btn-primary" data-toggle="modal" style="display:none">แก้ไขข้อมูล(ถ้ามี)</a>
+                        <div class="modal fade" id="modal-profile-edit2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			                <div class="modal-dialog modal-lg">
+				                <div class="modal-content" id="pop-content2">
+					                <div class="modal-header">
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <i id="img-error2" class="ace-icon fa fa-exclamation-circle icon-only fa-lg red"></i>
+                                                    <i id="img-information2" class="ace-icon fa fa-exclamation-circle icon-only fa-lg blue"></i>
+                                                </td>
+                                                <td style="width:10px"></td>
+                                                <td><h4 class="modal-title" id="popHeader2"></h4></td>
+                                            </tr>
+                                        </table>                	
+					                </div>
+					                <div class="modal-body">
+					                    <center><label id="popMessage2"></label></center>						
+					                </div>	
+                                    <div class="modal-footer">							 
+						                <button type="button" class="btn btn-info" data-dismiss="modal">
+							                OK
+						                </button> 							
+					                </div>				
+				                </div>					
+			                </div>				
+		                </div>	
+
 						<!-- PAGE CONTENT ENDS -->
 					</div><!-- /.col -->
 				</div><!-- /.row -->
 			</div><!-- /.page-content -->
 		</div>
 	</div><!-- /.main-content -->
+    
 <script>
     var isLoad = true;
     var PageSize = 10;
@@ -148,21 +153,16 @@
     var tmpKeyID;
     var $tmp_http;
     var $tmp_scope;
-    function fnPagingChange() {
-        var PageIndex = document.getElementById('paging-select').value;
-        $('body').pleaseWait();
-        GetData($tmp_scope, $tmp_http, PageIndex);
-    }
-    function fnRefresh() {
-        document.getElementById('btnPopClose').click();
-        document.getElementById('btnSearch').click();
-    }
     
+    function fnRefresh() {
+        fnLoad(tmpKeyID);
+    }
 
     var app = angular.module('myApp', []);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
     app.controller('fnMain', fnMain);
 
+    
     //ข้อมูลผู้ใต้บังคับบัญชาระดับอื่น ๆ    
     function fnMain($scope, $http) {
         $('body').pleaseWait();
@@ -170,118 +170,84 @@
         $tmp_http = $http;
         $tmp_scope = $scope;
 
-        $scope.fnSearch = function () {
-            $('body').pleaseWait();
-            document.getElementById('paging-select').value = 1;
-            GetPaging($scope, $http);
-        }
-
         $scope.fnSum = function () {
-            var BR_ID = '<%=Session["BR_ID"]%>';
-            fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetOperationSummaryByID.aspx?BR_ID=" + BR_ID, null, "450");
+            var BJ_ID = '<%=Session["BJ_ID"]%>';
+            $('#btnPopSave').toggle(false);
+            fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetProjectSummaryByID.aspx?BJ_ID=" + BJ_ID, null, "960");
         }
-  
-        $scope.fnPageBack = function () {
-            var currentPageIndex = parseInt(document.getElementById('paging-select').value);
-            if (currentPageIndex != 1) {
-                var PageIndex = currentPageIndex - 1;
-                document.getElementById('paging-select').value = PageIndex;
-                $('body').pleaseWait();
-                GetData($scope, $http, PageIndex);
-            }
-        }
-        $scope.fnPageNext = function () {
-            var currentPageIndex = parseInt(document.getElementById('paging-select').value);
-            var PageMax = $scope.PageMax;
-            if (PageMax == currentPageIndex) {
-                return;
-            }
-            var PageIndex = currentPageIndex + 1;
-            document.getElementById('paging-select').value = PageIndex;
-            $('body').pleaseWait();
-            GetData($scope, $http, PageIndex);
-        }
-        GetPaging($scope, $http);
-        $('#btnPopSave').toggle(false);
-        //$("#btnPopSave").css("display", "none");
+       
+        fnGetData($scope, $http);
     }
-   
-    function GetPaging($scope, $http) {
-
-        var BA_Type_ID = document.getElementById('BA_Type_ID').value;
-        var BR_ID = '<%=Session["BR_ID"]%>';
-        var data = $.param({
-            Command: 'BudgetOperationByID',
-            Function: 'Paging',
-            PageSize: PageSize,
-            BA_Type_ID: BA_Type_ID,
-            BR_ID: BR_ID
-        });
-
-        $http.post("../server/Server_Budget_Project.aspx", data, config)
-        .success(function (data, status, headers, config) {
-            $scope.Paging = data.records;
-            $scope.PageMax = data.pagemax;
-            $scope.RowCount = data.rowcount;
-            GetData($scope, $http, 1);
-        })
-        .error(function (data, status, header, config) {
-            $('body').pleaseWait('stop');
-        });
-    }
-    function GetData($scope, $http, PageIndex) {
-        CurrentPageIndex = PageIndex;
-        var BA_Type_ID = document.getElementById('BA_Type_ID').value;
-        var BR_ID = '<%=Session["BR_ID"]%>';
+    
+    function fnLoad(KeyID) {
+        var User_Code = '<%=Session["user_code"]%>';
         var lang = '<%=Session["language_budget_project"]%>';
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+
+        
         var data = $.param({
-            Command: 'BudgetOperationByID',
-            Function: 'Select',
-            PageIndex: PageIndex,
-            PageSize: PageSize,
-            BA_Type_ID: BA_Type_ID,
-            BR_ID: BR_ID,
+            Command: 'BudgetProjectByID',
+            Function: 'Load',
+            KeyID: KeyID,
             lang: lang
         });
 
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
-            if (isLoad)
-                setTimeout(fnGetBudgetProjectType, 100);
-            else
+            if (data.records.length > 0) {
+                document.getElementById('BJ_ID').value = data.records[0].BJ_ID.trim();
+                $('#BJ_Issue').val(data.records[0].BJ_Issue.trim());
+                $('#BJ_Goal').val(data.records[0].BJ_Goal.trim());
+                $('#BJ_Strategy').val(data.records[0].BJ_Strategy.trim());
+                $('#BJ_ProjectName').val(data.records[0].BJ_ProjectName.trim());
+                $('#BJ_Reason').html(data.records[0].BJ_Reason.trim());
+                $('#BJ_Objective').html(data.records[0].BJ_Objective.trim());
+                $('#BJ_Place').html(data.records[0].BJ_Place.trim());
+                $('#BJ_Duration').val(data.records[0].BJ_Duration.trim());
+                $('#BJ_Amount').val(data.records[0].BJ_Amount.trim());
+                $('#BJ_Detail').html(data.records[0].BJ_Detail.trim());
+                $('#BJ_Measure').html(data.records[0].BJ_Measure.trim());
+                $('#BJ_Benefit').html(data.records[0].BJ_Benefit.trim());
+                $('#BJ_Responsible').html(data.records[0].BJ_Responsible.trim());
                 $('body').pleaseWait('stop');
+            } else {
+                $('body').pleaseWait('stop');
+            }
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
         });
+      
     }
-    function fnGetBudgetProjectType() {
-
-        $scope = $tmp_scope;
-        $http = $tmp_http;
+    
+    function fnGetData($scope, $http) {
+        var BJ_ID = '<%=Session["BJ_ID"]%>';
+        var lang = '<%=Session["language_budget_project"]%>';
 
         var data = $.param({
-            Command: 'GetMasterData',
-            Function: 'BudgetProjectType',
-            PageName: 'Budget_Project'
+            Command: 'BudgetProjectByID',
+            Function: 'Select',
+            BJ_ID: BJ_ID,
+            lang: lang
         });
 
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
-            $scope.BudgetProjectType = data.records;
-            setTimeout(fnLoad, 100);
+           $scope.Data = data.records;
+           if (data.records.length > 0) {
+               tmpKeyID = data.records[0].KeyID;
+               setTimeout(fnRefresh(), 100);
+           } else {
+               $('body').pleaseWait('stop');
+           }
         })
         .error(function (data, status, header, config) {
-            $('body').pleaseWait('stop');
+           $('body').pleaseWait('stop');
         });
-    }
-    function fnLoad() {
-        $('body').pleaseWait('stop');
-        fnLoadCtrl();
-        isLoad = false;
-    }
 
+    } 
 
 </script>
 </asp:Content>

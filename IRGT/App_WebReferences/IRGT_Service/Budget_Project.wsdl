@@ -28,10 +28,7 @@
       <s:element name="getBudget_ProjectByID">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="PageSize" type="s:int" />
-            <s:element minOccurs="1" maxOccurs="1" name="PageIndex" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_ID" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="BA_Type_ID" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
           </s:sequence>
         </s:complexType>
