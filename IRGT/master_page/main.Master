@@ -435,7 +435,7 @@
         <a id="btnEdit" href="#modal-profile-edit" class="btn btn-primary" data-toggle="modal" style="display:none">แก้ไขข้อมูล(ถ้ามี)</a>
         <div class="modal fade" id="modal-profile-edit" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg">
-				<div class="modal-content" id="pop-content">
+				<div class="modal-content" id="pop-content" style="overflow-x: scroll;">
 					<div class="modal-header">
 						<table style="width:100%">
                             <tr>

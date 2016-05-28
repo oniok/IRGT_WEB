@@ -248,7 +248,7 @@
         $scope.fnSum = function () {
             $('#btnPopSave').toggle(false);
             var BA_ID = '<%=Session["BA_ID"]%>';
-            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummaryByID.aspx?BA_ID=" + BA_ID, null, "450");
+            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummaryByID.aspx?BA_ID=" + BA_ID, "1300", "450");
         }
         $scope.fnConfirm = function () {
             fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_confirms_budget_asset"]%>', fnConfirmYes);

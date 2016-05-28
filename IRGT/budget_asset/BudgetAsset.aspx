@@ -240,7 +240,8 @@
             fnOpenPopup('<%=Session["pop_edit_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx?KeyID=" + KeyID, null, "450");
         }
         $scope.fnSum = function () {
-            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummary.aspx?", null, "450");
+            fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummary.aspx?", "1300", "450");
+            
         }
         $scope.fnSend = function () {
             fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_send_budget_asset"]%>', fnSendYes);

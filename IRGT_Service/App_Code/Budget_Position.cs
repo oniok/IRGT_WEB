@@ -397,7 +397,7 @@ public class Budget_Position : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public DataTable getBudget_PositionDetail(string BO_ID, string Lang)
+    public DataTable getBudget_PositionDetail(string BP_ID, string Lang)
     {
         string StoreProcedureName = "sp_getBudget_PositionDetail";
         SetLog("========================START==============================");
@@ -409,7 +409,7 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.CommandType = CommandType.StoredProcedure;
         DBCommand.CommandText = StoreProcedureName;
         
-        DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;
@@ -610,6 +610,70 @@ public class Budget_Position : System.Web.Services.WebService
         DBCommand.Parameters.Add(newParam("@BP_Qty", BP_Qty));
         DBCommand.Parameters.Add(newParam("@BP_Price", BP_Price));
         DBCommand.Parameters.Add(newParam("@BP_Reason", BP_Reason));
+        DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
+
+        //================================= RETURN OUTPUT ===========================
+        DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));
+        DBCommand.Parameters["@ReturnCode"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_TH", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_TH"].Direction = ParameterDirection.Output;
+        DBCommand.Parameters.Add(newParam("@ReturnMSG_EN", SqlDbType.VarChar, 200));
+        DBCommand.Parameters["@ReturnMSG_EN"].Direction = ParameterDirection.Output;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBCommand.ExecuteNonQuery();
+            string ReturnCode = DBCommand.Parameters["@ReturnCode"].Value.ToString();
+            if (ReturnCode == "100") ReturnOutput = false;
+            else ReturnOutput = true;
+
+            ReturnMSG_TH = DBCommand.Parameters["@ReturnMSG_TH"].Value.ToString();
+            ReturnMSG_EN = DBCommand.Parameters["@ReturnMSG_EN"].Value.ToString();
+            DBConnect.Close();
+
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+
+            ReturnOutput = false;
+            ReturnMSG_TH = "เกิดข้อผิดพลาดจากระบบ:" + ex.Message;
+            ReturnMSG_EN = "System Error:" + ex.Message;
+        }
+        return ReturnOutput;
+    }
+
+    [WebMethod]
+    public bool setBudget_PositionRemark(int KeyID, string BP_ID, string Position_Type_ID, string Educate_Type_ID, string BP_Type_ID, string BP_Remark, string User_Code
+        , out string ReturnMSG_TH, out string ReturnMSG_EN)
+    {
+        bool ReturnOutput = false;
+        ReturnMSG_TH = "";
+        ReturnMSG_EN = "";
+
+        string StoreProcedureName = "sp_setBudget_PositionRemark";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@KeyID", KeyID));
+        DBCommand.Parameters.Add(newParam("@BP_ID", BP_ID));
+        DBCommand.Parameters.Add(newParam("@Position_Type_ID", Position_Type_ID));
+        DBCommand.Parameters.Add(newParam("@Educate_Type_ID", Educate_Type_ID));
+        DBCommand.Parameters.Add(newParam("@BP_Type_ID", BP_Type_ID));
+        DBCommand.Parameters.Add(newParam("@BP_Remark", BP_Remark));
         DBCommand.Parameters.Add(newParam("@USER_CODE", User_Code));
 
         //================================= RETURN OUTPUT ===========================

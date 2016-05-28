@@ -9,21 +9,41 @@
 		<thead>
 			<tr>
 				<th class="center" style="width:50px"><%=Session["budget_asset_summary_ColumnSEQ"]%></th>
-				<th class="center"><%=Session["budget_asset_summary_Column01"]%></th>
-				<th class="center" style="width:80px"><%=Session["budget_asset_summary_Column02"]%></th>
-                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column03"]%></th>          
-                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column04"]%></th>    
-                <th class="center"><%=Session["budget_asset_summary_Column05"]%></th>
+				<th class="center" style="width:300px"><%=Session["budget_asset_summary_Column01"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column02"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column03"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column04"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column05"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column06"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column07"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column08"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column09"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column10"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column11"]%></th>
+				<th class="center" style="width:80px"><%=Session["budget_asset_summary_Column12"]%></th>
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column13"]%></th>          
+                <th class="center" style="width:120px"><%=Session["budget_asset_summary_Column14"]%></th>    
+                <th class="center" style="width:500px"><%=Session["budget_asset_summary_Column15"]%></th>
 			</tr>
 		</thead>
         <tbody>
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
                 <td>{{ x.BA_Type_Name }}</td>
+                <td style="text-align:right">{{ x.Quota_Qty }}</td> 
+                <td style="text-align:right">{{ x.Unit_Name }}</td> 
+                <td style="text-align:right">{{ x.Stock_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
+                <td style="text-align:right">{{ x.BA_Qty }}</td> 
                 <td style="text-align:right">{{ x.BA_Qty }}</td>          
                 <td style="text-align:right">{{ x.BA_Price }}</td>	
-                <td style="text-align:right">{{ x.Total_Amount }}</td>	
-                <td>{{ x.BA_Remark }}</td>													             
+                <td style="text-align:right">{{ x.Total_Amount }}</td>			
+                <td style="text-align:right">{{ x.BA_Remark }}</td>													      										             
 			</tr>										
 		</tbody>  
         <tfoot >

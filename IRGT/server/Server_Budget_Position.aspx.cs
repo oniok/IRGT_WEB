@@ -344,18 +344,46 @@ public partial class server_Budget_Position : System.Web.UI.Page
 
     private void fnBudgetPositionSummary()
     {
+        string FN = Request.Params["Function"];
         DataTable DT;
         string DT_JSON;
         string User_Code = Request.Params["User_Code"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_PositionSummary(User_Code, lang);
-        Session["Data_Budget_Position_summary"] = DT.Copy();
-        DT_JSON = DataTableToJSON(DT);
-        DT_JSON = "{\"records\": " + DT_JSON + "}";
-        Response.Write(DT_JSON);
-        return;
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+        string BP_ID = Request.Params["BP_ID"];
+        string Position_Type_ID = Request.Params["Position_Type_ID"];
+        string Educate_Type_ID = Request.Params["Educate_Type_ID"];
+        string BP_Type_ID = Request.Params["BP_Type_ID"];
+        string BP_Qty = Request.Params["BP_Qty"];
+        string BP_Price = Request.Params["BP_Price"];
+        string BP_Remark = Request.Params["BP_Remark"];
+        int KeyID = 0;
 
+        switch (FN)
+        {
+            case "Select":
+                DT = IRGTService.getBudget_PositionSummary(User_Code, lang);
+                Session["Data_Budget_Position_summary"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Save":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (IRGTService.setBudget_PositionRemark(KeyID, BP_ID, Position_Type_ID, Educate_Type_ID, BP_Type_ID, BP_Remark, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
+        }
     }
+    
 
     private void fnBudgetPositionSummaryByID()
     {
@@ -421,7 +449,7 @@ public partial class server_Budget_Position : System.Web.UI.Page
                 DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
                 string OP = "[{";
                 OP += "BP_ID:\"" + dr_list[0]["BP_ID"] + "\"";
-                OP += ",BO_Name:\"" + dr_list[0]["BO_Name"] + "\"";
+                OP += ",BP_Name:\"" + dr_list[0]["BP_Name"] + "\"";
                 OP += ",BP_Type_ID:\"" + dr_list[0]["BP_Type_ID"] + "\"";
                 OP += ",BP_Qty:\"" + dr_list[0]["BP_Qty"] + "\"";
                 OP += ",BP_Price:\"" + dr_list[0]["BP_Price"] + "\"";
