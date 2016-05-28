@@ -20,9 +20,8 @@
 				<td class="center">{{ x.RowID }}</td>
                 <td>{{ x.BO_Type_Name }}</td>
                 <td style="text-align:right">{{ x.BO_PRICE_MNT }}</td>          
-                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>														                                                            
-                <td><input type="text" id="BO_Reason" style="width:100%" value="{{ x.BO_Remark }}"/>   </td>
-														
+                <td style="text-align:right">{{ x.BO_PRICE_YEAR }}</td>											
+				<td><input type="text" id="BO_Remark{{x.RowID}}" style="width:100%" value="{{ x.BO_Remark }}"/>   </td>										
 			</tr>										
 		</tbody>  
         <tfoot >
@@ -32,56 +31,40 @@
     </center>
     <script>
         function fnSave() {
-            var KeyID = getParamValue("KeyID");
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
-            var BO_Qty = document.getElementById('BO_Qty').value.trim();
-            var BO_Price = document.getElementById('BO_Price').value.trim();
-            var BO_Remark = document.getElementById('BO_Remark').value.trim();
-            
-            if (BO_Type_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_03"]%>");
-                return;
-            }
-            if (BO_Qty == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_04"]%>");
-                return;
-            }
-            if (BO_Price == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
-                return;
-            }
-            if (BO_Remark == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
-                return;
-            }
-
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value;
             var User_Code = '<%=Session["user_code"]%>';
+            var Lang = '<%=Session["language_budget_operation"]%>';
 
-            $.post("../server/Server_Budget_Operation.aspx",
-			    {
-			        Command: 'BudgetOperationSummary',
-			        Function: 'Check',
-			        User_Code: User_Code
-			    },
-			    function (data, status) {
-			        var data = eval(data);
-			        if (data[0].BO_ID != '') {
-			            fnSubmit(data[0].BO_ID);
-			        } else {
-			            fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
-			        }
-			    }
-            );
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+
+            var data = $.param({
+                Command: 'BudgetOperationSummary',
+                Function: 'Select',
+                User_Code: User_Code,
+                Lang: Lang
+            });
+
+            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            .success(function (data, status, headers, config) {
+                if (data!="") {
+                    for (var i = 0; i < data.records.length; i++) {
+                        fnSubmit(data.records[i].KeyID, data.records[i].BO_ID, data.records[i].BO_Type_ID, data.records[i].RowID);
+                    }
+                    setTimeout(window.parent.fnRefresh(), 1000);
+                }
+                window.parent.fnRefresh();
+            })
+            .error(function (data, status, header, config) {
+                fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+            });
+
         }
 
-        function fnSubmit(BO_ID) {
-            var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
-            var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
-            var BO_Qty = document.getElementById('BO_Qty').value.trim();
-            var BO_Price = document.getElementById('BO_Price').value;
-            var BO_Remark = document.getElementById('BO_Remark').value;
+        function fnSubmit(KeyID, BO_ID, BO_Type_ID, RowID) {
+            var BO_Remark = '';
+            if ($('#BO_Remark' + RowID).val() != null) {
+                BO_Remark = $('#BO_Remark' + RowID).val();
+            }
 
             $.post("../server/Server_Budget_Operation.aspx",
                {
@@ -89,23 +72,21 @@
                    Function: 'Save',
                    KeyID: KeyID,
                    BO_ID: BO_ID,
-                   BO_Name: BO_Name,
                    BO_Type_ID: BO_Type_ID,
-                   BO_Qty: BO_Qty,
-                   BO_Price: BO_Price,
                    BO_Remark: BO_Remark
                },
                function (data, status) {
                    var data = eval(data);
                    if (data[0].output == "OK") {
-                       window.parent.fnRefresh();
+                       //window.parent.fnRefresh();
                    } else {
-                       fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+                       //fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                    }
                }
            );
         }
 
+        
         var $tmp_scope;
         var $tmp_http;
         var app = angular.module('myApp', []);
@@ -119,9 +100,7 @@
             $tmp_http = $http;
 
             $scope.fnEdit = function (KeyID) {           //,BO_ID,BO_Type_ID
-               // fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationRemark.aspx?KeyID=" + KeyID+"&BO_ID="+BO_ID+"&BO_Type_ID="+BO_Type_ID, null, "450");
                fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../pop_BudgetOperationRemark.aspx?KeyID=" + KeyID, null, "450");
-            
             }
 
             fnGetBudgetOperationSummary($scope, $http);
@@ -134,7 +113,7 @@
 
             var data = $.param({
                 Command: 'BudgetOperationSummary',
-                Function: Function,
+                Function: 'Select',
                 User_Code: User_Code,
                 Lang: Lang
             });

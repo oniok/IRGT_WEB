@@ -70,6 +70,8 @@
 
         }
         function fnSave() {
+
+
             var KeyID = getParamValue("KeyID");
             var BA_Type_ID = document.getElementById('BA_Type_ID').value.trim();
             var BA_Qty = document.getElementById('BA_Qty').value.trim();

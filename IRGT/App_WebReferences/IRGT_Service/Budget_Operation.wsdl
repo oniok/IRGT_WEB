@@ -245,6 +245,26 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="setBudget_OperationRemark">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="KeyID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Type_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BO_Remark" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="User_Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="setBudget_OperationRemarkResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="setBudget_OperationRemarkResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_TH" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnMSG_EN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="deleteBudget_Operation">
         <s:complexType>
           <s:sequence>
@@ -408,6 +428,12 @@
   <wsdl:message name="setBudget_OperationSoapOut">
     <wsdl:part name="parameters" element="tns:setBudget_OperationResponse" />
   </wsdl:message>
+  <wsdl:message name="setBudget_OperationRemarkSoapIn">
+    <wsdl:part name="parameters" element="tns:setBudget_OperationRemark" />
+  </wsdl:message>
+  <wsdl:message name="setBudget_OperationRemarkSoapOut">
+    <wsdl:part name="parameters" element="tns:setBudget_OperationRemarkResponse" />
+  </wsdl:message>
   <wsdl:message name="deleteBudget_OperationSoapIn">
     <wsdl:part name="parameters" element="tns:deleteBudget_Operation" />
   </wsdl:message>
@@ -486,6 +512,10 @@
     <wsdl:operation name="setBudget_Operation">
       <wsdl:input message="tns:setBudget_OperationSoapIn" />
       <wsdl:output message="tns:setBudget_OperationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_OperationRemark">
+      <wsdl:input message="tns:setBudget_OperationRemarkSoapIn" />
+      <wsdl:output message="tns:setBudget_OperationRemarkSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="deleteBudget_Operation">
       <wsdl:input message="tns:deleteBudget_OperationSoapIn" />
@@ -611,6 +641,15 @@
     </wsdl:operation>
     <wsdl:operation name="setBudget_Operation">
       <soap:operation soapAction="http://tempuri.org/setBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_OperationRemark">
+      <soap:operation soapAction="http://tempuri.org/setBudget_OperationRemark" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -767,6 +806,15 @@
     </wsdl:operation>
     <wsdl:operation name="setBudget_Operation">
       <soap12:operation soapAction="http://tempuri.org/setBudget_Operation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setBudget_OperationRemark">
+      <soap12:operation soapAction="http://tempuri.org/setBudget_OperationRemark" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

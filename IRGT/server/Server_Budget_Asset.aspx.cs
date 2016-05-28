@@ -112,7 +112,6 @@ public partial class server_Budget_Asset : System.Web.UI.Page
         string ReturnMSG_EN = "";
         string BA_ID = "";
         int KeyID = 0;
-        string BO_Name = "";
         string BA_Qty = "";
         string BA_Price = "";
         string BA_Reason = "";
@@ -337,17 +336,42 @@ public partial class server_Budget_Asset : System.Web.UI.Page
 
     private void fnBudgetAssetSummary()
     {
+        string FN = Request.Params["Function"];
         DataTable DT;
         string DT_JSON;
         string User_Code = Request.Params["User_Code"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_AssetSummary(User_Code, lang);
-        Session["Data_Budget_Asset_summary"] = DT.Copy();
-        DT_JSON = DataTableToJSON(DT);
-        DT_JSON = "{\"records\": " + DT_JSON + "}";
-        Response.Write(DT_JSON);
-        return;
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+        string BA_ID = Request.Params["BA_ID"];
+        string BA_Type_ID = Request.Params["BA_Type_ID"];
+        string BA_Qty = Request.Params["BA_Qty"];
+        string BA_Price = Request.Params["BA_Price"];
+        string BA_Remark = Request.Params["BA_Remark"];
+        int KeyID = 0;
 
+        switch (FN)
+        {
+            case "Select":
+                DT = IRGTService.getBudget_AssetSummary(User_Code, lang);
+                Session["Data_Budget_Asset_summary"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Save":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (IRGTService.setBudget_AssetRemark(KeyID,BA_ID, BA_Type_ID, BA_Remark, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
+        }
     }
 
     private void fnBudgetAssetSummaryByID()

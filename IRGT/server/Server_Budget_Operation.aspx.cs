@@ -338,17 +338,42 @@ public partial class server_Budget_Operation : System.Web.UI.Page
 
     private void fnBudgetOperationSummary()
     {
+        string FN = Request.Params["Function"];
         DataTable DT;
         string DT_JSON;
         string User_Code = Request.Params["User_Code"];
         string lang = Request.Params["lang"];
-        DT = IRGTService.getBudget_OperationSummary(User_Code, lang);
-        Session["Data_budget_operation_summary"] = DT.Copy();
-        DT_JSON = DataTableToJSON(DT);
-        DT_JSON = "{\"records\": " + DT_JSON + "}";
-        Response.Write(DT_JSON);
-        return;
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+        string BO_ID = Request.Params["BO_ID"];
+        string BO_Type_ID = Request.Params["BO_Type_ID"];
+        string BO_Qty = Request.Params["BO_Qty"];
+        string BO_Price = Request.Params["BO_Price"];
+        string BO_Remark = Request.Params["BO_Remark"];
+        int KeyID = 0;
 
+        switch (FN)
+        {
+            case "Select":
+                DT = IRGTService.getBudget_OperationSummary(User_Code, lang);
+                Session["Data_Budget_Operation_summary"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Save":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (IRGTService.setBudget_OperationRemark(KeyID, BO_ID, BO_Type_ID, BO_Remark, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
+        }
     }
 
     private void fnBudgetOperationSummaryByID()
