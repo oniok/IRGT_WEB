@@ -83,13 +83,13 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BR_ID" value="{{ x.BR_ID }}"/>{{ x.Loc_Name }}</td>
-                                                                <td class="center">{{ x.BO_Year }}</td>
+                                                                <td><input type="hidden" id="BJ_ID" value="{{ x.BJ_ID }}"/>{{ x.Loc_Name }}</td>
+                                                                <td class="center">{{ x.BJ_Year }}</td>
                                                                 <td class="center">{{ x.Create_Date }}</td>          
                                                                 <td class="center">{{ x.Update_Date }}</td>														                                                            
-                                                                <td class="center">{{ x.BO_Status }}</td>
+                                                                <td class="center">{{ x.BJ_Status }}</td>
 														        <td style="text-align:center">  
-                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BR_ID)">
+                                                                    <button type="button" class="btn btn-success btn-xs" ng-click="fnDetail(x.BJ_ID)">
 												                        <i class="ace-icon fa fa-folder-open-o bigger-110 icon-only"></i>
 											                        </button>
 														        </td>											
@@ -180,10 +180,10 @@
             document.getElementById('paging-select').value = 1;
             GetPaging($scope, $http);
         }
-        $scope.fnDetail = function (BR_ID) {           
+        $scope.fnDetail = function (BJ_ID) {           
             var lang = '<%=Session["language_budget_project_list"]%>';
             window.open(
-              "../Budget_Project/BudgetOperationByIDAction.aspx?BR_ID=" + BR_ID+"&lang="+lang,
+              "../Budget_Project/BudgetProjectByIDAction.aspx?BJ_ID=" + BJ_ID+"&lang="+lang,
               "_blank"
             );
         }
@@ -216,7 +216,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var Loc_ID = document.getElementById('Loc_ID').value;
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetProjectList',
             Function: 'Paging',
             PageSize: PageSize,
             Loc_ID: Loc_ID,
@@ -240,7 +240,7 @@
         var User_Code = '<%=Session["user_code"]%>';
         var lang = getParamValue("lang");
         var data = $.param({
-            Command: 'BudgetOperationList',
+            Command: 'BudgetProjectList',
             Function: 'Select',
             PageIndex: PageIndex,
             PageSize: PageSize,

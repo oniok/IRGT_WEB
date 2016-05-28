@@ -356,9 +356,16 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
 
                 int PageIndex = int.Parse(Request.Params["PageIndex"]);
-                
+
                 DT = IRGTService.getBudget_Project_List(PageSize, PageIndex, User_Code, Loc_ID, lang);
                 Session["Data_Budget_Project"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Load":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                DT = (DataTable)Session["Data_budget_project"];
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
@@ -369,20 +376,6 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 DT_JSON = DataTableToJSON(DT);
                 DT_JSON = "{\"records\": " + DT_JSON + "}";
                 Response.Write(DT_JSON);
-                return;
-            case "Load":
-                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
-                DT = (DataTable)Session["Data_budget_project"];
-                DataRow[] dr_list = DT.Select("KeyID = " + KeyID);
-                string OP = "[{";
-                OP += "BJ_ID:\"" + dr_list[0]["BJ_ID"] + "\"";
-                OP += ",BJ_Name:\"" + dr_list[0]["BJ_Name"] + "\"";
-                OP += ",BJ_Type_ID:\"" + dr_list[0]["BJ_Type_ID"] + "\"";
-                OP += ",BJ_Qty:\"" + dr_list[0]["BJ_Qty"] + "\"";
-                OP += ",BJ_Price:\"" + dr_list[0]["BJ_Price"] + "\"";
-                OP += ",BJ_Reason:\"" + dr_list[0]["BJ_Reason"] + "\"";
-                OP += "}]";
-                Response.Write(OP);
                 return;
             case "Send":
                 lang = Request.Params["lang"];

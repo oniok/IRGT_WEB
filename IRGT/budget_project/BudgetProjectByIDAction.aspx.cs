@@ -9,37 +9,47 @@ public partial class budget_BudgetProjectByIDAction : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string PageFunction = "Budget_Project";
+        string PageFunction = "budget_project";
         string LANG = cCommon.getLanguage(Request);
         string USER = cCommon.getUserName(Session);
 
         Session["user_code"] = USER;
         Session["language_" + PageFunction] = LANG;
 
-        string BR_ID = Request.QueryString["BR_ID"];
-        Session["BR_ID"] = BR_ID;
+        string BJ_ID = Request.QueryString["BJ_ID"];
+        Session["BJ_ID"] = BJ_ID;
 
         if (LANG == cCommon.Language_Thai)
         {
             //================ POPUP ==================================================
-            string PageName = "รายละเอียดงบดำเนินการ";
+            string PageName = "รายละเอียดงบโครงการ";
 
             Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
             Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
             Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
-            Session["pop_confirms_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะยืนยันการตรวจสอบข้อมูล " + PageName + " : " + BR_ID + " นี้ ?";
-            Session["pop_approve_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะอนุมัติข้อมูล " + PageName + " : " + BR_ID + " นี้ ?";
+            Session["pop_confirms_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะยืนยันการตรวจสอบข้อมูล " + PageName + " : " + BJ_ID + " นี้ ?";
+            Session["pop_approve_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะอนุมัติข้อมูล " + PageName + " : " + BJ_ID + " นี้ ?";
+
             Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
 
             Session["save_button_text"] = "บันทึก";
             Session["close_button_text"] = "ปิดหน้านี้";
             //================ POPUP ERROR ===========================================
-            Session[PageFunction + "_ERROR_01"] = "โปรดระบุ รายการ";
-            Session[PageFunction + "_ERROR_02"] = "โปรดเลือก ประเภทค่าใช้จ่าย";
-            Session[PageFunction + "_ERROR_03"] = "โปรดระบุ จำนวน";
-            Session[PageFunction + "_ERROR_04"] = "โปรดระบุ จำนวนเงิน";
+            Session[PageFunction + "_ERROR_01"] = "โปรดระบุ ประเด็นยุทธศาสตร์";
+            Session[PageFunction + "_ERROR_02"] = "โปรดเลือก เป้าประสงค์";
+            Session[PageFunction + "_ERROR_03"] = "โปรดระบุ กลยุทธ์";
+            Session[PageFunction + "_ERROR_04"] = "โปรดระบุ ชื่อโครงการ";
+            Session[PageFunction + "_ERROR_05"] = "โปรดระบุ เหตุผลความจำเป็น";
+            Session[PageFunction + "_ERROR_06"] = "โปรดระบุ วัตถุประสงค์";
+            Session[PageFunction + "_ERROR_07"] = "โปรดระบุ สถานที่ดำเนินงาน";
+            Session[PageFunction + "_ERROR_08"] = "โปรดระบุ ระยะเวลาการดำเนินงาน";
+            Session[PageFunction + "_ERROR_09"] = "โปรดระบุ วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_ERROR_10"] = "โปรดระบุ ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
+            Session[PageFunction + "_ERROR_11"] = "โปรดระบุ ตัวชี้วัดความสำเร็จของโครงการ";
+            Session[PageFunction + "_ERROR_12"] = "โปรดระบุ ผลประโยชน์ที่คาดว่าจะได้รับ";
+            Session[PageFunction + "_ERROR_13"] = "โปรดระบุ ผู้รับผิดชอบ";
             //================ TABLE ==================================================
-            Session["HeaderText"] = PageName + " : " + BR_ID;
+            Session["HeaderText"] = PageName;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
             Session["add_button"] = "เพิ่มข้อมูล";
             Session["save_button"] = "บันทึกข้อมูล";
@@ -52,59 +62,86 @@ public partial class budget_BudgetProjectByIDAction : System.Web.UI.Page
             Session["PageRecord"] = "รายการ";
             //================ Navigate ================================================
             Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
-            Session["HeaderSubGroup"] = "ประวัติคำขอประมาณการ";
+            Session["HeaderSubGroup"] = "พิจารณาคำขอประมาณการ";
             Session["HeaderCurrent"] = PageName;
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
-            Session[PageFunction + "_Column01"] = "รายการ";
-            Session[PageFunction + "_Column02"] = "ประเภทค่าใช้จ่าย";
-            Session[PageFunction + "_Column03"] = "จำนวน";
-            Session[PageFunction + "_Column031"] = "จำนวนปรับแก้";
-            Session[PageFunction + "_Column04"] = "จำนวนเงิน";
-            Session[PageFunction + "_Column041"] = "จำนวนเงินปรับแก้";
-            Session[PageFunction + "_Column05"] = "เหตุผล";
-
+            Session[PageFunction + "_Column01"] = "ประเด็นยุทธศาสตร์";
+            Session[PageFunction + "_Column02"] = "เป้าประสงค์";
+            Session[PageFunction + "_Column03"] = "กลยุทธ์";
+            Session[PageFunction + "_Column04"] = "ชื่อโครงการ";
+            Session[PageFunction + "_Column05"] = "เหตุผลความจำเป็น";
+            Session[PageFunction + "_Column06"] = "วัตถุประสงค์";
+            Session[PageFunction + "_Column07"] = "สถานที่ดำเนินงาน";
+            Session[PageFunction + "_Column08"] = "ระยะเวลาการดำเนินงาน";
+            Session[PageFunction + "_Column09"] = "วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_Column10"] = "ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
+            Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
+            Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
+            Session[PageFunction + "_Column13"] = "ผู้รับผิดชอบ";
         }
         else
         {
             //================ POPUP ==================================================
-            string PageName = "Asset Depreciate";
-            Session["pop_add_asset_type"] = "window management - New " + PageName;
-            Session["pop_edit_asset_type"] = "window management - Edit " + PageName;
-            Session["pop_delete_asset_type"] = "Are you sure you want to delete this " + PageName + "?";
-            Session["pop_confirm_asset_type"] = "Confirm Delete Data";
+            string PageName = "รายละเอียดงบโครงการ";
 
-            Session["save_button_text"] = "Save";
-            Session["close_button_text"] = "Close";
+            Session["pop_add_" + PageFunction] = "หน้าต่างจัดการ - เพิ่มข้อมูล" + PageName;
+            Session["pop_edit_" + PageFunction] = "หน้าต่างจัดการ - แก้ไขข้อมูล" + PageName;
+            Session["pop_sum_" + PageFunction] = "หน้าต่างจัดการ - สรุปข้อมูล" + PageName;
+            Session["pop_delete_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะลบข้อมูล" + PageName + "นี้ ?";
+            Session["pop_send_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะส่งข้อมูล" + PageName + "นี้ ?";
+            Session["pop_save_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะบันทึกข้อมูล" + PageName + "นี้ ?";
+
+            Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
+
+            Session["save_button_text"] = "บันทึก";
+            Session["close_button_text"] = "ปิดหน้านี้";
             //================ POPUP ERROR ===========================================
-            Session[PageFunction + "_ERROR_01"] = "Please select Asset";
-            Session[PageFunction + "_ERROR_04"] = "Please specify Start Date";
-            Session[PageFunction + "_ERROR_05"] = "Please specify End Date";
-            Session[PageFunction + "_ERROR_06"] = "End Date must be greater than or equal to the start date.";
+            Session[PageFunction + "_ERROR_01"] = "โปรดระบุ ประเด็นยุทธศาสตร์";
+            Session[PageFunction + "_ERROR_02"] = "โปรดเลือก เป้าประสงค์";
+            Session[PageFunction + "_ERROR_03"] = "โปรดระบุ กลยุทธ์";
+            Session[PageFunction + "_ERROR_04"] = "โปรดระบุ ชื่อโครงการ";
+            Session[PageFunction + "_ERROR_05"] = "โปรดระบุ เหตุผลความจำเป็น";
+            Session[PageFunction + "_ERROR_06"] = "โปรดระบุ วัตถุประสงค์";
+            Session[PageFunction + "_ERROR_07"] = "โปรดระบุ สถานที่ดำเนินงาน";
+            Session[PageFunction + "_ERROR_08"] = "โปรดระบุ ระยะเวลาการดำเนินงาน";
+            Session[PageFunction + "_ERROR_09"] = "โปรดระบุ วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_ERROR_10"] = "โปรดระบุ ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
+            Session[PageFunction + "_ERROR_11"] = "โปรดระบุ ตัวชี้วัดความสำเร็จของโครงการ";
+            Session[PageFunction + "_ERROR_12"] = "โปรดระบุ ผลประโยชน์ที่คาดว่าจะได้รับ";
+            Session[PageFunction + "_ERROR_13"] = "โปรดระบุ ผู้รับผิดชอบ";
             //================ TABLE ==================================================
             Session["HeaderText"] = PageName;
-            Session["HeaderTable"] = PageName + " Data";
-            Session["add_button"] = "New Data";
-            Session["PageText"] = "Page";
-            Session["PageLast"] = "Page";
-            Session["PageStart"] = "Total";
-            Session["PageRecord"] = "record";
+            Session["HeaderTable"] = "ข้อมูล - " + PageName;
+            Session["add_button"] = "เพิ่มข้อมูล";
+            Session["save_button"] = "บันทึกข้อมูล";
+            Session["sum_button"] = "สรุปคำขอ";
+            Session["confirm_button"] = "ส่งคำขอ";
+            Session["PageText"] = "หน้าที่";
+            Session["PageLast"] = "หน้า";
+            Session["PageStart"] = "จำนวนทั้งหมด";
+            Session["PageRecord"] = "รายการ";
             //================ Navigate ================================================
-            Session["HeaderGroup"] = "Administrator";
-            Session["HeaderSubGroup"] = "Asset Master";
+            Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
+            Session["HeaderSubGroup"] = "พิจารณาคำขอประมาณการ";
             Session["HeaderCurrent"] = PageName;
-            //================ Column ==================================================     
-            Session[PageFunction + "_ColumnSEQ"] = "No";
+            //================ Column ==================================================   
+            Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
-            Session[PageFunction + "_Column01"] = "Asset ID";
-            Session[PageFunction + "_Column02"] = "Asset Name";
-            Session[PageFunction + "_Column03"] = "Depreciate Rate";
-            Session[PageFunction + "_Column06"] = "Standard Price";
-            Session[PageFunction + "_Column07"] = "Term Use";
-
-            Session[PageFunction + "_Column04"] = "Start Date";
-            Session[PageFunction + "_Column05"] = "End Date";
+            Session[PageFunction + "_Column01"] = "ประเด็นยุทธศาสตร์";
+            Session[PageFunction + "_Column02"] = "เป้าประสงค์";
+            Session[PageFunction + "_Column03"] = "กลยุทธ์";
+            Session[PageFunction + "_Column04"] = "ชื่อโครงการ";
+            Session[PageFunction + "_Column05"] = "เหตุผลความจำเป็น";
+            Session[PageFunction + "_Column06"] = "วัตถุประสงค์";
+            Session[PageFunction + "_Column07"] = "สถานที่ดำเนินงาน";
+            Session[PageFunction + "_Column08"] = "ระยะเวลาการดำเนินงาน";
+            Session[PageFunction + "_Column09"] = "วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_Column10"] = "ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
+            Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
+            Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
+            Session[PageFunction + "_Column13"] = "ผู้รับผิดชอบ";
         }
     }
 }
