@@ -54,71 +54,70 @@
 							</div>
 						</div>
 
-                        <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
-                            <input type="text" id="BJ_Issue" style="width:100%"/>
+                        <div class="widget-body" style="margin-bottom:10px;margin-top:10px;">
+                            <div class="clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
+                            <input  disabled type="text" id="BJ_Issue" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
-                            <input type="text" id="BJ_Goal" style="width:100%"/>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
+                            <input  disabled type="text" id="BJ_Goal" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
-                            <input type="text" id="BJ_Strategy" style="width:100%"/>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
+                            <input  disabled type="text" id="BJ_Strategy" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
-                            <input type="text" id="BJ_ProjectName" style="width:100%"/>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
+                            <input  disabled type="text" id="BJ_ProjectName" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column05"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column05"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Reason"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column06"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column06"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Objective"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column07"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column07"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Place"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
-                            <input type="text" id="BJ_Duration" style="width:100%"/>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
+                            <input  disabled type="text" id="BJ_Duration" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
-                            <input type="text" id="BJ_Amount" style="width:100%"/>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
+                            <input  disabled type="text" id="BJ_Amount" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column10"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column10"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Detail"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column11"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column11"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Measure"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column12"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column12"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Benefit"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column13"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column13"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Responsible"></div>
                         </div>
-
 
                         <a id="btnEdit2" href="#modal-profile-edit" class="btn btn-primary" data-toggle="modal" style="display:none">แก้ไขข้อมูล(ถ้ามี)</a>
                         <div class="modal fade" id="modal-profile-edit2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

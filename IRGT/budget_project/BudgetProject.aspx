@@ -53,77 +53,68 @@
 							</div>
 						</div>
 
-                        <%--<div class="btn-group pull-left" style="margin-left:10px;"></div>
-                        <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column01"]%></span>
-							</div>
-							<div class="widget-main no-padding">
-                                <input type="hidden" id="BJ_ID"/>
-								<textarea id="BJ_Issue" name="BJ_Issue" data-provide="markdown" data-iconlibrary="fa" rows="2"></textarea>
-							</div>
-						</div>--%>
-                        <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
+                        <div class="widget-body" style="margin-bottom:10px;margin-top:10px;">
+                            <div class="clearfix"><input type="hidden" id="BJ_ID"/><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column01"]%></span></div>
                             <input type="text" id="BJ_Issue" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column02"]%></span></div>
                             <input type="text" id="BJ_Goal" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column03"]%></span></div>
                             <input type="text" id="BJ_Strategy" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column04"]%></span></div>
                             <input type="text" id="BJ_ProjectName" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column05"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column05"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Reason"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column06"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column06"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Objective"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column07"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column07"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Place"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
                             <input type="text" id="BJ_Duration" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
                             <input type="text" id="BJ_Amount" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column10"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column10"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Detail"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column11"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column11"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Measure"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column12"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column12"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Benefit"></div>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
-                            <div class="widget-toolbox padding-4 clearfix"><span class="label label-xlg label-primary arrowed arrowed-right"><%=Session["budget_project_Column13"]%></span></div>
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column13"]%></span></div>
                             <div class="wysiwyg-editor" id="BJ_Responsible"></div>
                         </div>
 
@@ -200,30 +191,7 @@
         }
         fnGetData($scope, $http);
     }
-    function fnSendYes() {
-        $http = $tmp_http;
-        $scope = $tmp_scope;
-        var User_Code = '<%=Session["user_code"]%>';
-        var BJ_ID = document.getElementById('BJ_ID').value;
-        $('body').pleaseWait();
-        var data = $.param({
-            Command: 'BudgetProject',
-            Function: 'Send',
-            BJ_ID: BJ_ID,
-            User_Code: User_Code
-        });
-
-        $http.post("../server/Server_Budget_Project.aspx", data, config)
-        .success(function (data, status, headers, config) {
-            document.getElementById('btnConfirm').click();
-            //fnGetData($scope, $http);
-            location.reload();
-        })
-        .error(function (data, status, header, config) {
-            $('body').pleaseWait('stop');
-        });
-    }
-
+    
     function fnLoad(KeyID) {
         var User_Code = '<%=Session["user_code"]%>';
         var lang = '<%=Session["language_budget_project"]%>';
@@ -265,6 +233,30 @@
             $('body').pleaseWait('stop');
         });
       
+    }
+
+    function fnSendYes() {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BJ_ID = document.getElementById('BJ_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetProject',
+            Function: 'Send',
+            BJ_ID: BJ_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget_Project.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnConfirm').click();
+            //fnGetData($scope, $http);
+            location.reload();
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
     }
 
     function fnSave() {
@@ -356,21 +348,12 @@
             );
     }
 
-    function fnClearState() {
-        $('#div_footerYN').show();
-        $('#div_footerOK').hide();
-        document.getElementById('btnConfirm').click();
-    }
-    
-    function fnErrorMessage(title, message) {
-        document.getElementById('popError').innerHTML = "<font color='navy'>" + title + "</font>";
-        document.getElementById('popMessage').innerHTML = message;
-        $('#div_footerYN').hide();
-        $('#div_footerOK').show();
-    }
-    
     function fnSubmit(BJ_ID) {
         var KeyID = tmpKeyID;
+        var $http = $tmp_http;
+        var $scope = $tmp_scope;
+
+
         var BJ_Issue = $('#BJ_Issue').val();
         var BJ_Goal = $('#BJ_Goal').val();
         var BJ_Strategy = $('#BJ_Strategy').val();
@@ -406,57 +389,56 @@
             BJ_Responsible: BJ_Responsible
         });
         /*
-        $.ajax({
-            type: "POST",
-            contentType: "application/json; charset=utf-8",
-            url: "../server/Server_Budget_Project.aspx",
-            data: data,
-            dataType: "json",
-            success: function(data) {
-                var data = eval(data);
+        $http.post("../server/Server_Budget_Project.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.Data = data.records;
+            if (data.records.length > 0) {
                 if (data[0].output == "OK") {
-                    document.getElementById('btnConfirm').click();
-                    fnGetData($tmp_scope, $tmp_http);
+                    fnGetData($scope, $http);
+
+                    //document.getElementById('btnConfirm').click();
+                    //fnRefresh();
                 } else {
                     fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                 }
-            },
-                error: function(result) {
-                alert("Error");
+            } else {
+                $('body').pleaseWait('stop');
+                fnRefresh();
             }
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+            fnRefresh();
         });
         */
+        
+        
         $.post("../server/Server_Budget_Project.aspx",
-           {
-               Command: 'BudgetProject',
-               Function: 'Save',
-               KeyID: KeyID,
-               BJ_ID: BJ_ID,
-               BJ_Issue: BJ_Issue,
-               BJ_Goal: BJ_Goal,
-               BJ_Strategy: BJ_Strategy,
-               BJ_ProjectName: BJ_ProjectName,
-               BJ_Reason: BJ_Reason,
-               BJ_Objective: BJ_Objective,
-               BJ_Place: BJ_Place,
-               BJ_Duration: BJ_Duration,
-               BJ_Amount: BJ_Amount,
-               BJ_Detail: BJ_Detail,
-               BJ_Measure: BJ_Measure,
-               BJ_Benefit: BJ_Benefit,
-               BJ_Responsible: BJ_Responsible
-           },
+           data,
            function (data, status) {
                var data = eval(data);
                if (data[0].output == "OK") {
                    document.getElementById('btnConfirm').click();
-                   fnGetData($tmp_scope,$tmp_http);
+                   fnGetData($tmp_scope, $tmp_http);
                } else {
                    fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                }
            }
        );
        
+    }
+
+    function fnClearState() {
+        $('#div_footerYN').show();
+        $('#div_footerOK').hide();
+        document.getElementById('btnConfirm').click();
+    }
+    
+    function fnErrorMessage(title, message) {
+        document.getElementById('popError').innerHTML = "<font color='navy'>" + title + "</font>";
+        document.getElementById('popMessage').innerHTML = message;
+        $('#div_footerYN').hide();
+        $('#div_footerOK').show();
     }
     
     function fnGetData($scope, $http) {
