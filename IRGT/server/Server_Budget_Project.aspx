@@ -1,1 +1,1 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Server_Budget_Project.aspx.cs" Inherits="Server_Budget_Project" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Server_Budget_Project.aspx.cs" Inherits="Server_Budget_Project" validateRequest="false" %>

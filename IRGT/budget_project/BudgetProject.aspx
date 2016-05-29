@@ -411,8 +411,24 @@
             fnRefresh();
         });
         */
-        
-        
+        $.ajax({
+            type: 'POST',
+            url: "../server/Server_Budget_Project.aspx",
+            data:data,
+            success: function (data) {
+                var data = eval(data);
+                if (data[0].output == "OK") {
+                       document.getElementById('btnConfirm').click();
+                       fnGetData($tmp_scope, $tmp_http);
+                } else {
+                       fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+                }
+            },
+            error: function (req, status, error) {
+                fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+            }
+        });
+        /*
         $.post("../server/Server_Budget_Project.aspx",
            data,
            function (data, status) {
@@ -425,7 +441,7 @@
                }
            }
        );
-       
+       */
     }
 
     function fnClearState() {

@@ -11,6 +11,7 @@
 			        </textarea>
 		        </div>--%>
                 <div class="renderbox widget-main no-padding"></div>
+                <%--<div class="renderbox wysiwyg-editor widget-main no-padding"></div>--%>
 	        </div>
         </div>
     <script>
@@ -55,15 +56,15 @@
                        BJ_Goal: data.records[0].BJ_Goal.trim(),
                        BJ_Strategy: data.records[0].BJ_Strategy.trim(),
                        BJ_ProjectName: data.records[0].BJ_ProjectName.trim(),
-                       BJ_Reason: data.records[0].BJ_Reason.trim(),
-                       BJ_Objective: data.records[0].BJ_Objective.trim(),
-                       BJ_Place: data.records[0].BJ_Place.trim(),
+                       BJ_Reason: toMarkdown(data.records[0].BJ_Reason.trim()),
+                       BJ_Objective: toMarkdown(data.records[0].BJ_Objective.trim()),
+                       BJ_Place: toMarkdown(data.records[0].BJ_Place.trim()),
                        BJ_Duration: data.records[0].BJ_Duration.trim(),
                        BJ_Amount: data.records[0].BJ_Amount.trim(),
-                       BJ_Detail: data.records[0].BJ_Detail.trim(),
-                       BJ_Measure: data.records[0].BJ_Measure.trim(),
-                       BJ_Benefit: data.records[0].BJ_Benefit.trim(),
-                       BJ_Responsible: data.records[0].BJ_Responsible.trim(),
+                       BJ_Detail: toMarkdown(data.records[0].BJ_Detail.trim()),
+                       BJ_Measure: toMarkdown(data.records[0].BJ_Measure.trim()),
+                       BJ_Benefit: toMarkdown(data.records[0].BJ_Benefit.trim()),
+                       BJ_Responsible: toMarkdown(data.records[0].BJ_Responsible.trim()),
                        BJ_Year: data.records[0].BJ_Year.trim()
                    }
                    var html = Mustache.render($tmp_data, map);

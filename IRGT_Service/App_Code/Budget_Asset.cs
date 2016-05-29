@@ -51,7 +51,7 @@ public class Budget_Asset : System.Web.Services.WebService
     public SqlConnection GetDBConnection()
     {
         SqlConnection DbConnect = new SqlConnection();
-        DbConnect.ConnectionString = ConfigurationManager.AppSettings["DBConnection"];
+        DbConnect.ConnectionString = ConfigurationManager.AppSettings["DBConnectionBudget"];
         return DbConnect;
     }
 
