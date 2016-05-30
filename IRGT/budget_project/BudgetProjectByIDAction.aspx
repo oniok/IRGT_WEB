@@ -284,7 +284,22 @@
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
         });
+
+        setEditorReadonly('BJ_Reason');
+        setEditorReadonly('BJ_Objective');
+        setEditorReadonly('BJ_Place');
+        setEditorReadonly('BJ_Detail');
+        setEditorReadonly('BJ_Measure');
+        setEditorReadonly('BJ_Benefit');
+        setEditorReadonly('BJ_Responsible');
+
+        $(".wysiwyg-editor").css("background-color", "#DDD");
+        $(".wysiwyg-toolbar").css("display", "none");
       
+    }
+
+    function setEditorReadonly(editor_name) {
+        $('#' + editor_name).prop("contenteditable", false);
     }
     
     function fnGetData($scope, $http) {

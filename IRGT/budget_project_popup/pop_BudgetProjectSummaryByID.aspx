@@ -46,47 +46,29 @@
                 lang: lang
             });
 
+            var html = "";
+
             $http.post("../server/Server_Budget_Project.aspx", data, config)
             .success(function (data, status, headers, config) {
                $scope.Data = data.records;
                if (data.records.length > 0) {
-                   var map = {
-                       BJ_Issue: data.records[0].BJ_Issue.trim(),
-                       BJ_Goal: data.records[0].BJ_Goal.trim(),
-                       BJ_Strategy: data.records[0].BJ_Strategy.trim(),
-                       BJ_ProjectName: data.records[0].BJ_ProjectName.trim(),
-                       BJ_Reason: data.records[0].BJ_Reason.trim(),
-                       BJ_Objective: data.records[0].BJ_Objective.trim(),
-                       BJ_Place: data.records[0].BJ_Place.trim(),
-                       BJ_Duration: data.records[0].BJ_Duration.trim(),
-                       BJ_Amount: data.records[0].BJ_Amount.trim(),
-                       BJ_Detail: data.records[0].BJ_Detail.trim(),
-                       BJ_Measure: data.records[0].BJ_Measure.trim(),
-                       BJ_Benefit: data.records[0].BJ_Benefit.trim(),
-                       BJ_Responsible: data.records[0].BJ_Responsible.trim(),
-                       BJ_Year: data.records[0].BJ_Year.trim()
-                   }
-                   var html = Mustache.render($tmp_data, map);
+                   html = $tmp_data.replace("{{ BJ_Issue }}", data.records[0].BJ_Issue.trim());
+                   html = html.replace("{{ BJ_Goal }}", data.records[0].BJ_Goal.trim());
+                   html = html.replace("{{ BJ_Strategy }}", data.records[0].BJ_Strategy.trim());
+                   html = html.replace("{{ BJ_ProjectName }}", data.records[0].BJ_ProjectName.trim());
+                   html = html.replace("{{ BJ_Reason }}", data.records[0].BJ_Reason.trim());
+                   html = html.replace("{{ BJ_Objective }}", data.records[0].BJ_Objective.trim());
+                   html = html.replace("{{ BJ_Place }}", data.records[0].BJ_Place.trim());
+                   html = html.replace("{{ BJ_Duration }}", data.records[0].BJ_Duration.trim());
+                   html = html.replace("{{ BJ_Amount }}", data.records[0].BJ_Amount.trim());
+                   html = html.replace("{{ BJ_Detail }}", data.records[0].BJ_Detail.trim());
+                   html = html.replace("{{ BJ_Measure }}", data.records[0].BJ_Measure.trim());
+                   html = html.replace("{{ BJ_Benefit }}", data.records[0].BJ_Benefit.trim());
+                   html = html.replace("{{ BJ_Responsible }}", data.records[0].BJ_Responsible.trim());
+                   html = html.replace("{{ BJ_Year }}", data.records[0].BJ_Year.trim());
 
-                   //$("textarea#BJ_Summary").val(toMarkdown(html));
-                   //$("textarea#BJ_Summary").val(html);
                    $('.renderbox').html(html);
-                   /*
-                   $('textarea[data-provide="markdown"]').each(function () {
-                       var $this = $(this);
 
-                       if ($this.data('markdown')) {
-                          // $this.data('markdown').showEditor();
-                       }
-                       else $this.markdown();
-
-                       //$this.data('markdown').$isPreview = true;
-                       $this.data('markdown').showPreview();
-                       $this.parent().find('.btn').addClass('btn-white');
-                       $this.parent().find('.btn-toolbar').remove();
-                   });
-                   */
-                   
                    $('body').pleaseWait('stop');
                } else {
                    $('body').pleaseWait('stop');

@@ -251,8 +251,8 @@
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
-            //fnGetData($scope, $http);
-            location.reload();
+            fnGetData($scope, $http);
+            //location.reload();
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
@@ -418,8 +418,11 @@
             success: function (data) {
                 var data = eval(data);
                 if (data[0].output == "OK") {
-                       document.getElementById('btnConfirm').click();
-                       fnGetData($tmp_scope, $tmp_http);
+                    //document.getElementById('btnConfirm').click();
+                    document.getElementById('popMessage').innerHTML = "<%=Session["info_success_budget_project"]%>";
+                        $('#div_footerYN').hide();
+                        $('#div_footerOK').show();
+                       //fnGetData($tmp_scope, $tmp_http);
                 } else {
                        fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                 }
@@ -428,20 +431,6 @@
                 fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
             }
         });
-        /*
-        $.post("../server/Server_Budget_Project.aspx",
-           data,
-           function (data, status) {
-               var data = eval(data);
-               if (data[0].output == "OK") {
-                   document.getElementById('btnConfirm').click();
-                   fnGetData($tmp_scope, $tmp_http);
-               } else {
-                   fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
-               }
-           }
-       );
-       */
     }
 
     function fnClearState() {
@@ -473,10 +462,10 @@
            $scope.Data = data.records;
            if (data.records.length > 0) {
                tmpKeyID = data.records[0].KeyID;
-               setTimeout(fnRefresh(), 100);
            } else {
-               $('body').pleaseWait('stop');
+               tmpKeyID = 0;
            }
+           setTimeout(fnRefresh(), 100);
         })
         .error(function (data, status, header, config) {
            $('body').pleaseWait('stop');

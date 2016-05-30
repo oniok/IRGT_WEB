@@ -28,7 +28,10 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session["pop_send_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะส่งข้อมูล" + PageName + "นี้ ?";
             Session["pop_save_" + PageFunction] = "คุณแน่ใจหรือไม่ที่จะบันทึกข้อมูล" + PageName + "นี้ ?";
 
+            Session["info_success_" + PageFunction] = "บันทึกรายการเรียบร้อยแล้ว";
+
             Session["pop_confirm_" + PageFunction] = "ยืนยันการทำรายการ";
+
 
             Session["save_button_text"] = "บันทึก";
             Session["close_button_text"] = "ปิดหน้านี้";
