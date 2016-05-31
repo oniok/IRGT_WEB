@@ -1,5 +1,5 @@
 ﻿<Menus>
-  <Menu ID="1" Name="Admin" TextTH="ผู้ดูแลระบบ" TextEN="Administrator">
+  <!--<Menu ID="1" Name="Admin" TextTH="ผู้ดูแลระบบ" TextEN="Administrator">
     <Menu ID="1" Name="UserMaser" TextTH="User Master" TextEN="User Master">
       <Menu ID="1" Name="Users" TextTH="ผู้ใช้ระบบ" TextEN="Users" Url="../admin/User.aspx"/>
       <Menu ID="2" Name="User Type" TextTH="ประเภทผู้ใช้งาน" TextEN="User Type" Url=""/>
@@ -20,7 +20,7 @@
       <Menu ID="4" Name="ReportGroup" TextTH="กลุ่มรายงาน" TextEN="Report Group" Url="../admin/ReportGroup.aspx"/>
       <Menu ID="5" Name="ReportGroupType" TextTH="ประเภทกลุ่มรายงาน" TextEN="Report Group Type" Url="../admin/ReportGroupType.aspx"/>
     </Menu>
-  </Menu>
+  </Menu>-->
   <Menu ID="2" Name="Budget" TextTH="งบประมาณเงินทุนหมุนเวียน" TextEN="งบประมาณเงินทุนหมุนเวียน">
     <Menu ID="1" Name="menu_b010" TextTH="จัดทำคำขอประมาณการ" TextEN="จัดทำคำขอประมาณการ">
       <Menu ID="1" Name="menu_b011" TextTH="งบดำเนินการ" TextEN="งบดำเนินการ" Url="../budget_operation/BudgetOperation.aspx"/>
