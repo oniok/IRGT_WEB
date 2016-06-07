@@ -188,5 +188,27 @@ public partial class master_page_main : System.Web.UI.MasterPage
 					</a>						
 				</li>
 				" + SMenu + "</ul>";
+
+        XmlNodeList listMenuMain = xmlMenu.SelectNodes("//Menus/Menu");
+        for (int i = 0; i < listMenuMain.Count; i++)
+        {
+            string RoleShow = (listMenuMain[i].FirstChild).Attributes["RoleShow"].Value;
+            //if RoleShow <> All find Loc_ID
+            if (RoleShow != "All")
+            {
+                if (RoleShow.Contains("-"))
+                {
+                    //if RoleShow match with Loc_ID
+                    //hide li
+                }
+                else
+                {
+                    //if RoleShow not match with Loc_ID
+                    //hide li
+                }
+            }
+                        
+        }
+
     }
 }
