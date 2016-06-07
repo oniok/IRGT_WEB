@@ -53,6 +53,10 @@ public partial class master_page_main : System.Web.UI.MasterPage
             string Name = listMenu[i].Attributes["Name"].Value;
             string TextTH = listMenu[i].Attributes["TextTH"].Value;
             string TextEN = listMenu[i].Attributes["TextEN"].Value;
+
+            //string RoleShow = listMenu[i].Attributes["RoleShow"].Value;
+            //string RoleHide = listMenu[i].Attributes["RoleHide"].Value;
+
             string Text = "";
             if (LANG.Trim().ToUpper() == cCommon.Language_Thai)
             {
