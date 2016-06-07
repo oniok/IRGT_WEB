@@ -39,7 +39,7 @@
                 <td style="text-align:right">{{ x.Asset_Year }}</td> 
                 <td style="text-align:right">{{ x.Good_Qty }}</td> 
                 <td style="text-align:right">{{ x.Repair_Qty }}</td> 
-                <td style="text-align:right">{{ x.Dealer_Qty }}</td> 
+                <td style="text-align:right">{{ x.Dispose_Qty }}</td> 
                 <td style="text-align:right">{{ x.BA_Qty }}</td>          
                 <td style="text-align:right">{{ x.BA_Price }}</td>	
                 <td style="text-align:right">{{ x.Total_Amount }}</td>		
