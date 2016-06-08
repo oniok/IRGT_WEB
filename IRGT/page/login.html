@@ -189,11 +189,53 @@
                    function (data, status) {
                        var data = eval(data);
                        if (data[0].output == "OK") {
-                           //window.location.href = "../admin/AssetType.aspx?PageID=1-2-3&lang=TH";
-                           window.location.href = "../budget_operation/BudgetOperation.aspx?PageID=2-1-1&lang=TH";
-                           //window.location.href = "../budget_project/BudgetProject.aspx?PageID=1-2&lang=TH";
-                           //window.location.href = "../budget_asset/BudgetAsset.aspx?PageID=1-2&lang=TH";
-                           
+                           //get user profile
+                           var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } };
+
+                           var data = $.param({
+                               Command: 'User',
+                               Function: 'Select',
+                               PageSize: '1',
+                               PageIndex: '1',
+                               User_Code: User_Code,
+                               lang: 'TH'
+                           });
+
+                           $.post("../server/Server.aspx", data, config)
+                           .success(function (data, status, headers, config) {
+                               //window.location.href = "../admin/AssetType.aspx?PageID=1-2-3&lang=TH";
+                               window.location.href = "../budget_operation/BudgetOperation.aspx?PageID=2-1-1&lang=TH";
+                               //window.location.href = "../budget_project/BudgetProject.aspx?PageID=1-2&lang=TH";
+                               //window.location.href = "../budget_asset/BudgetAsset.aspx?PageID=1-2&lang=TH";
+                           })
+                           .error(function (data, status, header, config) {
+                               fnErrorMessage("¢ÈÕº‘¥æ≈“¥ / Error", data[0].message);
+                           });
+
+                           /*
+                           $.post("../server/Server.aspx",
+                               {
+                                   Command: 'User',
+                                   Function: 'Select',
+                                   PageSize: '1',
+                                   PageIndex: '1',
+                                   User_Code: User_Code,
+                                   lang: 'TH'
+                               },
+                               function (data, status) {
+                                   var data = eval(data);
+                                   if (data.records.length > 0) {
+                                       //
+                                       //window.location.href = "../admin/AssetType.aspx?PageID=1-2-3&lang=TH";
+                                       window.location.href = "../budget_operation/BudgetOperation.aspx?PageID=2-1-1&lang=TH";
+                                       //window.location.href = "../budget_project/BudgetProject.aspx?PageID=1-2&lang=TH";
+                                       //window.location.href = "../budget_asset/BudgetAsset.aspx?PageID=1-2&lang=TH";
+                                   } else {
+                                       fnErrorMessage("¢ÈÕº‘¥æ≈“¥ / Error", data[0].message);
+                                   }
+                               }
+                           );
+                           */
                        } else {
                            ERROR_MSG.innerHTML = data[0].message;
                        }

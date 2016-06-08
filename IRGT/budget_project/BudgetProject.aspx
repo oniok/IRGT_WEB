@@ -251,8 +251,8 @@
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
             document.getElementById('btnConfirm').click();
-            fnGetData($scope, $http);
-            //location.reload();
+            //fnGetData($scope, $http);
+            location.reload();
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');

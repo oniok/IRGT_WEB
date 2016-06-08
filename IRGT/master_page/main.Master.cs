@@ -54,10 +54,7 @@ public partial class master_page_main : System.Web.UI.MasterPage
             string TextTH = listMenu[i].Attributes["TextTH"].Value;
             string TextEN = listMenu[i].Attributes["TextEN"].Value;
 
-            //string RoleShow = listMenu[i].Attributes["RoleShow"].Value;
-            //string RoleHide = listMenu[i].Attributes["RoleHide"].Value;
-
-            string Text = "";
+                string Text = "";
             if (LANG.Trim().ToUpper() == cCommon.Language_Thai)
             {
                 MenuText = "เมนูระบบ";
@@ -108,8 +105,34 @@ public partial class master_page_main : System.Web.UI.MasterPage
                      else
                          subText = subTextEN;
 
+                    //string RoleShow = listMenu[i].Attributes["RoleShow"].Value;
+                    //string RoleHide = listMenu[i].Attributes["RoleHide"].Value;
 
-                     li_class = "";
+                    string RoleShow = (listMenu[i].ChildNodes[j]).Attributes["RoleShow"].Value;
+                    //if RoleShow <> All find Loc_ID
+                    if (RoleShow != "All")
+                    {
+                        if (RoleShow.Contains("-"))
+                        {
+                            //if RoleShow match with Loc_ID
+                            if (RoleShow.Contains(((System.Data.DataTable)(Session["Data_User"])).Rows[0][8].ToString()))
+                            {
+                                //hide li
+                                continue;
+                            }
+
+                        }
+                        else
+                        {
+                            if (!RoleShow.Contains(((System.Data.DataTable)(Session["Data_User"])).Rows[0][8].ToString()))
+                            {
+                                //hide li
+                                continue;
+                            }
+                        }
+                    }
+
+                    li_class = "";
                      if (PageID == ID + "-" + subID)
                          li_class = "active";
                      if(PageID.Substring(0, (ID + "-" + subID).Length) == ID + "-" + subID)
@@ -188,27 +211,6 @@ public partial class master_page_main : System.Web.UI.MasterPage
 					</a>						
 				</li>
 				" + SMenu + "</ul>";
-
-        XmlNodeList listMenuMain = xmlMenu.SelectNodes("//Menus/Menu");
-        for (int i = 0; i < listMenuMain.Count; i++)
-        {
-            string RoleShow = (listMenuMain[i].FirstChild).Attributes["RoleShow"].Value;
-            //if RoleShow <> All find Loc_ID
-            if (RoleShow != "All")
-            {
-                if (RoleShow.Contains("-"))
-                {
-                    //if RoleShow match with Loc_ID
-                    //hide li
-                }
-                else
-                {
-                    //if RoleShow not match with Loc_ID
-                    //hide li
-                }
-            }
-                        
-        }
 
     }
 }

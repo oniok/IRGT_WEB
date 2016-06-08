@@ -101,9 +101,9 @@
                function (data, status) {
                    var data = eval(data);
                    if (data[0].output == "OK") {
-                       //window.parent.fnRefresh();
+                       window.parent.fnRefresh();
                    } else {
-                       //fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+                       fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
                    }
                }
            );
