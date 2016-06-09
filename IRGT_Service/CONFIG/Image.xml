@@ -1,0 +1,41 @@
+﻿<Images>
+	<Image ID="0" Text="NULL" Path="" />
+	<Image ID="1" Text="" Path="Images/add.png" />
+	<Image ID="2" Text="" Path="Images/applications.gif" />
+	<Image ID="3" Text="" Path="Images/arrow_down.png" />
+	<Image ID="4" Text="" Path="Images/close.png" />
+	<Image ID="5" Text="" Path="Images/confirm.png" />
+	<Image ID="6" Text="" Path="Images/delete.png" />
+	<Image ID="7" Text="" Path="Images/edit.png" />
+	<Image ID="8" Text="" Path="Images/export.png" />
+	<Image ID="9" Text="" Path="Images/help.gif" />
+	<Image ID="10" Text="" Path="Images/home.gif" />
+	<Image ID="11" Text="" Path="Images/igic.png" />
+	<Image ID="12" Text="" Path="Images/lock.PNG" />
+	<Image ID="13" Text="" Path="Images/move_firsts.png" />
+	<Image ID="14" Text="" Path="Images/move_last.png" />
+	<Image ID="15" Text="" Path="Images/move_next.png" />
+	<Image ID="16" Text="" Path="Images/move_preview.png" />
+	<Image ID="17" Text="" Path="Images/print.gif" />
+	<Image ID="18" Text="" Path="Images/print_preview.gif" />
+	<Image ID="19" Text="" Path="Images/save.png" />
+	<Image ID="20" Text="" Path="Images/save_all.gif" />
+	<Image ID="21" Text="" Path="Images/search.png" />
+	<Image ID="22" Text="" Path="Images/web.png" />
+	<Image ID="23" Text="" Path="Images/web_downloads.gif" />
+	<Image ID="24" Text="" Path="Images/note.png" />
+	<Image ID="25" Text="" Path="Images/note_add.png" />
+	<Image ID="26" Text="" Path="Images/note_delete.png" />
+	<Image ID="27" Text="" Path="Images/note_edit.png" />
+	<Image ID="28" Text="" Path="Images/note_find.png" />
+	<Image ID="29" Text="" Path="Images/note_new.png" />
+	<Image ID="30" Text="" Path="Images/note_pinned.png" />
+	<Image ID="31" Text="" Path="Images/note_view.png" />
+	<Image ID="32" Text="" Path="Images/data_new.png" />
+	<Image ID="33" Text="" Path="Images/data_down.png"/>
+	<Image ID="34" Text="" Path="Images/presentation_chart.png"/>
+	<Image ID="35" Text="" Path="Images/pie-chart.png"/>
+	<Image ID="36" Text="" Path="Images/key1_preferences.png"/>
+	<Image ID="37" Text="" Path="Images/shield_preferences.png"/>
+	<Image ID="38" Text="" Path="Images/id_card_delete.png"/>
+</Images>

@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configs>
+	<Config ID="0" Name="Code">
+		<Item ID="1" Name="Login" Value="T"/>
+		<Item ID="2" Name="StoreProceder" Value="Create">
+      set ANSI_NULLS ON
+      set QUOTED_IDENTIFIER ON
+      go
+
+      -- =============================================
+      -- Author:		LOGIN
+      -- Create date: 10 สิงหาคม 2007
+      -- Description:	เช็ค User Password จาก DB
+      -- =============================================
+      /*
+      declare @oStr char(1)
+      declare @Message varchar(50)
+      exec spl_Login 'vaccine4','virus1',@oStr output,@Message output
+      select @oStr,@Message
+      */
+      CREATE PROCEDURE [dbo].[spl_Login]
+      @UserName varchar(50),
+      @Password varchar(50),
+      @oStr char(1) output,
+      @Message varchar(50) output,
+      @Position varchar(50) output
+      AS
+      BEGIN
+      -- SET NOCOUNT ON added to prevent extra result sets from
+      -- interfering with SELECT statements.
+      SET NOCOUNT ON;
+      declare @User varchar(50)
+      declare @Pass varchar(50)
+      declare @Enable char(1)
+      SELECT @Position = b.[User_Type_Name_T]
+      ,@User = c.[User_Code]
+      ,@Pass = c.[User_Password]
+      ,@Enable = 'T'
+      FROM [MS_Activate_User] a
+      left outer join [MS_User_Type] b on b.[User_Type_ID] = a.[User_Type_ID]
+      left outer join [MS_User] c on c.[User_ID] = a.[User_ID]
+      left outer join [MS_Work_Center] d on d.[Loc_ID] = a.[Loc_ID]
+      where c.[User_Code] = @UserName
+
+      IF @Enable = 'T'
+      begin
+      IF @User is null
+      begin
+      set @oStr = '0'
+      set @Message = 'UserName ที่ระบุไม่ถูกต้อง'
+      end
+      ELSE
+      begin
+      IF @Pass = @Password
+      begin
+      set @oStr = '1'
+      set @Message = 'UserName และ Password ถูกต้อง'
+      end
+      ELSE
+      begin
+      set @oStr = '2'
+      set @Message = 'Password ไม่ถูกต้อง'
+      end
+      end
+      end
+      ELSE
+      begin
+      IF @Enable = 'F'
+      begin
+      set @oStr = '2'
+      set @Message = 'คุณไม่มีสิทธิ์ใช้โปรแกรมนี้แล้วกรุณาติดต่อ Admin'
+      end
+      end
+      END
+    </Item>
+		<Item ID="3" Name="UserTable" Value="Create">
+			GO
+			/****** Object:  Table [dbo].[User]    Script Date: 02/08/2008 15:25:13 ******/
+			SET ANSI_NULLS ON
+			GO
+			SET QUOTED_IDENTIFIER ON
+			GO
+			SET ANSI_PADDING ON
+			GO
+			CREATE TABLE [dbo].[User](
+			[UserID] [varchar](50) COLLATE Thai_CI_AS NOT NULL,
+			[UserPassword] [varchar](50) COLLATE Thai_CI_AS NOT NULL,
+			[UserType] [char](1) COLLATE Thai_CI_AS NULL,
+			[Enable] [char](1) COLLATE Thai_CI_AS NULL,
+			CONSTRAINT [PK_User_1] PRIMARY KEY CLUSTERED
+			(
+			[UserID] ASC
+			)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+			) ON [PRIMARY]
+			GO
+			SET ANSI_PADDING OFF
+		</Item>
+	</Config>
+	<Config ID="1" Name="FormatString">
+		<Item ID="1" Name="Default" Value="xxx"/>
+		<Item ID="2" Name="DateTime" Value="d"/>
+		<Item ID="3" Name="Number" Value="n"/>
+		<Item ID="4" Name="Double" Value="#,##0.00"/>
+		<Item ID="5" Name="Double" Value="#,##0.0000"/>
+	</Config>
+	<Config ID="2" Name="Align">
+		<Item ID="1" Name="Default" Value="D"/>
+		<Item ID="2" Name="Left" Value="L"/>
+		<Item ID="3" Name="Rigth" Value="R"/>
+		<Item ID="4" Name="Center" Value="C"/>
+	</Config>
+	<Config ID="3" Name="TypeData">
+		<Item ID="1" Name="String" Value="STR"/>
+		<Item ID="2" Name="Intiger" Value="INT"/>
+		<Item ID="3" Name="Double" Value="DBL"/>
+		<Item ID="4" Name="DateTime" Value="DATE"/>
+	</Config>
+	<Config ID="4" Name="TypeData">
+		<Item ID="1" Name="" Value="Theme1"/>
+		<Item ID="2" Name="" Value="Theme2"/>
+		<Item ID="3" Name="" Value="Theme3"/>
+		<Item ID="4" Name="" Value="Theme4"/>
+		<Item ID="4" Name="" Value="Theme5"/>
+		<Item ID="4" Name="" Value="Theme6"/>
+		<Item ID="4" Name="" Value="Theme7"/>
+	</Config>
+	<Config ID="5" Name="DispalyStyle">
+		<Item ID="1" Name="None" Value="NON"/>
+		<Item ID="2" Name="Text" Value="TEX"/>
+		<Item ID="3" Name="Image" Value="IMG"/>
+		<Item ID="4" Name="ImageAndText" Value="IAT"/>
+	</Config>
+	<Config ID="6" Name="TypeToolScript">
+		<Item ID="1" Name="ToolStripButton" Value="SB"/>
+		<Item ID="2" Name="ToolStripDropDownButton" Value="SD"/>
+		<Item ID="3" Name="ToolStripSeparator" Value="SS"/>
+		<Item ID="4" Name="ToolStripLabel" Value="SL"/>
+	</Config>
+	<Config ID="7" Name="UserRow">
+		<Item ID="1" Name="Admin" Value="A"/>
+		<Item ID="2" Name="Editor" Value="E"/>
+	</Config>
+	<Config ID="8" Name="Group">
+		<Item ID="1" Name="User Master Information" Value="Group1"/>
+    <Item ID="2" Name="Asset Master Information" Value="Group2"/>
+    <Item ID="3" Name="Other Information" Value="Group3"/>
+	</Config>
+</Configs>

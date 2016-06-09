@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DETAIL>
+	<CONFIGS>
+		<CONFIG ID="1" NAME="Customer" FILENAME="ConfigCustomer.xml" />
+		<CONFIG ID="2" NAME="Messenger" FILENAME="ConfigMessenger.xml" />
+		<CONFIG ID="3" NAME="PDA" FILENAME="ConfigPDA.xml" />
+		<CONFIG ID="4" NAME="Product" FILENAME="ConfigProduct.xml" />
+		<CONFIG ID="5" NAME="Sale" FILENAME="ConfigSale.xml" />
+		<CONFIG ID="6" NAME="Task" FILENAME="ConfigTask.xml" />
+	</CONFIGS>
+	<IMAGES>
+		<IMAGE ID="0" PATH="null" />
+		<IMAGE ID="1" PATH="IMAGES/add.png" />
+		<IMAGE ID="2" PATH="IMAGES/applications.gif" />
+		<IMAGE ID="3" PATH="IMAGES/arrow_down.png" />
+		<IMAGE ID="4" PATH="IMAGES/close.png" />
+		<IMAGE ID="5" PATH="IMAGES/confirm.png" />
+		<IMAGE ID="6" PATH="IMAGES/delete.png" />
+		<IMAGE ID="7" PATH="IMAGES/edit.png" />
+		<IMAGE ID="8" PATH="IMAGES/export.png" />
+		<IMAGE ID="9" PATH="IMAGES/help.gif" />
+		<IMAGE ID="10" PATH="IMAGES/home.gif" />
+		<IMAGE ID="11" PATH="IMAGES/igic.png" />
+		<IMAGE ID="12" PATH="IMAGES/lock.PNG" />
+		<IMAGE ID="13" PATH="IMAGES/move_firsts.png" />
+		<IMAGE ID="14" PATH="IMAGES/move_last.png" />
+		<IMAGE ID="15" PATH="IMAGES/move_next.png" />
+		<IMAGE ID="16" PATH="IMAGES/move_preview.png" />
+		<IMAGE ID="17" PATH="IMAGES/print.gif" />
+		<IMAGE ID="18" PATH="IMAGES/print_preview.gif" />
+		<IMAGE ID="19" PATH="IMAGES/save.png" />
+		<IMAGE ID="20" PATH="IMAGES/save_all.gif" />
+		<IMAGE ID="21" PATH="IMAGES/search.png" />
+		<IMAGE ID="22" PATH="IMAGES/web.png" />
+		<IMAGE ID="23" PATH="IMAGES/web_downloads.gif" />
+		<IMAGE ID="24" PATH="IMAGES/note.png" />
+		<IMAGE ID="25" PATH="IMAGES/note_add.png" />
+		<IMAGE ID="26" PATH="IMAGES/note_delete.png" />
+		<IMAGE ID="27" PATH="IMAGES/note_edit.png" />
+		<IMAGE ID="28" PATH="IMAGES/note_find.png" />
+		<IMAGE ID="29" PATH="IMAGES/note_new.png" />
+		<IMAGE ID="30" PATH="IMAGES/note_pinned.png" />
+		<IMAGE ID="31" PATH="IMAGES/note_view.png" />
+		<IMAGE ID="32" PATH="IMAGES/data_new.png" />
+	</IMAGES>
+	<CLICKS>
+		<CLICK ID="0" NAME="No function" />
+		<CLICK ID="1" NAME="function firstB" />
+		<CLICK ID="2" NAME="function previousB" />
+		<CLICK ID="3" NAME="function nextB" />
+		<CLICK ID="4" NAME="function lastB" />
+		<CLICK ID="5" NAME="function funHideSearch" />
+		<CLICK ID="6" NAME="function funHideDetailRow" />
+		<CLICK ID="7" NAME="function funHideView" />
+	</CLICKS>
+	<GRIDS>
+		<GRID ID="0" NAME="DATAALIGN" VALUE="C" MEAN="CENTER" />
+		<GRID ID="1" NAME="DATAALIGN" VALUE="L" MEAN="LEFT" />
+		<GRID ID="2" NAME="DATAALIGN" VALUE="R" MEAN="RIGTH" />
+		<GRID ID="3" NAME="READONLY" VALUE="T" MEAN="TRUE" />
+		<GRID ID="4" NAME="READONLY" VALUE="F" MEAN="FALSE" />
+		<GRID ID="5" NAME="VISIBLE" VALUE="T" MEAN="TRUE" />
+		<GRID ID="6" NAME="VISIBLE" VALUE="F" MEAN="FALSE" />
+		<GRID ID="7" NAME="FORMAT" VALUE="xxx" MEAN="DEFAULT" />
+		<GRID ID="8" NAME="FORMAT" VALUE="d" MEAN="DATETIME" />
+		<GRID ID="9" NAME="FORMAT" VALUE="n" MEAN="NUMBER" />
+		<GRID ID="10" NAME="FORMAT" VALUE="#,##0.00" MEAN="DOUBLE" />
+		<GRID ID="11" NAME="ALIGN" VALUE="L" MEAN="LEFT" />
+		<GRID ID="11" NAME="ALIGN" VALUE="R" MEAN="RIGTH" />
+	</GRIDS>
+	<FORMAT>
+		<FORMAT ID="0" NAME="DEFAULT" VALUE="xxx"/>
+		<FORMAT ID="1" NAME="DATETIME" VALUE="d"/>
+		<FORMAT ID="2" NAME="NUMBER" VALUE="n"/>
+	</FORMAT>
+	<ALIGN>
+		<ALIGN ID="0" NAME="CENTER" VALUE="C"/>
+		<ALIGN ID="1" NAME="LEFT" VALUE="L"/>
+		<ALIGN ID="2" NAME="RIGHT" VALUE="R"/>
+	</ALIGN>
+	<TYPES>
+		<TYPE ID="0" NAME="String" VALUE="" />
+		<TYPE ID="1" NAME="ToolStripButton" VALUE="" />
+		<TYPE ID="2" NAME="ToolStripSplitButton" VALUE="" />
+		<TYPE ID="3" NAME="ToolStripSeparator" VALUE="" />
+		<TYPE ID="4" NAME="ToolStripLabel" VALUE="" />
+		<TYPE ID="5" NAME="Double" VALUE="" />
+		<TYPE ID="6" NAME="Int" VALUE="" />
+		<TYPE ID="7" NAME="DateTime" VALUE="" />
+	</TYPES>
+</DETAIL>

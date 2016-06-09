@@ -1,0 +1,1385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+  <Mappings>
+    <Mapping Name="MS_User" Text="User Master/ผู้ใช้ระบบ" RowID="A" ManagementID="Management1" ToolID="Tools1" ThemeID="Theme7" GroupID="Group1" />
+    <Mapping Name="MS_User_Type" Text="User Type/ประเภทผู้ใช้ระบบ" RowID="A" ManagementID="Management2" ToolID="Tools2" ThemeID="Theme6" GroupID="Group1" />
+    <Mapping Name="MS_Activate_User" Text="Activate User/เปิดการใช้งานผู้ใช้ระบบ" RowID="A" ManagementID="Management3" ToolID="Tools3" ThemeID="Theme5" GroupID="Group1" />
+    
+    <Mapping Name="MS_Asset_Detail" Text="Asset Detail/ข้อมูลครุภัณฑ์" RowID="A" ManagementID="Management13" ToolID="Tools13" ThemeID="Theme4" GroupID="Group2" />
+    
+    <Mapping Name="MS_Asset" Text="Asset Master/ครุภัณฑ์" RowID="A" ManagementID="Management4" ToolID="Tools4" ThemeID="Theme4" GroupID="Group2" />
+    <Mapping Name="MS_Asset_Type" Text="Asset Type/ประเทภครุภัณฑ์" RowID="A" ManagementID="Management5" ToolID="Tools5" ThemeID="Theme3" GroupID="Group2" />
+    <Mapping Name="MS_Asset_Quota" Text="Asset Quota/ปริมาณครุภัณฑ์" RowID="A" ManagementID="Management6" ToolID="Tools6" ThemeID="Theme2" GroupID="Group2" />
+    <Mapping Name="MS_Asset_Depreciate" Text="Asset Depreciate/ค่าเสื่อครุภัณฑ์" RowID="A" ManagementID="Management7" ToolID="Tools7" ThemeID="Theme7" GroupID="Group2" />
+    <Mapping Name="MS_Work_Center" Text="Work Center/หน่วยงาน" RowID="A" ManagementID="Management12" ToolID="Tools12" ThemeID="Theme2" GroupID="Group3" />
+    <Mapping Name="MS_Fund_Type" Text="Fund Type/ประเภทเงิน" RowID="A" ManagementID="Management10" ToolID="Tools10" ThemeID="Theme4" GroupID="Group3" />
+    <Mapping Name="MS_Movement_Type" Text="Movement Type/ประเภทการเคลื่อนย้าย" RowID="A" ManagementID="Management11" ToolID="Tools11" ThemeID="Theme3" GroupID="Group3" />
+    <Mapping Name="MS_Report_Group" Text="Report Group/กลุ่มรายงาน" RowID="A" ManagementID="Management8" ToolID="Tools8" ThemeID="Theme6" GroupID="Group3" />
+    <Mapping Name="MS_Report_Group_Type" Text="Report Group Type/ประภทกลุ่มรายงาน" RowID="A" ManagementID="Management9" ToolID="Tools9" ThemeID="Theme5" GroupID="Group3" />
+  </Mappings>
+  <Managements MID="14">
+    <Management ID="Management1">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+			set dateformat dmy;
+			SELECT
+			Row
+			,[User_ID]
+			,[User_Name_T]
+			,[User_Name_E]
+			,[User_Password]
+			,[User_Person_ID]
+			,[User_Birthdate]
+			,[User_Tel]
+			,[User_Email]
+			,[User_Count_False]
+			,[User_Lock_Status]
+			,[Start_Date]
+			,[End_Date]
+			,convert(date,[Create_Date],102) as Create_Date
+			,[Create_By]
+			,[Update_Date]
+			,[Update_By]
+			FROM
+			(SELECT ROW_NUMBER() OVER(ORDER BY User_ID) as Row
+			,[User_ID]
+			,[User_Name_T]
+			,[User_Name_E]
+			,[User_Password]
+			,[User_Person_ID]
+			,[User_Birthdate]
+			,[User_Tel]
+			,[User_Email]
+			,[User_Count_False]
+			,[User_Lock_Status]
+			,[Start_Date]
+			,[End_Date]
+			,[Create_Date]
+			,[Create_By]
+			,[Update_Date]
+			,[Update_By]
+			FROM [MS_User]) a
+		</SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="User Master / ข้อมูลผู้ใช้งานระบบ">
+        <Header Value="User Master / ข้อมูลผู้ใช้งานระบบ" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="ลำดับ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_ID" Text="รหัสผู้ใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Name_T" Text="ชื่อผู้ใช้งานระบบ(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Name_E" Text="ชื่อผู้ใช้งานระบบ(Eng)" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Password" Text="รหัสผ่าน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Person_ID" Text="เลขที่บัตรประจำตัว" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Birthdate" Text="วันเดือนปีเกิด" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Tel" Text="เบอร์โทรศัพท์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Email" Text="Email Address" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Count_False" Text="จำนวนครั้งที่ป้อนผิด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Lock_Status" Text="ล็อคผู้ใช้งาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="User_ID" Text="รหัสผู้ใช้งานระบบ" Visible="T" />
+        <Row ColumnName="User_Name_T" Text="ชื่อผู้ใช้งานระบบ(ไทย)" Visible="T" />
+        <Row ColumnName="User_Name_E" Text="ชื่อผู้ใช้งานระบบ(Eng)" Visible="T" />
+        <Row ColumnName="User_Password" Text="รหัสผ่าน" Visible="T" />
+        <Row ColumnName="User_Person_ID" Text="เลขที่บัตรประจำตัว" Visible="T" />
+        <Row ColumnName="User_Birthdate" Text="วันเดือนปีเกิด" Visible="T" />
+        <Row ColumnName="User_Tel" Text="เบอร์โทรศัพท์" Visible="T" />
+        <Row ColumnName="User_Email" Text="Email Address" Visible="T" />
+        <Row ColumnName="User_Count_False" Text="จำนวนครั้งที่ป้อนผิด" Visible="T" />
+        <Row ColumnName="User_Lock_Status" Text="ล็อคผู้ใช้งาน" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="User_ID" Text="รหัสผู้ใช้งานระบบ" Type="STR" />
+        <Search ID="2" FiledName="User_Name_T" Text="ชื่อผู้ใช้งานระบบ(ไทย)" Type="STR" />
+        <Search ID="3" FiledName="User_Name_E" Text="ชื่อผู้ใช้งานระบบ(Eng)" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management2">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY User_Type_ID) as Row
+          ,[User_Type_ID]
+          ,[User_Type_Name_T]
+          ,[User_Type_Name_E]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_User_Type]) a
+          </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="User Type / ประเภทผู้ใช้งานระบบ">
+        <Header Value="User Type / ประเภทผู้ใช้งานระบบ" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Type_ID" Text="รหัสประเภทผู้ใช้" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Type_Name_T" Text="ชื่อประเภทผู้ใช้(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Type_Name_E" Text="ชื่อประเภทผู้ใช้(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="User_Type_ID" Text="รหัสประเภทผู้ใช้" Visible="T" />
+        <Row ColumnName="User_Type_Name_T" Text="ชื่อประเภทผู้ใช้(ไทย)" Visible="T" />
+        <Row ColumnName="User_Type_Name_E" Text="ชื่อประเภทผู้ใช้(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="User_Type_ID" Text="รหัสประเภทผู้ใช้" Type="STR" />
+        <Search ID="2" FiledName="User_Type_Name_T" Text="ชื่อประเภทผู้ใช้(ไทย)" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management3">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY USER_ID) as Row
+          ,[User_ID]
+          ,[Loc_ID]
+          ,[User_Type_ID]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Activate_User]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Activate User / เปิดสิทธิ์ใช้งานระบบ">
+        <Header Value="Activate User / เปิดสิทธิ์ใช้งานระบบ" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_ID" Text="รหัสผู้ใช้งาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_ID" Text="รหัสหน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="User_Type_ID" Text="รหัสประเภทผู้ใช้" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="User_ID" Text="รหัสผู้ใช้งาน" Visible="T" />
+        <Row ColumnName="Loc_ID" Text="รหัสหน่วยงาน" Visible="T" />
+        <Row ColumnName="User_Type_ID" Text="รหัสประเภทผู้ใช้" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="User_ID" Text="รหัสผู้ใช้งาน" Type="STR" />
+        <Search ID="2" FiledName="Loc_ID" Text="รหัสหน่วยงาน" Type="STR" />
+        <Search ID="3" FiledName="User_Type_ID" Text="รหัสประเภทผู้ใช้" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management4">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Asset_ID) as Row
+          ,[Asset_ID]
+          ,[Asset_Name1_T]
+          ,[Asset_Name2_T]
+          ,[Asset_Name1_E]
+          ,[Asset_Name2_E]
+          ,[Asset_Type_ID]
+          ,[Unit_Name]
+          ,[Asset_Ref_No]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Asset]) a
+          </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Asset / คุรุภัณฑ์">
+        <Header Value="Asset / คุรุภัณฑ์" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_ID" Text="รหัสครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Name2_T" Text="ชื่อครุภัณฑ์(ไทย) 2" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Name1_E" Text="ชื่อครุภัณฑ์(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Name2_E" Text="ชื่อครุภัณฑ์(อังกฤษ) 2" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Unit_Name" Text="หน่วยเรียก" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Ref_No" Text="ครุภัณฑ์อ้างอิง" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Asset_ID" Text="รหัสครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Visible="T" />
+        <Row ColumnName="Asset_Name2_T" Text="ชื่อครุภัณฑ์(ไทย) 2" Visible="T" />
+        <Row ColumnName="Asset_Name1_E" Text="ชื่อครุภัณฑ์(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Asset_Name2_E" Text="ชื่อครุภัณฑ์(อังกฤษ) 2" Visible="T" />
+        <Row ColumnName="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Unit_Name" Text="หน่วยเรียก" Visible="T" />
+        <Row ColumnName="Asset_Ref_No" Text="ครุภัณฑ์อ้างอิง" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Asset_ID" Text="รหัสครุภัณฑ์" Type="STR" />
+        <Search ID="2" FiledName="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Type="STR" />
+        <Search ID="3" FiledName="Asset_Name1_E" Text="ชื่อครุภัณฑ์(อังกฤษ)" Type="STR" />
+        <Search ID="4" FiledName="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management5">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Asset_Type_ID) as Row
+          ,[Asset_Type_ID]
+          ,[Asset_Type_Name_T]
+          ,[Asset_Type_Name_E]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Asset_Type]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Asset Type / ประเภทคุรุภัณฑ์">
+        <Header Value="Asset Type / ประเภทคุรุภัณฑ์" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_Name_E" Text="ประเภทครุภัณฑ์(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Asset_Type_Name_E" Text="ประเภทครุภัณฑ์(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Type="STR" />
+        <Search ID="2" FiledName="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Type="STR" />
+        <Search ID="3" FiledName="Asset_Type_Name_E" Text="ประเภทครุภัณฑ์(อังกฤษ)" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management6">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Asset_ID) as Row
+          ,[Asset_ID]
+          ,[Loc_ID]
+          ,[Quota_Qty]
+          ,[Stock_Qty]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Asset_Quota]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Asset Quota / จำนวนคุรุภัณฑ์">
+        <Header Value="Asset Quota / จำนวนคุรุภัณฑ์" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_ID" Text="รหัสครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_ID" Text="รหัสหน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Quota_Qty" Text="โควต้า" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Stock_Qty" Text="จำนวน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Asset_ID" Text="รหัสครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Loc_ID" Text="รหัสหน่วยงาน" Visible="T" />
+        <Row ColumnName="Quota_Qty" Text="โควต้า" Visible="T" />
+        <Row ColumnName="Stock_Qty" Text="จำนวน" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="2" FiledName="Asset_ID" Text="รหัสครุภัณฑ์" Type="STR" />
+        <Search ID="3" FiledName="Loc_ID" Text="รหัสหน่วยงาน" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management7">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Asset_ID) as Row
+          ,[Asset_ID]
+          ,[Depreciate_Rate]
+          ,[Standard_Price]
+          ,[Term_Use]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Asset_Depreciate]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Asset Depreciate / อัตราค่าเสื่อม">
+        <Header Value="Asset Depreciate / อัตราค่าเสื่อม" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_ID" Text="รหัสครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Depreciate_Rate" Text="ค่าเสื่อม" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Standard_Price" Text="ราคามาตรฐาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Term_Use" Text="อายุการใช้งาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Asset_ID" Text="รหัสครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Depreciate_Rate" Text="ค่าเสื่อม" Visible="T" />
+        <Row ColumnName="Standard_Price" Text="ราคามาตรฐาน" Visible="T" />
+        <Row ColumnName="Term_Use" Text="อายุการใช้งาน" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="2" FiledName="Asset_ID" Text="รหัสครุภัณฑ์" Type="STR" />
+        <Search ID="3" FiledName="Depreciate_Rate" Text="ค่าเสื่อม" Type="STR" />
+        <Search ID="4" FiledName="Standard_Price" Text="ราคามาตรฐาน" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management8">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Type_Grp_ID) as Row
+          ,[Type_Grp_ID]
+          ,[Loc_ID]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Report_Group]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Report Group / กลุ่มรายงาน">
+        <Header Value="Report Group / กลุ่มรายงาน" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Type_Grp_ID" Text="รหัสประเภทรายงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_ID" Text="รหัสหน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Type_Grp_ID" Text="รหัสประเภทรายงาน" Visible="T" />
+        <Row ColumnName="Loc_ID" Text="รหัสหน่วยงาน" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Type_Grp_ID" Text="รหัสประเภทรายงาน" Type="STR" />
+        <Search ID="2" FiledName="Loc_ID" Text="รหัสหน่วยงาน" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management9">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Type_Grp_ID) as Row
+          ,[Type_Grp_ID]
+          ,[Type_Grp_Name_T]
+          ,[Type_Grp_Name_E]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Report_Group_Type]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Report Group Type / ประเภทกลุ่มรายงาน">
+        <Header Value="Report Group Type / ประเภทกลุ่มรายงาน" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Type_Grp_ID" Text="รหัสประเภทรายงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Type_Grp_Name_T" Text="ประเภทรายงาน(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Type_Grp_Name_E" Text="ประเภทรายงาน(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Type_Grp_ID" Text="รหัสประเภทรายงาน" Visible="T" />
+        <Row ColumnName="Type_Grp_Name_T" Text="ประเภทรายงาน(ไทย)" Visible="T" />
+        <Row ColumnName="Type_Grp_Name_E" Text="ประเภทรายงาน(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Type_Grp_ID" Text="รหัสประเภทรายงาน" Type="STR" />
+        <Search ID="2" FiledName="Type_Grp_Name_T" Text="ประเภทรายงาน(ไทย)" Type="STR" />
+        <Search ID="3" FiledName="Type_Grp_Name_E" Text="ประเภทรายงาน(อังกฤษ)" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management10">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Fund_Type_ID) as Row
+          ,[Fund_Type_ID]
+          ,[Fund_Type_Name_T]
+          ,[Fund_Type_Name_E]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Fund_Type]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Fund Type / ประเภทเงินที่ใช้">
+        <Header Value="Fund Type / ประเภทเงินที่ใช้" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Fund_Type_ID" Text="รหัสประเภทเงินทุน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Fund_Type_Name_T" Text="ประเภทเงินทุน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Fund_Type_Name_E" Text="ประเภทเงินทุน(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Fund_Type_ID" Text="รหัสประเภทเงินทุน" Visible="T" />
+        <Row ColumnName="Fund_Type_Name_T" Text="ประเภทเงินทุน" Visible="T" />
+        <Row ColumnName="Fund_Type_Name_E" Text="ประเภทเงินทุน(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Fund_Type_ID" Text="รหัสประเภทเงินทุน" Type="STR" />
+        <Search ID="2" FiledName="Fund_Type_Name_T" Text="ประเภทเงินทุน" Type="STR" />
+        <Search ID="3" FiledName="Fund_Type_Name_E" Text="ประเภทเงินทุน(อังกฤษ)" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management11">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Mvt_ID) as Row
+          ,[Mvt_ID]
+          ,[Mvt_Name_T]
+          ,[Mvt_Name_E]
+          ,[Mvt_Value]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Movement_Type]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Movement Type / ประเภทความเคลื่อนไหว">
+        <Header Value="Movement Type / ประเภทความเคลื่อนไหว" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_ID" Text="Mvt_ID" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_Name_T" Text="ความเคลื่อนไหว" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_Name_E" Text="ความเคลื่อนไหว(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_Value" Text="Mvt_Value" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Mvt_ID" Text="Mvt_ID" Visible="T" />
+        <Row ColumnName="Mvt_Name_T" Text="ความเคลื่อนไหว" Visible="T" />
+        <Row ColumnName="Mvt_Name_E" Text="ความเคลื่อนไหว(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Mvt_Value" Text="Mvt_Value" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Mvt_ID" Text="Mvt_ID" Type="STR" />
+        <Search ID="2" FiledName="Mvt_Name_T" Text="ความเคลื่อนไหว" Type="STR" />
+        <Search ID="3" FiledName="Mvt_Name_E" Text="ความเคลื่อนไหว(อังกฤษ)" Type="STR" />
+        <Search ID="4" FiledName="Mvt_Value" Text="Mvt_Value" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management12">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT * FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Loc_ID) as Row
+          ,[Loc_ID]
+          ,[Loc_Name_T]
+          ,[Loc_Name_E]
+          ,[Loc_Address_T]
+          ,[Loc_Address_E]
+          ,[Loc_Tel]
+          ,[Loc_Level]
+          ,[Start_Date]
+          ,[End_Date]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Work_Center]) a
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Work Center / หน่วยงาน">
+        <Header Value="Work Center / หน่วยงาน" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_ID" Text="รหัสหน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Name_T" Text="หน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Name_E" Text="หน่วยงาน(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Address_T" Text="ที่อยู่(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Address_E" Text="ที่อยู่(อังกฤษ)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Tel" Text="เบอร์โทร" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Level" Text="Level" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Start_Date" Text="วันเริ่มใช้งานระบบ" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Loc_ID" Text="รหัสหน่วยงาน" Visible="T" />
+        <Row ColumnName="Loc_Name_T" Text="หน่วยงาน" Visible="T" />
+        <Row ColumnName="Loc_Name_E" Text="หน่วยงาน(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Loc_Address_T" Text="ที่อยู่(ไทย)" Visible="T" />
+        <Row ColumnName="Loc_Address_E" Text="ที่อยู่(อังกฤษ)" Visible="T" />
+        <Row ColumnName="Loc_Tel" Text="เบอร์โทร" Visible="T" />
+        <Row ColumnName="Loc_Level" Text="Level" Visible="T" />
+        <Row ColumnName="Start_Date" Text="วันเริ่มใช้งานระบบ" Visible="T" />
+        <Row ColumnName="End_Date" Text="วันสิ้นสุดใช้งานระบบ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Param_Category_Name_Eng" Text="Param_Category_Name_Eng" Type="STR" />
+        <Search ID="2" FiledName="Param_Category_Name_Thai" Text="Param_Category_Name_Thai" Type="STR" />
+        <Search ID="3" FiledName="Param_Value_Eng" Text="Param_Value_Eng" Type="STR" />
+        <Search ID="4" FiledName="Param_Value_Thai" Text="Param_Value_Thai" Type="STR" />
+      </Searchs>
+      <Grouping>
+      </Grouping>
+    </Management>
+    <Management ID="Management13">
+      <Connection>
+        <Item Server="172.16.18.164" Database="IRGT_MASTER" Login="sa" Password="SA@admin" />
+      </Connection>
+      <Query>
+        <SQL ID="Main">
+          SELECT
+          a.Row
+          ,a.Item_ID
+          ,a.Loc_ID
+          ,d.Loc_Name_T
+          ,a.Asset_Type_ID
+          ,c.Asset_Type_Name_T
+          ,a.Asset_ID
+          ,b.Asset_Name1_T
+          ,a.Serial_No
+          ,a.Asset_Loc
+          ,a.Owner
+          ,a.Quality
+          ,a.Tranfer_Loc
+          ,a.Budget_Year
+          ,a.Document_No
+          ,a.Document_Date
+          ,a.Fund_Type_ID
+          ,e.Fund_Type_Name_T
+          ,a.Standard_Price
+          ,a.Price_per_unit
+          ,a.Purchase_Doc_no
+          ,a.Purchase_Doc_date
+          ,a.Brand
+          ,a.Serie
+          ,a.Receive_from
+          ,a.Mvt_ID
+          ,f.Mvt_Name_T
+          ,a.Term_Use
+          ,a.Depriciate_accru
+          ,a.Depriciate_in_year
+          ,a.Net_Price
+          ,a.Create_Date
+          ,a.Create_By
+          ,a.Update_Date
+          ,a.Update_By
+          FROM
+          (SELECT ROW_NUMBER() OVER(ORDER BY Loc_ID) as Row
+          ,[Item_ID]
+          ,[Loc_ID]
+          ,[Asset_Type_ID]
+          ,[Asset_ID]
+          ,[Serial_No]
+          ,[Asset_Loc]
+          ,[Owner]
+          ,[Quality]
+          ,[Tranfer_Loc]
+          ,[Budget_Year]
+          ,[Document_No]
+          ,[Document_Date]
+          ,[Fund_Type_ID]
+          ,[Standard_Price]
+          ,[Price_per_unit]
+          ,[Purchase_Doc_no]
+          ,[Purchase_Doc_date]
+          ,[Brand]
+          ,[Serie]
+          ,[Receive_from]
+          ,[Mvt_ID]
+          ,[Term_Use]
+          ,[Depriciate_accru]
+          ,[Depriciate_in_year]
+          ,[Net_Price]
+          ,[Create_Date]
+          ,[Create_By]
+          ,[Update_Date]
+          ,[Update_By]
+          FROM [MS_Asset_Detail]) a
+          left outer join MS_Asset b on b.Asset_ID = a.Asset_ID
+          left outer join MS_Asset_Type c on c.Asset_Type_ID = a.Asset_Type_ID
+          left outer join MS_Work_Center d on d.Loc_ID = a.Loc_ID
+          left outer join MS_Fund_Type e on e.Fund_Type_ID = a.Fund_Type_ID
+          left outer join MS_Movement_Type f on f.Mvt_ID = a.Mvt_ID
+        </SQL>
+      </Query>
+      <PageSize>100</PageSize>
+      <Headers Title="Asset Detail / ข้อมูลครุภัณฑ์">
+        <Header Value="Asset Detail / ข้อมูลครุภัณฑ์" />
+      </Headers>
+      <Tools>
+        <Item Type="SB" Name="Detail" Visible="T" Text="" Tooltiptext="ซ่อน Detail Rows" Click="D" Image="3" />
+        <Item Type="SB" Name="Search" Visible="T" Text="" Tooltiptext="ซ่อน Tools Search" Click="S" Image="21" />
+        <Item Type="SB" Name="View" Visible="F" Text="" Tooltiptext="ซ่อน View Panel" Click="V" Image="0" />
+        <Item Type="SB" Name="first" Visible="T" Text="" Tooltiptext="ย้อนไปหลังสุด" Click="F" Image="13" />
+        <Item Type="SB" Name="preView" Visible="T" Text="" Tooltiptext="ย้อนกลับ" Click="P" Image="16" />
+        <Item Type="SB" Name="next" Visible="T" Text="" Tooltiptext="ถัดไป" Click="N" Image="15" />
+        <Item Type="SB" Name="last" Visible="T" Text="" Tooltiptext="ย้อนไปข้างหลังสุด" Click="L" Image="14" />
+        <Item Type="SS" Name="spriter" Visible="T" />
+      </Tools>
+      <Table>
+        <Column Name="Row" Text="Row" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Item_ID" Text="หมายเลขครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_ID" Text="รหัสหน่วยงาน" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Loc_Name_T" Text="หน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_ID" Text="รหัสประเภทครุภัณฑ์" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_ID" Text="รหัสครุภัณฑ์" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Serial_No" Text="หมายเลขเครื่อง" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Asset_Loc" Text="สถานที่ตั้ง" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Owner" Text="ผู้รับผิดชอบ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Quality" Text="คุณภาพ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Tranfer_Loc" Text="โอนไปยังหน่วยงาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Budget_Year" Text="ปีงบประมาณ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Document_No" Text="เลขที่เอกสารรับ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Document_Date" Text="วันที่เอกสารรับ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Fund_Type_ID" Text="รหัสประเภทเงินทุน" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Fund_Type_Name_T" Text="ประเภทเงินทุน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Standard_Price" Text="ราคามาตรฐาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Price_per_unit" Text="ราคาต่อหน่วย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Purchase_Doc_no" Text="เลขที่เอกสารซื้อ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Purchase_Doc_date" Text="วันที่เอกสารซื้อ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Brand" Text="ยี่ห้อ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Serie" Text="รุ่น" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Receive_from" Text="รับมาจาก" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_ID" Text="Mvt_ID" Width="80" Format="xxx" Visible="F" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Mvt_Name_T" Text="ความเคลื่อนไหว" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Term_Use" Text="อายุการใช้งาน" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Depriciate_accru" Text="ค่าเสื่อมสะสม" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Depriciate_in_year" Text="ค่าเสื่อมปีนี้" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Net_Price" Text="ราคาสุทธิ" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Create_By" Text="สร้างโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_Date" Text="วันที่แก้ไขล่าสุด" Width="80" Format="d" Visible="T" DataAlign="D" ColumnAlign="D" />
+        <Column Name="Update_By" Text="แก้ไขล่าสุดโดย" Width="80" Format="xxx" Visible="T" DataAlign="D" ColumnAlign="D" />
+      </Table>
+      <DetailRow>
+        <Row ColumnName="Row" Text="Row" Visible="T" />
+        <Row ColumnName="Item_ID" Text="หมายเลขครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Loc_Name_T" Text="หน่วยงาน" Visible="T" />
+        <Row ColumnName="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Visible="T" />
+        <Row ColumnName="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Visible="T" />
+        <Row ColumnName="Serial_No" Text="หมายเลขเครื่อง" Visible="T" />
+        <Row ColumnName="Asset_Loc" Text="สถานที่ตั้ง" Visible="T" />
+        <Row ColumnName="Owner" Text="ผู้รับผิดชอบ" Visible="T" />
+        <Row ColumnName="Quality" Text="คุณภาพ" Visible="T" />
+        <Row ColumnName="Tranfer_Loc" Text="โอนไปยังหน่วยงาน" Visible="T" />
+        <Row ColumnName="Budget_Year" Text="ปีงบประมาณ" Visible="T" />
+        <Row ColumnName="Document_No" Text="เลขที่เอกสารรับ" Visible="T" />
+        <Row ColumnName="Document_Date" Text="วันที่เอกสารรับ" Visible="T" />
+        <Row ColumnName="Fund_Type_Name_T" Text="ประเภทเงินทุน" Visible="T" />
+        <Row ColumnName="Standard_Price" Text="ราคามาตรฐาน" Visible="T" />
+        <Row ColumnName="Price_per_unit" Text="ราคาต่อหน่วย" Visible="T" />
+        <Row ColumnName="Purchase_Doc_no" Text="เลขที่เอกสารซื้อ" Visible="T" />
+        <Row ColumnName="Purchase_Doc_date" Text="วันที่เอกสารซื้อ" Visible="T" />
+        <Row ColumnName="Brand" Text="ยี่ห้อ" Visible="T" />
+        <Row ColumnName="Serie" Text="รุ่น" Visible="T" />
+        <Row ColumnName="Receive_from" Text="รับมาจาก" Visible="T" />
+        <Row ColumnName="Mvt_Name_T" Text="ความเคลื่อนไหว" Visible="T" />
+        <Row ColumnName="Term_Use" Text="อายุการใช้งาน" Visible="T" />
+        <Row ColumnName="Depriciate_accru" Text="ค่าเสื่อมสะสม" Visible="T" />
+        <Row ColumnName="Depriciate_in_year" Text="ค่าเสื่อมปีนี้" Visible="T" />
+        <Row ColumnName="Net_Price" Text="ราคาสุทธิ" Visible="T" />
+        <Row ColumnName="Create_Date" Text="วันที่สร้างค่าเริ่มต้น" Visible="T" />
+        <Row ColumnName="Create_By" Text="สร้างโดย" Visible="T" />
+        <Row ColumnName="Update_Date" Text="วันที่แก้ไขล่าสุด" Visible="T" />
+        <Row ColumnName="Update_By" Text="แก้ไขล่าสุดโดย" Visible="T" />
+      </DetailRow>
+      <Searchs>
+        <Search ID="0" FiledName="" Text="" Type="STR" />
+        <Search ID="1" FiledName="Item_ID" Text="หมายเลขครุภัณฑ์" Type="STR" />
+        <Search ID="0" FieldName="Loc_Name_T" Text="หน่วยงาน" Type="STR" />
+        <Search ID="1" FieldName="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Type="STR" />
+        <Search ID="2" FieldName="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Type="STR" />
+      </Searchs>
+      <Grouping>
+        <Group ID="0" FieldName="Loc_Name_T" Text="หน่วยงาน" Type="STR" />
+        <Group ID="1" FieldName="Asset_Type_Name_T" Text="ประเภทครุภัณฑ์" Type="STR" />
+        <Group ID="2" FieldName="Asset_Name1_T" Text="ชื่อครุภัณฑ์(ไทย)" Type="STR" />
+      </Grouping>
+    </Management>
+  </Managements>
+  <Tools MID="1">
+    <Tool ID="Tools1">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools2">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools3">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools4">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools5">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools6">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools7">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools8">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools9">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools10">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools11">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools12">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+    <Tool ID="Tools13">
+      <Item Type="SB" Name="Add" Visible="T" DisplayStyle="IAT" Text="เพิ่มข้อมูล" Tooltiptext="เพิ่มข้อมูล" Click="add" Image="1">
+      </Item>
+      <Item Type="SB" Name="Update" Visible="T" DisplayStyle="IAT" Text="แก้ไขข้อมูล" Tooltiptext="แก้ไขข้อมูล" Click="edit" Image="5">
+      </Item>
+      <Item Type="SB" Name="Delete" Visible="T" DisplayStyle="IAT" Text="ลบข้อมูล" Tooltiptext="ลบข้อมูล" Click="delete" Image="6">
+      </Item>
+    </Tool>
+  </Tools>
+  <Themes>
+    <Theme ID="Theme1" Detail="">
+      <Header>
+        <Blackground Type="1">44,96,120</Blackground>
+        <Title Type="2">Control</Title>
+      </Header>
+      <Search>
+        <Blackground Type="1">180,211,211</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="1">218,235,242</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="1">218,235,242</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="1">218,235,242</Blackground>
+        <Row1 Type="1">218,235,242</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="1">218,235,242</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme2" Detail="">
+      <Header>
+        <Blackground Type="1">255, 192, 192</Blackground>
+        <Title Type="1">0, 0, 192</Title>
+      </Header>
+      <Search>
+        <Blackground Type="1">255, 224, 192</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="1">255, 192, 192</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="1">255, 192, 192</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="1">255, 192, 192</Blackground>
+        <Row1 Type="1">255, 192, 128</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="1">255, 224, 192</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme3" Detail="">
+      <Header>
+        <Blackground Type="1">192, 255, 192</Blackground>
+        <Title Type="1">0, 0, 192</Title>
+      </Header>
+      <Search>
+        <Blackground Type="2">PaleTurquoise</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="1">192, 255, 192</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="1">192, 255, 192</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="1">192, 255, 192</Blackground>
+        <Row1 Type="1">192, 255, 255</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="1">192, 255, 192</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme4" Detail="">
+      <Header>
+        <Blackground Type="2">Khaki</Blackground>
+        <Title Type="2">SaddleBRown</Title>
+      </Header>
+      <Search>
+        <Blackground Type="2">PaleGoldenrod</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="2">Khaki</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="2">Khaki</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="2">Khaki</Blackground>
+        <Row1 Type="2">PaleGoldenrod</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="2">Khaki</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme5" Detail="">
+      <Header>
+        <Blackground Type="2">DarkGray</Blackground>
+        <Title Type="2">ControlText</Title>
+      </Header>
+      <Search>
+        <Blackground Type="2">Control</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="2">DarkGray</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="2">DarkGray</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="2">DarkGray</Blackground>
+        <Row1 Type="2">Control</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="2">DarkGray</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme6" Detail="">
+      <Header>
+        <Blackground Type="2">LightSlateGray</Blackground>
+        <Title Type="2">White</Title>
+      </Header>
+      <Search>
+        <Blackground Type="1">192, 192, 255</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="2">Control</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="2">LightSlateGray</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="2">LightSlateGray</Blackground>
+        <Row1 Type="1">192, 192, 255</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="2">Control</Blackground>
+      </Tool_Foot>
+    </Theme>
+    <Theme ID="Theme7" Detail="">
+      <Header>
+        <Blackground Type="1">128,64,0</Blackground>
+        <Title Type="2">Linen</Title>
+      </Header>
+      <Search>
+        <Blackground Type="1">255,192,128</Blackground>
+      </Search>
+      <Tool>
+        <Blackground Type="2">PeachPuff</Blackground>
+      </Tool>
+      <Data>
+        <Blackground Type="1">255,192,128</Blackground>
+      </Data>
+      <DetailData>
+        <Blackground Type="2">PeachPuff</Blackground>
+        <Row1 Type="2">PeachPuff</Row1>
+        <Row2 Type="2">Window</Row2>
+      </DetailData>
+      <Tool_Foot>
+        <Blackground Type="2">PeachPuff</Blackground>
+      </Tool_Foot>
+    </Theme>
+  </Themes>
+  <Images>
+    <Image ID="0" Text="NULL" Path="" />
+    <Image ID="1" Text="" Path="Images/add.png" />
+    <Image ID="2" Text="" Path="Images/applications.gif" />
+    <Image ID="3" Text="" Path="Images/arrow_down.png" />
+    <Image ID="4" Text="" Path="Images/close.png" />
+    <Image ID="5" Text="" Path="Images/confirm.png" />
+    <Image ID="6" Text="" Path="Images/delete.png" />
+    <Image ID="7" Text="" Path="Images/edit.png" />
+    <Image ID="8" Text="" Path="Images/export.png" />
+    <Image ID="9" Text="" Path="Images/help.gif" />
+    <Image ID="10" Text="" Path="Images/home.gif" />
+    <Image ID="11" Text="" Path="Images/igic.png" />
+    <Image ID="12" Text="" Path="Images/lock.PNG" />
+    <Image ID="13" Text="" Path="Images/move_firsts.png" />
+    <Image ID="14" Text="" Path="Images/move_last.png" />
+    <Image ID="15" Text="" Path="Images/move_next.png" />
+    <Image ID="16" Text="" Path="Images/move_preview.png" />
+    <Image ID="17" Text="" Path="Images/print.gif" />
+    <Image ID="18" Text="" Path="Images/print_preview.gif" />
+    <Image ID="19" Text="" Path="Images/save.png" />
+    <Image ID="20" Text="" Path="Images/save_all.gif" />
+    <Image ID="21" Text="" Path="Images/search.png" />
+    <Image ID="22" Text="" Path="Images/web.png" />
+    <Image ID="23" Text="" Path="Images/web_downloads.gif" />
+    <Image ID="24" Text="" Path="Images/note.png" />
+    <Image ID="25" Text="" Path="Images/note_add.png" />
+    <Image ID="26" Text="" Path="Images/note_delete.png" />
+    <Image ID="27" Text="" Path="Images/note_edit.png" />
+    <Image ID="28" Text="" Path="Images/note_find.png" />
+    <Image ID="29" Text="" Path="Images/note_new.png" />
+    <Image ID="30" Text="" Path="Images/note_pinned.png" />
+    <Image ID="31" Text="" Path="Images/note_view.png" />
+    <Image ID="32" Text="" Path="Images/data_new.png" />
+    <Image ID="33" Text="" Path="Images/data_down.png" />
+    <Image ID="34" Text="" Path="Images/presentation_chart.png" />
+    <Image ID="35" Text="" Path="Images/pie-chart.png" />
+    <Image ID="36" Text="" Path="Images/key1_preferences.png" />
+    <Image ID="37" Text="" Path="Images/shield_preferences.png" />
+    <Image ID="38" Text="" Path="Images/id_card_delete.png" />
+  </Images>
+</Config>

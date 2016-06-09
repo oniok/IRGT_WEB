@@ -134,6 +134,27 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="report_01">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Param" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="report_01Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="report_01Result">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getReport_Group">
         <s:complexType>
           <s:sequence>
@@ -1172,6 +1193,12 @@
   <wsdl:message name="getMasterDataSoapOut">
     <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
   </wsdl:message>
+  <wsdl:message name="report_01SoapIn">
+    <wsdl:part name="parameters" element="tns:report_01" />
+  </wsdl:message>
+  <wsdl:message name="report_01SoapOut">
+    <wsdl:part name="parameters" element="tns:report_01Response" />
+  </wsdl:message>
   <wsdl:message name="getReport_GroupSoapIn">
     <wsdl:part name="parameters" element="tns:getReport_Group" />
   </wsdl:message>
@@ -1501,6 +1528,10 @@
       <wsdl:input message="tns:getMasterDataSoapIn" />
       <wsdl:output message="tns:getMasterDataSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="report_01">
+      <wsdl:input message="tns:report_01SoapIn" />
+      <wsdl:output message="tns:report_01SoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getReport_Group">
       <wsdl:input message="tns:getReport_GroupSoapIn" />
       <wsdl:output message="tns:getReport_GroupSoapOut" />
@@ -1760,6 +1791,15 @@
     </wsdl:operation>
     <wsdl:operation name="getMasterData">
       <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="report_01">
+      <soap:operation soapAction="http://tempuri.org/report_01" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2276,6 +2316,15 @@
     </wsdl:operation>
     <wsdl:operation name="getMasterData">
       <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="report_01">
+      <soap12:operation soapAction="http://tempuri.org/report_01" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -41,9 +41,9 @@
       <Menu ID="4" Name="menu_b034" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url="../budget_asset/BudgetAssetListAction.aspx"/>
     </Menu>
     <Menu ID="4" Name="menu_b040" TextTH="รายงานประมาณการ" TextEN="รายงานประมาณการ" RoleShow="002:999">
-      <Menu ID="1" Name="menu_b041" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
-      <Menu ID="2" Name="menu_b042" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
-      <Menu ID="3" Name="menu_b043" TextTH="สรุปแผนการใช้จ่าย" TextEN="สรุปแผนการใช้จ่าย" Url=""/>
+      <Menu ID="1" Name="menu_b041" TextTH="ประมาณการรายจ่ายประจำปี" TextEN="ประมาณการรายจ่ายประจำปี" Url="../budget_report/rpt_budget_annual.aspx"/>
+      <Menu ID="2" Name="menu_b042" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
+      <Menu ID="3" Name="menu_b043" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
     </Menu>
   </Menu>
 </Menus>

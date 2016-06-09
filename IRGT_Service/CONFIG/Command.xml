@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<DATA>
+	<SECTIONS>
+		<SECTION ID="SQL001" NAME="STUDENT">
+			<ITEM ID="0" NAME="SELECT"/>
+			<ITEM ID="1" NAME="INSERT">
+				INSERT INTO [RPKDB].[dbo].[STUDENT]
+				([student_id]
+				,[student_name]
+				,[student_surname]
+				,[birthdate]
+				,[people_id]
+				,[sub_species]
+				,[species]
+				,[nationality]
+				,[address_no]
+				,[address_name]
+				,[address_moo]
+				,[address_tumbol]
+				,[address_amphor]
+				,[address_province]
+				,[zipcode]
+				,[home_phone]
+				,[mobile_phone]
+				,[class])
+				VALUES
+				('@student_id'
+				,'@student_name'
+				,'@student_surname'
+				,'@birthdate'
+				,'@people_id'
+				,'@sub_species'
+				,'@species'
+				,'@nationality'
+				,'@address_no'
+				,'@address_name'
+				,'@address_moo'
+				,'@address_tumbol'
+				,'@address_amphor'
+				,'@address_province'
+				,'@zipcode'
+				,'@home_phone'
+				,'@mobile_phone'
+				,'@class')
+			</ITEM>
+			<ITEM ID="2" NAME="UPDATE">
+				UPDATE [RPKDB].[dbo].[STUDENT]
+				SET [student_name] = '@student_name'
+				,[student_surname] = '@student_surname'
+				,[birthdate] = '@birthdate'
+				,[people_id] = '@people_id'
+				,[sub_species] = '@sub_species'
+				,[species] = '@species'
+				,[nationality] = '@nationality'
+				,[address_no] = '@address_no'
+				,[address_name] = '@address_name'
+				,[address_moo] = '@address_moo'
+				,[address_tumbol] = '@address_tumbol'
+				,[address_amphor] = '@address_amphor'
+				,[address_province] = '@address_province'
+				,[zipcode] = '@zipcode'
+				,[home_phone] = '@home_phone'
+				,[mobile_phone] = '@mobile_phone'
+				WHERE [student_id] = '@student_id'
+			</ITEM>
+			<ITEM ID="3" NAME="DELETE">
+				DELETE FROM [RPKDB].[dbo].[STUDENT] WHERE [student_id] = '@student_id'
+			</ITEM>
+		</SECTION>
+		<SECTION ID="SQL002" NAME="EDUCATION">
+			<ITEM ID="0" NAME="SELECT"/>
+			<ITEM ID="1" NAME="INSERT">
+				INSERT INTO [RPKDB].[dbo].[EDUCATION]
+				([student_id]
+				,[workin_date]
+				,[workin_class]
+				,[school_from]
+				,[school_amphor]
+				,[school_province]
+				,[special]
+				,[job])
+				VALUES
+				('@student_id'
+				,'@workin_date'
+				,'@workin_class'
+				,'@school_from'
+				,'@school_amphor'
+				,'@school_province'
+				,'@special'
+				,'@job')
+			</ITEM>
+			<ITEM ID="2" NAME="UPDATE">
+				UPDATE [RPKDB].[dbo].[EDUCATION]
+				SET [workin_date] = '@workin_date'
+				,[workin_class] = '@workin_class'
+				,[school_from] = '@school_from'
+				,[school_amphor] = '@school_amphor'
+				,[school_province] = '@school_province'
+				,[special] = '@special'
+				,[job] = '@job'
+				WHERE [student_id] = '@student_id'
+			</ITEM>
+			<ITEM ID="3" NAME="DELETE">
+				DELETE FROM [RPKDB].[dbo].[EDUCATION] WHERE 
+			</ITEM>
+		</SECTION>
+		<SECTION ID="SQL003" NAME="HELTHY">
+			<ITEM ID="0" NAME="SELECT"/>
+			<ITEM ID="1" NAME="INSERT">
+				INSERT INTO [RPKDB].[dbo].[HELTHY]
+				([student_id]
+				,[blood]
+				,[hurt]
+				,[howto]
+				,[weight]
+				,[hight])
+				VALUES
+				('@student_id'
+				,'@blood'
+				,'@hurt'
+				,'@howto'
+				,'@weight'
+				,'@hight')
+			</ITEM>
+			<ITEM ID="2" NAME="UPDATE">
+				UPDATE [RPKDB].[dbo].[HELTHY]
+				SET [blood] = '@blood'
+				,[hurt] = '@hurt'
+				,[howto] = '@howto'
+				,[weight] = '@weight'
+				,[hight] = '@hight'
+				WHERE [student_id] = '@student_id'
+			</ITEM>
+			<ITEM ID="3" NAME="DELETE">
+				DELETE FROM [RPKDB].[dbo].[EDUCATION] WHERE [student_id] = '@student_id'
+			</ITEM>
+		</SECTION>
+		<SECTION ID="SQL004" NAME="LOAN">
+			<ITEM ID="0" NAME="SELECT">
+				SELECT [id]
+				,[student_id]
+				,[apartment_id]
+				,[thing]
+				,[start_date]
+				,[finish_date]
+				,[remark]
+				FROM [RPKDB].[dbo].[BORROW]
+				WHERE 1=1 
+			</ITEM>
+			<ITEM ID="1" NAME="INSERT">
+				INSERT INTO [RPKDB].[dbo].[BORROW]
+				([id]
+				,[student_id]
+				,[apartment_id]
+				,[thing]
+				,[start_date]
+				,[finish_date]
+				,[remark])
+				VALUES
+				('@id'
+				,'@student_id'
+				,'@apartment_id'
+				,'@thing'
+				,'@start_date'
+				,'@finish_date'
+				,'@remark')
+			</ITEM>
+			<ITEM ID="2" NAME="UPDATE">
+				UPDATE [RPKDB].[dbo].[BORROW]
+				SET [student_id] = '@student_id'
+				,[apartment_id] = '@apartment_id'
+				,[thing] = '@thing'
+				,[start_date] = '@start_date'
+				,[finish_date] = '@finish_date'
+				,[remark] = '@remark'
+				WHERE [id] = '@id'
+			</ITEM>
+			<ITEM ID="3" NAME="DELETE">
+				DELETE FROM [RPKDB].[dbo].[BORROW] WHERE [id] = '@id'
+			</ITEM>
+		</SECTION>
+	</SECTIONS>
+</DATA>

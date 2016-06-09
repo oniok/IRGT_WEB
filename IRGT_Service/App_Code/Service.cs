@@ -416,6 +416,49 @@ public class Service : System.Web.Services.WebService
             return null;
         }
     }
+
+    [WebMethod]
+    public DataTable report_01(string Param)
+    {
+        string StoreProcedureName = "sp_getMasterData";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+        
+        DBCommand.Parameters.Add(newParam("@Param", Param));
+
+        SqlDataReader DBReader;
+        DataTable TableResult = null;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBReader = DBCommand.ExecuteReader();
+
+            TableResult = new DataTable("Data");
+            TableResult.Load(DBReader);
+
+            DBConnect.Close();
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+            return TableResult;
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+            return null;
+        }
+    }
     #endregion
 
     #region Report Group
