@@ -7,6 +7,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.Reporting.WebForms;
 using CrystalDecisions.CrystalReports.Engine;
+using System.Data.SqlClient;
+using System.Configuration;
 
 public partial class rpt_budget_annual : System.Web.UI.Page
 {
@@ -70,9 +72,24 @@ public partial class rpt_budget_annual : System.Web.UI.Page
 
         try
         {
+            String sql_conn = ConfigurationManager.AppSettings["DBConn_BudgetAnnual"];
+
+      
+            SqlDataAdapter sda = new SqlDataAdapter(SqlDataSourceMaster.SelectCommand, sql_conn);
+            DataSet ds = new DataSet();
+            DataTable dt = null;
+
+            sda.Fill(ds, "myDataTable");
+            dt = ds.Tables[0];
+
             ReportDocument rpt = new ReportDocument();
             rpt.Load(Server.MapPath("../report/rpt_budget_annual.rpt"));
+            rpt.SetDataSource(dt);
             CrystalReportViewer1.ReportSource = rpt;
+            CrystalReportViewer1.RefreshReport();
+
+
+
             //CrystalReportViewer1.Refresh();
         }
         catch (Exception ex)

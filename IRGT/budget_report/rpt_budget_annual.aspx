@@ -52,10 +52,12 @@
                                             <div class="widget-body">
                                                 <div class="widget-main no-padding">                                                        
                                                       <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelWidth="300px" Width="903px" ReuseParameterValuesOnRefresh="True" ToolPanelView="None" HasCrystalLogo="False" HasDrilldownTabs="False" HasToggleGroupTreeButton="False" HasToggleParameterPanelButton="False" HasZoomFactorList="False" PageZoomFactor="125" />
+                                                      <asp:SqlDataSource ID="SqlDataSourceBudget" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
                                                       <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
                                                           <Report FileName="../report/rpt_budget_annual.rpt">
                                                           </Report>
                                                       </CR:CrystalReportSource>
+                                                      <asp:SqlDataSource ID="SqlDataSourceMaster" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_MASTERConnectionString %>" SelectCommand="SELECT * FROM [HIR_Work_Center]"></asp:SqlDataSource>
                                                 </div>
                                             </div>
 										</div>
