@@ -9,14 +9,16 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="DataSetBudgetAnnual" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DataSetBudgetAnnual" msprop:Generator_DataSetName="DataSetBudgetAnnual">
+  <xs:element name="DataSetBudgetAnnual" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="DataSetBudgetAnnual" msprop:Generator_UserDSName="DataSetBudgetAnnual">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DataTable1" msprop:Generator_TableClassName="DataTable1DataTable" msprop:Generator_TableVarName="tableDataTable1" msprop:Generator_TablePropName="DataTable1" msprop:Generator_RowDeletingName="DataTable1RowDeleting" msprop:Generator_RowChangingName="DataTable1RowChanging" msprop:Generator_RowEvHandlerName="DataTable1RowChangeEventHandler" msprop:Generator_RowDeletedName="DataTable1RowDeleted" msprop:Generator_UserTableName="DataTable1" msprop:Generator_RowChangedName="DataTable1RowChanged" msprop:Generator_RowEvArgName="DataTable1RowChangeEvent" msprop:Generator_RowClassName="DataTable1Row">
+        <xs:element name="dt_budget_annual" msprop:Generator_TableClassName="dt_budget_annualDataTable" msprop:Generator_TableVarName="tabledt_budget_annual" msprop:Generator_RowChangedName="dt_budget_annualRowChanged" msprop:Generator_TablePropName="dt_budget_annual" msprop:Generator_RowDeletingName="dt_budget_annualRowDeleting" msprop:Generator_RowChangingName="dt_budget_annualRowChanging" msprop:Generator_RowEvHandlerName="dt_budget_annualRowChangeEventHandler" msprop:Generator_RowDeletedName="dt_budget_annualRowDeleted" msprop:Generator_RowClassName="dt_budget_annualRow" msprop:Generator_UserTableName="dt_budget_annual" msprop:Generator_RowEvArgName="dt_budget_annualRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="DataColumn1" msprop:Generator_ColumnVarNameInTable="columnDataColumn1" msprop:Generator_ColumnPropNameInRow="DataColumn1" msprop:Generator_ColumnPropNameInTable="DataColumn1Column" msprop:Generator_UserColumnName="DataColumn1" type="xs:string" minOccurs="0" />
-              <xs:element name="DataColumn2" msprop:Generator_ColumnVarNameInTable="columnDataColumn2" msprop:Generator_ColumnPropNameInRow="DataColumn2" msprop:Generator_ColumnPropNameInTable="DataColumn2Column" msprop:Generator_UserColumnName="DataColumn2" type="xs:string" minOccurs="0" />
+              <xs:element name="Loc_Name" msprop:Generator_ColumnVarNameInTable="columnLoc_Name" msprop:Generator_ColumnPropNameInRow="Loc_Name" msprop:Generator_ColumnPropNameInTable="Loc_NameColumn" msprop:Generator_UserColumnName="Loc_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Budget_Name" msprop:Generator_ColumnVarNameInTable="columnBudget_Name" msprop:Generator_ColumnPropNameInRow="Budget_Name" msprop:Generator_ColumnPropNameInTable="Budget_NameColumn" msprop:Generator_UserColumnName="Budget_Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Budget_Year" msprop:Generator_ColumnVarNameInTable="columnBudget_Year" msprop:Generator_ColumnPropNameInRow="Budget_Year" msprop:Generator_ColumnPropNameInTable="Budget_YearColumn" msprop:Generator_UserColumnName="Budget_Year" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
