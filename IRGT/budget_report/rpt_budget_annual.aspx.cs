@@ -14,22 +14,22 @@ public partial class rpt_budget_annual : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        string PageFunction = "report_asset";
+        string PageFunction = "report_budget_annual";
         string LANG = cCommon.getLanguage(Request);
         Session["language_" + PageFunction] = LANG;
 
         if (LANG == cCommon.Language_Thai)
         {
-            string PageName = "รายงานประจำปีบัญชีพัสดุประเภทครุภัณฑ์";
+            string PageName = "รายงานประจำปีงบประมาณการโครงการ";
             Session["HeaderText"] = PageName;
-            Session["HeaderGroup"] = "ผู้ดูแลระบบ";
-            Session["HeaderSubGroup"] = "รายงาน";
+            Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
+            Session["HeaderSubGroup"] = "รายงานประมาณการ";
             Session["HeaderCurrent"] = PageName;
         }
         else
         {
 
-            string PageName = "รายงานประจำปีบัญชีพัสดุประเภทครุภัณฑ์";
+            string PageName = "รายงานประจำปีงบประมาณการโครงการ";
             Session["HeaderText"] = PageName;
             Session["HeaderGroup"] = "ผู้ดูแลระบบ";
             Session["HeaderSubGroup"] = "รายงาน";
@@ -39,70 +39,111 @@ public partial class rpt_budget_annual : System.Web.UI.Page
         if (!Page.IsPostBack)
         {          
             fnLoadLoc();
-            fnSearch();
-
+            fnLoadBudgetType();
+            fnLoadBudgetYear();
+            //fnSearch();
         }
     }
 
     
     void fnLoadLoc()
     {
-        IRGT_Service.Service IRGTService = new IRGT_Service.Service();
+        IRGT_Service.Budget_Operation IRGTService = new IRGT_Service.Budget_Operation();
         DataTable dtTemp = IRGTService.getMasterData("WorkCenter", "TH", "");
         ddlLoc.DataSource = dtTemp;
         ddlLoc.DataTextField = "Name";
         ddlLoc.DataValueField = "Code";
         ddlLoc.DataBind();
     }
+    void fnLoadBudgetType()
+    {
+        IRGT_Service.Budget_Operation IRGTService = new IRGT_Service.Budget_Operation();
+        DataTable dtTemp = IRGTService.getMasterData("BudgetType", "TH", "");
+        ddlType.DataSource = dtTemp;
+        ddlType.DataTextField = "Name";
+        ddlType.DataValueField = "Code";
+        ddlType.DataBind();
+    }
+    void fnLoadBudgetYear()
+    {
+        IRGT_Service.Budget_Operation IRGTService = new IRGT_Service.Budget_Operation();
+        DataTable dtTemp = IRGTService.getMasterData("BudgetYear", "TH", "");
+        ddlYear.DataSource = dtTemp;
+        ddlYear.DataTextField = "Name";
+        ddlYear.DataValueField = "Code";
+        ddlYear.DataBind();
+    }
+
     public void fnSearch()
     {
-        //rpvMain.LocalReport.ReportPath = Server.MapPath("../report/RPT01.rdl");
-        //rpvMain.LocalReport.DataSources.Clear();
-
-        //IRGT_Service.Service IRGTService = new IRGT_Service.Service();
-        //DataTable dtTemp = IRGTService.report_01(ddlLoc.SelectedValue);
-
-        //ReportParameter[] p = new ReportParameter[1];
-        //p[0] = new ReportParameter("LOC_NAME", ddlLoc.SelectedItem.Text);
-
-        //rpvMain.LocalReport.SetParameters(p);
-        //rpvMain.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dtTemp));
-        //rpvMain.DataBind();
-        
 
         try
         {
-            String sql_conn = ConfigurationManager.AppSettings["DBConn_BudgetAnnual"];
+            //validate select budget type
+            String sel_budgetType = ddlType.SelectedValue;
 
-      
-            SqlDataAdapter sda = new SqlDataAdapter(SqlDataSourceMaster.SelectCommand, sql_conn);
+            if (sel_budgetType == string.Empty || sel_budgetType == null)
+            {
+                ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "error_req_budgetType", "fnErrorMessage('ข้อผิดพลาด / Error', 'กรุณาเลือกประเภทงบประมาณการ')", true);
+                return;
+            }
+
+            //check budget type
+            String sql_conn =  ConfigurationManager.AppSettings["DBConn_Budget"];
+
             DataSet ds = new DataSet();
             DataTable dt = null;
 
-            sda.Fill(ds, "myDataTable");
-            dt = ds.Tables[0];
 
+            SqlDataAdapter sda = null;
             ReportDocument rpt = new ReportDocument();
-            rpt.Load(Server.MapPath("../report/rpt_budget_annual.rpt"));
+            
+            switch (sel_budgetType)
+            {
+                case "001":
+                    sda = new SqlDataAdapter(sds_BudgetAnnualOperator.SelectCommand, sql_conn);
+                    sda.Fill(ds, "BO_DataTable");
+                    dt = ds.Tables[0];
+                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualOperation.rpt"));
+                    break;
+                case "002":
+                    sda = new SqlDataAdapter(sds_BudgetAnnualPosition.SelectCommand, sql_conn);
+                    sda.Fill(ds, "BP_DataTable");
+                    dt = ds.Tables[0];
+                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualPosition.rpt"));
+                    break;
+                case "003":
+                    String sel_command = "EXEC [dbo].[sp_getBudget_Annual_Project] @Loc_ID = N'" + ddlLoc.SelectedValue
+                        + "',@Budget_Year = N'" + ddlYear.SelectedValue
+                        + "',@Language = N'" + Session["language_report_budget_annual"] + "'";
+                    sda = new SqlDataAdapter(sel_command, sql_conn);
+                    
+                    sda.Fill(ds, "BJ_DataTable");
+                    dt = ds.Tables[0];
+                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualProject.rpt"));
+                    break;
+                case "004":
+                    sda = new SqlDataAdapter(sds_BudgetAnnualAsset.SelectCommand, sql_conn);
+                    sda.Fill(ds, "BA_DataTable");
+                    dt = ds.Tables[0];
+                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualAsset.rpt"));
+                    break;
+            }
+            
             rpt.SetDataSource(dt);
-            CrystalReportViewer1.ReportSource = rpt;
-            CrystalReportViewer1.RefreshReport();
+            crv_BudgetAnnual.ReportSource = rpt;
+            crv_BudgetAnnual.RefreshReport();
 
-
-
-            //CrystalReportViewer1.Refresh();
         }
         catch (Exception ex)
         {
-
-            throw;
+            throw ex;
         }
 
     }
+
     protected void btnSearch_Click(object sender, EventArgs e)
     {
         fnSearch();
-
-     //   ScriptManager.RegisterStartupScript(this.Page, Page.GetType(), "text", "fnReStart()", true);
     }
 }

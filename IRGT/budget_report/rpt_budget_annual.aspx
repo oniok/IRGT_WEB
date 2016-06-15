@@ -37,13 +37,27 @@
 										<h3 class="header smaller lighter blue"><%=Session["HeaderText"]%></h3>		
 										<!-- div.table-responsive -->
                                         <center>
-                                            <table>
+                                            <table ng-app="myApp" ng-controller="fnMain">
                                                 <tr>
                                                     <td>หน่วยงาน</td>
                                                     <td style="width:5px"></td>
-                                                    <td><asp:DropDownList ID="ddlLoc" runat="server" CssClass="chosen-select form-control" Width="300px"></asp:DropDownList></td>
+                                                    <td>
+                                                        <asp:DropDownList ID="ddlLoc" runat="server" CssClass="chosen-select form-control" Width="300px"></asp:DropDownList>
+                                                    </td>
                                                     <td style="width:5px"></td>
-                                                    <td><asp:Button ID="btnSearch" runat="server" Text="เริ่มแสดงรายงาน" OnClick="btnSearch_Click"></asp:Button></td>
+                                                    <td>ประเภทประมาณการ</td>
+                                                    <td style="width:5px"></td>
+                                                    <td><asp:DropDownList ID="ddlType" runat="server" CssClass="chosen-select form-control" Width="150px"></asp:DropDownList>
+                                                    </td>
+                                                    <td style="width:5px"></td>
+                                                    <td>ปีงบประมาณ</td>
+                                                    <td style="width:5px"></td>
+                                                    <td><asp:DropDownList ID="ddlYear" runat="server" CssClass="chosen-select form-control" Width="100px"></asp:DropDownList>
+                                                    </td>
+                                                    <td style="width:5px"></td>
+                                                    <td><asp:Button ID="btnSearch" runat="server" Text="เริ่มแสดงรายงาน" OnClick="btnSearch_Click"></asp:Button>
+                                                        
+                                                    </td>
                                                 </tr>
                                             </table>
                                         </center>
@@ -51,13 +65,17 @@
 										<div class="widget-box  widget-color-blue2">                                            
                                             <div class="widget-body">
                                                 <div class="widget-main no-padding">                                                        
-                                                      <CR:CrystalReportViewer ID="CrystalReportViewer1" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ReportSourceID="CrystalReportSource1" ToolbarImagesFolderUrl="" ToolPanelWidth="300px" Width="903px" ReuseParameterValuesOnRefresh="True" ToolPanelView="None" HasCrystalLogo="False" HasDrilldownTabs="False" HasToggleGroupTreeButton="False" HasToggleParameterPanelButton="False" HasZoomFactorList="False" PageZoomFactor="125" />
-                                                      <asp:SqlDataSource ID="SqlDataSourceBudget" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
-                                                      <CR:CrystalReportSource ID="CrystalReportSource1" runat="server">
-                                                          <Report FileName="../report/rpt_budget_annual.rpt">
-                                                          </Report>
-                                                      </CR:CrystalReportSource>
-                                                      <asp:SqlDataSource ID="SqlDataSourceMaster" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_MASTERConnectionString %>" SelectCommand="SELECT * FROM [HIR_Work_Center]"></asp:SqlDataSource>
+                                                      <CR:CrystalReportViewer ID="crv_BudgetAnnual" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ToolbarImagesFolderUrl="" ToolPanelWidth="300px" Width="903px" ReuseParameterValuesOnRefresh="True" ToolPanelView="None" HasCrystalLogo="False" HasDrilldownTabs="False" HasToggleGroupTreeButton="False" HasToggleParameterPanelButton="False" HasZoomFactorList="False" PageZoomFactor="125" />
+                                                      
+                                                      <asp:SqlDataSource ID="sds_BudgetAnnualOperator" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_MASTERConnectionString %>" SelectCommand="SELECT * FROM [HIR_Work_Center]"></asp:SqlDataSource>
+                                                      <asp:SqlDataSource ID="sds_BudgetAnnualPosition" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
+                                                      <asp:SqlDataSource ID="sds_BudgetAnnualAsset" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
+                                                      <asp:SqlDataSource ID="sds_BudgetAnnualProject" runat="server" ConnectionString="Data Source=localhost;Initial Catalog=IRGT_BUDGET;Integrated Security=True" SelectCommand="sp_getBudget_Annual_Project" ProviderName="System.Data.SqlClient" SelectCommandType="StoredProcedure">
+                                                          <SelectParameters>
+                                                              <asp:FormParameter DefaultValue="" FormField="ddlLoc" Name="Loc_ID" Type="String" />
+                                                              <asp:SessionParameter DefaultValue="th" Name="Language" SessionField="language_report_budget_annual" Type="String" />
+                                                          </SelectParameters>
+                                                      </asp:SqlDataSource>
                                                 </div>
                                             </div>
 										</div>
@@ -74,15 +92,72 @@
 		</div>
 	</div><!-- /.main-content -->
 
-
     <script>
-        function fnReStart() {
-            setTimeout(fnStart, 1000);
+        /*
+        var $tmp_scope;
+        var $tmp_http;
+        var app = angular.module('myApp', []);
+        var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
+        app.controller('fnMain', fnMain);
+
+        //ข้อมูลผู้ใต้บังคับบัญชาระดับอื่น ๆ    
+        function fnMain($scope, $http) {
+            $('body').pleaseWait();
+            $tmp_scope = $scope;
+            $tmp_http = $http;
+            fnLoadLoc();
+            fnLoadBudgetType();
         }
-        function fnStart() {
+
+        function fnLoadLoc($scope, $http) {
+
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+
+            var data = $.param({
+                Command: 'GetMasterData',
+                Function: 'WorkCenter',
+                PageName: 'budget_annual'
+            });
+
+            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            .success(function (data, status, headers, config) {
+                $scope.Data_Loc_ID = data.records;
+                setTimeout(fnLoad, 100);
+            })
+            .error(function (data, status, header, config) {
+                $('body').pleaseWait('stop');
+            });
+        }
+
+        function fnLoadBudgetType($scope, $http) {
+
+            $scope = $tmp_scope;
+            $http = $tmp_http;
+
+            var data = $.param({
+                Command: 'GetMasterData',
+                Function: 'BudgetType',
+                PageName: 'budget_annual'
+            });
+
+            $http.post("../server/Server_Budget_Operation.aspx", data, config)
+            .success(function (data, status, headers, config) {
+                $scope.Data_Budget_ID = data.records;
+                setTimeout(fnLoad, 100);
+            })
+            .error(function (data, status, header, config) {
+                $('body').pleaseWait('stop');
+            });
+        }
+
+        function fnLoad() {
+            $('body').pleaseWait('stop');
             fnLoadCtrl();
+            isLoad = false;
         }
-        setTimeout(fnStart, 1000);
+        */
     </script>
+    
 </asp:Content>
 
