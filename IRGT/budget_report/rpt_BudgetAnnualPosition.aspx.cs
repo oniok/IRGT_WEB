@@ -11,7 +11,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 
 public partial class rpt_BudgetAnnualPosition : System.Web.UI.Page
-{ 
+{  
     protected void Page_Load(object sender, EventArgs e)
     {
         string PageFunction = "report_budget_annual";
