@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.Master" AutoEventWireup="true" CodeFile="rpt_budget_annual.aspx.cs" Inherits="rpt_budget_annual" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.Master" AutoEventWireup="true" CodeFile="rpt_BudgetAnnualOperation.aspx.cs" Inherits="rpt_BudgetAnnualOperation" %>
 
 
 
@@ -42,12 +42,12 @@
                                                     <td>หน่วยงาน</td>
                                                     <td style="width:5px"></td>
                                                     <td>
-                                                        <asp:DropDownList ID="ddlLoc" runat="server" CssClass="chosen-select form-control" Width="300px"></asp:DropDownList>
+                                                        <asp:DropDownList ID="ddlLoc" runat="server" CssClass="chosen-select form-control" Width="250px"></asp:DropDownList>
                                                     </td>
                                                     <td style="width:5px"></td>
-                                                    <td>ประเภทประมาณการ</td>
+                                                    <td>ประเภทงบดำเนินการ</td>
                                                     <td style="width:5px"></td>
-                                                    <td><asp:DropDownList ID="ddlType" runat="server" CssClass="chosen-select form-control" Width="150px"></asp:DropDownList>
+                                                    <td><asp:DropDownList ID="ddlType" runat="server" CssClass="chosen-select form-control" Width="200px"></asp:DropDownList>
                                                     </td>
                                                     <td style="width:5px"></td>
                                                     <td>ปีงบประมาณ</td>
@@ -67,15 +67,6 @@
                                                 <div class="widget-main no-padding">                                                        
                                                       <CR:CrystalReportViewer ID="crv_BudgetAnnual" runat="server" AutoDataBind="True" GroupTreeImagesFolderUrl="" Height="1202px" ToolbarImagesFolderUrl="" ToolPanelWidth="300px" Width="903px" ReuseParameterValuesOnRefresh="True" ToolPanelView="None" HasCrystalLogo="False" HasDrilldownTabs="False" HasToggleGroupTreeButton="False" HasToggleParameterPanelButton="False" HasZoomFactorList="False" PageZoomFactor="125" />
                                                       
-                                                      <asp:SqlDataSource ID="sds_BudgetAnnualOperator" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_MASTERConnectionString %>" SelectCommand="SELECT * FROM [HIR_Work_Center]"></asp:SqlDataSource>
-                                                      <asp:SqlDataSource ID="sds_BudgetAnnualPosition" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
-                                                      <asp:SqlDataSource ID="sds_BudgetAnnualAsset" runat="server" ConnectionString="<%$ ConnectionStrings:IRGT_BUDGETConnectionString %>" SelectCommand="SELECT * FROM [MS_Approve_Type]"></asp:SqlDataSource>
-                                                      <asp:SqlDataSource ID="sds_BudgetAnnualProject" runat="server" ConnectionString="Data Source=localhost;Initial Catalog=IRGT_BUDGET;Integrated Security=True" SelectCommand="sp_getBudget_Annual_Project" ProviderName="System.Data.SqlClient" SelectCommandType="StoredProcedure">
-                                                          <SelectParameters>
-                                                              <asp:FormParameter DefaultValue="" FormField="ddlLoc" Name="Loc_ID" Type="String" />
-                                                              <asp:SessionParameter DefaultValue="th" Name="Language" SessionField="language_report_budget_annual" Type="String" />
-                                                          </SelectParameters>
-                                                      </asp:SqlDataSource>
                                                 </div>
                                             </div>
 										</div>

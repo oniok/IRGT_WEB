@@ -10,7 +10,7 @@ using CrystalDecisions.CrystalReports.Engine;
 using System.Data.SqlClient;
 using System.Configuration;
 
-public partial class rpt_budget_annual : System.Web.UI.Page
+public partial class rpt_BudgetAnnualPosition : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -20,7 +20,7 @@ public partial class rpt_budget_annual : System.Web.UI.Page
 
         if (LANG == cCommon.Language_Thai)
         {
-            string PageName = "รายงานประจำปีงบประมาณการโครงการ";
+            string PageName = "รายงานประจำปีงบบุคลากร";
             Session["HeaderText"] = PageName;
             Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
             Session["HeaderSubGroup"] = "รายงานประมาณการ";
@@ -29,10 +29,10 @@ public partial class rpt_budget_annual : System.Web.UI.Page
         else
         {
 
-            string PageName = "รายงานประจำปีงบประมาณการโครงการ";
+            string PageName = "รายงานประจำปีงบบุคลากร";
             Session["HeaderText"] = PageName;
-            Session["HeaderGroup"] = "ผู้ดูแลระบบ";
-            Session["HeaderSubGroup"] = "รายงาน";
+            Session["HeaderGroup"] = "งบประมาณเงินทุนหมุนเวียน";
+            Session["HeaderSubGroup"] = "รายงานประมาณการ";
             Session["HeaderCurrent"] = PageName;
         }
 
@@ -58,7 +58,7 @@ public partial class rpt_budget_annual : System.Web.UI.Page
     void fnLoadBudgetType()
     {
         IRGT_Service.Budget_Operation IRGTService = new IRGT_Service.Budget_Operation();
-        DataTable dtTemp = IRGTService.getMasterData("BudgetType", "TH", "");
+        DataTable dtTemp = IRGTService.getMasterData("BudgetPositionType", "TH", "");
         ddlType.DataSource = dtTemp;
         ddlType.DataTextField = "Name";
         ddlType.DataValueField = "Code";
@@ -89,47 +89,22 @@ public partial class rpt_budget_annual : System.Web.UI.Page
             }
 
             //check budget type
-            String sql_conn =  ConfigurationManager.AppSettings["DBConn_Budget"];
+            String sql_conn = ConfigurationManager.AppSettings["DBConn_Budget"];
 
+            String sel_command = "EXEC [dbo].[sp_getBudget_Annual_Position] @Loc_ID = N'" + ddlLoc.SelectedValue
+                        + "',@Budget_Type = N'" + ddlType.SelectedValue
+                        + "',@Budget_Year = N'" + ddlYear.SelectedValue
+                        + "',@Language = N'" + Session["language_report_budget_annual"] + "'";
+
+            SqlDataAdapter sda = new SqlDataAdapter(sel_command, sql_conn);
+            ReportDocument rpt = new ReportDocument();
             DataSet ds = new DataSet();
             DataTable dt = null;
 
+            sda.Fill(ds, "BP_DataTable");
+            dt = ds.Tables[0];
+            rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualPosition.rpt"));
 
-            SqlDataAdapter sda = null;
-            ReportDocument rpt = new ReportDocument();
-            
-            switch (sel_budgetType)
-            {
-                case "001":
-                    sda = new SqlDataAdapter(sds_BudgetAnnualOperator.SelectCommand, sql_conn);
-                    sda.Fill(ds, "BO_DataTable");
-                    dt = ds.Tables[0];
-                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualOperation.rpt"));
-                    break;
-                case "002":
-                    sda = new SqlDataAdapter(sds_BudgetAnnualPosition.SelectCommand, sql_conn);
-                    sda.Fill(ds, "BP_DataTable");
-                    dt = ds.Tables[0];
-                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualPosition.rpt"));
-                    break;
-                case "003":
-                    String sel_command = "EXEC [dbo].[sp_getBudget_Annual_Project] @Loc_ID = N'" + ddlLoc.SelectedValue
-                        + "',@Budget_Year = N'" + ddlYear.SelectedValue
-                        + "',@Language = N'" + Session["language_report_budget_annual"] + "'";
-                    sda = new SqlDataAdapter(sel_command, sql_conn);
-                    
-                    sda.Fill(ds, "BJ_DataTable");
-                    dt = ds.Tables[0];
-                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualProject.rpt"));
-                    break;
-                case "004":
-                    sda = new SqlDataAdapter(sds_BudgetAnnualAsset.SelectCommand, sql_conn);
-                    sda.Fill(ds, "BA_DataTable");
-                    dt = ds.Tables[0];
-                    rpt.Load(Server.MapPath("../report/rpt_BudgetAnnualAsset.rpt"));
-                    break;
-            }
-            
             rpt.SetDataSource(dt);
             crv_BudgetAnnual.ReportSource = rpt;
             crv_BudgetAnnual.RefreshReport();

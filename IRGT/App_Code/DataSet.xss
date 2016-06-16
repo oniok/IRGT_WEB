@@ -7,8 +7,8 @@
 <DiagramLayout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ex:showrelationlabel="False" ViewPortX="17" ViewPortY="0" xmlns:ex="urn:schemas-microsoft-com:xml-msdatasource-layout-extended" xmlns="urn:schemas-microsoft-com:xml-msdatasource-layout">
   <Shapes>
     <Shape ID="DesignTable:dt_BudgetAnnualProject" ZOrder="3" X="868" Y="52" Height="191" Width="242" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="187" />
-    <Shape ID="DesignTable:dt_BudgetAnnualOperation" ZOrder="2" X="313" Y="50" Height="155" Width="247" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="151" />
-    <Shape ID="DesignTable:dt_BudgetAnnualPosition" ZOrder="4" X="27" Y="46" Height="227" Width="241" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="223" />
+    <Shape ID="DesignTable:dt_BudgetAnnualOperation" ZOrder="2" X="313" Y="50" Height="191" Width="236" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="187" />
+    <Shape ID="DesignTable:dt_BudgetAnnualPosition" ZOrder="4" X="27" Y="46" Height="243" Width="224" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="239" />
     <Shape ID="DesignTable:dt_BudgetAnnualAsset" ZOrder="1" X="598" Y="52" Height="191" Width="227" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="187" />
   </Shapes>
   <Connectors />

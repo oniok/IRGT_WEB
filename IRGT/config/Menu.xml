@@ -41,9 +41,12 @@
       <Menu ID="4" Name="menu_b034" TextTH="งบลงทุนครุภัณฑ์" TextEN="งบลงทุนครุภัณฑ์" Url="../budget_asset/BudgetAssetListAction.aspx"/>
     </Menu>
     <Menu ID="4" Name="menu_b040" TextTH="รายงานประมาณการ" TextEN="รายงานประมาณการ" RoleShow="002:999">
-      <Menu ID="1" Name="menu_b041" TextTH="ประมาณการรายจ่ายประจำปี" TextEN="ประมาณการรายจ่ายประจำปี" Url="../budget_report/rpt_budget_annual.aspx"/>
-      <Menu ID="2" Name="menu_b042" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
-      <Menu ID="3" Name="menu_b043" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
+      <Menu ID="1" Name="menu_b041" TextTH="รายงานประจำปีงบดำเนินการ" TextEN="รายงานประจำปีงบดำเนินการ" Url="../budget_report/rpt_BudgetAnnualOperation.aspx"/>
+      <Menu ID="2" Name="menu_b042" TextTH="รายงานประจำปีงบบุคลากร" TextEN="รายงานประจำปีงบบุคลากร" Url="../budget_report/rpt_BudgetAnnualPosition.aspx"/>
+      <Menu ID="3" Name="menu_b043" TextTH="รายงานประจำปีงบโครงการ" TextEN="รายงานประจำปีงบโครงการ" Url="../budget_report/rpt_BudgetAnnualProject.aspx"/>
+      <Menu ID="4" Name="menu_b044" TextTH="รายงานประจำปีงบครุภัณฑ์" TextEN="รายงานประจำปีงบครุภัณฑ์" Url="../budget_report/rpt_BudgetAnnualAsset.aspx"/>
+      <Menu ID="5" Name="menu_b045" TextTH="แผนผลภาพรวม" TextEN="แผนผลภาพรวม" Url=""/>
+      <Menu ID="6" Name="menu_b046" TextTH="คุมงบประมาณตามผลผลิต/กิจกรรม" TextEN="คุมงบประมาณตามผลผลิต/กิจกรรม" Url=""/>
     </Menu>
   </Menu>
 </Menus>
