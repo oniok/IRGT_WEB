@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.Master" AutoEventWireup="true" CodeFile="rpt_BudgetAnnualOperation.aspx.cs" Inherits="rpt_BudgetAnnualOperation" %>
+﻿<%@ Page ClientTarget="Uplevel" Title="" Language="C#" MasterPageFile="~/master_page/main.Master" AutoEventWireup="true" CodeFile="rpt_BudgetAnnualOperation.aspx.cs" Inherits="rpt_BudgetAnnualOperation" %>
 
 
 
