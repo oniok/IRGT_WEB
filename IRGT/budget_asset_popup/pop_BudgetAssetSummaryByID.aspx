@@ -13,10 +13,10 @@
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column02"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column03"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column04"]%></th>
-                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column05"]%></th>
+                <%--<th class="center" style="width:80px"><%=Session["budget_asset_summary_Column05"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column06"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column07"]%></th>
-                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column08"]%></th>
+                <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column08"]%></th>--%>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column09"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column10"]%></th>
                 <th class="center" style="width:80px"><%=Session["budget_asset_summary_Column11"]%></th>
@@ -30,17 +30,17 @@
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
                 <td>{{ x.BA_Type_Name }}</td>
-                <td style="text-align:right">{{ x.Quota_Qty }}</td> 
+                <td style="text-align:center">{{ x.Quota_Qty }}</td> 
                 <td style="text-align:right">{{ x.Unit_Name }}</td> 
-                <td style="text-align:right">{{ x.Stock_Qty }}</td> 
-                <td style="text-align:right">{{ x.Fund_Type_Name }}</td> 
+                <td style="text-align:center">{{ x.Stock_Qty }}</td> 
+                <%--<td style="text-align:right">{{ x.Fund_Type_Name }}</td> 
                 <td style="text-align:right">{{ x.Budget_Year }}</td> 
                 <td style="text-align:right">{{ x.Budget_Year2 }}</td> 
-                <td style="text-align:right">{{ x.Asset_Year }}</td> 
+                <td style="text-align:right">{{ x.Asset_Year }}</td> --%>
                 <td style="text-align:right">{{ x.Good_Qty }}</td> 
                 <td style="text-align:right">{{ x.Repair_Qty }}</td> 
                 <td style="text-align:right">{{ x.Dispose_Qty }}</td> 
-                <td style="text-align:right">{{ x.BA_Qty }}</td>          
+                <td style="text-align:center">{{ x.BA_Qty }}</td>          
                 <td style="text-align:right">{{ x.BA_Price }}</td>	
                 <td style="text-align:right">{{ x.Total_Amount }}</td>		
                 <td style="text-align:right">{{ x.BA_Remark }}</td>													      										             

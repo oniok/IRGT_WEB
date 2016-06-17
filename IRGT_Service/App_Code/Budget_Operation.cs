@@ -55,6 +55,8 @@ public class Budget_Operation : System.Web.Services.WebService
         return DbConnect;
     }
 
+    
+
     #region Master Data
     [WebMethod]
     public DataTable getMasterData(string FN, string Lang, string Param)
@@ -72,6 +74,50 @@ public class Budget_Operation : System.Web.Services.WebService
         DBCommand.Parameters.Add(newParam("@Function", FN));
         DBCommand.Parameters.Add(newParam("@Language", Lang));
         DBCommand.Parameters.Add(newParam("@Param", Param));
+
+        SqlDataReader DBReader;
+        DataTable TableResult = null;
+
+        try
+        {
+            DBConnect.Open();
+            SetLog("[Open Connection]");
+            DBReader = DBCommand.ExecuteReader();
+
+            TableResult = new DataTable("Data");
+            TableResult.Load(DBReader);
+
+            DBConnect.Close();
+            SetLog("[Close Connection]");
+            SetLog("[@Time]");
+            SetLog("========================END==============================");
+            return TableResult;
+        }
+        catch (Exception ex)
+        {
+            SetLog("[ERROR]=>" + ex.Message);
+            SetLog("========================END==============================");
+            SetErrorLog("[@Time][Store:" + StoreProcedureName + "]=>ERROR:" + ex.Message);
+            DBConnect.Close();
+            return null;
+        }
+    }
+
+    [WebMethod]
+    public DataTable getOperationTypePopup(string UserCode, string Lang)
+    {
+        string StoreProcedureName = "sp_getBudget_Operation_Type_Popup";
+        SetLog("========================START==============================");
+        SetLog("[@Time][Store:" + StoreProcedureName + "]");
+
+        SqlConnection DBConnect = GetDBConnection();
+        SqlCommand DBCommand = new SqlCommand();
+        DBCommand.Connection = DBConnect;
+        DBCommand.CommandType = CommandType.StoredProcedure;
+        DBCommand.CommandText = StoreProcedureName;
+
+        DBCommand.Parameters.Add(newParam("@User_Code", UserCode));
+        DBCommand.Parameters.Add(newParam("@Language", Lang));
 
         SqlDataReader DBReader;
         DataTable TableResult = null;

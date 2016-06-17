@@ -82,7 +82,24 @@ public partial class server_Budget_Operation : System.Web.UI.Page
             case "BudgetOperationSummaryByID":
                 fnBudgetOperationSummaryByID();
                 break;
+            case "BudgetOperationTypePopup":
+                fnBudgetOperationTypePopup();
+                break;
         }
+    }
+
+    private void fnBudgetOperationTypePopup()
+    {
+        string PageName = Request.Params["PageName"].ToString();
+        string LANG = "" + Session["language_" + PageName];
+        string User_Code = Request.Params["User_Code"];
+
+        if (LANG == "") LANG = "TH";
+        DataTable DT = IRGTService.getOperationTypePopup(User_Code,LANG);
+        string DT_JSON = DataTableToJSON(DT);
+        DT_JSON = "{\"records\": " + DT_JSON + "}";
+        Response.Write(DT_JSON);
+        return;
     }
 
     private void fnGetMasterData()

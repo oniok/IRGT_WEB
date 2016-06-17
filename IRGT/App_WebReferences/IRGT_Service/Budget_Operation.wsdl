@@ -25,6 +25,28 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="getOperationTypePopup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Lang" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getOperationTypePopupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getOperationTypePopupResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                  <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="getBudget_OperationByID">
         <s:complexType>
           <s:sequence>
@@ -362,6 +384,12 @@
   <wsdl:message name="getMasterDataSoapOut">
     <wsdl:part name="parameters" element="tns:getMasterDataResponse" />
   </wsdl:message>
+  <wsdl:message name="getOperationTypePopupSoapIn">
+    <wsdl:part name="parameters" element="tns:getOperationTypePopup" />
+  </wsdl:message>
+  <wsdl:message name="getOperationTypePopupSoapOut">
+    <wsdl:part name="parameters" element="tns:getOperationTypePopupResponse" />
+  </wsdl:message>
   <wsdl:message name="getBudget_OperationByIDSoapIn">
     <wsdl:part name="parameters" element="tns:getBudget_OperationByID" />
   </wsdl:message>
@@ -469,6 +497,10 @@
       <wsdl:input message="tns:getMasterDataSoapIn" />
       <wsdl:output message="tns:getMasterDataSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="getOperationTypePopup">
+      <wsdl:input message="tns:getOperationTypePopupSoapIn" />
+      <wsdl:output message="tns:getOperationTypePopupSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="getBudget_OperationByID">
       <wsdl:input message="tns:getBudget_OperationByIDSoapIn" />
       <wsdl:output message="tns:getBudget_OperationByIDSoapOut" />
@@ -542,6 +574,15 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getMasterData">
       <soap:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOperationTypePopup">
+      <soap:operation soapAction="http://tempuri.org/getOperationTypePopup" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -707,6 +748,15 @@
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="getMasterData">
       <soap12:operation soapAction="http://tempuri.org/getMasterData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getOperationTypePopup">
+      <soap12:operation soapAction="http://tempuri.org/getOperationTypePopup" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

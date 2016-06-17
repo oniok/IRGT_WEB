@@ -7,21 +7,22 @@
     <center>
     <table style="width:600px" ng-app="myApp" ng-controller="fnMain">
         <tr>
-            <tr><td colspan="4" style="height:10px"></td></tr>
+            <%--<tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
                 <td><%=Session["budget_operation_Column01"] %></td>
                 <td colspan="3">
                     <input type="hidden" id="BO_ID"/>
                     <input type="text" id="BO_Name" style="width:100%"/>
                 </td>
-            </tr>
+            </tr>--%>
             <tr><td colspan="4" style="height:10px"></td></tr>
             <tr>
                 <td style="width:100px"><%=Session["budget_operation_Column02"] %></td>
                 <td colspan="3">
+                    <input type="hidden" id="BO_ID"/>
                     <select class="chosen-select form-control" id="BO_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>">
 					    <option value=""></option>	
-                        <option ng-repeat="x in BudgetOperationType" value="{{ x.Code }}" >{{ x.Name }}</option>				
+                        <option ng-repeat="x in BudgetOperationTypePopup" value="{{ x.Code }}" >{{ x.Name }}</option>				
 				    </select>   
                 </td>
              </tr>    
@@ -61,7 +62,7 @@
                     function (data, status) {
                         var data = eval(data);
                         document.getElementById('BO_ID').value = data[0].BO_ID.trim();
-                        document.getElementById('BO_Name').value = data[0].BO_Name.trim();
+                        //document.getElementById('BO_Name').value = data[0].BO_Name.trim();
                         document.getElementById('BO_Type_ID').value = data[0].BO_Type_ID.trim();
                         document.getElementById('BO_Qty').value = data[0].BO_Qty.trim();
                         document.getElementById('BO_Price').value = data[0].BO_Price.trim();
@@ -79,25 +80,25 @@
         }
         function fnSave() {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
+            //var BO_Name = document.getElementById('BO_Name').value.trim();
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
             var BO_Qty = document.getElementById('BO_Qty').value.trim();
             var BO_Price = document.getElementById('BO_Price').value;
         
-            if (BO_Name == "") {
+            <%--if (BO_Name == "") {
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_02"]%>");
+                return;
+            }--%>
+            if (BO_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_02"]%>");
                 return;
             }
-            if (BO_Type_ID == "") {
+            if (BO_Qty == "" || BO_Qty == 0) {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_03"]%>");
                 return;
             }
-            if (BO_Qty == "") {
+            if (BO_Price == "" || BO_Price == 0) {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_04"]%>");
-                return;
-            }
-            if (BO_Price == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_operation_ERROR_05"]%>");
                 return;
             }
 
@@ -123,7 +124,7 @@
 
         function fnSubmit(BO_ID) {
             var KeyID = getParamValue("KeyID");
-            var BO_Name = document.getElementById('BO_Name').value.trim();
+            //var BO_Name = document.getElementById('BO_Name').value.trim();
             var BO_Type_ID = document.getElementById('BO_Type_ID').value.trim();
             var BO_Qty = document.getElementById('BO_Qty').value.trim();
             var BO_Price = document.getElementById('BO_Price').value;
@@ -135,7 +136,7 @@
                    Function: 'Save',
                    KeyID: KeyID,
                    BO_ID: BO_ID,
-                   BO_Name: BO_Name,
+                   BO_Name: '',//BO_Name,
                    BO_Type_ID: BO_Type_ID,
                    BO_Qty: BO_Qty,
                    BO_Price: BO_Price,
@@ -169,16 +170,17 @@
 
             $scope = $tmp_scope;
             $http = $tmp_http;
+            var User_Code = '<%=Session["user_code"]%>';
 
             var data = $.param({
-                Command: 'GetMasterData',
-                Function: 'BudgetOperationType',
+                Command: 'BudgetOperationTypePopup',
+                User_Code: User_Code,
                 PageName: 'budget_operation'
             });
 
             $http.post("../server/Server_Budget_Operation.aspx", data, config)
             .success(function (data, status, headers, config) {
-                $scope.BudgetOperationType = data.records;
+                $scope.BudgetOperationTypePopup = data.records;
                 setTimeout(fnLoad, 100);
             })
             .error(function (data, status, header, config) {

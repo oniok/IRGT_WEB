@@ -80,7 +80,7 @@
 												        <thead>
 													        <tr>
 														        <th class="center" style="width:50px"><%=Session["budget_operation_ColumnSEQ"]%></th>
-														        <th class="center"><%=Session["budget_operation_Column01"]%></th>
+														        <%--<th class="center"><%=Session["budget_operation_Column01"]%></th>--%>
 														        <th class="center"><%=Session["budget_operation_Column02"]%></th>
                                                                 <th class="center" style="width:50px"><%=Session["budget_operation_Column03"]%></th>          
                                                                 <th class="center" style="width:100px"><%=Session["budget_operation_Column04"]%></th>    
@@ -91,8 +91,8 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
-                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Name }}</td>
-                                                                <td>{{ x.BO_Type_Name }}</td>
+                                                                <%--<td>{{ x.BO_Name }}</td>--%>
+                                                                <td><input type="hidden" id="BO_ID" value="{{ x.BO_ID }}"/>{{ x.BO_Type_Name }}</td>
                                                                 <td class="center">{{ x.BO_Qty_View }}</td>          
                                                                 <td style="text-align:right">{{ x.BO_Price_View }}</td>														                                                            
                                                                 <td>{{ x.BO_Reason }}</td>
