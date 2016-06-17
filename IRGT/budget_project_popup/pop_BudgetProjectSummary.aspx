@@ -61,7 +61,7 @@
                    html = html.replace("{{ BJ_Objective }}", data.records[0].BJ_Objective.trim());
                    html = html.replace("{{ BJ_Place }}", data.records[0].BJ_Place.trim());
                    html = html.replace("{{ BJ_Duration }}", data.records[0].BJ_Duration.trim());
-                   html = html.replace("{{ BJ_Amount }}", data.records[0].BJ_Amount.trim());
+                   html = html.replace("{{ BJ_Amount }}", (data.records[0].BJ_Amount).toString().trim());
                    html = html.replace("{{ BJ_Detail }}", data.records[0].BJ_Detail.trim());
                    html = html.replace("{{ BJ_Measure }}", data.records[0].BJ_Measure.trim());
                    html = html.replace("{{ BJ_Benefit }}", data.records[0].BJ_Benefit.trim());

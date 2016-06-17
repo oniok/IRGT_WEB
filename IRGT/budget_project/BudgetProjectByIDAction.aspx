@@ -271,7 +271,7 @@
                 $('#BJ_Objective').html(data.records[0].BJ_Objective.trim());
                 $('#BJ_Place').html(data.records[0].BJ_Place.trim());
                 $('#BJ_Duration').val(data.records[0].BJ_Duration.trim());
-                $('#BJ_Amount').val(data.records[0].BJ_Amount.trim());
+                $('#BJ_Amount').val((data.records[0].BJ_Amount).toString().trim());
                 $('#BJ_Detail').html(data.records[0].BJ_Detail.trim());
                 $('#BJ_Measure').html(data.records[0].BJ_Measure.trim());
                 $('#BJ_Benefit').html(data.records[0].BJ_Benefit.trim());
