@@ -111,7 +111,7 @@
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
                                                                 <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Position_Type_Name }}</td>
-                                                                <td>{{ x.Educate_Type_Name }}</td>
+                                                                <td style="text-align:center">{{ x.Educate_Type_Name }}</td>
                                                                 <td>{{ x.BP_Type_Name }}</td>
                                                                 <td class="center">{{ x.BP_Qty }}</td>          
                                                                 <td style="text-align:right">{{ x.BP_Price }}</td>														                                                            

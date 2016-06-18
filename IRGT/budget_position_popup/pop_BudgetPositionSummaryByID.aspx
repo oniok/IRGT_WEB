@@ -9,23 +9,25 @@
 		<thead>
 			<tr>
 				<th class="center" style="width:50px"><%=Session["budget_position_summary_ColumnSEQ"]%></th>
-				<th class="center"><%=Session["budget_position_summary_Column01"]%></th>
-				<th class="center" style="width:100px"><%=Session["budget_position_summary_Column02"]%></th>
-                <th class="center" style="width:150px"><%=Session["budget_position_summary_Column03"]%></th>          
-                <th class="center" style="width:80px"><%=Session["budget_position_summary_Column04"]%></th>    
-                <th class="center" style="width:120px"><%=Session["budget_position_summary_Column05"]%></th>
-                <th class="center"><%=Session["budget_position_summary_Column06"]%></th>
+				<th class="center" style="width:150px"><%=Session["budget_position_summary_Column01"]%></th>
+				<th class="center" style="width:60px"><%=Session["budget_position_summary_Column02"]%></th>
+                <th class="center" style="width:100px"><%=Session["budget_position_summary_Column03"]%></th>
+                <th class="center" style="width:60px"><%=Session["budget_position_summary_Column04"]%></th>          
+                <th class="center" style="width:120px"><%=Session["budget_position_summary_Column05"]%></th>    
+                <th class="center" style="width:120px"><%=Session["budget_position_summary_Column06"]%></th>
+                <th class="center" style="width:150px"><%=Session["budget_position_summary_Column07"]%></th>
 			</tr>
 		</thead>
         <tbody>
 			<tr ng-repeat="x in DataSum">
 				<td class="center">{{ x.RowID }}</td>
                 <td>{{ x.Position_Type_Name }}</td>
-                <td>{{ x.Educate_Type_Name }}</td>
+                <td style="text-align:center">{{ x.Educate_Type_Name }}</td>
                 <td>{{ x.BP_Type_Name }}</td>
+                <td style="text-align:center">{{ x.BP_Qty }}</td>
                 <td style="text-align:right">{{ x.BP_PRICE_MNT }}</td>          
-                <td style="text-align:right">{{ x.BP_PRICE_YEAR }}</td>														                                                            
-                <td style="text-align:left">{{ x.BP_Remark }}</td>	
+                <td style="text-align:right">{{ x.BP_PRICE_YEAR }}</td>										
+				<td><input type="text" id="BP_Remark{{x.RowID}}" style="width:100%" value="{{ x.BP_Remark }}"/>   </td>	
 			</tr>										
 		</tbody>  
         <tfoot >

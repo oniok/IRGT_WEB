@@ -102,22 +102,22 @@
             var BP_Reason = document.getElementById('BP_Reason').value.trim();
         
             if (Position_Type_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_02"]%>");
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_01"]%>");
                 return;
             }
             if (Educate_Type_ID == "") {
-                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_03"]%>");
+                fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_02"]%>");
                 return;
             }
             if (BP_Type_ID == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_03"]%>");
                 return;
             }
-            if (BP_Qty == "") {
+            if (BP_Qty == "" || BP_Qty == 0) {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_04"]%>");
                 return;
             }
-            if (BP_Price == "") {
+            if (BP_Price == "" || BP_Price == 0) {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_position_ERROR_05"]%>");
                 return;
             }

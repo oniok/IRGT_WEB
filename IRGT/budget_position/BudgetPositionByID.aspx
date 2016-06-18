@@ -198,7 +198,7 @@
 
         $scope.fnSum = function () {
             var BP_ID = '<%=Session["BP_ID"]%>';
-            fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_position_popup/pop_BudgetPositionSummaryByID.aspx?BP_ID=" + BP_ID, null, "450");
+            fnOpenPopup('<%=Session["pop_sum_budget_position"]%>', "../budget_position_popup/pop_BudgetPositionSummaryByID.aspx?BP_ID=" + BP_ID, null, "450");
         }
   
         $scope.fnPageBack = function () {

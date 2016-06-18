@@ -31,10 +31,11 @@ public partial class budget_BudgetPosition : System.Web.UI.Page
             Session["save_button_text"] = "บันทึก";
             Session["close_button_text"] = "ปิดหน้านี้";
             //================ POPUP ERROR ===========================================
-            Session[PageFunction + "_ERROR_01"] = "โปรดระบุ รายการ";
-            Session[PageFunction + "_ERROR_02"] = "โปรดเลือก ประเภทค่าใช้จ่าย";
-            Session[PageFunction + "_ERROR_03"] = "โปรดระบุ จำนวน";
-            Session[PageFunction + "_ERROR_04"] = "โปรดระบุ จำนวนเงิน";
+            Session[PageFunction + "_ERROR_01"] = "โปรดระบุ ตำแหน่ง";
+            Session[PageFunction + "_ERROR_02"] = "โปรดเลือก คุณวุฒิ";
+            Session[PageFunction + "_ERROR_03"] = "โปรดระบุ ระยะเวลาจ้าง";
+            Session[PageFunction + "_ERROR_04"] = "โปรดระบุ จำนวน";
+            Session[PageFunction + "_ERROR_05"] = "โปรดระบุ จำนวนเงิน";
             //================ TABLE ==================================================
             Session["HeaderText"] = PageName;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;

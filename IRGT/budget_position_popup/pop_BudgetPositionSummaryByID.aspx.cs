@@ -22,11 +22,11 @@ public partial class budget_popup_pop_BudgetPositionSummaryByID : System.Web.UI.
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
             Session[PageFunction + "_Column01"] = "ตำแหน่ง";
-            Session[PageFunction + "_Column02"] = "คุณวุฒิ";
-            Session[PageFunction + "_Column03"] = "จำนวน (อัตรา)";
-            Session[PageFunction + "_Column04"] = "จำนวนเงิน/เดือน";
-            Session[PageFunction + "_Column05"] = "รวมทั้งสิ้น";
-            Session[PageFunction + "_Column06"] = "หมายเหตุ";
+            Session[PageFunction + "_Column03"] = "ระยะเวลาจ้าง";
+            Session[PageFunction + "_Column04"] = "จำนวน (อัตรา)";
+            Session[PageFunction + "_Column05"] = "จำนวนเงิน/เดือน";
+            Session[PageFunction + "_Column06"] = "รวมทั้งสิ้น";
+            Session[PageFunction + "_Column07"] = "หมายเหตุ";
         }
         else
         {
@@ -35,10 +35,11 @@ public partial class budget_popup_pop_BudgetPositionSummaryByID : System.Web.UI.
             Session[PageFunction + "_ColumnEdit"] = "";
             Session[PageFunction + "_Column01"] = "ตำแหน่ง";
             Session[PageFunction + "_Column02"] = "คุณวุฒิ";
-            Session[PageFunction + "_Column03"] = "จำนวน (อัตรา)";
-            Session[PageFunction + "_Column04"] = "จำนวนเงิน/เดือน";
-            Session[PageFunction + "_Column05"] = "รวมทั้งสิ้น";
-            Session[PageFunction + "_Column06"] = "หมายเหตุ";
+            Session[PageFunction + "_Column03"] = "ระยะเวลาจ้าง";
+            Session[PageFunction + "_Column04"] = "จำนวน (อัตรา)";
+            Session[PageFunction + "_Column05"] = "จำนวนเงิน/เดือน";
+            Session[PageFunction + "_Column06"] = "รวมทั้งสิ้น";
+            Session[PageFunction + "_Column07"] = "หมายเหตุ";
         }
             
     }
