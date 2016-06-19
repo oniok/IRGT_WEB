@@ -571,9 +571,9 @@ public class Budget_Project : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool setBudget_Project(int KeyID, string BJ_ID, string BJ_Issue, string BJ_Goal, string BJ_Strategy
-        , string BJ_ProjectName, string BJ_Reason, string BJ_Objective, string BJ_Place, string BJ_Duration, string BJ_Amount
-        , string BJ_Detail, string BJ_Measure, string BJ_Benefit, string BJ_Responsible,  string User_Code
+    public bool setBudget_Project(int KeyID, string BJ_ID, string BJ_Issue, string BJ_Goal, string BJ_Strategy, string BJ_ProjectName, 
+        string BJ_Reason, string BJ_Objective, string BJ_Place, string BJ_Duration, string BJ_Start_Date,string BJ_End_Date, string BJ_Amount, 
+        string BJ_Year, string BJ_Detail, string BJ_Measure, string BJ_Benefit, string BJ_Responsible,  string User_Code
         , out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
@@ -600,7 +600,10 @@ public class Budget_Project : System.Web.Services.WebService
         DBCommand.Parameters.Add(newParam("@BJ_Objective", BJ_Objective));
         DBCommand.Parameters.Add(newParam("@BJ_Place", BJ_Place));
         DBCommand.Parameters.Add(newParam("@BJ_Duration", BJ_Duration));
+        DBCommand.Parameters.Add(newParam("@BJ_Start_Date", BJ_Start_Date));
+        DBCommand.Parameters.Add(newParam("@BJ_End_Date", BJ_End_Date));
         DBCommand.Parameters.Add(newParam("@BJ_Amount", BJ_Amount));
+        DBCommand.Parameters.Add(newParam("@BJ_Year", BJ_Year));
         DBCommand.Parameters.Add(newParam("@BJ_Detail", BJ_Detail));
         DBCommand.Parameters.Add(newParam("@BJ_Measure", BJ_Measure));
         DBCommand.Parameters.Add(newParam("@BJ_Benefit", BJ_Benefit));

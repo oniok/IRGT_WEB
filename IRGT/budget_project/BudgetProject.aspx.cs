@@ -76,6 +76,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_Column07"] = "สถานที่ดำเนินงาน";
             Session[PageFunction + "_Column08"] = "ระยะเวลาการดำเนินงาน";
             Session[PageFunction + "_Column09"] = "วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_Column091"] = "ปีงบประมาณ";
             Session[PageFunction + "_Column10"] = "ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
             Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
@@ -107,6 +108,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_ERROR_07"] = "โปรดระบุ สถานที่ดำเนินงาน";
             Session[PageFunction + "_ERROR_08"] = "โปรดระบุ ระยะเวลาการดำเนินงาน";
             Session[PageFunction + "_ERROR_09"] = "โปรดระบุ วงเงินทั้งสิ้นของโครงการ";
+            Session[PageFunction + "_Column091"] = "ปีงบประมาณ";
             Session[PageFunction + "_ERROR_10"] = "โปรดระบุ ขั้นตอนการดำเนินงาน หรือกิจกรรมที่สำคัญ";
             Session[PageFunction + "_ERROR_11"] = "โปรดระบุ ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_ERROR_12"] = "โปรดระบุ ผลประโยชน์ที่คาดว่าจะได้รับ";

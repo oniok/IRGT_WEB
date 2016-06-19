@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetProject.aspx.cs" Inherits="budget_BudgetProject" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main2.master" AutoEventWireup="true" CodeFile="BudgetProject.aspx.cs" Inherits="budget_BudgetProject" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../Scripts/angular.min.js"></script>
@@ -91,11 +91,26 @@
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column08"]%></span></div>
                             <input type="text" id="BJ_Duration" style="width:100%"/>
+                            <!-- #section:plugins/date-time.daterangepicker -->
+							<div class="input-group hidden">
+								<span class="input-group-addon">
+									<i class="fa fa-calendar bigger-110"></i>
+								</span>
+
+								<input class="form-control" type="text" name="date-range-picker" id="BJ_Duration2" />
+							</div>
+
+							<!-- /section:plugins/date-time.daterangepicker -->
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column09"]%></span></div>
                             <input type="text" id="BJ_Amount" style="width:100%"/>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column091"]%></span></div>
+                            <input type="text" id="BJ_Year" style="width:100%"/>
                         </div>
 
                         <div class="widget-body" style="margin-bottom:10px;">
@@ -219,7 +234,10 @@
                 $('#BJ_Objective').html(data.records[0].BJ_Objective.trim());
                 $('#BJ_Place').html(data.records[0].BJ_Place.trim());
                 $('#BJ_Duration').val(data.records[0].BJ_Duration.trim());
+                $('#BJ_Duration2').data('daterangepicker').setStartDate(data.records[0].Start_Date.trim());
+                $('#BJ_Duration2').data('daterangepicker').setEndDate(data.records[0].End_Date.trim());
                 $('#BJ_Amount').val((data.records[0].BJ_Amount).toString().trim());
+                $('#BJ_Year').val(data.records[0].BJ_Year.trim());
                 $('#BJ_Detail').html(data.records[0].BJ_Detail.trim());
                 $('#BJ_Measure').html(data.records[0].BJ_Measure.trim());
                 $('#BJ_Benefit').html(data.records[0].BJ_Benefit.trim());
@@ -250,13 +268,40 @@
 
         $http.post("../server/Server_Budget_Project.aspx", data, config)
         .success(function (data, status, headers, config) {
-            document.getElementById('btnConfirm').click();
-            //fnGetData($scope, $http);
-            location.reload();
+            $('body').pleaseWait('stop');
+            if (data.output == "OK") {
+                document.getElementById('popMessage').innerHTML = "<%=Session["info_success_budget_project"]%>";
+                $('#div_footerYN').hide();
+                $('#div_footerOK').show();
+                //document.getElementById('btnConfirm').click();
+                fnClearText();
+                //setTimeout(location.reload(), 100);
+            } else {
+                fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+            }
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
         });
+    }
+
+    function fnClearText() {
+        $('#BJ_Issue').val("");
+        $('#BJ_Goal').val("");
+        $('#BJ_Strategy').val("");
+        $('#BJ_ProjectName').val("");
+        $('#BJ_Reason').html("");
+        $('#BJ_Objective').html("");
+        $('#BJ_Place').html("");
+        $('#BJ_Duration').val("");
+        $('#BJ_Duration2').data('daterangepicker').setStartDate("");
+        $('#BJ_Duration2').data('daterangepicker').setEndDate("");
+        $('#BJ_Amount').val("");
+        $('#BJ_Year').val("");
+        $('#BJ_Detail').html("");
+        $('#BJ_Measure').html("");
+        $('#BJ_Benefit').html("");
+        $('#BJ_Responsible').html("");
     }
 
     function fnSave() {
@@ -271,11 +316,15 @@
             var BJ_Place = $('#BJ_Place').html();
             var BJ_Duration = $('#BJ_Duration').val();
             var BJ_Amount = $('#BJ_Amount').val();
+            var BJ_Year = $('#BJ_Year').val();
             var BJ_Detail = $('#BJ_Detail').html();
             var BJ_Measure = $('#BJ_Measure').html();
             var BJ_Benefit = $('#BJ_Benefit').html();
             var BJ_Responsible = $('#BJ_Responsible').html();
-        
+
+            var BJ_Start_Date = $('#BJ_Duration2').data('daterangepicker').startDate.format('YYYY-MM-DD');
+            var BJ_End_Date = $('#BJ_Duration2').data('daterangepicker').endDate.format('YYYY-MM-DD');
+
             if (BJ_Issue == "") {
                 fnErrorMessage("ข้อผิดพลาด / Error", "<%=Session["budget_project_ERROR_01"]%>");
                 return;
@@ -363,7 +412,11 @@
         var BJ_Objective = $('#BJ_Objective').html();
         var BJ_Place = $('#BJ_Place').html();
         var BJ_Duration = $('#BJ_Duration').val();
+        var BJ_Start_Date = $('#BJ_Duration2').data('daterangepicker').startDate.format('YYYY-MM-DD');;
+        var BJ_End_Date = $('#BJ_Duration2').data('daterangepicker').endDate.format('YYYY-MM-DD');;
+
         var BJ_Amount = $('#BJ_Amount').val();
+        var BJ_Year = $('#BJ_Year').val();
         var BJ_Detail = $('#BJ_Detail').html();
         var BJ_Measure = $('#BJ_Measure').html();
         var BJ_Benefit = $('#BJ_Benefit').html();
@@ -382,7 +435,10 @@
             BJ_Objective: BJ_Objective,
             BJ_Place: BJ_Place,
             BJ_Duration: BJ_Duration,
+            BJ_Start_Date: BJ_Start_Date,
+            BJ_End_Date: BJ_End_Date,
             BJ_Amount: BJ_Amount,
+            BJ_Year:BJ_Year,
             BJ_Detail: BJ_Detail,
             BJ_Measure: BJ_Measure,
             BJ_Benefit: BJ_Benefit,

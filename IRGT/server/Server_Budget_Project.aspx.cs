@@ -121,7 +121,10 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string BJ_Objective = "";
         string BJ_Place = "";
         string BJ_Duration = "";
+        string BJ_Start_Date = "";
+        string BJ_End_Date = "";
         string BJ_Amount = "";
+        string BJ_Year = "";
         string BJ_Detail = "";
         string BJ_Measure = "";
         string BJ_Benefit = "";
@@ -165,7 +168,10 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 BJ_Objective = Request.Params["BJ_Objective"];
                 BJ_Place = Request.Params["BJ_Place"];
                 BJ_Duration = Request.Params["BJ_Duration"];
+                BJ_Start_Date = Request.Params["BJ_Start_Date"];
+                BJ_End_Date = Request.Params["BJ_End_Date"];
                 BJ_Amount = Request.Params["BJ_Amount"];
+                BJ_Year = Request.Params["BJ_Year"];
                 BJ_Detail = Request.Params["BJ_Detail"];
                 BJ_Measure = Request.Params["BJ_Measure"];
                 BJ_Benefit = Request.Params["BJ_Benefit"];
@@ -173,7 +179,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
 
                 KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
                 if (IRGTService.setBudget_Project(KeyID, BJ_ID, BJ_Issue, BJ_Goal, BJ_Strategy
-                    , BJ_ProjectName, BJ_Reason, BJ_Objective, BJ_Place, BJ_Duration, BJ_Amount
+                    , BJ_ProjectName, BJ_Reason, BJ_Objective, BJ_Place, BJ_Duration, BJ_Start_Date, BJ_End_Date, BJ_Amount, BJ_Year
                     , BJ_Detail, BJ_Measure, BJ_Benefit, BJ_Responsible, cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("[{output:\"OK\",message:\"\"}]");
                 else

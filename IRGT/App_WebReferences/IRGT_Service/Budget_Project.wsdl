@@ -229,7 +229,10 @@
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Objective" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Place" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Duration" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Start_Date" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_End_Date" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Amount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BJ_Year" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Detail" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Measure" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="BJ_Benefit" type="s:string" />
