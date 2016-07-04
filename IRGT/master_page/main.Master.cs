@@ -178,7 +178,78 @@ public partial class master_page_main : System.Web.UI.MasterPage
                              if (PageID == ID + "-" + subID + "-" + sub_subID)
                                  li_class = "active open";
 
-                             SMenu += "<li class='" + li_class + "'>";
+                            /////////////////////
+                            XmlNodeList listSubSubSubMenu = listSubSubMenu[j].SelectNodes("./Menu");
+
+                            if (listSubSubSubMenu.Count > 0)
+                            {
+                                string subsubID = listSubMenu[j].Attributes["ID"].Value;
+                                string subsubName = listSubMenu[j].Attributes["Name"].Value;
+                                string subsubTextTH = listSubMenu[j].Attributes["TextTH"].Value;
+                                string subsubTextEN = listSubMenu[j].Attributes["TextEN"].Value;
+                                string subsubText = "";
+                                if (LANG.Trim().ToUpper() == "TH")
+                                    subsubText = subsubTextTH;
+                                else
+                                    subsubText = subsubTextEN;
+
+                                string SubSubUrl = "";
+                                if (listSubSubSubMenu.Count == 0)
+                                    SubSubUrl = listSubSubSubMenu[j].Attributes["Url"].Value + "?PageID=" + ID + "-" + subsubID + "&lang=" + LANG;
+
+                                SMenu += "<li class='" + li_class + "'>";
+                                if (listSubSubSubMenu.Count > 0)
+                                    SMenu += "<a href='" + SubSubUrl + "' class='dropdown-toggle'>";
+                                else
+                                    SMenu += "<a href='" + SubSubUrl + "'>";
+
+                                SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
+                                SMenu += subsubText;
+                                if (listSubSubSubMenu.Count > 0)
+                                    SMenu += "<b class='arrow fa fa-angle-down'></b>";
+                                SMenu += "</a>";
+                                if (listSubSubSubMenu.Count > 0)
+                                {
+                                    SMenu += "<b class='arrow'></b>";
+                                    SMenu += "<ul class='submenu'>";
+
+
+                                    for (int l = 0; l < listSubSubSubMenu.Count; l++)
+                                    {
+                                        string sub_subsubID = listSubSubSubMenu[l].Attributes["ID"].Value;
+                                        string sub_subsubName = listSubSubSubMenu[l].Attributes["Name"].Value;
+                                        string sub_subsubTextTH = listSubSubSubMenu[l].Attributes["TextTH"].Value;
+                                        string sub_subsubTextEN = listSubSubSubMenu[l].Attributes["TextEN"].Value;
+                                        string sub_subsubUrl = listSubSubSubMenu[l].Attributes["Url"].Value + "?PageID=" + ID + "-" + subsubID + "-" + sub_subsubID + "&lang=" + LANG;
+                                        string sub_subsubText = "";
+                                        if (LANG.Trim().ToUpper() == "TH")
+                                            sub_subsubText = sub_subsubTextTH;
+                                        else
+                                            sub_subsubText = sub_subsubTextEN;
+
+                                        li_class = "";
+                                        if (PageID == ID + "-" + subsubID + "-" + sub_subsubID)
+                                            li_class = "active open";
+
+                                        SMenu += "<li class='" + li_class + "'>";
+                                        SMenu += "<a href='" + sub_subsubUrl + "'>";
+                                        SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
+                                        SMenu += sub_subsubText;
+                                        SMenu += "</a>";
+                                        SMenu += "<b class='arrow'></b>";
+                                        SMenu += "</li>";
+
+                                    }
+                                    SMenu += "</ul>";
+
+                                }
+
+                                SMenu += "</li>";
+                            }
+                            
+                            ////////////////
+
+                            SMenu += "<li class='" + li_class + "'>";
                              SMenu += "<a href='" + sub_subUrl + "'>";
                              SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
                              SMenu += sub_subText;

@@ -24,10 +24,8 @@
   <Menu ID="2" Name="Budget" TextTH="งบประมาณเงินทุนหมุนเวียน" TextEN="งบประมาณเงินทุนหมุนเวียน">
     <Menu ID="1" Name="menu_b010" TextTH="จัดทำคำขอประมาณการ" TextEN="จัดทำคำขอประมาณการ" RoleShow="-002">
       <Menu ID="1" Name="menu_b011" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url="../budget_position/BudgetPosition.aspx"/>
-      <Menu ID="2" Name="menu_b012" TextTH="งบดำเนินงาน" TextEN="งบดำเนินงาน" Url="../budget_operation/BudgetOperation.aspx">
-        <Menu ID="1" Name="menu_b0121" TextTH="ค่าตอบแทน ใช้สอย และวัสดุ" TextEN="ค่าตอบแทน ใช้สอย และวัสดุ" Url="../budget_operation/BudgetOperation.aspx"/>
-        <Menu ID="2" Name="menu_b0122" TextTH="ค่าใช้จ่ายอื่นๆ" TextEN="ค่าใช้จ่ายอื่นๆ" Url="../budget_operation/BudgetOperation.aspx"/>
-      </Menu>
+      <Menu ID="2" Name="menu_b012" TextTH="งบดำเนินงานค่าตอบแทน ใช้สอย และวัสดุ" TextEN="งบดำเนินงานค่าตอบแทน ใช้สอย และวัสดุ" Url="../budget_operation/BudgetOperation.aspx"/>
+      <Menu ID="3" Name="menu_b013" TextTH="งบดำเนินงานค่าใช้จ่ายอื่นๆ" TextEN="งบดำเนินงานค่าใช้จ่ายอื่นๆ" Url="../budget_operation/BudgetOperation.aspx"/>
       <Menu ID="4" Name="menu_b014" TextTH="งบลงทุนค่าครุภัณฑ์" TextEN="งบลงทุนค่าครุภัณฑ์" Url="../budget_asset/BudgetAsset.aspx"/>
       <Menu ID="5" Name="menu_b015" TextTH="งบลงทุนโครงการ" TextEN="งบลงทุนโครงการ" Url="../budget_project/BudgetProject.aspx"/>
       
