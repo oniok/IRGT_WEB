@@ -163,44 +163,98 @@ public partial class master_page_main2 : System.Web.UI.MasterPage
 
                          for (int k = 0; k < listSubSubMenu.Count; k++)
                          {
-                             string sub_subID = listSubSubMenu[k].Attributes["ID"].Value;
-                             string sub_subName = listSubSubMenu[k].Attributes["Name"].Value;
-                             string sub_subTextTH = listSubSubMenu[k].Attributes["TextTH"].Value;
-                             string sub_subTextEN = listSubSubMenu[k].Attributes["TextEN"].Value;
-                             string sub_subUrl = listSubSubMenu[k].Attributes["Url"].Value + "?PageID=" + ID + "-" + subID + "-" + sub_subID + "&lang=" + LANG;
-                             string sub_subText = "";
-                             if (LANG.Trim().ToUpper() == "TH")
-                                 sub_subText = sub_subTextTH;
-                             else
-                                 sub_subText = sub_subTextEN;
+                            string sub_subID = listSubSubMenu[k].Attributes["ID"].Value;
+                            string sub_subName = listSubSubMenu[k].Attributes["Name"].Value;
+                            string sub_subTextTH = listSubSubMenu[k].Attributes["TextTH"].Value;
+                            string sub_subTextEN = listSubSubMenu[k].Attributes["TextEN"].Value;
+                            string sub_subText = "";
+                            if (LANG.Trim().ToUpper() == "TH")
+                                sub_subText = sub_subTextTH;
+                            else
+                                sub_subText = sub_subTextEN;
 
-                             li_class = "";
-                             if (PageID == ID + "-" + subID + "-" + sub_subID)
-                                 li_class = "active open";
+                            li_class = "";
 
-                             SMenu += "<li class='" + li_class + "'>";
-                             SMenu += "<a href='" + sub_subUrl + "'>";
-                             SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
-                             SMenu += sub_subText;
-                             SMenu += "</a>";
-                             SMenu += "<b class='arrow'></b>";
-                             SMenu += "</li>";
+                            if (PageID == ID + "-" + subID + "-" + sub_subID)
+                                li_class = "active";
+                            if (PageID.Substring(0, (ID + "-" + subID + "-" + sub_subID).Length) == ID + "-" + subID + "-" + sub_subID)
+                                li_class += " open";
 
-                         }
-                         SMenu += "</ul>";
-                        
-                     }
+                            //===========================================================
+                            /*
+                            SMenu += "<li class='" + li_class + "'>";
+                            SMenu += "<a href='" + sub_subUrl + "'>";
+                            SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
+                            SMenu += sub_subText;
+                            SMenu += "</a>";
+                            SMenu += "<b class='arrow'></b>";
+                            SMenu += "</li>";
+                            */
+                            //==========================================================
+                            XmlNodeList listSubSubSubMenu = listSubSubMenu[k].SelectNodes("./Menu");
+                            string sub_subUrl = "";
+                            if (listSubSubSubMenu.Count == 0)
+                                sub_subUrl = listSubSubMenu[k].Attributes["Url"].Value + "?PageID=" + ID + "-" + subID + "-" + sub_subID + "&lang=" + LANG;
 
-					 SMenu += "</li>";
-                 }
-                 SMenu += "</ul>";
+                            SMenu += "<li class='" + li_class + "'>";
+                            if (listSubSubSubMenu.Count > 0)
+                                SMenu += "<a href='" + sub_subUrl + "' class='dropdown-toggle'>";
+                            else
+                                SMenu += "<a href='" + sub_subUrl + "'>";
+
+                            SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
+                            SMenu += sub_subText;
+                            if (listSubSubSubMenu.Count > 0)
+                                SMenu += "<b class='arrow fa fa-angle-down'></b>";
+                            SMenu += "</a>";
+
+                            if (listSubSubSubMenu.Count > 0)
+                            {
+                                SMenu += "<b class='arrow'></b>";
+                                SMenu += "<ul class='submenu'>";
+                                for (int l = 0; l < listSubSubSubMenu.Count; l++)
+                                {
+                                    string sub_sub_subID = listSubSubSubMenu[l].Attributes["ID"].Value;
+                                    string sub_sub_subName = listSubSubSubMenu[l].Attributes["Name"].Value;
+                                    string sub_sub_subTextTH = listSubSubSubMenu[l].Attributes["TextTH"].Value;
+                                    string sub_sub_subTextEN = listSubSubSubMenu[l].Attributes["TextEN"].Value;
+                                    string sub_sub_subUrl = listSubSubSubMenu[l].Attributes["Url"].Value + "?PageID=" + ID + "-" + subID + "-" + sub_subID + "-" + sub_sub_subID + "&lang=" + LANG;
+                                    string sub_sub_subText = "";
+                                    if (LANG.Trim().ToUpper() == "TH")
+                                        sub_sub_subText = sub_sub_subTextTH;
+                                    else
+                                        sub_sub_subText = sub_sub_subTextEN;
+
+                                    li_class = "";
+                                    if (PageID == ID + "-" + subID + "-" + sub_subID + "-" + sub_sub_subID)
+                                        li_class = "active open";
+
+                                    SMenu += "<li class='" + li_class + "'>";
+                                    SMenu += "<a href='" + sub_sub_subUrl + "'>";
+                                    SMenu += "<i class='menu-icon fa fa-caret-right'></i>";
+                                    SMenu += sub_sub_subText;
+                                    SMenu += "</a>";
+                                    SMenu += "<b class='arrow'></b>";
+                                    SMenu += "</li>";
+
+                                }
+                                SMenu += "</ul>";
+                            }
+                        }
+                        SMenu += "</ul>";
+
+                    }
+
+                    SMenu += "</li>";
+                }
+                SMenu += "</ul>";
             }
 
 
             SMenu += "</li>";
         }
 
-        
+
 
 
         labMenu.Text = @"<ul class='nav nav-list'>
@@ -211,6 +265,5 @@ public partial class master_page_main2 : System.Web.UI.MasterPage
 					</a>						
 				</li>
 				" + SMenu + "</ul>";
-
     }
 }
