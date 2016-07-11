@@ -133,6 +133,35 @@
                             <div class="wysiwyg-editor" id="BJ_Responsible"></div>
                         </div>
 
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column14"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_Reference"></div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column15"]%></span></div>
+                            <div>
+                                <input type="text" id="fileValue" style="width:100%" readonly />  
+                                <table style="width: 100%">
+                                    <tr>
+                                        <td style="width: 5px"></td>
+                                        <td><a href="#" id="fileView" target="_blank">VIEW</a></td>
+                                        <td style="width: 5px"></td>
+                                        <td>
+                                            <input type="file" id="fileUpload" style="width: 73px;" onchange="fnFilechange()" /></td>
+                                        <td style="width: 5px"></td>
+                                        <td>
+                                            <input type="button" value="Clear" onclick="fnClear()" /></td>
+                                    </tr>
+                                </table>
+							</div>
+                        </div>
+
+                        <div class="widget-body" style="margin-bottom:10px;">
+                            <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column16"]%></span></div>
+                            <div class="wysiwyg-editor" id="BJ_remark"></div>
+                        </div>
+
 
                         <a id="btnEdit2" href="#modal-profile-edit" class="btn btn-primary" data-toggle="modal" style="display:none">แก้ไขข้อมูล(ถ้ามี)</a>
                         <div class="modal fade" id="modal-profile-edit2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -283,6 +312,29 @@
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
         });
+    }
+
+    function fnClear() {
+        document.getElementById('fileValue').value = "";
+    }
+    function fnFilechange() {
+        var x = document.getElementById("fileUpload");
+
+        if ('files' in x) {
+            if (x.files.length == 0) {
+                txt = "Select one or more files.";
+            } else {
+                for (var i = 0; i < x.files.length; i++) {
+                    var file = x.files[i];
+                    if ('name' in file) {
+                        //txt += "name: " + file.name + "<br>";
+                        document.getElementById('fileValue').value = file.name;
+                        //document.getElementById('fileView').href = "../upload/declare/" + file.name;
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     function fnClearText() {

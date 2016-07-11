@@ -49,6 +49,9 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_ERROR_11"] = "โปรดระบุ ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_ERROR_12"] = "โปรดระบุ ผลประโยชน์ที่คาดว่าจะได้รับ";
             Session[PageFunction + "_ERROR_13"] = "โปรดระบุ ผู้รับผิดชอบ";
+            Session[PageFunction + "_ERROR_14"] = "โปรดระบุ ภาคผนวก";
+            Session[PageFunction + "_ERROR_15"] = "โปรดระบุ เอกสารแนบ";
+            Session[PageFunction + "_ERROR_16"] = "โปรดระบุ หมายเหตุ";
             //================ TABLE ==================================================
             Session["HeaderText"] = PageName;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
@@ -81,6 +84,9 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
             Session[PageFunction + "_Column13"] = "ผู้รับผิดชอบ";
+            Session[PageFunction + "_Column14"] = "ภาคผนวก";
+            Session[PageFunction + "_Column15"] = "เอกสารแนบ";
+            Session[PageFunction + "_Column16"] = "หมายเหตุ";
         }
         else
         {
@@ -113,6 +119,9 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_ERROR_11"] = "โปรดระบุ ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_ERROR_12"] = "โปรดระบุ ผลประโยชน์ที่คาดว่าจะได้รับ";
             Session[PageFunction + "_ERROR_13"] = "โปรดระบุ ผู้รับผิดชอบ";
+            Session[PageFunction + "_ERROR_14"] = "โปรดระบุ ภาคผนวก";
+            Session[PageFunction + "_ERROR_15"] = "โปรดระบุ เอกสารแนบ";
+            Session[PageFunction + "_ERROR_16"] = "โปรดระบุ หมายเหตุ";
             //================ TABLE ==================================================
             Session["HeaderText"] = PageName;
             Session["HeaderTable"] = "ข้อมูล - " + PageName;
@@ -144,6 +153,9 @@ public partial class budget_BudgetProject : System.Web.UI.Page
             Session[PageFunction + "_Column11"] = "ตัวชี้วัดความสำเร็จของโครงการ";
             Session[PageFunction + "_Column12"] = "ผลประโยชน์ที่คาดว่าจะได้รับ";
             Session[PageFunction + "_Column13"] = "ผู้รับผิดชอบ";
+            Session[PageFunction + "_Column14"] = "ภาคผนวก";
+            Session[PageFunction + "_Column15"] = "เอกสารแนบ";
+            Session[PageFunction + "_Column16"] = "หมายเหตุ";
         }
     }
 }

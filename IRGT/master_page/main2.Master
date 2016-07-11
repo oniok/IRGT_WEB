@@ -19,6 +19,7 @@
 	<!-- page specific plugin styles -->
 	<link rel="stylesheet" href="../assets/css/jquery-ui.custom.css" />
 	<link rel="stylesheet" href="../assets/css/daterangepicker.css" />
+    <link rel="stylesheet" href="../assets/css/dropzone.css" />
 
 	<!-- text fonts -->
 	<link rel="stylesheet" href="../assets/css/ace-fonts.css" />
@@ -240,6 +241,8 @@
         <script src="../assets/js/date-time/daterangepicker.js"></script>
         <script src="../assets/js/date-time/bootstrap-datepicker.js"></script>
 
+        <script src="../assets/js/dropzone.js"></script>
+
 		<!-- ace scripts -->
 		<script src="../assets/js/ace/elements.scroller.js"></script>
 		<script src="../assets/js/ace/elements.colorpicker.js"></script>
@@ -304,7 +307,8 @@
 		        });
 		    }
 		    jQuery(function ($) {
-		        //datepicker plugin
+		        //dropzone
+		       
 
 		        //link
 		        $JQ = $;

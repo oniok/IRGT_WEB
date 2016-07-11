@@ -1,0 +1,272 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class server_DeclareService : System.Web.UI.Page
+{
+    IRGT_DeclareService.DeclareService DCService = new IRGT_DeclareService.DeclareService();
+
+    public static string DataTableToJSON(DataTable table)
+    {
+        List<Dictionary<string, object>> list = new List<Dictionary<string, object>>();
+
+        foreach (DataRow row in table.Rows)
+        {
+            Dictionary<string, object> dict = new Dictionary<string, object>();
+
+            foreach (DataColumn col in table.Columns)
+            {
+                dict[col.ColumnName] = row[col];
+            }
+            list.Add(dict);
+        }
+        JavaScriptSerializer serializer = new JavaScriptSerializer();
+        return serializer.Serialize(list);
+    }
+    private string genPaging(int PageSize, int Count)
+    {
+        int sum = Count / PageSize;
+        DataTable dtTemp = new DataTable("Data");
+        dtTemp.Columns.Add("Page");
+        dtTemp.Columns.Add("Class");
+
+        if ((sum * PageSize) != Count)
+            sum = sum + 1;
+
+        if (sum == 0) sum = 1;
+
+        for (int i = 1; i <= sum; i++)
+        {
+            DataRow dr = dtTemp.NewRow();
+            dr.BeginEdit();
+            dr["Page"] = "" + i;
+            if (i == 1)
+                dr["Class"] = "active";
+            else
+                dr["Class"] = "";
+            dr.EndEdit();
+            dtTemp.Rows.Add(dr);
+        }
+
+        string DT_JSON = DataTableToJSON(dtTemp);
+        DT_JSON = "{\"records\": " + DT_JSON + ",\"pagemax\":\"" + sum + "\",\"rowcount\":\"" + Count + "\"}";
+
+        return DT_JSON;
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string Command = Request.Params["Command"];
+        switch (Command)
+        {
+            case "DeclareType":
+                fnDeclareType();
+                break;
+            case "Declare":
+                fnDeclare();
+                break;
+        }
+    }
+
+    private void fnDeclare()
+    {
+        string FN = Request.Params["Function"];
+        DataTable DT;
+        string DT_JSON;
+        int PageSize = 0;
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+
+        switch (FN)
+        {
+            case "Paging":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+                int DC_Type_ID = cCommon.Convert_Str_To_Int(Request.Params["DC_Type_ID"]);
+                string DC_Name = "" + Request.Params["DC_Name"];
+                string DC_FORM = "" + Request.Params["DC_FORM"];
+                string DC_TO = "" + Request.Params["DC_TO"];
+                int DC_YEAR = cCommon.Convert_Str_To_Int(Request.Params["DC_YEAR"]); 
+
+                string Declare_Name_E = Request.Params["Declare_Name_E"];
+                int Count = DCService.getDC_Main_Count(DC_Type_ID, DC_Name, DC_FORM, DC_TO, DC_YEAR);
+                DT_JSON = genPaging(PageSize, Count);
+                Response.Write(DT_JSON);
+                return;
+            case "Select":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+                int PageIndex = int.Parse(Request.Params["PageIndex"]);
+                string lang = Request.Params["lang"];
+                DC_Type_ID = cCommon.Convert_Str_To_Int(Request.Params["DC_Type_ID"]);
+                DC_Name = "" + Request.Params["DC_Name"];
+                DC_FORM = "" + Request.Params["DC_FORM"];
+                DC_TO = "" + Request.Params["DC_TO"];
+                DC_YEAR = cCommon.Convert_Str_To_Int(Request.Params["DC_YEAR"]);
+
+                DT = DCService.getDC_Main(PageSize, PageIndex, DC_Type_ID, DC_Name, DC_FORM, DC_TO, DC_YEAR, lang);
+                Session["Data_Declare"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            
+            case "Save":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                int KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                DC_Type_ID = cCommon.Convert_Str_To_Int(Request.Params["DC_Type_ID"]);
+                string DC_Name_T = Request.Params["DC_Name_T"];
+                string DC_FORM_T = Request.Params["DC_FORM_T"];
+                string DC_TO_T = Request.Params["DC_TO_T"];
+                string DC_Name_E = Request.Params["DC_Name_E"];
+                string DC_FORM_E = Request.Params["DC_FORM_E"];
+                string DC_TO_E = Request.Params["DC_TO_E"];
+                DC_YEAR = cCommon.Convert_Str_To_Int(Request.Params["DC_YEAR"]);
+                string DC_LAT = Request.Params["DC_LAT"];
+                string DC_LON = Request.Params["DC_LON"];
+                string DC_GROUP = Request.Params["DC_GROUP"];
+                string DC_FileName = Request.Params["DC_FileName"];
+              
+
+                if (DCService.setDC_Main(KeyID, DC_Type_ID, DC_Name_T, DC_FORM_T, DC_TO_T
+                    , DC_Name_E, DC_FORM_E, DC_TO_E, DC_YEAR, DC_LAT, DC_LON, DC_GROUP, DC_FileName
+                    , cCommon.getUserName(Session), out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
+            case "Delete":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                ReturnMSG_TH = "";
+                ReturnMSG_EN = "";
+
+                //"{\"records\": " + DT_JSON + "}";
+
+
+                if (DCService.deleteDC_Main(KeyID, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("{\"output\":\"OK\"}");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_TH + "\"}");
+                    else
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_EN + "\"}");
+                }
+
+                return;
+            case "Load":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                DT = (DataTable)Session["Data_Declare"];
+                DataRow[] dr_list = DT.Select("DC_ID = " + KeyID);
+                string OP = "[{";
+                OP += "DC_Type_ID:\"" + dr_list[0]["DC_Type_ID"] + "\"";
+                OP += ",DC_Name_T:\"" + dr_list[0]["DC_Name_T"] + "\"";
+                OP += ",DC_FORM_T:\"" + dr_list[0]["DC_FORM_T"] + "\"";
+                OP += ",DC_TO_T:\"" + dr_list[0]["DC_TO_T"] + "\"";
+
+                OP += ",DC_Name_E:\"" + dr_list[0]["DC_Name_E"] + "\"";
+                OP += ",DC_FORM_E:\"" + dr_list[0]["DC_FORM_E"] + "\"";
+                OP += ",DC_TO_E:\"" + dr_list[0]["DC_TO_E"] + "\"";
+
+                OP += ",DC_YEAR:\"" + dr_list[0]["DC_YEAR"] + "\"";
+                OP += ",DC_LAT:\"" + dr_list[0]["DC_LAT"] + "\"";
+                OP += ",DC_LON:\"" + dr_list[0]["DC_LON"] + "\"";
+                OP += ",DC_GROUP:\"" + dr_list[0]["DC_GROUP"] + "\"";
+                OP += ",DC_FileName:\"" + dr_list[0]["DC_FileName"] + "\"";
+                OP += "}]";
+                Response.Write(OP);
+                return;
+        }
+    }
+
+    private void fnDeclareType()
+    {
+        string FN = Request.Params["Function"];
+        DataTable DT;
+        string DT_JSON;
+        int PageSize = 0;
+        string ReturnMSG_TH = "";
+        string ReturnMSG_EN = "";
+
+        switch (FN)
+        {
+            case "Paging":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+                string Declare_Name_T = Request.Params["Declare_Name_T"];
+                string Declare_Name_E = Request.Params["Declare_Name_E"];
+                int Count = DCService.getDC_Type_Count(Declare_Name_T, Declare_Name_E);
+                DT_JSON = genPaging(PageSize, Count);
+                Response.Write(DT_JSON);
+                return;
+            case "Select":
+                PageSize = cCommon.Convert_Str_To_Int(Request.Params["PageSize"]);
+                Declare_Name_T = Request.Params["Declare_Name_T"];
+                Declare_Name_E = Request.Params["Declare_Name_E"];
+                int PageIndex = int.Parse(Request.Params["PageIndex"]);
+                string lang = Request.Params["lang"];
+                DT = DCService.getDC_Type(PageSize, PageIndex, Declare_Name_T, Declare_Name_E);
+                Session["Data_Declare_Type"] = DT.Copy();
+                DT_JSON = DataTableToJSON(DT);
+                DT_JSON = "{\"records\": " + DT_JSON + "}";
+                Response.Write(DT_JSON);
+                return;
+            case "Save":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                Declare_Name_T = Request.Params["Declare_Name_T"];
+                Declare_Name_E = Request.Params["Declare_Name_E"];
+                int KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                if (DCService.setDC_Type(KeyID, Declare_Name_T, Declare_Name_E, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("[{output:\"OK\",message:\"\"}]");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_TH + "\"}]");
+                    else
+                        Response.Write("[{output:\"ERROR\",message:\"" + ReturnMSG_EN + "\"}]");
+                }
+                return;
+            case "Delete":
+                lang = Request.Params["lang"];
+                if (lang == "") lang = "TH";
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                ReturnMSG_TH = "";
+                ReturnMSG_EN = "";
+
+                //"{\"records\": " + DT_JSON + "}";
+                if (DCService.deleteDC_Type(KeyID, out ReturnMSG_TH, out ReturnMSG_EN))
+                    Response.Write("{\"output\":\"OK\"}");
+                else
+                {
+                    if (lang == "TH")
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_TH + "\"}");
+                    else
+                        Response.Write("{\"output\":\"ERROR\",\"message\":\"" + ReturnMSG_EN + "\"}");
+                }
+
+                return;
+            case "Load":
+                KeyID = cCommon.Convert_Str_To_Int(Request.Params["KeyID"]);
+                DT = (DataTable)Session["Data_Declare_Type"];
+                DataRow[] dr_list = DT.Select("DC_Type_ID = " + KeyID);
+                string OP = "[{";
+                OP += "DC_Type_ID:\"" + dr_list[0]["DC_Type_ID"] + "\"";
+                OP += ",DC_Type_Name_T:\"" + dr_list[0]["DC_Type_Name_T"] + "\"";
+                OP += ",DC_Type_Name_E:\"" + dr_list[0]["DC_Type_Name_E"] + "\"";
+                OP += "}]";
+                Response.Write(OP);
+                return;
+        }
+    }
+}
