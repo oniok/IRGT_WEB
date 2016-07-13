@@ -34,6 +34,7 @@ public partial class budget_BudgetProject : System.Web.UI.Page
 
 
             Session["save_button_text"] = "บันทึก";
+            Session["print_button_text"] = "พิมพ์หน้านี้";
             Session["close_button_text"] = "ปิดหน้านี้";
             //================ POPUP ERROR ===========================================
             Session[PageFunction + "_ERROR_01"] = "โปรดระบุ ประเด็นยุทธศาสตร์";

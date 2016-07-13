@@ -236,6 +236,30 @@
         });
     }
     
+    function fnSendNew(LOC_ID) {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BP_ID = document.getElementById('BP_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetPosition',
+            Function: 'Send',
+            BP_ID: BP_ID,
+            LOC_ID:LOC_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget_Position.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnPopClose').click();
+            GetPaging($scope, $http);
+            //fnRefresh();
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
 
     var app = angular.module('myApp', []);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
@@ -263,7 +287,7 @@
             fnOpenPopup('<%=Session["pop_sum_budget_position"]%>', "../budget_position_popup/pop_BudgetPositionSummary.aspx?", null, "450");
         }
         $scope.fnSend = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_position"]%>', '<%=Session["pop_send_budget_position"]%>', fnSendYes);
+            fnOpenPopup('<%=Session["pop_confirm_budget_position"]%>', "../budget/pop_BudgetConfirm.aspx?",null, "450");
         }
         $scope.fnDelete = function (KeyID) {
             tmpKeyID = KeyID;

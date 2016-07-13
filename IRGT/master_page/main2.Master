@@ -480,7 +480,11 @@
                                         <button id="btnPopSave" type="button" class="btn btn-primary btn-sm">
                                             <i class="ace-icon fa fa-floppy-o fa-x"></i>
 							                <%=Session["save_button_text"]%>
-						                </button>                                        
+						                </button>  
+                                        <button id="btnPopPrint" type="button" class="btn btn-primary btn-sm" style="display:none">
+                                            <i class="ace-icon glyphicon glyphicon-print"></i>
+							                <%=Session["print_button_text"]%>
+						                </button>                                       
                                         <button id="btnPopClose" type="button" class="btn btn-danger btn-sm" data-dismiss="modal">
                                             <i class="ace-icon fa fa-times fa-x"></i>
 							                <%=Session["close_button_text"]%>

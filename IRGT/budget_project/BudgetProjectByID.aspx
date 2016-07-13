@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main.master" AutoEventWireup="true" CodeFile="BudgetProjectByID.aspx.cs" Inherits="budget_BudgetProjectByID" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/master_page/main2.master" AutoEventWireup="true" CodeFile="BudgetProjectByID.aspx.cs" Inherits="budget_BudgetProjectByID" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script src="../Scripts/angular.min.js"></script>
@@ -172,6 +172,7 @@
         $scope.fnSum = function () {
             var BJ_ID = '<%=Session["BJ_ID"]%>';
             $('#btnPopSave').toggle(false);
+            $('#btnPopPrint').toggle(true);
             fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetProjectSummaryByID.aspx?BJ_ID=" + BJ_ID, null, "960");
         }
        

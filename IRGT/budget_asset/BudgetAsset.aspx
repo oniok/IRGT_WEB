@@ -31,7 +31,15 @@
 										<!-- div.table-responsive -->
                                         <center>
                                             <table>
-                                                <tr>                                                    
+                                                <tr>     
+                                                    <td><%=Session["budget_asset_Column06"]%></td>
+                                                    <td style="width:5px"></td>
+                                                    <td>
+                                                        <select class="chosen-select form-control" id="Asset_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:200px" >
+					                                        <option value=""></option>	
+                                                            <option ng-repeat="x in AssetType" value="{{ x.Code }}" >{{ x.Name }}</option>				
+				                                        </select>   
+                                                    </td>                                                 
                                                     <td style="width:5px"></td>
                                                     <td><%=Session["budget_asset_Column01"]%></td>
                                                     <td style="width:5px"></td>                                                   
@@ -39,7 +47,11 @@
                                                         <select class="chosen-select form-control" id="BA_Type_ID" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
 					                                        <option value=""></option>	
                                                             <option ng-repeat="x in BudgetAssetType" value="{{ x.Code }}" >{{ x.Name }}</option>				
-				                                        </select>   
+				                                        </select>
+                                                        <!--<select class="chosen-select form-control" id="BA_Type_ID" data-ng-options="x.Name for x in BudgetAssetType" ng-model="referral.BudgetAssetType" data-placeholder="<%=Session["search_placeholder"] %>" style="width:250px">
+                                                            
+                                                        </select>-->
+                                                    
                                                     </td>   
                                                     <td style="width:5px"></td>                                              
                                                     <td>         
@@ -233,6 +245,7 @@
             document.getElementById('paging-select').value = 1;
             GetPaging($scope, $http);
         }
+
         $scope.fnNew = function () {
             fnOpenPopup('<%=Session["pop_add_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAsset.aspx", null, "450");
         }
@@ -241,7 +254,6 @@
         }
         $scope.fnSum = function () {
             fnOpenPopup('<%=Session["pop_sum_budget_asset"]%>', "../budget_asset_popup/pop_BudgetAssetSummary.aspx?", "1300", "450");
-            
         }
         $scope.fnSend = function () {
             fnConfirmMessage('<%=Session["pop_confirm_budget_asset"]%>', '<%=Session["pop_send_budget_asset"]%>', fnSendYes);
@@ -271,6 +283,11 @@
             GetData($scope, $http, PageIndex);
         }
         GetPaging($scope, $http);
+
+        $('#Asset_Type_ID').on('change', function () {
+            $('body').pleaseWait();
+            fnGetBudgetAssetType();
+        });
     }
    
     function GetPaging($scope, $http) {
@@ -314,10 +331,31 @@
         $http.post("../server/Server_Budget_Asset.aspx", data, config)
         .success(function (data, status, headers, config) {
             $scope.Data = data.records;
-            if (isLoad)
-                setTimeout(fnGetBudgetAssetType, 100);
+            if (isLoad){
+                setTimeout(fnGetAssetType, 100);
+            }                
             else
                 $('body').pleaseWait('stop');
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+    function fnGetAssetType() {
+
+        $scope = $tmp_scope;
+        $http = $tmp_http;
+
+        var data = $.param({
+            Command: 'GetMasterData',
+            Function: 'AssetType',
+            PageName: 'asset'
+        });
+
+        $http.post("../server/Server.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $scope.AssetType = data.records;
+            fnGetBudgetAssetType()
         })
         .error(function (data, status, header, config) {
             $('body').pleaseWait('stop');
@@ -331,7 +369,8 @@
         var data = $.param({
             Command: 'GetMasterData',
             Function: 'BudgetAssetType',
-            PageName: 'budget_asset'
+            PageName: 'budget_asset',
+            Param: document.getElementById('Asset_Type_ID').value
         });
 
         $http.post("../server/Server_Budget_Asset.aspx", data, config)

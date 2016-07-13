@@ -141,17 +141,12 @@
                         <div class="widget-body" style="margin-bottom:10px;">
                             <div class="clearfix"><span class="label label-lg label-purple arrowed-right"><%=Session["budget_project_Column15"]%></span></div>
                             <div>
-                                <input type="text" id="fileValue" style="width:100%" readonly />  
                                 <table style="width: 100%">
-                                    <tr>
-                                        <td style="width: 5px"></td>
-                                        <td><a href="#" id="fileView" target="_blank">VIEW</a></td>
-                                        <td style="width: 5px"></td>
-                                        <td>
-                                            <input type="file" id="fileUpload" style="width: 73px;" onchange="fnFilechange()" /></td>
-                                        <td style="width: 5px"></td>
-                                        <td>
-                                            <input type="button" value="Clear" onclick="fnClear()" /></td>
+                                    <tr >
+                                        <td style="width: 30%"><input type="text" id="fileValue" style="width:400px" readonly="true" />  </td>
+                                        <td style="width: 5%"><a href="#" id="fileView" target="_blank">VIEW</a></td>
+                                        <td style="width: 7%"><input type="file" id="fileUpload" style="width: 75px;" onchange="fnFilechange()" /></td>
+                                        <td style="width: 35%"><input type="button" value="Clear" onclick="fnClear()" /></td>
                                     </tr>
                                 </table>
 							</div>
@@ -228,6 +223,7 @@
         }
         $scope.fnSum = function () {
             $('#btnPopSave').toggle(false);
+            $('#btnPopPrint').toggle(true);
             fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetProjectSummary.aspx?KeyID=" + tmpKeyID, null, "960");
         }
         $scope.fnSend = function () {

@@ -20,9 +20,13 @@
       <Menu ID="4" Name="ReportGroup" TextTH="กลุ่มรายงาน" TextEN="Report Group" Url="../admin/ReportGroup.aspx"/>
       <Menu ID="5" Name="ReportGroupType" TextTH="ประเภทกลุ่มรายงาน" TextEN="Report Group Type" Url="../admin/ReportGroupType.aspx"/>
     </Menu>
-  </Menu>-->
+    <Menu ID="0" Name="menu_b000" TextTH="กำหนดค่าเริ่มต้น" TextEN="กำหนดค่าเริ่มต้น" RoleShow="002:999">
+        <Menu ID="1" Name="menu_b001" TextTH="หน่วยงานจัดทำคำขอ" TextEN="หน่วยงานจัดทำคำขอ" Url="../budget/BudgetConfig.aspx"/>
+      </Menu>
+</Menu>-->
   <Menu ID="2" Name="Budget" TextTH="งบประมาณเงินทุนหมุนเวียน" TextEN="งบประมาณเงินทุนหมุนเวียน">
-    <Menu ID="1" Name="menu_b010" TextTH="จัดทำคำขอประมาณการ" TextEN="จัดทำคำขอประมาณการ" RoleShow="-002">
+      
+      <Menu ID="1" Name="menu_b010" TextTH="จัดทำคำขอประมาณการ" TextEN="จัดทำคำขอประมาณการ" RoleShow="All">
       <Menu ID="1" Name="menu_b011" TextTH="งบบุคลากร" TextEN="งบบุคลากร" Url="../budget_position/BudgetPosition.aspx"/>
       <Menu ID="2" Name="menu_b012" TextTH="งบดำเนินงาน" TextEN="งบดำเนินงาน" Url="">
         <Menu ID="1" Name="menu_b0121" TextTH="ค่าตอบแทน ใช้สอย และวัสดุ" TextEN="ค่าตอบแทน ใช้สอย และวัสดุ" Url="../budget_operation/BudgetOperation.aspx"/>
