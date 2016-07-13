@@ -111,6 +111,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         string BJ_ID = "";
+        string Loc_ID = "";
         int KeyID = 0;
         string BJ_Issue = "";
         string BJ_Goal = "";
@@ -220,11 +221,12 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
                 BJ_ID = Request.Params["BJ_ID"];
+                Loc_ID = Request.Params["Loc_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Project(BJ_ID,Loc_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -391,7 +393,7 @@ public partial class Server_Budget_Project : System.Web.UI.Page
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Project(BJ_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Project(BJ_ID,Loc_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {

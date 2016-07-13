@@ -39,6 +39,7 @@ public partial class budget_BudgetOperationList : System.Web.UI.Page
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
+            Session[PageFunction + "_Column00"] = "เลขที่คำขอ";
             Session[PageFunction + "_Column01"] = "หน่วยงาน";
             Session[PageFunction + "_Column02"] = "ปีงบประมาณ";
             Session[PageFunction + "_Column03"] = "วันที่ส่งคำขอ";
@@ -69,6 +70,7 @@ public partial class budget_BudgetOperationList : System.Web.UI.Page
             //================ Column ==================================================   
             Session[PageFunction + "_ColumnSEQ"] = "ลำดับ";
             Session[PageFunction + "_ColumnEdit"] = "";
+            Session[PageFunction + "_Column00"] = "เลขที่คำขอ";
             Session[PageFunction + "_Column01"] = "หน่วยงาน";
             Session[PageFunction + "_Column02"] = "ปีงบประมาณ";
             Session[PageFunction + "_Column03"] = "วันที่ส่งคำขอ";

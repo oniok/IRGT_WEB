@@ -227,7 +227,9 @@
             fnOpenPopup('<%=Session["pop_sum_budget_project"]%>', "../budget_project_popup/pop_BudgetProjectSummary.aspx?KeyID=" + tmpKeyID, null, "960");
         }
         $scope.fnSend = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_project"]%>', '<%=Session["pop_send_budget_project"]%>', fnSendYes);
+            $('#btnPopSave').toggle(true);
+            $('#btnPopPrint').toggle(false);
+            fnOpenPopup('<%=Session["pop_confirm_budget_project"]%>', "../budget/pop_BudgetConfirm.aspx?",null, "450");
         }
         fnGetData($scope, $http);
     }
@@ -299,6 +301,39 @@
                 $('#div_footerYN').hide();
                 $('#div_footerOK').show();
                 //document.getElementById('btnConfirm').click();
+                fnClearText();
+                //setTimeout(location.reload(), 100);
+            } else {
+                fnErrorMessage("ข้อผิดพลาด / Error", data[0].message);
+            }
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
+
+    function fnSendNew(LOC_ID) {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BJ_ID = document.getElementById('BJ_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetProject',
+            Function: 'Send',
+            BJ_ID: BJ_ID,
+            LOC_ID: LOC_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget_Project.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            $('body').pleaseWait('stop');
+            if (data.output == "OK") {
+                document.getElementById('popMessage').innerHTML = "<%=Session["info_success_budget_project"]%>";
+                $('#div_footerYN').hide();
+                $('#div_footerOK').show();
+                document.getElementById('btnPopClose').click();
                 fnClearText();
                 //setTimeout(location.reload(), 100);
             } else {

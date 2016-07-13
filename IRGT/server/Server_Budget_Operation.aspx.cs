@@ -128,6 +128,7 @@ public partial class server_Budget_Operation : System.Web.UI.Page
         string ReturnMSG_TH = "";
         string ReturnMSG_EN = "";
         string BO_ID = "";
+        string Loc_ID = "";
         int KeyID = 0;
         string BO_Name = "";
         string BO_Qty = "";
@@ -229,11 +230,12 @@ public partial class server_Budget_Operation : System.Web.UI.Page
                 lang = Request.Params["lang"];
                 if (lang == "") lang = "TH";
                 BO_ID = Request.Params["BO_ID"];
+                Loc_ID = Request.Params["Loc_ID"];
                 ReturnMSG_TH = "";
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Operation(BO_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Operation(BO_ID,Loc_ID,User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {
@@ -473,7 +475,7 @@ public partial class server_Budget_Operation : System.Web.UI.Page
                 ReturnMSG_EN = "";
 
                 //"{\"records\": " + DT_JSON + "}";
-                if (IRGTService.sendBudget_Operation(BO_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
+                if (IRGTService.sendBudget_Operation(BO_ID,Loc_ID, User_Code, out ReturnMSG_TH, out ReturnMSG_EN))
                     Response.Write("{\"output\":\"OK\"}");
                 else
                 {

@@ -215,7 +215,30 @@
             $('body').pleaseWait('stop');
         });
     }
-    
+
+    function fnSendNew(LOC_ID) {
+        $http = $tmp_http;
+        $scope = $tmp_scope;
+        var User_Code = '<%=Session["user_code"]%>';
+        var BO_ID = document.getElementById('BO_ID').value;
+        $('body').pleaseWait();
+        var data = $.param({
+            Command: 'BudgetOperation',
+            Function: 'Send',
+            BO_ID: BO_ID,
+            LOC_ID: LOC_ID,
+            User_Code: User_Code
+        });
+
+        $http.post("../server/Server_Budget_Operation.aspx", data, config)
+        .success(function (data, status, headers, config) {
+            document.getElementById('btnPopClose').click();
+            GetPaging($scope, $http);
+        })
+        .error(function (data, status, header, config) {
+            $('body').pleaseWait('stop');
+        });
+    }
 
     var app = angular.module('myApp', []);
     var config = { headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;' } }
@@ -243,7 +266,7 @@
             fnOpenPopup('<%=Session["pop_sum_budget_operation"]%>', "../budget_operation_popup/pop_BudgetOperationSummary.aspx?", null, "450");
         }
         $scope.fnSend = function () {
-            fnConfirmMessage('<%=Session["pop_confirm_budget_operation"]%>', '<%=Session["pop_send_budget_operation"]%>', fnSendYes);
+            fnOpenPopup('<%=Session["pop_confirm_budget_operation"]%>', "../budget/pop_BudgetConfirm.aspx?",null, "450");
         }
         $scope.fnDelete = function (KeyID) {
             tmpKeyID = KeyID;

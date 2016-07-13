@@ -66,6 +66,7 @@
 												        <thead>
 													        <tr>
 														        <th class="center" style="width:50px"><%=Session["budget_position_list_ColumnSEQ"]%></th>
+                                                                <th class="center"><%=Session["budget_position_list_Column00"]%></th>
 														        <th class="center"><%=Session["budget_position_list_Column01"]%></th>
 														        <th class="center" style="width:100px"><%=Session["budget_position_list_Column02"]%></th>
                                                                 <th class="center" style="width:120px">
@@ -83,6 +84,7 @@
                                                         <tbody>
 													        <tr ng-repeat="x in Data">
 														        <td class="center">{{ x.RowID }}</td>
+                                                                <td class="center">{{ x.BP_ID }}</td>
                                                                 <td><input type="hidden" id="BP_ID" value="{{ x.BP_ID }}"/>{{ x.Loc_Name }}</td>
                                                                 <td class="center">{{ x.BP_Year }}</td>
                                                                 <td class="center">{{ x.Create_Date }}</td>          

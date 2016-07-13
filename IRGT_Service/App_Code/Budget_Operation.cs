@@ -807,7 +807,7 @@ public class Budget_Operation : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public bool sendBudget_Operation(string BO_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
+    public bool sendBudget_Operation(string BO_ID, string Loc_ID, string User_Code, out string ReturnMSG_TH, out string ReturnMSG_EN)
     {
         bool ReturnOutput = false;
         ReturnMSG_TH = "";
@@ -823,6 +823,7 @@ public class Budget_Operation : System.Web.Services.WebService
         DBCommand.CommandText = StoreProcedureName;
 
         DBCommand.Parameters.Add(newParam("@BO_ID", BO_ID));
+        DBCommand.Parameters.Add(newParam("@Loc_ID", Loc_ID));
         DBCommand.Parameters.Add(newParam("@User_Code", User_Code));
         //================================= RETURN OUTPUT ===========================
         DBCommand.Parameters.Add(newParam("@ReturnCode", SqlDbType.Int));

@@ -54,7 +54,7 @@
         <Menu ID="1" Name="menu_b0321" TextTH="ค่าตอบแทน ใช้สอย และวัสดุ" TextEN="ค่าตอบแทน ใช้สอย และวัสดุ" Url="../budget_operation/BudgetOperationListAction.aspx"/>
         <Menu ID="2" Name="menu_b0332" TextTH="ค่าใช้จ่ายอื่นๆ" TextEN="ค่าใช้จ่ายอื่นๆ" Url="../budget_operation/BudgetOperationListAction.aspx"/>
       </Menu>
-      <Menu ID="3" Name="menu_b033" TextTH="งบลงทุนค่าครุภัณฑ์" TextEN="งบลงทุนค่าครุภัณฑ์" Url="">
+      <Menu ID="3" Name="menu_b033" TextTH="งบลงทุน" TextEN="งบลงทุน" Url="">
         <Menu ID="1" Name="menu_b0331" TextTH="ค่าครุภัณฑ์" TextEN="ค่าครุภัณฑ์" Url="../budget_asset/BudgetAssetListAction.aspx"/>
         <Menu ID="2" Name="menu_b0332" TextTH="โครงการ" TextEN="โครงการ" Url="../budget_project/BudgetProjectListAction.aspx"/>
       </Menu>
